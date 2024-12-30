@@ -62,6 +62,27 @@ return [
             ]) : [],
         ],
 
+        // RSP CONFIG
+        'rsp_connection' => [
+            'driver' => 'mysql',
+            'url' => '',
+            'host' => env('DB_RSP_HOST'),
+            'port' => env('DB_RSP_PORT'),
+            'database' => env('DB_RSP_DATABASE'),
+            'username' => env('DB_RSP_USERNAME'),
+            'password' => env('DB_RSP_PASSWORD'),
+            'unix_socket' => '',
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            // 'prefix_indexes' => true,
+            'strict' => false,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+
         'mariadb' => [
             'driver' => 'mariadb',
             'url' => env('DB_URL'),
@@ -147,7 +168,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_database_'),
         ],
 
         'default' => [
