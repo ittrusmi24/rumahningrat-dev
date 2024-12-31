@@ -60,25 +60,42 @@
     <section class="container-fluid">
         <div class="row">
             <div class="col-lg-8">
-                    <div class="owl-carousel" id="gallery-carousel-1">
-                        <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=1" alt="" style="height: 100vh;"></div>
-                        <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=2" alt="" style="height: 100vh;"></div>
-                        <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=3" alt="" style="height: 100vh;"></div>
-                    </div>
-                    <div class="owl-carousel d-none" id="gallery-carousel-2">
-                        <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=1+ke+2" alt="" style="height: 100vh;"></div>
-                        <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=2+ke+2" alt="" style="height: 100vh;"></div>
-                        <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=3+ke+2" alt="" style="height: 100vh;"></div>
-                    </div>
-                    <div class="owl-carousel d-none" id="gallery-carousel-3">
-                        <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=1+ke+3" alt="" style="height: 100vh;"></div>
-                        <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=2+ke+3" alt="" style="height: 100vh;"></div>
-                        <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=3+ke+3" alt="" style="height: 100vh;"></div>
-                    </div>
+                <div class="owl-carousel" id="gallery-carousel-1">
+                    <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=1" alt=""
+                            style="height: 100vh;"></div>
+                    <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=2" alt=""
+                            style="height: 100vh;"></div>
+                    <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=3" alt=""
+                            style="height: 100vh;"></div>
+                </div>
+                <div class="owl-carousel d-none" id="gallery-carousel-2">
+                    <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=1+ke+2" alt=""
+                            style="height: 100vh;"></div>
+                    <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=2+ke+2" alt=""
+                            style="height: 100vh;"></div>
+                    <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=3+ke+2" alt=""
+                            style="height: 100vh;"></div>
+                </div>
+                <div class="owl-carousel d-none" id="gallery-carousel-3">
+                    <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=1+ke+3" alt=""
+                            style="height: 100vh;"></div>
+                    <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=2+ke+3" alt=""
+                            style="height: 100vh;"></div>
+                    <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=3+ke+3" alt=""
+                            style="height: 100vh;"></div>
+                </div>
+                <div class="owl-carousel d-none" id="gallery-carousel-4">
+                    <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=1+ke+4" alt=""
+                            style="height: 100vh;"></div>
+                    <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=2+ke+4" alt=""
+                            style="height: 100vh;"></div>
+                    <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=3+ke+4" alt=""
+                            style="height: 100vh;"></div>
+                </div>
             </div>
-            <div class="col-lg-4 container-group" style="overflow-y: scroll; height: 100vh;">
+            <div class="col-lg-4 container-group">
                 <div class="group-container">
-                    <div class="aside-section px-3 pt-4" id="aside-section-1">
+                    <div class="aside-section px-3 pt-2" id="aside-section-1">
                         <div class="row">
                             <div class="col-12">
                                 <div class="header-detail text-center mb-5">
@@ -86,7 +103,7 @@
                                     <h4>Jayasampurna</h4>
                                 </div>
                                 <div class="body-detail">
-                                    <strong>Rp. 166.000.000</strong>
+                                    <p><strong>Rp. 166.000.000</strong></p>
                                     <p>Rumah Subside</p>
                                     <p>Tipe 30/60 m</p>
                                     <p>Jayasampurna, Kec. Serang Baru, Kabupaten Bekasi, Jawa Barat 17330</p>
@@ -154,7 +171,7 @@
                                         <h5 class="text-center mb-3">Ulasan</h5>
                                         <div id="ulasan-container">
                                             <div class="item-ulasan">
-                                                <div class="card rounded card-item-fasilitas">
+                                                <div class="card rounded card-ulasan">
                                                     <div class="card-body">
                                                         <div class="d-flex justify-content-between">
                                                             <p class="text-primary"><i class="bi bi-star-fill"></i> <i
@@ -168,12 +185,12 @@
                                                         <p class="card-text">Memilih Rumah Ningrat adalah keputusan
                                                             yang tepat! Desain rumah elegan dan lingkungan asri
                                                             benar-benar membuat nyaman.</p>
-                                                            <p class="nama-review">Fujiyanto Hasan</p>
+                                                        <p class="nama-review">Fujiyanto Hasan</p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="item-ulasan">
-                                                <div class="card rounded card-item-fasilitas">
+                                                <div class="card rounded card-ulasan">
                                                     <div class="card-body">
                                                         <div class="d-flex justify-content-between">
                                                             <p class="text-primary"><i class="bi bi-star-fill"></i> <i
@@ -187,6 +204,7 @@
                                                         <p class="card-text">Memilih Rumah Ningrat adalah keputusan
                                                             yang tepat! Desain rumah elegan dan lingkungan asri
                                                             benar-benar membuat nyaman.</p>
+                                                        <p class="nama-review">Fujiyanto Hasan</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -196,18 +214,274 @@
                             </div>
                         </div>
                     </div>
-                    <div class="aside-section px-3 pt-4" id="aside-section-3">
+                    <div class="aside-section px-3 pt-2" id="aside-section-3">
                         <div class="row">
                             <div class="col-12">
                                 <div class="header-detail text-center mb-5">
-                                    <h4>Gratis Pagar</h4>
+                                    <h4>Gratis Pagar & Tembok Keliling</h4>
                                 </div>
                                 <div class="body-detail">
-                                    <strong>Rp. 166.000.000</strong>
-                                    <p>Rumah Subside</p>
-                                    <p>Tipe 30/60 m</p>
-                                    <p>Jayasampurna, Kec. Serang Baru, Kabupaten Bekasi, Jawa Barat 17330</p>
-                                    <a href="">Lokasi selengkapnya</a>
+                                    <div class="row mb-3 text-center">
+                                        <div class="col-12 col-lg-6">
+                                            <div class="card card-bonus">
+                                                <div class="card-bonus-body">
+                                                    <img src="{{ url('/assets') }}/images/icon/pagar.png"
+                                                        alt="" width="45px" height="45px">
+                                                    <h5>Pagar Besi</h5>
+                                                    <p><s>Rp. 10.000.000</s></p>
+                                                    <p class="text-danger">Rp. 0</p>
+                                                    <p class="text-detail-card-bonus">Dibangun dengan tembok keliling
+                                                        untuk privasi anda</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-lg-6">
+                                            <div class="card card-bonus">
+                                                <div class="card-bonus-body">
+                                                    <img src="{{ url('/assets') }}/images/icon/wall.png"
+                                                        alt="" width="45px" height="45px">
+                                                    <h5>Tembok Dapur</h5>
+                                                    <p><s>Rp. 2.000.000</s></p>
+                                                    <p class="text-danger">Rp. 0</p>
+                                                    <p class="text-detail-card-bonus">Dilengkapi tembok dapur belakang
+                                                        setinggi 1,5 meter</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="aside-section px-3 pt-2" id="aside-section-4">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="header-detail text-center mb-5">
+                                    <h4>Fasilitas</h4>
+                                </div>
+                                <div class="body-detail">
+                                    <div class="row mb-3">
+                                        <div class="col-12 col-lg-5 item-fasilitas">
+                                            <div><img src="{{ url('/assets/images/icon') }}/bed.png" alt=""
+                                                    width="16px" height="16px"></div>
+                                            <div class="card-text">
+                                                2 Kamar Tidur
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-1"></div>
+                                        <div class="col-12 col-lg-5 item-fasilitas">
+                                            <div><img src="{{ url('/assets/images/icon') }}/bath.png" alt=""
+                                                    width="16px" height="16px"></div>
+                                            <div class="card-text">
+                                                1 Kamar Mandi
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-12 col-lg-5 item-fasilitas">
+                                            <div><img src="{{ url('/assets/images/icon') }}/car.png" alt=""
+                                                    width="16px" height="16px"></div>
+                                            <div class="card-text">
+                                                Carport
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-1"></div>
+                                        <div class="col-12 col-lg-5 item-fasilitas">
+                                            <div><img src="{{ url('/assets/images/icon') }}/run.png" alt=""
+                                                    width="16px" height="16px"></div>
+                                            <div class="card-text">
+                                                Jogging Track
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 col-lg-5 item-fasilitas">
+                                            <div><img src="{{ url('/assets/images/icon') }}/shield.png"
+                                                    alt="" width="16px" height="16px"></div>
+                                            <div class="card-text">
+                                                Keamanan
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col-12">
+                                            <a href="">Detail Spesifikasi</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="aside-section px-3 pt-2" id="aside-section-5">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="header-detail text-center mb-5">
+                                    <h4>Dekat dengan</h4>
+                                </div>
+                                <div class="body-detail">
+                                    <div class="row mb-3">
+                                        <div class="col-12 col-lg-5 item-fasilitas">
+                                            <div><img src="{{ url('/assets/images/icon') }}/sekolah.png"
+                                                    alt="" width="16px" height="16px"></div>
+                                            <div class="card-text">
+                                                52 Pendidikan
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-1"></div>
+                                        <div class="col-12 col-lg-5 item-fasilitas">
+                                            <div><img src="{{ url('/assets/images/icon') }}/pasar.png" alt=""
+                                                    width="16px" height="16px"></div>
+                                            <div class="card-text">
+                                                3 Pasar
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-12 col-lg-5 item-fasilitas">
+                                            <div><img src="{{ url('/assets/images/icon') }}/resto.png" alt=""
+                                                    width="16px" height="16px"></div>
+                                            <div class="card-text">
+                                                5 Rumah Makan
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-1"></div>
+                                        <div class="col-12 col-lg-5 item-fasilitas">
+                                            <div><img src="{{ url('/assets/images/icon') }}/rs.png" alt=""
+                                                    width="16px" height="16px"></div>
+                                            <div class="card-text">
+                                                15 Kesehatan
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 col-lg-5 item-fasilitas">
+                                            <div><img src="{{ url('/assets/images/icon') }}/bus.png" alt=""
+                                                    width="16px" height="16px"></div>
+                                            <div class="card-text">
+                                                6 Transportasi
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-1"></div>
+                                        <div class="col-12 col-lg-5 item-fasilitas">
+                                            <div><img src="{{ url('/assets/images/icon') }}/wallet.png"
+                                                    alt="" width="16px" height="16px"></div>
+                                            <div class="card-text">
+                                                6 Keuangan
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col-12">
+                                            <a href="">Detail Tempat</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="aside-section px-3 pt-2" id="aside-section-6">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="header-detail text-center mb-5">
+                                    <h4>Blok Tersedia</h4>
+                                </div>
+                                <div class="body-detail">
+                                    <div id="blok-container">
+                                        <div class="item-blok px-3 py-2">
+                                            <div class="d-flex flex-column">
+                                                <p style="line-height: 10px" class="fw-bold">Blok A</p>
+                                                <p style="line-height: 10px">Sisa 5 unit</p>
+                                            </div>
+                                            <div class="d-flex flex-column text-end">
+                                                <p style="line-height: 10px">Terima kunci mulai</p>
+                                                <p style="line-height: 10px; color: #DE0000;">Rp.1.000.000</p>
+                                            </div>
+                                        </div>
+                                        <div class="item-blok px-3 py-2">
+                                            <div class="d-flex flex-column">
+                                                <p style="line-height: 10px" class="fw-bold">Blok B</p>
+                                                <p style="line-height: 10px">Sisa 5 unit</p>
+                                            </div>
+                                            <div class="d-flex flex-column text-end">
+                                                <p style="line-height: 10px">Terima kunci mulai</p>
+                                                <p style="line-height: 10px; color: #DE0000;">Rp.1.000.000</p>
+                                            </div>
+                                        </div>
+                                        <div class="item-blok px-3 py-2">
+                                            <div class="d-flex flex-column">
+                                                <p style="line-height: 10px" class="fw-bold">Blok C</p>
+                                                <p style="line-height: 10px">Sisa 5 unit</p>
+                                            </div>
+                                            <div class="d-flex flex-column text-end">
+                                                <p style="line-height: 10px">Terima kunci mulai</p>
+                                                <p style="line-height: 10px; color: #DE0000;">Rp.1.000.000</p>
+                                            </div>
+                                        </div>
+                                        <div class="item-blok px-3 py-2">
+                                            <div class="d-flex flex-column">
+                                                <p style="line-height: 10px" class="fw-bold">Blok D</p>
+                                                <p style="line-height: 10px">Sisa 5 unit</p>
+                                            </div>
+                                            <div class="d-flex flex-column text-end">
+                                                <p style="line-height: 10px">Terima kunci mulai</p>
+                                                <p style="line-height: 10px; color: #DE0000;">Rp.1.000.000</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bank-section mt-5">
+                                        <h4 class="text-center">Bank Tersedia</h4>
+                                        <div class="row mt-3">
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/bca.png" alt=""
+                                                    width="75px" height="24px">
+                                            </div>
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/bjb.png" alt=""
+                                                    width="75px" height="24px">
+                                            </div>
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/bri.png" alt=""
+                                                    width="75px" height="24px">
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/mandiri.png"
+                                                    alt="" width="75px" height="24px">
+                                            </div>
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/bni.png" alt=""
+                                                    width="75px" height="24px">
+                                            </div>
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/btn.png" alt=""
+                                                    width="75px" height="24px">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="aside-section px-3 pt-2" id="aside-section-7">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="header-detail text-center mb-5">
+                                    <h4>Pilih Blok</h4>
+                                </div>
+                                <div class="body-detail">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <select class="form-select">
+                                                <option value="" selected>Blok A01</option>
+                                                <option value="">Blok A02</option>
+                                                <option value="">Blok A03</option>
+                                                <option value="">Blok A04</option>
+                                                <option value="">Blok A05</option>
+                                                <option value="">Blok A06</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

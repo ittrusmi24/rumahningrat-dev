@@ -44,19 +44,85 @@ Tags: 	agency, Business Agency, Business Consultant, business optimization, comp
     font-size: 14px; */
 }
 
+.container-group {
+    overflow-y: scroll;
+    height: 100vh;
+}
+.container-group p {
+    color: #000;
+}
+
 .item-rumah {
     background-size: contain;
     background: url(https://dummyimage.com/500x400/bfbfbf/ffffff&text=dummy);
     height: 400px;
 }
 
+.group-container a {
+    color: #383838;
+    font-size: 13px;
+}
+
+.aside-section h4 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #383838;
+}
+
 .card-item-fasilitas {
-    min-height: 221px;
+    min-height: 100px;
+    max-height: 200px;
     border-radius: 10px;
+    max-width: 190px;
+}
+
+.card-title {
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .card-text {
     font-size: 10px;
+    font-weight: 500;
+    line-height: 15px;
+}
+
+.card-bonus {
+    min-height: 245px;
+    border-radius: 12px;
+    border: 1px solid #ababab;
+}
+
+.card-bonus-body {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    gap: 12px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 8px;
+}
+
+.card-bonus-body p {
+    line-height: 15px;
+    margin-bottom: 0px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.card-bonus-body h5 {
+    line-height: 30px;
+    color: #383838;
+    font-size: 16px;
+}
+
+.card-bonus-body img {
+    margin: auto;
+}
+
+.text-detail-card-bonus {
+    font-size: 12px;
+    font-weight: 500;
 }
 
 #ulasan-container {
@@ -75,12 +141,18 @@ Tags: 	agency, Business Agency, Business Consultant, business optimization, comp
 
 .item-ulasan {
     flex-shrink: 0;
-    flex-basis: 350px;
-    min-height: 350px;
+    flex-basis: 345px;
+    min-height: 345px;
+}
+
+.card-ulasan {
 }
 
 .aside-section {
-    /* height: 100vh; */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .owl-carousel {
@@ -118,9 +190,43 @@ Tags: 	agency, Business Agency, Business Consultant, business optimization, comp
     right: 20px;
 }
 
-.nama-review{
+.nama-review {
     font-size: 12px;
     font-weight: 700;
+}
+
+.item-fasilitas {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    height: 38px;
+    border-radius: 6px;
+    gap: 16px;
+    border: 1px solid #ababab;
+    align-items: center;
+}
+
+/* section blok */
+#blok-container {
+    overflow-y: auto;
+    max-height: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#blok-container::-webkit-scrollbar {
+    display: none; /* Hides scrollbar in WebKit browsers */
+}
+
+.item-blok {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    height: 63px;
+    border-radius: 12px;
+    border: 1px solid #ABABAB;
 }
 
 /*==================================================
