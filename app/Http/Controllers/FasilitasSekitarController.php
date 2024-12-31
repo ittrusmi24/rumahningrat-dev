@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Fasilitas;
+use App\Models\FasilitasSekitar;
 use Illuminate\Http\Request;
-use PhpParser\Node\Stmt\TryCatch;
 
-class FasilitasController extends Controller
+class FasilitasSekitarController extends Controller
 {
     public function index(Request $request)
     {
@@ -20,11 +19,11 @@ class FasilitasController extends Controller
         }
         try {
             //code...
-            $fasilitas = Fasilitas::get_fasilitas_by_id_project($id_project);
+            $fasilitas_sekitar = FasilitasSekitar::get_fasilitas_sekitar_by_id_project($id_project);
             echo json_encode([
                 'status' => true,
                 'message' => 'success',
-                'data' => $fasilitas
+                'data' => $fasilitas_sekitar
             ]);
         } catch (\Throwable $th) {
             throw $th;
