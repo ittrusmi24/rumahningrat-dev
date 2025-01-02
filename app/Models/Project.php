@@ -25,7 +25,13 @@ class Project extends Model
             pt.project_tipe,
             COALESCE(p.tipe_rumah,'') AS tipe_rumah,
             p.harga_jual,
-            alamat
+            alamat,
+            p.latitude,
+	        p.longitude,
+            pd.denah,
+	        pd.link_video,
+	        pd.spesifikasi,
+	        p.usp AS poin_plus
         FROM
             m_project p
             LEFT JOIN m_project_tipe pt ON pt.id_project_tipe = p.id_project_tipe
