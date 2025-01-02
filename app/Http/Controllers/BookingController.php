@@ -2,14 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\BookingCreated;
 use App\Models\Booking;
 use App\Models\BookingHistoryRsp;
 use App\Models\BookingStatus;
 use App\Models\Konsumen;
+use App\Models\KonsumenClik;
+use App\Models\KonsumenEces;
+use App\Models\Project;
 use App\Models\ProjectUnit;
+use App\Models\UserRumahNingrat;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class BookingController extends Controller
 {
@@ -38,6 +44,7 @@ class BookingController extends Controller
         }
         $jenis_kelamin = strip_tags(trim($request->jenis_kelamin));
         $status = strip_tags(trim($request->status));
+        $alamat = strip_tags(trim($request->alamat));
         $no_ktp_p = '';
         if ($status == '2') {
             $no_ktp_p = strip_tags(trim($request->no_ktp_p));
@@ -52,7 +59,9 @@ class BookingController extends Controller
             ];
         }
 
-        // DB::beginTransaction();
+        DB::connection('rsp_connection')->beginTransaction();
+        DB::connection('eces_connection')->beginTransaction();
+        DB::connection('rumahningrat_connection')->beginTransaction();
 
         try {
             // 1. TODO Insert Konsumen
@@ -87,7 +96,7 @@ class BookingController extends Controller
                 'perusahaan' => '',
                 'tipe_pembayaran' => 'Payment Gateway',
             ];
-
+            Konsumen::create($data_post_konsumen);
             $data_post_array[] = $data_post_konsumen;
 
             // 2. TODO Insert Konsumen Pasangan Jika Status Menikah
@@ -105,7 +114,7 @@ class BookingController extends Controller
                     'created_by' => 23139
                 );
                 $data_post_array[] = $data_post_konsumen_pasangan;
-                // $insert_konsumen = M_konsumen_pasangan::create($data_konsumen_pasangan);
+                M_konsumen_pasangan::create($data_post_konsumen_pasangan);
             }
 
             // 3. TODO Insert Booking / GCI
@@ -131,6 +140,7 @@ class BookingController extends Controller
                 'created_by' => 23139, // Booking mandiri
                 'opsi_pagar' => '', // value Pakai Pagar atau Tanpa Pagar
             );
+            $booking = Booking::create($data_post_booking);
 
             $data_post_array[] = $data_post_booking;
 
@@ -143,7 +153,7 @@ class BookingController extends Controller
             );
 
             $data_post_array[] = $data_post_booking_status;
-            // $insert_gci_status = BookingStatus::create($data_post_booking_status);
+            BookingStatus::create($data_post_booking_status);
 
 
             // 5. TODO Insert Booking History RSP Project
@@ -157,7 +167,7 @@ class BookingController extends Controller
             );
 
             $data_post_array[] = $data_post_booking_history;
-            // $insert_gci_history = BookingHistoryRsp::create($data_post_booking_history);
+            BookingHistoryRsp::create($data_post_booking_history);
 
 
 
@@ -165,26 +175,109 @@ class BookingController extends Controller
             $data_post_status_blok = array(
                 'id_status' => 2,
             );
-
             $data_post_array[] = $data_post_status_blok;
-            // $update_status_blok = ProjectUnit::where('id_project', $id_project)->where('blok', $blok)->update($data_post_status_blok);
+            ProjectUnit::where('id_project', $id_project)->where('blok', $blok)->update($data_post_status_blok);
 
 
-            echo json_encode($data_post_array);
-            die();
 
-            // // Kirim notifikasi
-            // event(new BookingCreated($booking));
+            // 7. TODO Insert Konsumen Clik
+            $get_status_clik = DB::connection('rsp_connection')->table('m_konsumen_status')->where('id_status', $request->id_status)->first();
+            $data_post_konsumen_clik = array(
+                'id_gci' => $id_gci,
+                'id_konsumen' => $id_konsumen,
+                'nameAsId' => $nama_lengkap,
+                'fullName' => $nama_lengkap,
+                'birthDate' => $tgl_lahir ?? '',
+                'address' => $alamat,
+                'country' => 'ID',
+                'identityType' => '1',
+                'identityNumber' => $no_ktp,
+                'cellphoneNumber' => $no_hp,
+                'gender' => $jenis_kelamin,
+                'marriageStatus' => $get_status_clik->id_status_clik ?? '',
+                'getPDF' => 'yes',
+                'purposeCode' => '20',
+                'created_at' => date('Y-m-d H:i:s')
+            );
+            $data_post_array[] = $data_post_konsumen_clik;
+            KonsumenClik::create($data_post_konsumen_clik);
+
+            // 8. TODO Insert Konsumen Eces
+            $project_eces = Project::get_project_by_id_eces($id_project);
+            $cusId = KonsumenEces::get_cus_id();
+            $cusKd = KonsumenEces::get_cus_kd($project_eces->prj_eces);
+            $data_post_konsumen_eces = array(
+                'cus_id' => $cusId,
+                'cus_kd' => $cusKd,
+                'cus_nm' => $nama_lengkap,
+                'cus_alm' => $alamat,
+                'cus_telp' => $no_hp,
+                'cus_identitas' => $no_ktp,
+                'cus_kontak' => $no_hp,
+                'cus_profesi' => '',
+                'cus_kota' => '',
+                'cus_alm_surat' => '',
+                'prj_id' => $project_eces->prj_eces,
+                'cus_hp' => $no_hp,
+                'cus_pwd' => 'be92fec1f8583ff513da3d5563b10c83',
+                'cus_instansi_nm' => $id_gci,
+            );
+            $data_post_array[] = $data_post_konsumen_eces;
+            KonsumenEces::create($data_post_konsumen_eces);
+
+            // 9. TODO Create User Rumah Ningrat
+            $data_post_user_rumah_ningrat = [
+                'name' => $nama_lengkap,
+                'phone' => $no_hp,
+                'id_gci' => $id_gci,
+                'id_konsumen' => $id_konsumen,
+                'no_ktp' => $no_ktp,
+                'jenis_kelamin' => $jenis_kelamin,
+                'tgl_lahir' => $tgl_lahir,
+                'usia' => $usia,
+                'status_nikah' => $status,
+                'alamat' => $alamat,
+                'pendapatan' => $pendapatan,
+                'password' => Hash::make('ningrat123'),
+                'created_at' => date('Y-m-d H:i:s'),
+            ];
+            if ($status == 2) {
+                $data_post_user_rumah_ningrat['nama_p'] = $nama_pasangan;
+                $data_post_user_rumah_ningrat['no_ktp_p'] = $no_ktp_p;
+            }
+            $data_post_array[] = $data_post_user_rumah_ningrat;
+            UserRumahNingrat::create($data_post_user_rumah_ningrat);
+
+            // Trigger event
+            // 1. Send Notifikasi Whatsapp
+            $data_for_event_booking = [
+                'id_gci' => $id_gci
+            ];
+
+            // Trigger event
+            event(new BookingCreated($data_for_event_booking));
 
             // // Jika semua berhasil, commit perubahan
-            // DB::commit();
+            DB::connection('rsp_connection')->commit();
+            DB::connection('eces_connection')->commit();
+            DB::connection('rumahningrat_connection')->commit();
         } catch (\Exception $e) {
             // // Jika terjadi error, batalkan perubahan
-            // DB::rollBack();
-            return response()->json(['message' => 'Terjadi kesalahan: ' . $e->getMessage()], 500);
+            DB::connection('rsp_connection')->rollBack();
+            DB::connection('eces_connection')->rollBack();
+            DB::connection('rumahningrat_connection')->rollBack();
+
+            return response()->json([
+                'status' => false,
+                'message' => 'Terjadi kesalahan: ' . $e->getMessage()
+            ], 500);
         }
 
-        return response()->json(['message' => 'Booking berhasil', 'data' => ''], 201);
+        return response()->json([
+            'status' => true,
+            'message' => 'Booking berhasil',
+            'data' => $data_post_array
+        ], 201);
     }
 
     private function validasi_manual($request)

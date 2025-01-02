@@ -11,6 +11,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/test-event', function () {
+    $data = [
+        'id_gci' => 'GCI2501020001',
+    ];
+    // Trigger event
+    dd(event(new \App\Events\BookingCreated($data)));
+    return 'Event telah dijalankan';
+});
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('dashboard/detail', [DashboardController::class, 'detail'])->name('detail');
 Route::get('project/{id_project}', [ProjectController::class, 'index'])->name('project');
