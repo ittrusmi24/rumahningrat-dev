@@ -43,29 +43,38 @@ html {
     scroll-behavior: smooth;
 }
 
+/* .select2-container--default .select2-selection--single {
+    min-height: 78px;
+    display: block;
+} */
+
 #wrapper-detail p,
 h1,
 h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+label {
     font-family: "Poppins", serif;
     /* font-weight: 500; */
     /* font-size: 12px; */
+    color: #000;
 }
 
 .container-group {
     overflow-y: scroll;
     height: 100vh;
+    position: relative;
+    margin-bottom: 20vh;
 }
 
 .container-group::-webkit-scrollbar {
     display: none; /* Hides scrollbar in WebKit browsers */
 }
 
-.container-group p {
-    color: #000;
+.text-harga {
+    color: #de0000;
 }
 
 .item-rumah {
@@ -192,8 +201,8 @@ h6 {
 }
 
 .owl-carousel {
-    /* display: none; */
-    transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    transform: scale(0.98); /* Default scale effect for smooth transition */
 }
 
 .owl-nav {
@@ -291,8 +300,145 @@ h6 {
     border-radius: 12px;
     border: 1px solid #ababab;
 }
-.body-detail .form-select {
+
+.select-blok{
+    height: 78px;
+}
+
+/* jenis pembayaran */
+.payment-method {
+    display: inline-block;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+    padding: 10px;
+    text-align: center;
+}
+
+.payment-method img {
+    width: 80px;
+    height: auto;
+}
+
+.payment-method input[name="payment"] {
+    display: none;
+}
+
+.payment-method:has(input[name="payment"]:checked) {
+    border: 2px solid #007bff;
+    border-radius: 8px;
+}
+
+/* jenis bank */
+.radio-button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.radio-card {
+    display: flex;
+    align-items: center;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    /* padding: 10px; */
+    cursor: pointer;
+    position: relative;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.radio-card:hover {
+    border-color: #007bff;
+}
+
+.radio-card input[type="radio"] {
+    display: none;
+}
+
+.radio-card .card-body {
+    display: flex;
+    align-items: center;
+    gap: 20px;
     width: 100%;
+}
+
+.radio-card .check-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 23px;
+    height: 23px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+.radio-card .check-icon {
+    display: none;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.radio-card img {
+    width: 70px;
+    height: 22px;
+}
+
+.radio-card input[type="radio"]:checked + .card-body .check-box {
+    border-color: #007bff;
+    background-color: #007bff;
+}
+
+.radio-card input[type="radio"]:checked + .card-body .check-icon {
+    display: inline-block;
+}
+
+/* submit section */
+.sticky-container {
+    position: sticky;
+    bottom: 0;
+    background: linear-gradient(to top, #ffffff, rgba(255, 255, 255, 0.8));
+    border-top: 1px solid #ddd;
+    padding: 10px 15px;
+    border-radius: 20px;
+    z-index: 10;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Sticky content */
+.sticky-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Price styling */
+.price {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Note styling */
+.note {
+    font-size: 12px;
+    color: #6c757d;
+}
+
+/* Button styling */
+.btn-primary {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #004494;
+    border-color: #004494;
 }
 
 /* responsive breakpoints */
@@ -307,7 +453,7 @@ h6 {
 /* mobile */
 @media (min-width: 320px) and (max-width: 767px) {
     .owl-carousel .owl-item img {
-        /* height: 40vh; */
+        height: 40vh;
     }
     * {
         font-size: 10px;
@@ -318,6 +464,32 @@ h6 {
         grid-template-columns: minmax(0, 60vw);
         justify-content: center;
         gap: 12px;
+    }
+
+    .sticky-container {
+        position: fixed; /* Ensure it sticks to the bottom on mobile */
+        bottom: 0;
+        width: 100%; /* Take full width on mobile */
+        padding: 15px;
+        border-radius: 20px 20px 0px 0px; /* Remove rounded corners for mobile */
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow */
+    }
+
+    .price {
+        font-size: 16px; /* Adjust font size for smaller screens */
+    }
+
+    .btn-primary {
+        padding: 10px 15px; /* Further adjust padding */
+        font-size: 14px; /* Adjust font size for smaller screens */
+    }
+
+    .section-form {
+        margin-bottom: 300px
+    }
+
+    .select-blok{
+        height: 30px;
     }
 }
 
