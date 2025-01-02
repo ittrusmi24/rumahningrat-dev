@@ -10,6 +10,7 @@ class Konsumen extends Model
 {
     protected $connection = 'rsp_connection';
     protected $table = 'm_konsumen';
+    protected $primaryKey = 'id_konsumen';
 
     protected $fillable = [
         'id_konsumen',
@@ -32,6 +33,7 @@ class Konsumen extends Model
         'id_kecamatan',
         'id_kelurahan',
         'created_at',
+        'created_by',
         'domisili',
         'bpjs',
         'perusahaan',
