@@ -14,6 +14,13 @@ function activateCarousel(sectionId, carouselId) {
 }
 
 $(document).ready(function () {
+
+    $('.selectpicker').select2()
+
+    $('#tgl_lahir').datepicker({
+        uiLibrary: 'bootstrap5'
+    });
+
     $('.owl-carousel').owlCarousel({
         loop: true,
         nav: true,
