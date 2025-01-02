@@ -48,7 +48,7 @@ class Project extends Model
         $projectArray = json_decode(json_encode($project), true);
 
         // Return data sebagai array
-        return $projectArray[0];
+        return $projectArray[0] ?? [];
     }
     public static function get_project_by_id_eces($id_project)
     {
@@ -78,6 +78,6 @@ class Project extends Model
             ->select($query);
 
         // Return data sebagai array
-        return $project[0];
+        return $project[0] ?? [];
     }
 }
