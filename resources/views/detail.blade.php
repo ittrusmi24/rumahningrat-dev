@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url('/') }}/assets/slick/slick.css">
     <link rel="stylesheet" type="text/css" href="{{ url('/') }}/assets/slick/slick-theme.css">
     <!-- Main Style CSS -->
-    <link rel="stylesheet" href="{{ url('/assets/css') }}/style.css" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ url('/assets/css') }}/style.css?v=1" type="text/css" media="all">
     <!-- Dropdown CSS -->
     <link rel="stylesheet" href="{{ url('/assets/css') }}/dropdown.css" type="text/css" media="all">
     <!-- responsive CSS -->
@@ -64,7 +64,7 @@
     <section class="container-fluid" id="wrapper-detail">
         <div class="row">
             <div class="col-12 col-lg-8 pl-0 pr-0">
-                <div class="owl-carousel" id="gallery-carousel-1">
+                <div class="owl-carousel bg-info" id="gallery-carousel-1">
                     <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=1" alt="">
                     </div>
                     <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=2" alt="">
@@ -683,7 +683,6 @@
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </section>
 

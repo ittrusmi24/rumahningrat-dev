@@ -20,7 +20,7 @@ Route::get('/test-event', function () {
     return 'Event telah dijalankan';
 });
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('dashboard/detail', [DashboardController::class, 'detail'])->name('detail');
+Route::get('dashboard/detail/{id_project}', [DashboardController::class, 'detail'])->name('detail');
 Route::get('project/{id_project}', [ProjectController::class, 'index'])->name('project');
 Route::get('fasilitas/{id_project}', [FasilitasController::class, 'index'])->name('fasilitas');
 Route::get('fasilitas_sekitar/grouped/{id_project}', [FasilitasSekitarController::class, 'grouped'])->name('fasilitas.sekitar.grouped');
