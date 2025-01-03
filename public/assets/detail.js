@@ -15,7 +15,13 @@ function activateCarousel(sectionId, carouselId) {
 
 $(document).ready(function () {
 
-    $('.selectpicker').select2()
+    // $('.selectpicker').select2()
+
+    const blok_select = new SlimSelect({
+        select: '#blok',
+        placeholder: 'Pilih Blok',
+        allowDeselect: true
+    })
 
     $('input[name="tgl_lahir"]').daterangepicker({
         singleDatePicker: true,
@@ -112,6 +118,13 @@ $(document).ready(function () {
 
 });
 
+$('#blok').change(function (e) {
+    e.preventDefault();
+    let harga = $(this).find(':selected').data('harga')
+    harga = `Rp. ${harga}`
+    $('#harga_blok').text(harga);
+});
+
 const ulasan = document.getElementById('ulasan-container');
 
 let isDragging = false;
@@ -142,3 +155,22 @@ ulasan.addEventListener('mousemove', (e) => {
     const walk = (x - startX) * 2;
     ulasan.scrollLeft = scrollLeft - walk;
 });
+
+function validasiBook() {
+    let nama = $('#nama').val(),
+        no_hp = $('#no_hp').val(),
+        tgl_lahir = $('#tgl_lahir').val(),
+        jenis_kl = $('#jenis_kl').find(":selected").val(),
+        no_ktp = $('#no_ktp').val(),
+        alamat = $('#alamat_book').val(),
+        pendapatan = $('#pendapatan').val(),
+        status = $('#status').find(":selected").val(),
+        no_ktp_psg = $('#no_ktp_psg').val(),
+        payment = $("input[name='payment']:checked").val(),
+        bank = $("input[name='bank']:checked").val()
+
+    // if (nama == '') {
+
+    // }
+
+}

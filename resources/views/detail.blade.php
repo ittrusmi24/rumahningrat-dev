@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="56x56" href="{{ url('/') }}/assets/images/fav-icon/icon.png">
+    <link rel="icon" type="image/png" sizes="56x56" href="{{ url('/assets/images/fav-icon') }}/icon-ningrat.png">
     <!-- bootstrap CSS -->
     {{-- <link rel="stylesheet" href="{{ url('/assets/css') }}/bootstrap.min.css" type="text/css" media="all"> --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -438,17 +438,19 @@
                                 <div class="body-detail">
                                     <div id="blok-container">
                                         @foreach ($blokTersedia as $blok)
-                                        <div class="item-blok px-3 py-2">
-                                            <div class="d-flex flex-column">
-                                                <p style="line-height: 10px" class="fw-bold">Blok {{ $blok->blok }}</p>
-                                                <p style="line-height: 10px">Sisa {{ $blok->sisa_unit }} unit</p>
+                                            <div class="item-blok px-3 py-2">
+                                                <div class="d-flex flex-column">
+                                                    <p style="line-height: 10px" class="fw-bold">Blok
+                                                        {{ $blok->blok }}</p>
+                                                    <p style="line-height: 10px">Sisa {{ $blok->sisa_unit }} unit</p>
+                                                </div>
+                                                <div class="d-flex flex-column text-end">
+                                                    <p style="line-height: 10px">Terima kunci mulai</p>
+                                                    <p style="line-height: 10px; color: #DE0000;">
+                                                        {{ $blok->terima_kunci }}
+                                                    </p>
+                                                </div>
                                             </div>
-                                            <div class="d-flex flex-column text-end">
-                                                <p style="line-height: 10px">Terima kunci mulai</p>
-                                                <p style="line-height: 10px; color: #DE0000;">{{ $blok->terima_kunci }}
-                                                </p>
-                                            </div>
-                                        </div>
                                         @endforeach
                                         {{-- <div class="item-blok px-3 py-2">
                                             <div class="d-flex flex-column">
@@ -542,11 +544,11 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <select class="form-select select-blok">
-                                    <option value="1">Blok A01</option>
-                                    <option value="2">Blok A02</option>
-                                    <option value="3">Blok A03</option>
-                                    <option value="4">Blok A04</option>
+                                <select class="select-blok" name="blok" id="blok">
+                                    @foreach ($bloks as $blok)
+                                        <option value="{{ $blok->blok }}" data-harga="{{ $blok->terima_kunci }}">
+                                            Blok {{ $blok->blok }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -554,7 +556,7 @@
                             <div class="col"></div>
                             <div class="col-10 text-center">
                                 <p>Sudah dapat terima kunci dengan nominal</p>
-                                <p class="text-danger">Rp.1.000.000</p>
+                                <p class="text-danger" id="harga_blok">Rp.1.000.000</p>
                             </div>
                             <div class="col"></div>
                         </div>
@@ -581,9 +583,9 @@
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">Jenis Kelamin</label>
-                                        <select class="form-select" name="jenis_kl">
-                                            <option value="">Laki - laki</option>
-                                            <option value="">Perempuan</option>
+                                        <select class="form-select" name="jenis_kl" id="jenis_kl">
+                                            <option value="l">Laki - laki</option>
+                                            <option value="p">Perempuan</option>
                                         </select>
                                     </div>
                                     <div class="mb-2">
@@ -592,7 +594,7 @@
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">Alamat</label>
-                                        <input type="text" class="form-control" name="alamat" id="alamat">
+                                        <input type="text" class="form-control" name="alamat" id="alamat_book">
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">Pendapatan</label>
@@ -601,9 +603,9 @@
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">Status</label>
-                                        <select class="form-select" name="jenis_kl">
-                                            <option value="">Menikah</option>
-                                            <option value="">Belum Menikah</option>
+                                        <select class="form-select" name="status" id="status">
+                                            <option value="meried">Menikah</option>
+                                            <option value="single">Belum Menikah</option>
                                         </select>
                                     </div>
                                     <div class="mb-2">
@@ -717,18 +719,34 @@
                             <div class="price">Rp.500.000</div>
                             <div class="note">*biaya booking + BI checking</div>
                         </div>
-                        <button class="btn btn-primary" style="border-radius: 10px">Booking Sekarang</button>
+                        <button class="btn btn-primary" onclick="validasiBook()" style="border-radius: 10px">Booking
+                            Sekarang</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <div class="chat-ai d-flex flex-column shadow-sm">
+    {{-- <div class="chat-ai d-flex flex-column shadow-sm">
         <div><i class="bi bi-chat-dots"></i></div>
         <div>
             <p>Nira AI</p>
         </div>
-    </div>
+    </div> --}}
+    <script type="text/javascript">
+        window.mychat = window.mychat || {};
+        window.mychat.server = 'https://live.cekat.ai/widget.js';
+        window.mychat.iframeWidth = '400px';
+        window.mychat.iframeHeight = '700px';
+        window.mychat.accessKey = 'Trusmi-lgeisqBy';
+        (function() {
+            var mychat = document.createElement('script');
+            mychat.type = 'text/javascript';
+            mychat.async = true;
+            mychat.src = window.mychat.server;
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(mychat, s);
+        })();
+    </script>
 
     <!-- jquery js -->
     <script src="{{ url('/assets/js') }}/vendor/jquery-3.6.2.min.js"></script>
@@ -794,8 +812,14 @@
     <!-- scroll js -->
     <script src="{{ url('/assets/js') }}/script.js"></script>
 
-    {{-- select2 --}}
-    <script src="{{ url('/assets/select2/js') }}/select2.full.min.js"></script>
+    <!-- slim select -->
+    <script src="https://unpkg.com/slim-select@latest/dist/slimselect.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/slim-select@latest/dist/slimselect.css" />
+    {{-- sweetalert2 --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.15.9/dist/sweetalert2.all.min.js"
+        integrity="sha256-zXU3hnKwOJq62DswpQcW5m0q0zoQY4UpTLYdmlxwJHg=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.15.9/dist/sweetalert2.min.css"
+        integrity="sha256-HivoIIkMGPypkWBoBzUEFAY/RZqAWSWLqW/MQFMBRXg=" crossorigin="anonymous">
 
     {{-- datetime picker --}}
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
