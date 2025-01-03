@@ -17,8 +17,11 @@ $(document).ready(function () {
 
     $('.selectpicker').select2()
 
-    $('#tgl_lahir').datepicker({
-        uiLibrary: 'bootstrap5'
+    $('input[name="tgl_lahir"]').daterangepicker({
+        singleDatePicker: true,
+        showDropdowns: true,
+        minYear: 1901,
+        maxYear: parseInt(moment().format('YYYY'), 10)
     });
 
     $('.owl-carousel').owlCarousel({
@@ -78,6 +81,34 @@ $(document).ready(function () {
             }
         }
     });
+
+    // get data project
+    // Ambil URL saat ini
+    const url = window.location.href;
+
+    // Ekstrak parameter terakhir dari URL
+    const id = url.split('/').pop();
+
+    // Kirim request AJAX
+    // $.ajax({
+    //     url: `/project/${id}`, // Sesuaikan endpoint API
+    //     type: 'GET',
+    //     dataType: 'json',
+    //     headers: {
+    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Jika diperlukan CSRF
+    //     },
+    //     success: function (response) {
+    //         $('#nama_project').text(response.data.project);
+    //         $('#harga_project').text(`Rp. ${response.data.harga_jual}`);
+    //         $('#project_tipe').text(response.data.project_tipe);
+    //         $('#tipe_rumah').text(response.data.tipe_rumah);
+    //         $('#alamat').text(response.data.alamat);
+
+    //     },
+    //     error: function (xhr, status, error) {
+    //         console.error(`Error: ${error}`);
+    //     }
+    // });
 
 });
 

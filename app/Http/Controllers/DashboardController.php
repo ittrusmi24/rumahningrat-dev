@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Number;
+use Illuminate\Support\Arr;
+use App\Models\Fasilitas;
+use App\Models\FasilitasSekitar;
+use App\Models\Project;
+use App\Models\BlokTersedia;
 
 class DashboardController extends Controller
 {
@@ -13,9 +19,20 @@ class DashboardController extends Controller
 
     public function detail(Request $request)
     {
-        if (!$request->id_project) {
+        $id_project = $request->id_project;
+        if (!$id_project) {
             return view('welcome');
         }
-        return view('detail');
+        $project = Project::get_project_by_id($id_project);
+        $fasilitas = Fasilitas::get_fasilitas_by_id_project($id_project);
+        $fasilitasSekitar = FasilitasSekitar::get_fasilitas_sekitar_by_id_project_grouped($id_project);
+        $blok = BlokTersedia::get_blok_by_id_project($id_project);
+        $groupBlok = BlokTersedia::get_grup_blok_by_id_project($id_project);
+        $groupBlok = Arr::map($groupBlok, function ($value) {
+            $value->terima_kunci = Number::currency($value->terima_kunci ?? 0, in: 'IDR', locale: 'id_ID');
+            return $value;
+        });
+        
+        return view('detail', ['project' => $project, 'fasilitas' => $fasilitas, 'fasilitasSekitar' => $fasilitasSekitar, 'blokTersedia' => $groupBlok, 'blok' => $blok]);
     }
 }
