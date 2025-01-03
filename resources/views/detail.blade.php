@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url('/') }}/assets/slick/slick.css">
     <link rel="stylesheet" type="text/css" href="{{ url('/') }}/assets/slick/slick-theme.css">
     <!-- Main Style CSS -->
-    <link rel="stylesheet" href="{{ url('/assets/css') }}/style.css?v=2" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ url('/assets/css') }}/style.css?v=3" type="text/css" media="all">
     <!-- Dropdown CSS -->
     <link rel="stylesheet" href="{{ url('/assets/css') }}/dropdown.css" type="text/css" media="all">
     <!-- responsive CSS -->
