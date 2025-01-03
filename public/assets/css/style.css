@@ -527,6 +527,7 @@ label {
 
     .select-blok {
         height: 30px;
+        width: 100%;
     }
 
     /* button chat ai */

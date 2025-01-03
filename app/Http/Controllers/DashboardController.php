@@ -30,9 +30,14 @@ class DashboardController extends Controller
         $groupBlok = BlokTersedia::get_grup_blok_by_id_project($id_project);
         $groupBlok = Arr::map($groupBlok, function ($value) {
             $value->terima_kunci = Number::currency($value->terima_kunci ?? 0, in: 'IDR', locale: 'id_ID');
+            $value->terima_kunci = str_replace(',00', '',  $value->terima_kunci);
             return $value;
         });
-        
-        return view('detail', ['project' => $project, 'fasilitas' => $fasilitas, 'fasilitasSekitar' => $fasilitasSekitar, 'blokTersedia' => $groupBlok, 'blok' => $blok]);
+        $blok = Arr::map($blok, function ($value) {
+            $value->terima_kunci = $value->terima_kunci ?? 0;
+            return $value;
+        });
+
+        return view('detail', ['project' => $project, 'fasilitas' => $fasilitas, 'fasilitasSekitar' => $fasilitasSekitar, 'blokTersedia' => $groupBlok, 'bloks' => $blok]);
     }
 }
