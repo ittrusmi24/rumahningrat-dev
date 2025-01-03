@@ -7,10 +7,13 @@
     <title>Rumah Ningrat</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="56x56" href="{{ url('/') }}/assets/images/fav-icon/icon.png">
     <!-- bootstrap CSS -->
-    <link rel="stylesheet" href="{{ url('/assets/css') }}/bootstrap.min.css" type="text/css" media="all">
+    {{-- <link rel="stylesheet" href="{{ url('/assets/css') }}/bootstrap.min.css" type="text/css" media="all"> --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- carousel CSS -->
     <link rel="stylesheet" href="{{ url('/assets/css') }}/owl.carousel.min.css" type="text/css" media="all">
     <!-- animate CSS -->
@@ -43,7 +46,7 @@
     <!-- modernizr js -->
     <script src="{{ url('/') }}/assets/js/vendor/modernizr-3.5.0.min.js"></script>
     {{-- datetime picker --}}
-    <link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     {{-- bootstrap-select css --}}
     <link rel="stylesheet" href="{{ url('/assets/select2/css') }}/select2.min.css" type="text/css" media="all">
     {{-- css style this page --}}
@@ -128,14 +131,14 @@
                             <div class="col-12">
                                 <div class="header-detail text-center mb-5 mt-5">
                                     <h4>Rumah Ningrat</h4>
-                                    <h4>Jayasampurna</h4>
+                                    <h4 id="nama_project">{{ $project['project'] }}</h4>
                                 </div>
                                 <div class="body-detail">
-                                    <p><strong>Rp. 166.000.000</strong></p>
-                                    <p>Rumah Subsidi</p>
-                                    <p>Tipe 30/60 m</p>
-                                    <p>Jayasampurna, Kec. Serang Baru, Kabupaten Bekasi, Jawa Barat 17330</p>
-                                    <a href="">Lokasi selengkapnya</a>
+                                    <p><strong id="harga_project">{{ $project['harga_jual'] }}</strong></p>
+                                    <p id="project_tipe">{{ $project['project_tipe'] }}</p>
+                                    <p>Tipe <span id="tipe_rumah">{{ $project['tipe_rumah'] }}</span> m</p>
+                                    <p id="alamat">{{ $project['alamat'] }}</p>
+                                    <a href="#">Lokasi selengkapnya</a>
                                 </div>
                             </div>
                         </div>
@@ -294,7 +297,18 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="container-fasilitas">
-                                    <div class="item-fasilitas">
+                                    @foreach ($fasilitas as $item)
+                                        <div class="item-fasilitas">
+                                            {{-- <div>
+                                                <img src="{{ url('/assets/images/icon') }}/bed.png" alt=""
+                                                    width="16px" height="16px">
+                                            </div> --}}
+                                            <div class="card-text">
+                                                {{ $item->fasilitas }}
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                    {{-- <div class="item-fasilitas">
                                         <div><img src="{{ url('/assets/images/icon') }}/bed.png" alt=""
                                                 width="16px" height="16px"></div>
                                         <div class="card-text">
@@ -328,7 +342,7 @@
                                         <div class="card-text">
                                             Keamanan
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -351,7 +365,18 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="tempat-container">
-                                    <div class="item-tempat">
+                                    @foreach ($fasilitasSekitar as $item)
+                                        <div class="item-tempat">
+                                            {{-- <div>
+                                                <img src="{{ url('/assets/images/icon') }}/sekolah.png"
+                                                    alt="" width="16px" height="16px">
+                                            </div> --}}
+                                            <div class="card-text">
+                                                {{ $item->jml }} {{ $item->category }}
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                    {{-- <div class="item-tempat">
                                         <div><img src="{{ url('/assets/images/icon') }}/sekolah.png" alt=""
                                                 width="16px" height="16px"></div>
                                         <div class="card-text">
@@ -392,7 +417,7 @@
                                         <div class="card-text">
                                             6 Keuangan
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -412,7 +437,20 @@
                                 </div>
                                 <div class="body-detail">
                                     <div id="blok-container">
+                                        @foreach ($blokTersedia as $blok)
                                         <div class="item-blok px-3 py-2">
+                                            <div class="d-flex flex-column">
+                                                <p style="line-height: 10px" class="fw-bold">Blok {{ $blok->blok }}</p>
+                                                <p style="line-height: 10px">Sisa {{ $blok->sisa_unit }} unit</p>
+                                            </div>
+                                            <div class="d-flex flex-column text-end">
+                                                <p style="line-height: 10px">Terima kunci mulai</p>
+                                                <p style="line-height: 10px; color: #DE0000;">{{ $blok->terima_kunci }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                        {{-- <div class="item-blok px-3 py-2">
                                             <div class="d-flex flex-column">
                                                 <p style="line-height: 10px" class="fw-bold">Blok A</p>
                                                 <p style="line-height: 10px">Sisa 5 unit</p>
@@ -455,7 +493,7 @@
                                                 <p style="line-height: 10px; color: #DE0000;">Rp.1.000.000
                                                 </p>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     <div class="bank-section mt-5">
                                         <h4 class="text-center">Bank Tersedia</h4>
@@ -695,10 +733,15 @@
     <!-- jquery js -->
     <script src="{{ url('/assets/js') }}/vendor/jquery-3.6.2.min.js"></script>
 
-    <script src="{{ url('/assets/js') }}/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+    </script>
 
     <!-- bootstrap js -->
-    <script src="{{ url('/assets/js') }}/bootstrap.min.js"></script>
+    {{-- <script src="{{ url('/assets/js') }}/bootstrap.min.js"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
 
     <!-- carousel js -->
     <script src="{{ url('/assets/js') }}/owl.carousel.min.js"></script>
@@ -755,7 +798,8 @@
     <script src="{{ url('/assets/select2/js') }}/select2.full.min.js"></script>
 
     {{-- datetime picker --}}
-    <script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
     {{-- detail js --}}
     <script src="{{ url('/assets') }}/detail.js"></script>
