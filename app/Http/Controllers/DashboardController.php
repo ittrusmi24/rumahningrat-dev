@@ -13,9 +13,9 @@ class DashboardController extends Controller
 
     public function detail(Request $request)
     {
-        // if($request->id_project){
-        // return 
-        // }
+        if (!$request->id_project) {
+            return view('welcome');
+        }
         return view('detail');
     }
 }

@@ -201,7 +201,10 @@ label {
 }
 
 .owl-carousel {
-    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    transition: all 0.8s ease-in-out;
+}
+.owl-carousel .owl-hidden {
+    transition: all 1s ease-in-out;
 }
 
 .owl-nav {
@@ -400,7 +403,7 @@ label {
     bottom: 0;
     background: linear-gradient(to top, #ffffff, rgba(255, 255, 255, 0.8));
     border-top: 1px solid #ddd;
-    padding: 10px 15px;
+    padding: 8px 20px;
     border-radius: 20px;
     z-index: 10;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
@@ -440,12 +443,42 @@ label {
     border-color: #004494;
 }
 
+/* button chat ai */
+.chat-ai {
+    position: fixed;
+    z-index: 99999;
+    background-color: #fff;
+    border-radius: 20px;
+    max-height: 67px;
+    max-width: 75px;
+    justify-content: center;
+    align-items: center;
+    color: #005991;
+    padding: 8px 8px 0px 8px;
+}
+
+.chat-ai i {
+    font-size: 29px;
+    font-weight: 600 !important;
+}
+
+.chat-ai p {
+    line-height: 15px;
+    font-weight: 600 !important;
+}
+
 /* responsive breakpoints */
 
 /* desktop */
 @media (min-width: 992px) {
     .owl-carousel .owl-item img {
         height: 100vh;
+    }
+
+    /* button chat ai */
+    .chat-ai {
+        left: 20px;
+        bottom: 20px;
     }
 }
 
@@ -469,9 +502,10 @@ label {
         position: fixed; /* Ensure it sticks to the bottom on mobile */
         bottom: 0;
         width: 100%; /* Take full width on mobile */
-        padding: 15px;
+        padding: 4px 20px 4px 20px;
         border-radius: 20px 20px 0px 0px; /* Remove rounded corners for mobile */
         box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow */
+        font-size: 12px;
     }
 
     .price {
@@ -489,6 +523,22 @@ label {
 
     .select-blok {
         height: 30px;
+    }
+
+    /* button chat ai */
+    .chat-ai {
+        left: 10px;
+        top: 10px;
+        width: 60px;
+        height: 50px;
+    }
+
+    .chat-ai p {
+        font-size: 10px;
+    }
+
+    .chat-ai i {
+        font-size: 20px;
     }
 }
 

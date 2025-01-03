@@ -679,12 +679,18 @@
                             <div class="price">Rp.500.000</div>
                             <div class="note">*biaya booking + BI checking</div>
                         </div>
-                        <button class="btn btn-primary">Booking Sekarang</button>
+                        <button class="btn btn-primary" style="border-radius: 10px">Booking Sekarang</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <div class="chat-ai d-flex flex-column shadow-sm">
+        <div><i class="bi bi-chat-dots"></i></div>
+        <div>
+            <p>Nira AI</p>
+        </div>
+    </div>
 
     <!-- jquery js -->
     <script src="{{ url('/assets/js') }}/vendor/jquery-3.6.2.min.js"></script>
