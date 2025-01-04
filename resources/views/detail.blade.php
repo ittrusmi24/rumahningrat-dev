@@ -733,8 +733,11 @@
         </div>
     </div> --}}
     <script type="text/javascript">
+        const urlai = `{{ url('/assets/js/') }}/chatai.js`
+        console.log(urlai);
         window.mychat = window.mychat || {};
-        window.mychat.server = 'https://live.cekat.ai/widget.js';
+        // window.mychat.server = 'https://live.cekat.ai/widget.js';
+        window.mychat.server = urlai;
         window.mychat.iframeWidth = '400px';
         window.mychat.iframeHeight = '700px';
         window.mychat.accessKey = 'Trusmi-lgeisqBy';
@@ -827,6 +830,9 @@
 
     {{-- detail js --}}
     <script src="{{ url('/assets') }}/detail.js"></script>
+
+    {{-- chat-ai --}}
+    <script src="{{ url('/assets/js/') }}/chatai.js"></script>
 </body>
 
 </html>

@@ -169,8 +169,30 @@ function validasiBook() {
         payment = $("input[name='payment']:checked").val(),
         bank = $("input[name='bank']:checked").val()
 
-    // if (nama == '') {
-
-    // }
+    if (nama == '') {
+        Swal.fire({
+            icon: "error",
+            title: "Nama belum diisi!",
+            showConfirmButton: false,
+            timer: 1000
+        });
+        $('#nama').focus()
+    } else if (no_hp == '') {
+        Swal.fire({
+            icon: "error",
+            title: "No HP belum diisi!",
+            showConfirmButton: false,
+            timer: 1000
+        });
+        $('#nama').focus()
+    } else if (tgl_lahir) {
+        Swal.fire({
+            icon: "error",
+            title: "Tanggal lahir belum diisi!",
+            showConfirmButton: false,
+            timer: 1000
+        });
+        $('#tgl_lahir').focus()
+    }
 
 }

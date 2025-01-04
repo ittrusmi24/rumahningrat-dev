@@ -10,6 +10,8 @@ use App\Models\FasilitasSekitar;
 use App\Models\Project;
 use App\Models\BlokTersedia;
 
+use function PHPSTORM_META\map;
+
 class DashboardController extends Controller
 {
     public function index()
@@ -38,6 +40,15 @@ class DashboardController extends Controller
             return $value;
         });
 
-        return view('detail', ['project' => $project, 'fasilitas' => $fasilitas, 'fasilitasSekitar' => $fasilitasSekitar, 'blokTersedia' => $groupBlok, 'bloks' => $blok]);
+        return view(
+            'detail',
+            [
+                'project' => $project,
+                'fasilitas' => $fasilitas,
+                'fasilitasSekitar' => $fasilitasSekitar,
+                'blokTersedia' => $groupBlok,
+                'bloks' => $blok
+            ]
+        );
     }
 }
