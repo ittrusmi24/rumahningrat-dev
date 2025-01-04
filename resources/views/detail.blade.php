@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="56x56" href="{{ url('/') }}/assets/images/fav-icon/icon.png">
+    <link rel="icon" type="image/png" sizes="56x56" href="{{ url('/assets/images/fav-icon') }}/icon-ningrat.png">
     <!-- bootstrap CSS -->
     {{-- <link rel="stylesheet" href="{{ url('/assets/css') }}/bootstrap.min.css" type="text/css" media="all"> --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -388,6 +388,81 @@
                         @endforeach
                         {{-- <div class="item-tempat">
                                         <div><img src="{{ url('/assets/images/icon') }}/sekolah.png" alt=""
+                                                width="16px" height="16px"></div>
+                                        <div class="card-text">
+                                            52 Pendidikan
+                                        </div>
+                                    </div>
+                                    <div class="item-tempat">
+                                        <div><img src="{{ url('/assets/images/icon') }}/pasar.png" alt=""
+                                                width="16px" height="16px"></div>
+                                        <div class="card-text">
+                                            3 Pasar
+                                        </div>
+                                    </div>
+                                    <div class="item-tempat">
+                                        <div><img src="{{ url('/assets/images/icon') }}/resto.png" alt=""
+                                                width="16px" height="16px"></div>
+                                        <div class="card-text">
+                                            5 Rumah Makan
+                                        </div>
+                                    </div>
+                                    <div class="item-tempat">
+                                        <div><img src="{{ url('/assets/images/icon') }}/rs.png" alt=""
+                                                width="16px" height="16px"></div>
+                                        <div class="card-text">
+                                            15 Kesehatan
+                                        </div>
+                                    </div>
+                                    <div class="item-tempat">
+                                        <div><img src="{{ url('/assets/images/icon') }}/bus.png" alt=""
+                                                width="16px" height="16px"></div>
+                                        <div class="card-text">
+                                            6 Transportasi
+                                        </div>
+                                    </div>
+                                    <div class="item-tempat">
+                                        <div><img src="{{ url('/assets/images/icon') }}/wallet.png" alt=""
+                                                width="16px" height="16px"></div>
+                                        <div class="card-text">
+                                            6 Keuangan
+                                        </div>
+                                    </div> --}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <a href="">Detail Tempat</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="aside-section" id="aside-section-6">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="header-detail text-center mb-5">
+                                    <h4>Blok Tersedia</h4>
+                                </div>
+                                <div class="body-detail">
+                                    <div id="blok-container">
+                                        @foreach ($blokTersedia as $blok)
+                                            <div class="item-blok px-3 py-2">
+                                                <div class="d-flex flex-column">
+                                                    <p style="line-height: 10px" class="fw-bold">Blok
+                                                        {{ $blok->blok }}</p>
+                                                    <p style="line-height: 10px">Sisa {{ $blok->sisa_unit }} unit</p>
+                                                </div>
+                                                <div class="d-flex flex-column text-end">
+                                                    <p style="line-height: 10px">Terima kunci mulai</p>
+                                                    <p style="line-height: 10px; color: #DE0000;">
+                                                        {{ $blok->terima_kunci }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                        {{-- <div class="item-blok px-3 py-2">
                         width="16px" height="16px">
                     </div>
                     <div class="card-text">
@@ -500,6 +575,234 @@
                                                 </p>
                                             </div>
                                         </div> --}}
+                                    </div>
+                                    <div class="bank-section mt-5">
+                                        <h4 class="text-center">Bank Tersedia</h4>
+                                        <div class="row mt-3">
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/bca.png" alt=""
+                                                    width="75px" height="24px">
+                                            </div>
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/bjb.png" alt=""
+                                                    width="75px" height="24px">
+                                            </div>
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/bri.png" alt=""
+                                                    width="75px" height="24px">
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/mandiri.png"
+                                                    alt="" width="75px" height="24px">
+                                            </div>
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/bni.png" alt=""
+                                                    width="75px" height="24px">
+                                            </div>
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/btn.png" alt=""
+                                                    width="75px" height="24px">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="aside-section" id="aside-section-7">
+                    <div class="container-fluid section-form">
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <div class="header-detail text-center mb-5">
+                                    <h4>Pilih Blok</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <select class="select-blok" name="blok" id="blok">
+                                    @foreach ($bloks as $blok)
+                                        <option value="{{ $blok->blok }}" data-harga="{{ $blok->terima_kunci }}">
+                                            Blok {{ $blok->blok }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col"></div>
+                            <div class="col-10 text-center">
+                                <p>Sudah dapat terima kunci dengan nominal</p>
+                                <p class="text-danger" id="harga_blok">Rp.1.000.000</p>
+                            </div>
+                            <div class="col"></div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-12 text-center">
+                                <h4>Data Diri Pembeli</h4>
+                            </div>
+                        </div>
+                        <div class="row mt-5 mb-5">
+                            <div class="col-12">
+                                <form class="form-booking">
+                                    @csrf
+                                    <div class="mb-2">
+                                        <label class="form-label">Nama Lengkap</label>
+                                        <input type="text" class="form-control" name="nama" id="nama">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">No Handphone</label>
+                                        <input type="text" class="form-control" name="no_hp" id="no_hp">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Tanggal Lahir</label>
+                                        <input class="form-control" name="tgl_lahir" id="tgl_lahir">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Jenis Kelamin</label>
+                                        <select class="form-select" name="jenis_kl" id="jenis_kl">
+                                            <option value="l">Laki - laki</option>
+                                            <option value="p">Perempuan</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">No KTP</label>
+                                        <input type="text" class="form-control" name="no_ktp" id="no_ktp">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Alamat</label>
+                                        <input type="text" class="form-control" name="alamat" id="alamat_book">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Pendapatan</label>
+                                        <input type="number" class="form-control" name="pendapatan"
+                                            id="pendapatan">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Status</label>
+                                        <select class="form-select" name="status" id="status">
+                                            <option value="meried">Menikah</option>
+                                            <option value="single">Belum Menikah</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">No KTP Pasangan</label>
+                                        <input type="text" class="form-control" name="no_ktp_psg"
+                                            id="no_ktp_psg">
+                                    </div>
+                                    <div class="mb-4 mt-5">
+                                        <h4 class="text-center">Pembayaran</h4>
+                                    </div>
+                                    <div class="mb-3">
+                                        <p>Jenis Pembayaran</p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="d-flex flex-wrap gap-3">
+                                            <div class="payment-method">
+                                                <input type="radio" id="alfamart" name="payment" class="payment"
+                                                    value="alfamart">
+                                                <label for="alfamart">
+                                                    <img src="{{ url('/assets/images/icon/') }}/alfamart.png" />
+                                                </label>
+                                            </div>
+                                            <div class="payment-method">
+                                                <input type="radio" id="indomaret" name="payment" class="payment"
+                                                    value="indomaret">
+                                                <label for="indomaret">
+                                                    <img src="{{ url('/assets/images/icon/') }}/indomaret.png" />
+                                                </label>
+                                            </div>
+                                            <div class="payment-method">
+                                                <input type="radio" id="virtual-account" name="payment"
+                                                    class="payment" value="virtual-account">
+                                                <label for="virtual-account">
+                                                    <img src="{{ url('/assets/images/icon/') }}/va.png" />
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="radio-button-group">
+                                            <label class="radio-card">
+                                                <input type="radio" name="bank" value="bca" checked>
+                                                <div class="card-body">
+                                                    <div class="check-box">
+                                                        <div class="check-icon">✔</div>
+                                                    </div>
+                                                    <img src="{{ url('/assets/images/icon') }}/bca.png"
+                                                        alt="BCA">
+                                                </div>
+                                            </label>
+                                            <label class="radio-card">
+                                                <input type="radio" name="bank" value="mandiri">
+                                                <div class="card-body">
+                                                    <div class="check-box">
+                                                        <div class="check-icon">✔</div>
+                                                    </div>
+                                                    <img src="{{ url('/assets/images/icon') }}/mandiri.png"
+                                                        alt="Mandiri">
+                                                </div>
+                                            </label>
+                                            <label class="radio-card">
+                                                <input type="radio" name="bank" value="bri">
+                                                <div class="card-body">
+                                                    <div class="check-box">
+                                                        <div class="check-icon">✔</div>
+                                                    </div>
+                                                    <img src="{{ url('/assets/images/icon') }}/bri.png"
+                                                        alt="BRI">
+                                                </div>
+                                            </label>
+                                            <label class="radio-card">
+                                                <input type="radio" name="bank" value="bni">
+                                                <div class="card-body">
+                                                    <div class="check-box">
+                                                        <div class="check-icon">✔</div>
+                                                    </div>
+                                                    <img src="{{ url('/assets/images/icon') }}/bni.png"
+                                                        alt="BNI">
+                                                </div>
+                                            </label>
+                                            <label class="radio-card">
+                                                <input type="radio" name="bank" value="cimb">
+                                                <div class="card-body">
+                                                    <div class="check-box">
+                                                        <div class="check-icon">✔</div>
+                                                    </div>
+                                                    <img src="{{ url('/assets/images/icon') }}/cimb.png"
+                                                        alt="cimb">
+                                                </div>
+                                            </label>
+                                            <label class="radio-card">
+                                                <input type="radio" name="bank" value="permata">
+                                                <div class="card-body">
+                                                    <div class="check-box">
+                                                        <div class="check-icon">✔</div>
+                                                    </div>
+                                                    <img src="{{ url('/assets/images/icon') }}/permata.png"
+                                                        alt="permata">
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sticky-container">
+                    <div class="sticky-content d-flex justify-content-between align-items-center">
+                        <div>
+                            <div class="price">Rp.500.000</div>
+                            <div class="note">*biaya booking + BI checking</div>
+                        </div>
+                        <button class="btn btn-primary" onclick="validasiBook()" style="border-radius: 10px">Booking
+                            Sekarang</button>
+                    </div>
+                </div>
+            </div>
                             </div>
                             <div class="bank-section mt-5">
                                 <h4 class="text-center">Bank Tersedia</h4>
@@ -712,12 +1015,30 @@
         </div>
         </div>
     </section>
-    <div class="chat-ai d-flex flex-column shadow-sm">
+    {{-- <div class="chat-ai d-flex flex-column shadow-sm">
         <div><i class="bi bi-chat-dots"></i></div>
         <div>
             <p>Nira AI</p>
         </div>
-    </div>
+    </div> --}}
+    <script type="text/javascript">
+        const urlai = `{{ url('/assets/js/') }}/chatai.js`
+        console.log(urlai);
+        window.mychat = window.mychat || {};
+        // window.mychat.server = 'https://live.cekat.ai/widget.js';
+        window.mychat.server = urlai;
+        window.mychat.iframeWidth = '400px';
+        window.mychat.iframeHeight = '700px';
+        window.mychat.accessKey = 'Trusmi-lgeisqBy';
+        (function() {
+            var mychat = document.createElement('script');
+            mychat.type = 'text/javascript';
+            mychat.async = true;
+            mychat.src = window.mychat.server;
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(mychat, s);
+        })();
+    </script>
 
     <!-- jquery js -->
     <script src="{{ url('/assets/js') }}/vendor/jquery-3.6.2.min.js"></script>
@@ -781,8 +1102,14 @@
     <!-- scroll js -->
     <script src="{{ url('/assets/js') }}/script.js"></script>
 
-    {{-- select2 --}}
-    <script src="{{ url('/assets/select2/js') }}/select2.full.min.js"></script>
+    <!-- slim select -->
+    <script src="https://unpkg.com/slim-select@latest/dist/slimselect.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/slim-select@latest/dist/slimselect.css" />
+    {{-- sweetalert2 --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.15.9/dist/sweetalert2.all.min.js"
+        integrity="sha256-zXU3hnKwOJq62DswpQcW5m0q0zoQY4UpTLYdmlxwJHg=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.15.9/dist/sweetalert2.min.css"
+        integrity="sha256-HivoIIkMGPypkWBoBzUEFAY/RZqAWSWLqW/MQFMBRXg=" crossorigin="anonymous">
 
     {{-- datetime picker --}}
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
