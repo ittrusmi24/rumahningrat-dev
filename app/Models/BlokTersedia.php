@@ -22,7 +22,8 @@ class BlokTersedia extends Model
                 mpu.blok,
                 MIN(mpu.terima_kunci) AS terima_kunci,
                 -- mpu.id_status,
-                COUNT(DISTINCT mpu.blok) AS sisa_unit
+                COUNT(DISTINCT mpu.blok) AS sisa_unit,
+                CASE WHEN p.id_project_tipe = 2 THEN 2500000 WHEN p.id_project_tipe != 2 AND (LEFT(mpu.type_blok,4) = 'Hook' OR LEFT(mpu.type_blok,3) = 'KLT') THEN 1000000 ELSE 500000 END as nominal_booking
             FROM
                 m_project p
                 LEFT JOIN m_project_unit mpu ON mpu.id_project = p.id_project
