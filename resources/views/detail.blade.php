@@ -8,6 +8,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="base-url" content="{{ url('/') }}">
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="56x56" href="{{ url('/assets/images/fav-icon') }}/icon-ningrat.png">
     <!-- bootstrap CSS -->
@@ -308,41 +309,6 @@
                                             </div>
                                         </div>
                                     @endforeach
-                                    {{-- <div class="item-fasilitas">
-                                        <div><img src="{{ url('/assets/images/icon') }}/bed.png" alt=""
-                                                width="16px" height="16px"></div>
-                                        <div class="card-text">
-                                            2 Kamar Tidur
-                                        </div>
-                                    </div>
-                                    <div class="item-fasilitas">
-                                        <div><img src="{{ url('/assets/images/icon') }}/bath.png" alt=""
-                                                width="16px" height="16px"></div>
-                                        <div class="card-text">
-                                            1 Kamar Mandi
-                                        </div>
-                                    </div>
-                                    <div class="item-fasilitas">
-                                        <div><img src="{{ url('/assets/images/icon') }}/car.png" alt=""
-                                                width="16px" height="16px"></div>
-                                        <div class="card-text">
-                                            Carport
-                                        </div>
-                                    </div>
-                                    <div class="item-fasilitas">
-                                        <div><img src="{{ url('/assets/images/icon') }}/run.png" alt=""
-                                                width="16px" height="16px"></div>
-                                        <div class="card-text">
-                                            Jogging Track
-                                        </div>
-                                    </div>
-                                    <div class="item-fasilitas">
-                                        <div><img src="{{ url('/assets/images/icon') }}/shield.png" alt=""
-                                                width="16px" height="16px"></div>
-                                        <div class="card-text">
-                                            Keamanan
-                                        </div>
-                                    </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -376,48 +342,6 @@
                                             </div>
                                         </div>
                                     @endforeach
-                                    {{-- <div class="item-tempat">
-                                        <div><img src="{{ url('/assets/images/icon') }}/sekolah.png" alt=""
-                                                width="16px" height="16px"></div>
-                                        <div class="card-text">
-                                            52 Pendidikan
-                                        </div>
-                                    </div>
-                                    <div class="item-tempat">
-                                        <div><img src="{{ url('/assets/images/icon') }}/pasar.png" alt=""
-                                                width="16px" height="16px"></div>
-                                        <div class="card-text">
-                                            3 Pasar
-                                        </div>
-                                    </div>
-                                    <div class="item-tempat">
-                                        <div><img src="{{ url('/assets/images/icon') }}/resto.png" alt=""
-                                                width="16px" height="16px"></div>
-                                        <div class="card-text">
-                                            5 Rumah Makan
-                                        </div>
-                                    </div>
-                                    <div class="item-tempat">
-                                        <div><img src="{{ url('/assets/images/icon') }}/rs.png" alt=""
-                                                width="16px" height="16px"></div>
-                                        <div class="card-text">
-                                            15 Kesehatan
-                                        </div>
-                                    </div>
-                                    <div class="item-tempat">
-                                        <div><img src="{{ url('/assets/images/icon') }}/bus.png" alt=""
-                                                width="16px" height="16px"></div>
-                                        <div class="card-text">
-                                            6 Transportasi
-                                        </div>
-                                    </div>
-                                    <div class="item-tempat">
-                                        <div><img src="{{ url('/assets/images/icon') }}/wallet.png" alt=""
-                                                width="16px" height="16px"></div>
-                                        <div class="card-text">
-                                            6 Keuangan
-                                        </div>
-                                    </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -452,50 +376,6 @@
                                                 </div>
                                             </div>
                                         @endforeach
-                                        {{-- <div class="item-blok px-3 py-2">
-                                            <div class="d-flex flex-column">
-                                                <p style="line-height: 10px" class="fw-bold">Blok A</p>
-                                                <p style="line-height: 10px">Sisa 5 unit</p>
-                                            </div>
-                                            <div class="d-flex flex-column text-end">
-                                                <p style="line-height: 10px">Terima kunci mulai</p>
-                                                <p style="line-height: 10px; color: #DE0000;">Rp.1.000.000
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="item-blok px-3 py-2">
-                                            <div class="d-flex flex-column">
-                                                <p style="line-height: 10px" class="fw-bold">Blok B</p>
-                                                <p style="line-height: 10px">Sisa 5 unit</p>
-                                            </div>
-                                            <div class="d-flex flex-column text-end">
-                                                <p style="line-height: 10px">Terima kunci mulai</p>
-                                                <p style="line-height: 10px; color: #DE0000;">Rp.1.000.000
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="item-blok px-3 py-2">
-                                            <div class="d-flex flex-column">
-                                                <p style="line-height: 10px" class="fw-bold">Blok C</p>
-                                                <p style="line-height: 10px">Sisa 5 unit</p>
-                                            </div>
-                                            <div class="d-flex flex-column text-end">
-                                                <p style="line-height: 10px">Terima kunci mulai</p>
-                                                <p style="line-height: 10px; color: #DE0000;">Rp.1.000.000
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="item-blok px-3 py-2">
-                                            <div class="d-flex flex-column">
-                                                <p style="line-height: 10px" class="fw-bold">Blok D</p>
-                                                <p style="line-height: 10px">Sisa 5 unit</p>
-                                            </div>
-                                            <div class="d-flex flex-column text-end">
-                                                <p style="line-height: 10px">Terima kunci mulai</p>
-                                                <p style="line-height: 10px; color: #DE0000;">Rp.1.000.000
-                                                </p>
-                                            </div>
-                                        </div> --}}
                                     </div>
                                     <div class="bank-section mt-5">
                                         <h4 class="text-center">Bank Tersedia</h4>
@@ -567,11 +447,13 @@
                         </div>
                         <div class="row mt-5 mb-5">
                             <div class="col-12">
-                                <form class="form-booking">
+                                <form class="form-booking" id="formBooking">
                                     @csrf
+                                    <input type="hidden" class="form-control" name="id_project"
+                                        value="{{ $project['id_project'] }}">
                                     <div class="mb-2">
                                         <label class="form-label">Nama Lengkap</label>
-                                        <input type="text" class="form-control" name="nama" id="nama">
+                                        <input type="text" class="form-control" name="nama_lengkap" id="nama">
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">No Handphone</label>
@@ -583,7 +465,7 @@
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">Jenis Kelamin</label>
-                                        <select class="form-select" name="jenis_kl" id="jenis_kl">
+                                        <select class="form-select" name="jenis_kelamin" id="jenis_kl">
                                             <option value="l">Laki - laki</option>
                                             <option value="p">Perempuan</option>
                                         </select>
@@ -610,7 +492,7 @@
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">No KTP Pasangan</label>
-                                        <input type="text" class="form-control" name="no_ktp_psg"
+                                        <input type="text" class="form-control" name="no_ktp_p"
                                             id="no_ktp_psg">
                                     </div>
                                     <div class="mb-4 mt-5">
@@ -834,6 +716,7 @@
     {{-- chat-ai --}}
     <script src="{{ url('/assets/js/') }}/chatai.js"></script>
     <script>
+        var baseurl = `{{ url('/') }}`
         document.addEventListener("DOMContentLoaded", function() {
             const container = document.getElementById('video_tour');
 
