@@ -1,3 +1,6 @@
+const baseURL = document.querySelector('meta[name="base-url"]').getAttribute('content');
+console.log(baseURL); // Output: Base URL aplikasi
+
 function activateCarousel(sectionId, carouselId) {
     const section = $(sectionId);
     const carousel = $(carouselId);
@@ -14,6 +17,22 @@ function activateCarousel(sectionId, carouselId) {
 }
 
 $(document).ready(function () {
+
+    // $('.selectpicker').select2()
+
+    const blok_select = new SlimSelect({
+        select: '#blok',
+        placeholder: 'Pilih Blok',
+        allowDeselect: true
+    })
+
+    $('input[name="tgl_lahir"]').daterangepicker({
+        singleDatePicker: true,
+        showDropdowns: true,
+        minYear: 1901,
+        maxYear: parseInt(moment().format('YYYY'), 10)
+    });
+
     $('.owl-carousel').owlCarousel({
         loop: true,
         nav: true,
@@ -72,6 +91,41 @@ $(document).ready(function () {
         }
     });
 
+    // get data project
+    // Ambil URL saat ini
+    const url = window.location.href;
+
+    // Ekstrak parameter terakhir dari URL
+    const id = url.split('/').pop();
+
+    // Kirim request AJAX
+    // $.ajax({
+    //     url: `/project/${id}`, // Sesuaikan endpoint API
+    //     type: 'GET',
+    //     dataType: 'json',
+    //     headers: {
+    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Jika diperlukan CSRF
+    //     },
+    //     success: function (response) {
+    //         $('#nama_project').text(response.data.project);
+    //         $('#harga_project').text(`Rp. ${response.data.harga_jual}`);
+    //         $('#project_tipe').text(response.data.project_tipe);
+    //         $('#tipe_rumah').text(response.data.tipe_rumah);
+    //         $('#alamat').text(response.data.alamat);
+
+    //     },
+    //     error: function (xhr, status, error) {
+    //         console.error(`Error: ${error}`);
+    //     }
+    // });
+
+});
+
+$('#blok').change(function (e) {
+    e.preventDefault();
+    let harga = $(this).find(':selected').data('harga')
+    harga = `Rp. ${harga}`
+    $('#harga_blok').text(harga);
 });
 
 const ulasan = document.getElementById('ulasan-container');
@@ -104,3 +158,144 @@ ulasan.addEventListener('mousemove', (e) => {
     const walk = (x - startX) * 2;
     ulasan.scrollLeft = scrollLeft - walk;
 });
+
+function validasiBook() {
+    let nama = $('#nama').val(),
+        no_hp = $('#no_hp').val(),
+        tgl_lahir = $('#tgl_lahir').val(),
+        jenis_kl = $('#jenis_kl').find(":selected").val(),
+        no_ktp = $('#no_ktp').val(),
+        alamat = $('#alamat_book').val(),
+        pendapatan = $('#pendapatan').val(),
+        status = $('#status').find(":selected").val(),
+        no_ktp_psg = $('#no_ktp_psg').val(),
+        payment = $("input[name='payment']:checked").val(),
+        bank = $("input[name='bank']:checked").val()
+
+    if (nama == '') {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Nama belum diisi!",
+            showConfirmButton: false,
+            timer: 1000
+        });
+        $('#nama').focus()
+    } else if (no_hp == '') {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "No HP belum diisi!",
+            showConfirmButton: false,
+            timer: 1000
+        });
+        $('#no_hp').focus()
+    } else if (tgl_lahir == '') {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Tanggal lahir belum diisi!",
+            showConfirmButton: false,
+            timer: 1000
+        });
+        $('#tgl_lahir').focus()
+    } else if (jenis_kl == '') {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Tanggal lahir belum diisi!",
+            showConfirmButton: false,
+            timer: 1000
+        });
+        $('#jenis_kl').focus()
+    } else if (no_ktp == '') {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "No KTP belum diisi!",
+            showConfirmButton: false,
+            timer: 1000
+        });
+        $('#no_ktp').focus()
+    } else if (alamat == '' || alamat == null) {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Alamat belum diisi!",
+            showConfirmButton: false,
+            timer: 1000
+        });
+        $('#alamat_book').focus()
+    } else if (pendapatan == '' || pendapatan == null) {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Pendapatan belum diisi!",
+            showConfirmButton: false,
+            timer: 1000
+        });
+        $('#pendapatan').focus()
+    } else if (status == '') {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Status belum diisi!",
+            showConfirmButton: false,
+            timer: 1000
+        });
+        $('#status').focus()
+    } else if (no_ktp_psg == '') {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "No KTP Peserta belum diisi!",
+            showConfirmButton: false,
+            timer: 1000
+        });
+        $('#no_ktp_psg').focus()
+    } else if (payment == '') {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Payment belum dipilih!",
+            showConfirmButton: false,
+            timer: 1000
+        });
+        $("input[name='payment']").focus()
+    } else if (bank == '') {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Bank belum dipilih!",
+            showConfirmButton: false,
+            timer: 1000
+        });
+        $("input[name='bank']").focus()
+    } else {
+        var form = $('#formBooking')[0]; // Ambil elemen DOM dari jQuery
+        var formData = new FormData(form); // Buat objek FormData
+        // Ambil nilai dari input dengan id "blok"
+        var blokValue = $('#blok').val();
+
+        // Tambahkan nilai ke FormData
+        formData.append('blok', blokValue);
+        $.ajax({
+            url: `${baseURL}/simpan_booking`, // Sesuaikan endpoint API
+            type: 'POST',
+            dataType: 'json',
+            data: formData,
+            processData: false, // Jangan proses data
+            contentType: false, // Jangan tetapkan content-type secara otomatis
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Jika diperlukan CSRF
+            },
+            success: function (response) {
+                console.log(response);
+            },
+            error: function (xhr, status, error) {
+                console.error(`Error: ${error}`);
+            }
+        });
+    }
+
+}
