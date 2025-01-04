@@ -50,6 +50,8 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     {{-- bootstrap-select css --}}
     <link rel="stylesheet" href="{{ url('/assets/select2/css') }}/select2.min.css" type="text/css" media="all">
+    {{-- AOS --}}
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     {{-- css style this page --}}
     <style>
         .sticky-column {
@@ -65,11 +67,21 @@
 </head>
 
 <body>
+    <div class="stikcy-nav-container">
+        <nav class="navbar" style="background-color: #005991E5">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="{{ url('/assets/images/fav-icon') }}/navlogo.png" alt="Logo" width="40px"
+                        height="40px">
+                </a>
+            </div>
+        </nav>
+    </div>
     <section class="container-fluid" id="wrapper-detail">
         <div class="row">
             <div class="col-12 col-lg-8 pl-0 pr-0">
                 <div class="owl-carousel bg-info" id="gallery-carousel-1">
-                    <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=1" alt="">
+                    <div><img src="{{ url('/assets/images/carousel') }}/1.png" alt="">
                     </div>
                     <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=2" alt="">
                     </div>
@@ -77,7 +89,7 @@
                     </div>
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-2">
-                    <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=1+ke+2" alt="">
+                    <div><img src="{{ url('/assets/images/carousel') }}/2.png" alt="">
                     </div>
                     <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=2+ke+2" alt="">
                     </div>
@@ -85,7 +97,7 @@
                     </div>
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-3">
-                    <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=1+ke+3" alt="">
+                    <div><img src="{{ url('/assets/images/carousel') }}/3.png" alt="">
                     </div>
                     <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=2+ke+3" alt="">
                     </div>
@@ -101,7 +113,7 @@
                     </div>
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-5">
-                    <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=1+ke+5" alt="">
+                    <div><img src="{{ url('/assets/images/carousel') }}/5.png" alt="">
                     </div>
                     <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=2+ke+5" alt="">
                     </div>
@@ -109,7 +121,7 @@
                     </div>
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-6">
-                    <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=1+ke+6" alt="">
+                    <div><img src="{{ url('/assets/images/carousel') }}/6.png" alt="">
                     </div>
                     <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=2+ke+6" alt="">
                     </div>
@@ -117,7 +129,7 @@
                     </div>
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-7">
-                    <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=1+ke+7" alt="">
+                    <div><img src="{{ url('/assets/images/carousel') }}/7.png" alt="">
                     </div>
                     <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=2+ke+7" alt="">
                     </div>
@@ -135,7 +147,9 @@
                                     <h4 id="nama_project">{{ $project['project'] }}</h4>
                                 </div>
                                 <div class="body-detail">
-                                    <p><strong id="harga_project">{{ $project['harga_jual'] }}</strong></p>
+                                    <p><strong
+                                            id="harga_project">{{ str_replace(',00', '', Number::currency($project['harga_jual'] ?? 0, in: 'IDR', locale: 'id_ID')) }}</strong>
+                                    </p>
                                     <p id="project_tipe">{{ $project['project_tipe'] }}</p>
                                     <p>Tipe <span id="tipe_rumah">{{ $project['tipe_rumah'] }}</span> m</p>
                                     <p id="alamat">{{ $project['alamat'] }}</p>
@@ -426,7 +440,8 @@
                             <div class="col-12">
                                 <select class="select-blok" name="blok" id="blok">
                                     @foreach ($bloks as $blok)
-                                        <option value="{{ $blok->blok }}" data-harga="{{ $blok->terima_kunci }}">
+                                        <option value="{{ $blok->blok }}" data-harga="{{ $blok->terima_kunci }}"
+                                            data-nominal="{{ $blok->nominal_booking }}">
                                             Blok {{ $blok->blok }}</option>
                                     @endforeach
                                 </select>
@@ -451,9 +466,11 @@
                                     @csrf
                                     <input type="hidden" class="form-control" name="id_project"
                                         value="{{ $project['id_project'] }}">
+                                    <input type="hidden" name="nominal_booking" id="nominal_booking">
                                     <div class="mb-2">
                                         <label class="form-label">Nama Lengkap</label>
-                                        <input type="text" class="form-control" name="nama_lengkap" id="nama">
+                                        <input type="text" class="form-control" name="nama_lengkap"
+                                            id="nama">
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">No Handphone</label>
@@ -492,8 +509,7 @@
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">No KTP Pasangan</label>
-                                        <input type="text" class="form-control" name="no_ktp_p"
-                                            id="no_ktp_psg">
+                                        <input type="text" class="form-control" name="no_ktp_p" id="no_ktp_psg">
                                     </div>
                                     <div class="mb-4 mt-5">
                                         <h4 class="text-center">Pembayaran</h4>
@@ -598,10 +614,11 @@
                 <div class="sticky-container">
                     <div class="sticky-content d-flex justify-content-between align-items-center">
                         <div>
-                            <div class="price">Rp.500.000</div>
+                            <div class="price" id="price">Rp.500.000</div>
                             <div class="note">*biaya booking + BI checking</div>
                         </div>
-                        <button class="btn btn-primary" onclick="validasiBook()" style="border-radius: 10px">Booking
+                        <button class="btn btn-primary btn-sm" onclick="validasiBook()"
+                            style="border-radius: 10px">Booking
                             Sekarang</button>
                     </div>
                 </div>
@@ -616,7 +633,6 @@
     </div> --}}
     <script type="text/javascript">
         const urlai = `{{ url('/assets/js/') }}/chatai.js`
-        console.log(urlai);
         window.mychat = window.mychat || {};
         // window.mychat.server = 'https://live.cekat.ai/widget.js';
         window.mychat.server = urlai;
@@ -710,13 +726,13 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
+    {{-- AOS --}}
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     {{-- detail js --}}
     <script src="{{ url('/assets') }}/detail.js"></script>
-
-    {{-- chat-ai --}}
-    <script src="{{ url('/assets/js/') }}/chatai.js"></script>
     <script>
-        var baseurl = `{{ url('/') }}`
+        AOS.init();
         document.addEventListener("DOMContentLoaded", function() {
             const container = document.getElementById('video_tour');
 

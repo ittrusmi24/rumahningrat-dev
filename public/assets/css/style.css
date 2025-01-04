@@ -399,6 +399,16 @@ label {
     display: inline-block;
 }
 
+/* navbar */
+.stikcy-nav-container {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999999;
+    opacity: 1;
+}
+
 /* submit section */
 .sticky-container {
     position: sticky;
@@ -471,6 +481,11 @@ label {
 
 /* form section */
 
+.owl-carousel .item video {
+    width: 100%;
+    height: 100vh;
+}
+
 /* responsive breakpoints */
 
 /* desktop */
@@ -489,7 +504,7 @@ label {
 /* mobile */
 @media (min-width: 320px) and (max-width: 767px) {
     .owl-carousel .owl-item img {
-        height: 40vh;
+        height: 30vh;
     }
     * {
         font-size: 10px;
@@ -513,7 +528,11 @@ label {
     }
 
     .price {
-        font-size: 16px; /* Adjust font size for smaller screens */
+        font-size: 12px; /* Adjust font size for smaller screens */
+    }
+
+    .note{
+        font-size: 8px;
     }
 
     .btn-primary {
@@ -552,7 +571,7 @@ label {
         left: 0px;
         bottom: 0px; */
         width: 100%;
-        height: 40vh !important;
+        height: 30vh !important;
     }
     video {
         position: absolute;
