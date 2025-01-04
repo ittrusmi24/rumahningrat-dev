@@ -10,7 +10,7 @@ Tags: 	agency, Business Agency, Business Consultant, business optimization, comp
 /*TABLE OF CONTENTS*/
 /*=====================
 01. Hamilton Header Top Menu Area Css
-02. Hamilton Nav Menu Area Css 
+02. Hamilton Nav Menu Area Css
 03. Hamilton Slider Area Css
 04. Hamilton Section Title Css
 05. Hamilton Service Area css
@@ -544,6 +544,21 @@ label {
 
     .chat-ai i {
         font-size: 20px;
+    }
+
+    #video_tour {
+        position: relative;
+        /* top: 0px;
+        left: 0px;
+        bottom: 0px; */
+        width: 100%;
+        height: 40vh !important;
+    }
+    video {
+        position: absolute;
+        inset: 0;
+        object-fit: cover;
+        pointer-events: none;
     }
 }
 
@@ -4639,7 +4654,7 @@ button.icons {
     display: none;
 }
 
-/*** 
+/***
 ====================================================================
     Search Popup
 ====================================================================

@@ -92,7 +92,7 @@
                     </div>
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-4">
-                    <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=1+ke+4" alt="">
+                    <div id="video_tour">
                     </div>
                     <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=2+ke+4" alt="">
                     </div>
@@ -833,6 +833,28 @@
 
     {{-- chat-ai --}}
     <script src="{{ url('/assets/js/') }}/chatai.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const container = document.getElementById('video_tour');
+
+            const video = document.createElement('video');
+            video.src = `{{ url('/assets/video') }}/virtual_tour.mp4`;
+            video.autoplay = true;
+            video.loop = true;
+            video.muted = true;
+            video.setAttribute('playsinline', ''); // iOS autoplay
+            video.setAttribute('disablePictureInPicture', ''); // Mencegah PiP
+            video.setAttribute('controls', 'false');
+
+            // Sembunyikan kontrol video sepenuhnya
+            video.controls = false;
+
+            // Mencegah video terinteraksi
+            video.style.pointerEvents = 'none';
+
+            container.appendChild(video);
+        });
+    </script>
 </body>
 
 </html>
