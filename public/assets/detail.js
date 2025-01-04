@@ -9,7 +9,7 @@ function activateCarousel(sectionId, carouselId) {
     const top = position.top;
     const outerHeight = section.outerHeight();
 
-    if (top <= 300 && top > -outerHeight) {
+    if (top <= 80 && top > -outerHeight) {
         // Hide other carousels
         $('.owl-carousel').addClass('d-none');
         carousel.removeClass('d-none');
@@ -121,11 +121,27 @@ $(document).ready(function () {
 
 });
 
+// format rupiah
+function formatRupiah(angka) {
+    var rupiah = '';
+    var angkarev = angka.toString().split('').reverse().join('');
+    for (var i = 0; i < angkarev.length; i++) {
+        if (i % 3 == 0) {
+            rupiah += angkarev.substr(i, 3) + '.';
+        }
+    }
+    return 'Rp ' + rupiah.split('', rupiah.length - 1).reverse().join('');
+}
+
 $('#blok').change(function (e) {
     e.preventDefault();
-    let harga = $(this).find(':selected').data('harga')
-    harga = `Rp. ${harga}`
+    let harga = $(this).find(':selected').data('harga'),
+        nominal = $(this).find(':selected').data('nominal')
+    harga = formatRupiah(harga)
+    price = formatRupiah(nominal)
     $('#harga_blok').text(harga);
+    $('#price').text(price);
+    $('#nominal_booking').val(nominal);
 });
 
 const ulasan = document.getElementById('ulasan-container');
@@ -291,6 +307,25 @@ function validasiBook() {
             },
             success: function (response) {
                 console.log(response);
+                if (response.status) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Berhasil",
+                        text: response.message,
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+
+                    $('#formBooking')[0].reset();
+                } else {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Reject!",
+                        text: response.message,
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                }
             },
             error: function (xhr, status, error) {
                 console.error(`Error: ${error}`);

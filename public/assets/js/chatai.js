@@ -21,7 +21,7 @@
             opacity: "1",
             width: mobile ? (chatPopupOpen ? "100%" : "84px") : chatBubbleWidth,
             height: mobile ? (chatPopupOpen ? "100%" : "84px") : chatBubbleHeight,
-            bottom: mobile ? "unset" : "10px", // Non-mobile: pojok kiri bawah
+            bottom: mobile ? "unset" : "0px", // Non-mobile: pojok kiri bawah
             top: mobile ? "8px" : "unset",   // Mobile: pojok kiri atas
             left: "10px",                     // Selalu di kiri
             right: "unset",
