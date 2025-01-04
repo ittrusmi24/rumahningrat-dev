@@ -118,7 +118,6 @@ $(document).ready(function () {
 
 });
 
-
 $('#blok').change(function (e) {
     e.preventDefault();
     let harga = $(this).find(':selected').data('harga')
