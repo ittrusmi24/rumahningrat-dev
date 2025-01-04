@@ -12,8 +12,7 @@
     <link rel="icon" type="image/png" sizes="56x56" href="{{ url('/') }}/assets/images/fav-icon/icon.png">
     <!-- bootstrap CSS -->
     {{-- <link rel="stylesheet" href="{{ url('/assets/css') }}/bootstrap.min.css" type="text/css" media="all"> --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- carousel CSS -->
     <link rel="stylesheet" href="{{ url('/assets/css') }}/owl.carousel.min.css" type="text/css" media="all">
     <!-- animate CSS -->
@@ -60,6 +59,24 @@
         body {
             overflow-y: hidden;
         }
+
+
+        #video_tour {
+            /* position: absolute; */
+            /* top: 0px;
+            left: 0px;
+            bottom: 0px; */
+            width: 100%;
+            height: 100vh;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+            /* Mencegah klik pada video */
+        }
     </style>
 </head>
 
@@ -92,7 +109,7 @@
                     </div>
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-4">
-                    <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=1+ke+4" alt="">
+                    <div id="video_tour">
                     </div>
                     <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=2+ke+4" alt="">
                     </div>
@@ -208,8 +225,7 @@
                                     <div class="card rounded">
                                         <div class="card-body">
                                             <div class="d-flex justify-content-between">
-                                                <p class="text-primary"><i class="bi bi-star-fill"></i> <i
-                                                        class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
+                                                <p class="text-primary"><i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
                                                     <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
                                                 </p>
                                                 <p>Des 2024</p>
@@ -226,8 +242,7 @@
                                     <div class="card rounded">
                                         <div class="card-body">
                                             <div class="d-flex justify-content-between">
-                                                <p class="text-primary"><i class="bi bi-star-fill"></i> <i
-                                                        class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
+                                                <p class="text-primary"><i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
                                                     <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
                                                 </p>
                                                 <p>Des 2024</p>
@@ -258,8 +273,7 @@
                                 <div class="bonus-container">
                                     <div class="card card-bonus text-center">
                                         <div class="card-bonus-body">
-                                            <img src="{{ url('/assets') }}/images/icon/pagar.png" alt=""
-                                                width="45px" height="45px">
+                                            <img src="{{ url('/assets') }}/images/icon/pagar.png" alt="" width="45px" height="45px">
                                             <h5>Pagar Besi</h5>
                                             <p><s>Rp. 10.000.000</s></p>
                                             <p class="text-danger">Rp. 0</p>
@@ -270,8 +284,7 @@
                                     </div>
                                     <div class="card card-bonus text-center">
                                         <div class="card-bonus-body">
-                                            <img src="{{ url('/assets') }}/images/icon/wall.png" alt=""
-                                                width="45px" height="45px">
+                                            <img src="{{ url('/assets') }}/images/icon/wall.png" alt="" width="45px" height="45px">
                                             <h5>Tembok Dapur</h5>
                                             <p><s>Rp. 2.000.000</s></p>
                                             <p class="text-danger">Rp. 0</p>
@@ -298,159 +311,152 @@
                             <div class="col-12">
                                 <div class="container-fasilitas">
                                     @foreach ($fasilitas as $item)
-                                        <div class="item-fasilitas">
-                                            {{-- <div>
+                                    <div class="item-fasilitas">
+                                        {{-- <div>
                                                 <img src="{{ url('/assets/images/icon') }}/bed.png" alt=""
-                                                    width="16px" height="16px">
-                                            </div> --}}
-                                            <div class="card-text">
-                                                {{ $item->fasilitas }}
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                    {{-- <div class="item-fasilitas">
+                                        width="16px" height="16px">
+                                    </div> --}}
+                                    <div class="card-text">
+                                        {{ $item->fasilitas }}
+                                    </div>
+                                </div>
+                                @endforeach
+                                {{-- <div class="item-fasilitas">
                                         <div><img src="{{ url('/assets/images/icon') }}/bed.png" alt=""
-                                                width="16px" height="16px"></div>
-                                        <div class="card-text">
-                                            2 Kamar Tidur
-                                        </div>
-                                    </div>
-                                    <div class="item-fasilitas">
-                                        <div><img src="{{ url('/assets/images/icon') }}/bath.png" alt=""
-                                                width="16px" height="16px"></div>
-                                        <div class="card-text">
-                                            1 Kamar Mandi
-                                        </div>
-                                    </div>
-                                    <div class="item-fasilitas">
-                                        <div><img src="{{ url('/assets/images/icon') }}/car.png" alt=""
-                                                width="16px" height="16px"></div>
-                                        <div class="card-text">
-                                            Carport
-                                        </div>
-                                    </div>
-                                    <div class="item-fasilitas">
-                                        <div><img src="{{ url('/assets/images/icon') }}/run.png" alt=""
-                                                width="16px" height="16px"></div>
-                                        <div class="card-text">
-                                            Jogging Track
-                                        </div>
-                                    </div>
-                                    <div class="item-fasilitas">
-                                        <div><img src="{{ url('/assets/images/icon') }}/shield.png" alt=""
-                                                width="16px" height="16px"></div>
-                                        <div class="card-text">
-                                            Keamanan
-                                        </div>
-                                    </div> --}}
-                                </div>
+                                width="16px" height="16px">
+                            </div>
+                            <div class="card-text">
+                                2 Kamar Tidur
                             </div>
                         </div>
-                        <div class="row mt-4">
-                            <div class="col-12">
-                                <a href="">Detail Spesifikasi</a>
+                        <div class="item-fasilitas">
+                            <div><img src="{{ url('/assets/images/icon') }}/bath.png" alt="" width="16px" height="16px"></div>
+                            <div class="card-text">
+                                1 Kamar Mandi
                             </div>
+                        </div>
+                        <div class="item-fasilitas">
+                            <div><img src="{{ url('/assets/images/icon') }}/car.png" alt="" width="16px" height="16px"></div>
+                            <div class="card-text">
+                                Carport
+                            </div>
+                        </div>
+                        <div class="item-fasilitas">
+                            <div><img src="{{ url('/assets/images/icon') }}/run.png" alt="" width="16px" height="16px"></div>
+                            <div class="card-text">
+                                Jogging Track
+                            </div>
+                        </div>
+                        <div class="item-fasilitas">
+                            <div><img src="{{ url('/assets/images/icon') }}/shield.png" alt="" width="16px" height="16px"></div>
+                            <div class="card-text">
+                                Keamanan
+                            </div>
+                        </div> --}}
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12">
+                    <a href="">Detail Spesifikasi</a>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="aside-section" id="aside-section-5">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="header-detail text-center mb-5">
+                            <h4>Dekat dengan</h4>
                         </div>
                     </div>
                 </div>
-                <div class="aside-section" id="aside-section-5">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="header-detail text-center mb-5">
-                                    <h4>Dekat dengan</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="tempat-container">
-                                    @foreach ($fasilitasSekitar as $item)
-                                        <div class="item-tempat">
-                                            {{-- <div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="tempat-container">
+                            @foreach ($fasilitasSekitar as $item)
+                            <div class="item-tempat">
+                                {{-- <div>
                                                 <img src="{{ url('/assets/images/icon') }}/sekolah.png"
-                                                    alt="" width="16px" height="16px">
-                                            </div> --}}
-                                            <div class="card-text">
-                                                {{ $item->jml }} {{ $item->category }}
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                    {{-- <div class="item-tempat">
+                                alt="" width="16px" height="16px">
+                            </div> --}}
+                            <div class="card-text">
+                                {{ $item->jml }} {{ $item->category }}
+                            </div>
+                        </div>
+                        @endforeach
+                        {{-- <div class="item-tempat">
                                         <div><img src="{{ url('/assets/images/icon') }}/sekolah.png" alt=""
-                                                width="16px" height="16px"></div>
-                                        <div class="card-text">
-                                            52 Pendidikan
-                                        </div>
-                                    </div>
-                                    <div class="item-tempat">
-                                        <div><img src="{{ url('/assets/images/icon') }}/pasar.png" alt=""
-                                                width="16px" height="16px"></div>
-                                        <div class="card-text">
-                                            3 Pasar
-                                        </div>
-                                    </div>
-                                    <div class="item-tempat">
-                                        <div><img src="{{ url('/assets/images/icon') }}/resto.png" alt=""
-                                                width="16px" height="16px"></div>
-                                        <div class="card-text">
-                                            5 Rumah Makan
-                                        </div>
-                                    </div>
-                                    <div class="item-tempat">
-                                        <div><img src="{{ url('/assets/images/icon') }}/rs.png" alt=""
-                                                width="16px" height="16px"></div>
-                                        <div class="card-text">
-                                            15 Kesehatan
-                                        </div>
-                                    </div>
-                                    <div class="item-tempat">
-                                        <div><img src="{{ url('/assets/images/icon') }}/bus.png" alt=""
-                                                width="16px" height="16px"></div>
-                                        <div class="card-text">
-                                            6 Transportasi
-                                        </div>
-                                    </div>
-                                    <div class="item-tempat">
-                                        <div><img src="{{ url('/assets/images/icon') }}/wallet.png" alt=""
-                                                width="16px" height="16px"></div>
-                                        <div class="card-text">
-                                            6 Keuangan
-                                        </div>
-                                    </div> --}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mt-4">
-                            <div class="col-12">
-                                <a href="">Detail Tempat</a>
-                            </div>
-                        </div>
+                        width="16px" height="16px">
+                    </div>
+                    <div class="card-text">
+                        52 Pendidikan
                     </div>
                 </div>
-                <div class="aside-section" id="aside-section-6">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="header-detail text-center mb-5">
-                                    <h4>Blok Tersedia</h4>
+                <div class="item-tempat">
+                    <div><img src="{{ url('/assets/images/icon') }}/pasar.png" alt="" width="16px" height="16px"></div>
+                    <div class="card-text">
+                        3 Pasar
+                    </div>
+                </div>
+                <div class="item-tempat">
+                    <div><img src="{{ url('/assets/images/icon') }}/resto.png" alt="" width="16px" height="16px"></div>
+                    <div class="card-text">
+                        5 Rumah Makan
+                    </div>
+                </div>
+                <div class="item-tempat">
+                    <div><img src="{{ url('/assets/images/icon') }}/rs.png" alt="" width="16px" height="16px"></div>
+                    <div class="card-text">
+                        15 Kesehatan
+                    </div>
+                </div>
+                <div class="item-tempat">
+                    <div><img src="{{ url('/assets/images/icon') }}/bus.png" alt="" width="16px" height="16px"></div>
+                    <div class="card-text">
+                        6 Transportasi
+                    </div>
+                </div>
+                <div class="item-tempat">
+                    <div><img src="{{ url('/assets/images/icon') }}/wallet.png" alt="" width="16px" height="16px"></div>
+                    <div class="card-text">
+                        6 Keuangan
+                    </div>
+                </div> --}}
+            </div>
+        </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12">
+                <a href="">Detail Tempat</a>
+            </div>
+        </div>
+        </div>
+        </div>
+        <div class="aside-section" id="aside-section-6">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="header-detail text-center mb-5">
+                            <h4>Blok Tersedia</h4>
+                        </div>
+                        <div class="body-detail">
+                            <div id="blok-container">
+                                @foreach ($blokTersedia as $blok)
+                                <div class="item-blok px-3 py-2">
+                                    <div class="d-flex flex-column">
+                                        <p style="line-height: 10px" class="fw-bold">Blok {{ $blok->blok }}</p>
+                                        <p style="line-height: 10px">Sisa {{ $blok->sisa_unit }} unit</p>
+                                    </div>
+                                    <div class="d-flex flex-column text-end">
+                                        <p style="line-height: 10px">Terima kunci mulai</p>
+                                        <p style="line-height: 10px; color: #DE0000;">{{ $blok->terima_kunci }}
+                                        </p>
+                                    </div>
                                 </div>
-                                <div class="body-detail">
-                                    <div id="blok-container">
-                                        @foreach ($blokTersedia as $blok)
-                                        <div class="item-blok px-3 py-2">
-                                            <div class="d-flex flex-column">
-                                                <p style="line-height: 10px" class="fw-bold">Blok {{ $blok->blok }}</p>
-                                                <p style="line-height: 10px">Sisa {{ $blok->sisa_unit }} unit</p>
-                                            </div>
-                                            <div class="d-flex flex-column text-end">
-                                                <p style="line-height: 10px">Terima kunci mulai</p>
-                                                <p style="line-height: 10px; color: #DE0000;">{{ $blok->terima_kunci }}
-                                                </p>
-                                            </div>
-                                        </div>
-                                        @endforeach
-                                        {{-- <div class="item-blok px-3 py-2">
+                                @endforeach
+                                {{-- <div class="item-blok px-3 py-2">
                                             <div class="d-flex flex-column">
                                                 <p style="line-height: 10px" class="fw-bold">Blok A</p>
                                                 <p style="line-height: 10px">Sisa 5 unit</p>
@@ -494,233 +500,216 @@
                                                 </p>
                                             </div>
                                         </div> --}}
+                            </div>
+                            <div class="bank-section mt-5">
+                                <h4 class="text-center">Bank Tersedia</h4>
+                                <div class="row mt-3">
+                                    <div class="col-4">
+                                        <img src="{{ url('/assets/images/icon') }}/bca.png" alt="" width="75px" height="24px">
                                     </div>
-                                    <div class="bank-section mt-5">
-                                        <h4 class="text-center">Bank Tersedia</h4>
-                                        <div class="row mt-3">
-                                            <div class="col-4">
-                                                <img src="{{ url('/assets/images/icon') }}/bca.png" alt=""
-                                                    width="75px" height="24px">
-                                            </div>
-                                            <div class="col-4">
-                                                <img src="{{ url('/assets/images/icon') }}/bjb.png" alt=""
-                                                    width="75px" height="24px">
-                                            </div>
-                                            <div class="col-4">
-                                                <img src="{{ url('/assets/images/icon') }}/bri.png" alt=""
-                                                    width="75px" height="24px">
-                                            </div>
-                                        </div>
-                                        <div class="row mt-3">
-                                            <div class="col-4">
-                                                <img src="{{ url('/assets/images/icon') }}/mandiri.png"
-                                                    alt="" width="75px" height="24px">
-                                            </div>
-                                            <div class="col-4">
-                                                <img src="{{ url('/assets/images/icon') }}/bni.png" alt=""
-                                                    width="75px" height="24px">
-                                            </div>
-                                            <div class="col-4">
-                                                <img src="{{ url('/assets/images/icon') }}/btn.png" alt=""
-                                                    width="75px" height="24px">
-                                            </div>
-                                        </div>
+                                    <div class="col-4">
+                                        <img src="{{ url('/assets/images/icon') }}/bjb.png" alt="" width="75px" height="24px">
+                                    </div>
+                                    <div class="col-4">
+                                        <img src="{{ url('/assets/images/icon') }}/bri.png" alt="" width="75px" height="24px">
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-4">
+                                        <img src="{{ url('/assets/images/icon') }}/mandiri.png" alt="" width="75px" height="24px">
+                                    </div>
+                                    <div class="col-4">
+                                        <img src="{{ url('/assets/images/icon') }}/bni.png" alt="" width="75px" height="24px">
+                                    </div>
+                                    <div class="col-4">
+                                        <img src="{{ url('/assets/images/icon') }}/btn.png" alt="" width="75px" height="24px">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="aside-section" id="aside-section-7">
-                    <div class="container-fluid section-form">
-                        <div class="row mb-3">
-                            <div class="col-12">
-                                <div class="header-detail text-center mb-5">
-                                    <h4>Pilih Blok</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <select class="form-select select-blok">
-                                    <option value="1">Blok A01</option>
-                                    <option value="2">Blok A02</option>
-                                    <option value="3">Blok A03</option>
-                                    <option value="4">Blok A04</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col"></div>
-                            <div class="col-10 text-center">
-                                <p>Sudah dapat terima kunci dengan nominal</p>
-                                <p class="text-danger">Rp.1.000.000</p>
-                            </div>
-                            <div class="col"></div>
-                        </div>
-                        <div class="row mt-4">
-                            <div class="col-12 text-center">
-                                <h4>Data Diri Pembeli</h4>
-                            </div>
-                        </div>
-                        <div class="row mt-5 mb-5">
-                            <div class="col-12">
-                                <form class="form-booking">
-                                    @csrf
-                                    <div class="mb-2">
-                                        <label class="form-label">Nama Lengkap</label>
-                                        <input type="text" class="form-control" name="nama" id="nama">
-                                    </div>
-                                    <div class="mb-2">
-                                        <label class="form-label">No Handphone</label>
-                                        <input type="text" class="form-control" name="no_hp" id="no_hp">
-                                    </div>
-                                    <div class="mb-2">
-                                        <label class="form-label">Tanggal Lahir</label>
-                                        <input class="form-control" name="tgl_lahir" id="tgl_lahir">
-                                    </div>
-                                    <div class="mb-2">
-                                        <label class="form-label">Jenis Kelamin</label>
-                                        <select class="form-select" name="jenis_kl">
-                                            <option value="">Laki - laki</option>
-                                            <option value="">Perempuan</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-2">
-                                        <label class="form-label">No KTP</label>
-                                        <input type="text" class="form-control" name="no_ktp" id="no_ktp">
-                                    </div>
-                                    <div class="mb-2">
-                                        <label class="form-label">Alamat</label>
-                                        <input type="text" class="form-control" name="alamat" id="alamat">
-                                    </div>
-                                    <div class="mb-2">
-                                        <label class="form-label">Pendapatan</label>
-                                        <input type="number" class="form-control" name="pendapatan"
-                                            id="pendapatan">
-                                    </div>
-                                    <div class="mb-2">
-                                        <label class="form-label">Status</label>
-                                        <select class="form-select" name="jenis_kl">
-                                            <option value="">Menikah</option>
-                                            <option value="">Belum Menikah</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-2">
-                                        <label class="form-label">No KTP Pasangan</label>
-                                        <input type="text" class="form-control" name="no_ktp_psg"
-                                            id="no_ktp_psg">
-                                    </div>
-                                    <div class="mb-4 mt-5">
-                                        <h4 class="text-center">Pembayaran</h4>
-                                    </div>
-                                    <div class="mb-3">
-                                        <p>Jenis Pembayaran</p>
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="d-flex flex-wrap gap-3">
-                                            <div class="payment-method">
-                                                <input type="radio" id="alfamart" name="payment" class="payment"
-                                                    value="alfamart">
-                                                <label for="alfamart">
-                                                    <img src="{{ url('/assets/images/icon/') }}/alfamart.png" />
-                                                </label>
-                                            </div>
-                                            <div class="payment-method">
-                                                <input type="radio" id="indomaret" name="payment" class="payment"
-                                                    value="indomaret">
-                                                <label for="indomaret">
-                                                    <img src="{{ url('/assets/images/icon/') }}/indomaret.png" />
-                                                </label>
-                                            </div>
-                                            <div class="payment-method">
-                                                <input type="radio" id="virtual-account" name="payment"
-                                                    class="payment" value="virtual-account">
-                                                <label for="virtual-account">
-                                                    <img src="{{ url('/assets/images/icon/') }}/va.png" />
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="radio-button-group">
-                                            <label class="radio-card">
-                                                <input type="radio" name="bank" value="bca" checked>
-                                                <div class="card-body">
-                                                    <div class="check-box">
-                                                        <div class="check-icon">✔</div>
-                                                    </div>
-                                                    <img src="{{ url('/assets/images/icon') }}/bca.png"
-                                                        alt="BCA">
-                                                </div>
-                                            </label>
-                                            <label class="radio-card">
-                                                <input type="radio" name="bank" value="mandiri">
-                                                <div class="card-body">
-                                                    <div class="check-box">
-                                                        <div class="check-icon">✔</div>
-                                                    </div>
-                                                    <img src="{{ url('/assets/images/icon') }}/mandiri.png"
-                                                        alt="Mandiri">
-                                                </div>
-                                            </label>
-                                            <label class="radio-card">
-                                                <input type="radio" name="bank" value="bri">
-                                                <div class="card-body">
-                                                    <div class="check-box">
-                                                        <div class="check-icon">✔</div>
-                                                    </div>
-                                                    <img src="{{ url('/assets/images/icon') }}/bri.png"
-                                                        alt="BRI">
-                                                </div>
-                                            </label>
-                                            <label class="radio-card">
-                                                <input type="radio" name="bank" value="bni">
-                                                <div class="card-body">
-                                                    <div class="check-box">
-                                                        <div class="check-icon">✔</div>
-                                                    </div>
-                                                    <img src="{{ url('/assets/images/icon') }}/bni.png"
-                                                        alt="BNI">
-                                                </div>
-                                            </label>
-                                            <label class="radio-card">
-                                                <input type="radio" name="bank" value="cimb">
-                                                <div class="card-body">
-                                                    <div class="check-box">
-                                                        <div class="check-icon">✔</div>
-                                                    </div>
-                                                    <img src="{{ url('/assets/images/icon') }}/cimb.png"
-                                                        alt="cimb">
-                                                </div>
-                                            </label>
-                                            <label class="radio-card">
-                                                <input type="radio" name="bank" value="permata">
-                                                <div class="card-body">
-                                                    <div class="check-box">
-                                                        <div class="check-icon">✔</div>
-                                                    </div>
-                                                    <img src="{{ url('/assets/images/icon') }}/permata.png"
-                                                        alt="permata">
-                                                </div>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="sticky-container">
-                    <div class="sticky-content d-flex justify-content-between align-items-center">
-                        <div>
-                            <div class="price">Rp.500.000</div>
-                            <div class="note">*biaya booking + BI checking</div>
-                        </div>
-                        <button class="btn btn-primary" style="border-radius: 10px">Booking Sekarang</button>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="aside-section" id="aside-section-7">
+            <div class="container-fluid section-form">
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <div class="header-detail text-center mb-5">
+                            <h4>Pilih Blok</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <select class="form-select select-blok">
+                            <option value="1">Blok A01</option>
+                            <option value="2">Blok A02</option>
+                            <option value="3">Blok A03</option>
+                            <option value="4">Blok A04</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col"></div>
+                    <div class="col-10 text-center">
+                        <p>Sudah dapat terima kunci dengan nominal</p>
+                        <p class="text-danger">Rp.1.000.000</p>
+                    </div>
+                    <div class="col"></div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-12 text-center">
+                        <h4>Data Diri Pembeli</h4>
+                    </div>
+                </div>
+                <div class="row mt-5 mb-5">
+                    <div class="col-12">
+                        <form class="form-booking">
+                            @csrf
+                            <div class="mb-2">
+                                <label class="form-label">Nama Lengkap</label>
+                                <input type="text" class="form-control" name="nama" id="nama">
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label">No Handphone</label>
+                                <input type="text" class="form-control" name="no_hp" id="no_hp">
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label">Tanggal Lahir</label>
+                                <input class="form-control" name="tgl_lahir" id="tgl_lahir">
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label">Jenis Kelamin</label>
+                                <select class="form-select" name="jenis_kl">
+                                    <option value="">Laki - laki</option>
+                                    <option value="">Perempuan</option>
+                                </select>
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label">No KTP</label>
+                                <input type="text" class="form-control" name="no_ktp" id="no_ktp">
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label">Alamat</label>
+                                <input type="text" class="form-control" name="alamat" id="alamat">
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label">Pendapatan</label>
+                                <input type="number" class="form-control" name="pendapatan" id="pendapatan">
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label">Status</label>
+                                <select class="form-select" name="jenis_kl">
+                                    <option value="">Menikah</option>
+                                    <option value="">Belum Menikah</option>
+                                </select>
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label">No KTP Pasangan</label>
+                                <input type="text" class="form-control" name="no_ktp_psg" id="no_ktp_psg">
+                            </div>
+                            <div class="mb-4 mt-5">
+                                <h4 class="text-center">Pembayaran</h4>
+                            </div>
+                            <div class="mb-3">
+                                <p>Jenis Pembayaran</p>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex flex-wrap gap-3">
+                                    <div class="payment-method">
+                                        <input type="radio" id="alfamart" name="payment" class="payment" value="alfamart">
+                                        <label for="alfamart">
+                                            <img src="{{ url('/assets/images/icon/') }}/alfamart.png" />
+                                        </label>
+                                    </div>
+                                    <div class="payment-method">
+                                        <input type="radio" id="indomaret" name="payment" class="payment" value="indomaret">
+                                        <label for="indomaret">
+                                            <img src="{{ url('/assets/images/icon/') }}/indomaret.png" />
+                                        </label>
+                                    </div>
+                                    <div class="payment-method">
+                                        <input type="radio" id="virtual-account" name="payment" class="payment" value="virtual-account">
+                                        <label for="virtual-account">
+                                            <img src="{{ url('/assets/images/icon/') }}/va.png" />
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="radio-button-group">
+                                    <label class="radio-card">
+                                        <input type="radio" name="bank" value="bca" checked>
+                                        <div class="card-body">
+                                            <div class="check-box">
+                                                <div class="check-icon">✔</div>
+                                            </div>
+                                            <img src="{{ url('/assets/images/icon') }}/bca.png" alt="BCA">
+                                        </div>
+                                    </label>
+                                    <label class="radio-card">
+                                        <input type="radio" name="bank" value="mandiri">
+                                        <div class="card-body">
+                                            <div class="check-box">
+                                                <div class="check-icon">✔</div>
+                                            </div>
+                                            <img src="{{ url('/assets/images/icon') }}/mandiri.png" alt="Mandiri">
+                                        </div>
+                                    </label>
+                                    <label class="radio-card">
+                                        <input type="radio" name="bank" value="bri">
+                                        <div class="card-body">
+                                            <div class="check-box">
+                                                <div class="check-icon">✔</div>
+                                            </div>
+                                            <img src="{{ url('/assets/images/icon') }}/bri.png" alt="BRI">
+                                        </div>
+                                    </label>
+                                    <label class="radio-card">
+                                        <input type="radio" name="bank" value="bni">
+                                        <div class="card-body">
+                                            <div class="check-box">
+                                                <div class="check-icon">✔</div>
+                                            </div>
+                                            <img src="{{ url('/assets/images/icon') }}/bni.png" alt="BNI">
+                                        </div>
+                                    </label>
+                                    <label class="radio-card">
+                                        <input type="radio" name="bank" value="cimb">
+                                        <div class="card-body">
+                                            <div class="check-box">
+                                                <div class="check-icon">✔</div>
+                                            </div>
+                                            <img src="{{ url('/assets/images/icon') }}/cimb.png" alt="cimb">
+                                        </div>
+                                    </label>
+                                    <label class="radio-card">
+                                        <input type="radio" name="bank" value="permata">
+                                        <div class="card-body">
+                                            <div class="check-box">
+                                                <div class="check-icon">✔</div>
+                                            </div>
+                                            <img src="{{ url('/assets/images/icon') }}/permata.png" alt="permata">
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sticky-container">
+            <div class="sticky-content d-flex justify-content-between align-items-center">
+                <div>
+                    <div class="price">Rp.500.000</div>
+                    <div class="note">*biaya booking + BI checking</div>
+                </div>
+                <button class="btn btn-primary" style="border-radius: 10px">Booking Sekarang</button>
+            </div>
+        </div>
+        </div>
         </div>
     </section>
     <div class="chat-ai d-flex flex-column shadow-sm">
@@ -733,14 +722,12 @@
     <!-- jquery js -->
     <script src="{{ url('/assets/js') }}/vendor/jquery-3.6.2.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
     </script>
 
     <!-- bootstrap js -->
     {{-- <script src="{{ url('/assets/js') }}/bootstrap.min.js"></script> --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
 
     <!-- carousel js -->
@@ -803,6 +790,28 @@
 
     {{-- detail js --}}
     <script src="{{ url('/assets') }}/detail.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const container = document.getElementById('video_tour');
+
+            const video = document.createElement('video');
+            video.src = `{{url('/assets/video')}}/virtual_tour.mp4`;
+            video.autoplay = true;
+            video.loop = true;
+            video.muted = true;
+            video.setAttribute('playsinline', ''); // iOS autoplay
+            video.setAttribute('disablePictureInPicture', ''); // Mencegah PiP
+            video.setAttribute('controls', 'false');
+
+            // Sembunyikan kontrol video sepenuhnya
+            video.controls = false;
+
+            // Mencegah video terinteraksi
+            video.style.pointerEvents = 'none';
+
+            container.appendChild(video);
+        });
+    </script>
 </body>
 
 </html>

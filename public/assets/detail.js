@@ -112,6 +112,7 @@ $(document).ready(function () {
 
 });
 
+
 const ulasan = document.getElementById('ulasan-container');
 
 let isDragging = false;
