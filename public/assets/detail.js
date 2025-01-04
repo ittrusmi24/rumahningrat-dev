@@ -1,3 +1,6 @@
+const baseURL = document.querySelector('meta[name="base-url"]').getAttribute('content');
+console.log(baseURL); // Output: Base URL aplikasi
+
 function activateCarousel(sectionId, carouselId) {
     const section = $(sectionId);
     const carousel = $(carouselId);
@@ -172,7 +175,8 @@ function validasiBook() {
     if (nama == '') {
         Swal.fire({
             icon: "error",
-            title: "Nama belum diisi!",
+            title: "Error",
+            text: "Nama belum diisi!",
             showConfirmButton: false,
             timer: 1000
         });
@@ -180,19 +184,118 @@ function validasiBook() {
     } else if (no_hp == '') {
         Swal.fire({
             icon: "error",
-            title: "No HP belum diisi!",
+            title: "Error",
+            text: "No HP belum diisi!",
             showConfirmButton: false,
             timer: 1000
         });
-        $('#nama').focus()
-    } else if (tgl_lahir) {
+        $('#no_hp').focus()
+    } else if (tgl_lahir == '') {
         Swal.fire({
             icon: "error",
-            title: "Tanggal lahir belum diisi!",
+            title: "Error",
+            text: "Tanggal lahir belum diisi!",
             showConfirmButton: false,
             timer: 1000
         });
         $('#tgl_lahir').focus()
+    } else if (jenis_kl == '') {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Tanggal lahir belum diisi!",
+            showConfirmButton: false,
+            timer: 1000
+        });
+        $('#jenis_kl').focus()
+    } else if (no_ktp == '') {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "No KTP belum diisi!",
+            showConfirmButton: false,
+            timer: 1000
+        });
+        $('#no_ktp').focus()
+    } else if (alamat == '' || alamat == null) {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Alamat belum diisi!",
+            showConfirmButton: false,
+            timer: 1000
+        });
+        $('#alamat_book').focus()
+    } else if (pendapatan == '' || pendapatan == null) {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Pendapatan belum diisi!",
+            showConfirmButton: false,
+            timer: 1000
+        });
+        $('#pendapatan').focus()
+    } else if (status == '') {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Status belum diisi!",
+            showConfirmButton: false,
+            timer: 1000
+        });
+        $('#status').focus()
+    } else if (no_ktp_psg == '') {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "No KTP Peserta belum diisi!",
+            showConfirmButton: false,
+            timer: 1000
+        });
+        $('#no_ktp_psg').focus()
+    } else if (payment == '') {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Payment belum dipilih!",
+            showConfirmButton: false,
+            timer: 1000
+        });
+        $("input[name='payment']").focus()
+    } else if (bank == '') {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Bank belum dipilih!",
+            showConfirmButton: false,
+            timer: 1000
+        });
+        $("input[name='bank']").focus()
+    } else {
+        var form = $('#formBooking')[0]; // Ambil elemen DOM dari jQuery
+        var formData = new FormData(form); // Buat objek FormData
+        // Ambil nilai dari input dengan id "blok"
+        var blokValue = $('#blok').val();
+
+        // Tambahkan nilai ke FormData
+        formData.append('blok', blokValue);
+        $.ajax({
+            url: `${baseURL}/simpan_booking`, // Sesuaikan endpoint API
+            type: 'POST',
+            dataType: 'json',
+            data: formData,
+            processData: false, // Jangan proses data
+            contentType: false, // Jangan tetapkan content-type secara otomatis
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Jika diperlukan CSRF
+            },
+            success: function (response) {
+                console.log(response);
+            },
+            error: function (xhr, status, error) {
+                console.error(`Error: ${error}`);
+            }
+        });
     }
 
 }
