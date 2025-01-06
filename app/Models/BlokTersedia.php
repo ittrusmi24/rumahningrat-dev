@@ -19,7 +19,6 @@ class BlokTersedia extends Model
                 p.id_project,
                 mpu.blok,
                 MIN(mpu.terima_kunci) AS terima_kunci,
-                -- mpu.id_status,
                 COUNT(DISTINCT mpu.blok) AS sisa_unit,
                 CASE WHEN p.id_project_tipe = 2 THEN 2500000 WHEN p.id_project_tipe != 2 AND (LEFT(mpu.type_blok,4) = 'Hook' OR LEFT(mpu.type_blok,3) = 'KLT') THEN 1000000 ELSE 500000 END as nominal_booking,
                 p.harga_tanah,
@@ -28,7 +27,8 @@ class BlokTersedia extends Model
                 COALESCE(p.nominal_free_tembok,0) AS biaya_tembok,
                 COALESCE(p.nominal_free_ipl,0) AS biaya_ipl,
                 COALESCE(p.harga_tanah,0)*COALESCE(mpu.kelebihan_tanah,0) AS biaya_kelebihan_tanah,
-                CASE WHEN p.id_project_tipe = 2 THEN 2500000 WHEN p.id_project_tipe != 2 AND (LEFT(mpu.type_blok,4) = 'Hook' OR LEFT(mpu.type_blok,3) = 'KLT') THEN 1000000 ELSE 500000 END + COALESCE(mpu.terima_kunci,5000000) + COALESCE(p.nominal_free_pagar,0) + COALESCE(p.nominal_free_tembok,0) + COALESCE(p.nominal_free_ipl,0) + (COALESCE(p.harga_tanah,0)*COALESCE(mpu.kelebihan_tanah,0)) AS total,
+                COALESCE(p.nominal_bphtb,0) AS biaya_bphtb,
+                CASE WHEN p.id_project_tipe = 2 THEN 2500000 WHEN p.id_project_tipe != 2 AND (LEFT(mpu.type_blok,4) = 'Hook' OR LEFT(mpu.type_blok,3) = 'KLT') THEN 1000000 ELSE 500000 END + COALESCE(mpu.terima_kunci,5000000) + COALESCE(p.nominal_free_pagar,0) + COALESCE(p.nominal_free_tembok,0) + COALESCE(p.nominal_free_ipl,0) + (COALESCE(p.harga_tanah,0)*COALESCE(mpu.kelebihan_tanah,0)) + COALESCE(p.nominal_bphtb,0) AS total,
                 COALESCE(mpu.terima_kunci,5000000) + COALESCE(p.nominal_free_pagar,0) + COALESCE(p.nominal_free_tembok,0) + COALESCE(p.nominal_free_ipl,0) AS potongan,
                 (CASE WHEN p.id_project_tipe = 2 THEN 2500000 WHEN p.id_project_tipe != 2 AND (LEFT(mpu.type_blok,4) = 'Hook' OR LEFT(mpu.type_blok,3) = 'KLT') THEN 1000000 ELSE 500000 END + COALESCE(mpu.terima_kunci,5000000) + COALESCE(p.nominal_free_pagar,0) + COALESCE(p.nominal_free_tembok,0) + COALESCE(p.nominal_free_ipl,0) + (COALESCE(p.harga_tanah,0)*COALESCE(mpu.kelebihan_tanah,0))) - (COALESCE(mpu.terima_kunci,5000000) + COALESCE(p.nominal_free_pagar,0) + COALESCE(p.nominal_free_tembok,0) + COALESCE(p.nominal_free_ipl,0)) AS total_all
             FROM
