@@ -517,7 +517,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="mb-3">
+                                    <div style="margin-bottom: 20vh">
                                         <div class="radio-button-group">
                                             <label class="radio-card">
                                                 <input type="radio" name="bank" value="bca" checked>
