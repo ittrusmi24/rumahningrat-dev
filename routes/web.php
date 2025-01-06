@@ -5,13 +5,15 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\FasilitasSekitarController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\UlasanController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/test-event', function () {
     $data = [
         'id_gci' => 'GCI2501020001',
@@ -20,8 +22,8 @@ Route::get('/test-event', function () {
     dd(event(new \App\Events\BookingCreated($data)));
     return 'Event telah dijalankan';
 });
-Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('dashboard/detail/{id_project}', [DashboardController::class, 'detail'])->name('detail');
+// Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/detail/{id_project}', [DashboardController::class, 'detail'])->name('detail');
 Route::get('project/{id_project}', [ProjectController::class, 'index'])->name('project');
 Route::get('ulasan/{id_project}', [UlasanController::class, 'index'])->name('ulasan');
 Route::get('fasilitas/{id_project}', [FasilitasController::class, 'index'])->name('fasilitas');

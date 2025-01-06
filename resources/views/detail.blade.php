@@ -1,78 +1,55 @@
-<!DOCTYPE HTML>
-<html lang="en-US">
+@extends('detail.app')
 
-<head>
+@section('head')
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Rumah Ningrat</title>
-    <meta name="description" content="">
+    <meta name="description" content="halaman detail beli rumah ningrat harga merakyat">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="base-url" content="{{ url('/') }}">
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="56x56" href="{{ url('/assets/images/fav-icon') }}/icon-ningrat.png">
     <!-- bootstrap CSS -->
-    {{-- <link rel="stylesheet" href="{{ url('/assets/css') }}/bootstrap.min.css" type="text/css" media="all"> --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- carousel CSS -->
     <link rel="stylesheet" href="{{ url('/assets/css') }}/owl.carousel.min.css" type="text/css" media="all">
-    <!-- animate CSS -->
-    <link rel="stylesheet" href="{{ url('/assets/css') }}/animate.css" type="text/css" media="all">
     <!-- font-awesome CSS -->
     <link rel="stylesheet" href="{{ url('/assets/css') }}/all.min.css" type="text/css" media="all">
-    <!-- font-flaticon CSS -->
-    <link rel="stylesheet" href="{{ url('/assets/css') }}/flaticon.css" type="text/css" media="all">
     <!-- theme-default CSS -->
     <link rel="stylesheet" href="{{ url('/assets/css') }}/theme-default.css" type="text/css" media="all">
-    <!-- meanmenu CSS -->
-    <link rel="stylesheet" href="{{ url('/assets/css') }}/meanmenu.min.css" type="text/css" media="all">
     <!-- transitions CSS -->
     <link rel="stylesheet" href="{{ url('/assets/css') }}/owl.transitions.css" type="text/css" media="all">
     <!-- venobox CSS -->
     <link rel="stylesheet" href="{{ url('/assets') }}/venobox/venobox.css" type="text/css" media="all">
     <!-- bootstrap icons -->
     <link rel="stylesheet" href="{{ url('/assets/css') }}/bootstrap-icons.css" type="text/css" media="all">
-    <!-- Slick Slider -->
-    <link rel="stylesheet" type="text/css" href="{{ url('/') }}/assets/slick/slick.css">
-    <link rel="stylesheet" type="text/css" href="{{ url('/') }}/assets/slick/slick-theme.css">
     <!-- Main Style CSS -->
-    <link rel="stylesheet" href="{{ url('/assets/css') }}/style.css?v=3" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ url('/assets/css/custom') }}/style.css" type="text/css" media="all">
     <!-- Dropdown CSS -->
     <link rel="stylesheet" href="{{ url('/assets/css') }}/dropdown.css" type="text/css" media="all">
     <!-- responsive CSS -->
     <link rel="stylesheet" href="{{ url('/assets/css') }}/responsive.css" type="text/css" media="all">
-    <!-- rangeslider CSS -->
-    <link rel="stylesheet" href="{{ url('/assets/css') }}/rangeslider.css" type="text/css" media="all">
     <!-- modernizr js -->
     <script src="{{ url('/') }}/assets/js/vendor/modernizr-3.5.0.min.js"></script>
     {{-- datetime picker --}}
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-    {{-- bootstrap-select css --}}
-    <link rel="stylesheet" href="{{ url('/assets/select2/css') }}/select2.min.css" type="text/css" media="all">
     {{-- AOS --}}
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     {{-- css style this page --}}
     <style>
-        .sticky-column {
-            position: sticky;
-            top: 0;
-        }
 
-        html,
-        body {
-            overflow-y: hidden;
-        }
     </style>
-</head>
+@endsection
 
-<body>
+@section('content')
     <div class="stikcy-nav-container">
         <nav class="navbar" style="background-color: #005991E5">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
-                    <img src="{{ url('/assets/images/fav-icon') }}/navlogo.png" alt="Logo" width="40px"
-                        height="40px">
+                    <img src="{{ url('/assets/images/fav-icon') }}/icon-ningrat.png" alt="Logo" width="100px"
+                        height="48px">
                 </a>
             </div>
         </nav>
@@ -83,61 +60,61 @@
                 <div class="owl-carousel bg-info" id="gallery-carousel-1">
                     <div><img src="{{ url('/assets/images/carousel') }}/1.png" alt="">
                     </div>
-                    <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=2" alt="">
+                    <div><img src="{{ url('/assets/images/carousel') }}/1.png" alt="">
                     </div>
-                    <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=3" alt="">
+                    <div><img src="{{ url('/assets/images/carousel') }}/1.png" alt="">
                     </div>
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-2">
                     <div><img src="{{ url('/assets/images/carousel') }}/2.png" alt="">
                     </div>
-                    <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=2+ke+2" alt="">
+                    <div><img src="{{ url('/assets/images/carousel') }}/2.png" alt="">
                     </div>
-                    <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=3+ke+2" alt="">
+                    <div><img src="{{ url('/assets/images/carousel') }}/2.png" alt="">
                     </div>
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-3">
                     <div><img src="{{ url('/assets/images/carousel') }}/3.png" alt="">
                     </div>
-                    <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=2+ke+3" alt="">
+                    <div><img src="{{ url('/assets/images/carousel') }}/3.png" alt="">
                     </div>
-                    <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=3+ke+3" alt="">
+                    <div><img src="{{ url('/assets/images/carousel') }}/3.png" alt="">
                     </div>
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-4">
                     <div id="video_tour">
                     </div>
-                    <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=2+ke+4" alt="">
+                    {{-- <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=2+ke+4" alt="">
                     </div>
                     <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=3+ke+4" alt="">
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-5">
                     <div><img src="{{ url('/assets/images/carousel') }}/5.png" alt="">
                     </div>
-                    <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=2+ke+5" alt="">
+                    <div><img src="{{ url('/assets/images/carousel') }}/5.png" alt="">
                     </div>
-                    <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=3+ke+5" alt="">
+                    <div><img src="{{ url('/assets/images/carousel') }}/5.png" alt="">
                     </div>
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-6">
                     <div><img src="{{ url('/assets/images/carousel') }}/6.png" alt="">
                     </div>
-                    <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=2+ke+6" alt="">
+                    <div><img src="{{ url('/assets/images/carousel') }}/6.png" alt="">
                     </div>
-                    <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=3+ke+6" alt="">
+                    <div><img src="{{ url('/assets/images/carousel') }}/6.png" alt="">
                     </div>
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-7">
                     <div><img src="{{ url('/assets/images/carousel') }}/7.png" alt="">
                     </div>
-                    <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=2+ke+7" alt="">
+                    <div><img src="{{ url('/assets/images/carousel') }}/7.png" alt="">
                     </div>
-                    <div><img src="https://dummyimage.com/1920x1080/bfbfbf/ffffff&text=3+ke+7" alt="">
+                    <div><img src="{{ url('/assets/images/carousel') }}/7.png" alt="">
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 container-group pl-0 pr-0">
+            <div class="col-lg-4 container-group pl-0 pr-0 mb-5">
                 <div class="aside-section" id="aside-section-1">
                     <div class="container-fluid">
                         <div class="row">
@@ -153,7 +130,7 @@
                                     <p id="project_tipe">{{ $project['project_tipe'] }}</p>
                                     <p>Tipe <span id="tipe_rumah">{{ $project['tipe_rumah'] }}</span> m</p>
                                     <p id="alamat">{{ $project['alamat'] }}</p>
-                                    <a href="#">Lokasi selengkapnya</a>
+                                    <a data-target="#modalLokasi" data-toggle="modal" href="#modalLokasi">Lokasi selengkapnya</a>
                                 </div>
                             </div>
                         </div>
@@ -315,9 +292,9 @@
                                     @foreach ($fasilitas as $item)
                                         <div class="item-fasilitas">
                                             {{-- <div>
-                                                <img src="{{ url('/assets/images/icon') }}/bed.png" alt=""
-                                                    width="16px" height="16px">
-                                            </div> --}}
+                                            <img src="{{ url('/assets/images/icon') }}/bed.png" alt=""
+                                                width="16px" height="16px">
+                                        </div> --}}
                                             <div class="card-text">
                                                 {{ $item->fasilitas }}
                                             </div>
@@ -348,9 +325,9 @@
                                     @foreach ($fasilitasSekitar as $item)
                                         <div class="item-tempat">
                                             {{-- <div>
-                                                <img src="{{ url('/assets/images/icon') }}/sekolah.png"
-                                                    alt="" width="16px" height="16px">
-                                            </div> --}}
+                                            <img src="{{ url('/assets/images/icon') }}/sekolah.png"
+                                                alt="" width="16px" height="16px">
+                                        </div> --}}
                                             <div class="card-text">
                                                 {{ $item->jml }} {{ $item->category }}
                                             </div>
@@ -409,8 +386,8 @@
                                         </div>
                                         <div class="row mt-3">
                                             <div class="col-4">
-                                                <img src="{{ url('/assets/images/icon') }}/mandiri.png"
-                                                    alt="" width="75px" height="24px">
+                                                <img src="{{ url('/assets/images/icon') }}/mandiri.png" alt=""
+                                                    width="75px" height="24px">
                                             </div>
                                             <div class="col-4">
                                                 <img src="{{ url('/assets/images/icon') }}/bni.png" alt=""
@@ -469,8 +446,7 @@
                                     <input type="hidden" name="nominal_booking" id="nominal_booking">
                                     <div class="mb-2">
                                         <label class="form-label">Nama Lengkap</label>
-                                        <input type="text" class="form-control" name="nama_lengkap"
-                                            id="nama">
+                                        <input type="text" class="form-control" name="nama_lengkap" id="nama">
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">No Handphone</label>
@@ -497,8 +473,7 @@
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">Pendapatan</label>
-                                        <input type="number" class="form-control" name="pendapatan"
-                                            id="pendapatan">
+                                        <input type="number" class="form-control" name="pendapatan" id="pendapatan">
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">Status</label>
@@ -550,8 +525,7 @@
                                                     <div class="check-box">
                                                         <div class="check-icon">✔</div>
                                                     </div>
-                                                    <img src="{{ url('/assets/images/icon') }}/bca.png"
-                                                        alt="BCA">
+                                                    <img src="{{ url('/assets/images/icon') }}/bca.png" alt="BCA">
                                                 </div>
                                             </label>
                                             <label class="radio-card">
@@ -570,8 +544,7 @@
                                                     <div class="check-box">
                                                         <div class="check-icon">✔</div>
                                                     </div>
-                                                    <img src="{{ url('/assets/images/icon') }}/bri.png"
-                                                        alt="BRI">
+                                                    <img src="{{ url('/assets/images/icon') }}/bri.png" alt="BRI">
                                                 </div>
                                             </label>
                                             <label class="radio-card">
@@ -580,8 +553,7 @@
                                                     <div class="check-box">
                                                         <div class="check-icon">✔</div>
                                                     </div>
-                                                    <img src="{{ url('/assets/images/icon') }}/bni.png"
-                                                        alt="BNI">
+                                                    <img src="{{ url('/assets/images/icon') }}/bni.png" alt="BNI">
                                                 </div>
                                             </label>
                                             <label class="radio-card">
@@ -590,8 +562,7 @@
                                                     <div class="check-box">
                                                         <div class="check-icon">✔</div>
                                                     </div>
-                                                    <img src="{{ url('/assets/images/icon') }}/cimb.png"
-                                                        alt="cimb">
+                                                    <img src="{{ url('/assets/images/icon') }}/cimb.png" alt="cimb">
                                                 </div>
                                             </label>
                                             <label class="radio-card">
@@ -625,12 +596,16 @@
             </div>
         </div>
     </section>
+
     {{-- <div class="chat-ai d-flex flex-column shadow-sm">
-        <div><i class="bi bi-chat-dots"></i></div>
-        <div>
-            <p>Nira AI</p>
-        </div>
-    </div> --}}
+    <div><i class="bi bi-chat-dots"></i></div>
+    <div>
+        <p>Nira AI</p>
+    </div>
+</div> --}}
+@endsection
+
+@section('javascript')
     <script type="text/javascript">
         const urlai = `{{ url('/assets/js/') }}/chatai.js`
         window.mychat = window.mychat || {};
@@ -657,25 +632,12 @@
     </script>
 
     <!-- bootstrap js -->
-    {{-- <script src="{{ url('/assets/js') }}/bootstrap.min.js"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
 
     <!-- carousel js -->
     <script src="{{ url('/assets/js') }}/owl.carousel.min.js"></script>
-
-    <!-- counterup js -->
-    <script src="{{ url('/assets/js') }}/jquery.counterup.min.js"></script>
-
-    <!-- waypoints js -->
-    <script src="{{ url('/assets/js') }}/waypoints.min.js"></script>
-
-    <!-- wow js -->
-    <script src="{{ url('/assets/js') }}/wow.min.js"></script>
-
-    <!-- imagesloaded js -->
-    <script src="{{ url('/assets/js') }}/imagesloaded.pkgd.min.js"></script>
 
     <!-- venobox js -->
     <script src="{{ url('/assets') }}/venobox/venobox.js"></script>
@@ -686,47 +648,24 @@
     <!-- venobox min js -->
     <script src="{{ url('/assets') }}/venobox/venobox.min.js"></script>
 
-    <!-- isotope js -->
-    <script src="{{ url('/assets/js') }}/isotope.pkgd.min.js"></script>
-
-    <!-- jquery meanmenu js -->
-    <script src="{{ url('/assets/js') }}/jquery.meanmenu.js"></script>
-
     <!-- jquery scrollup js -->
     <script src="{{ url('/assets/js') }}/jquery.scrollUp.js"></script>
-
-    <!-- Slick Slider -->
-    <script src="{{ url('/') }}/assets/slick/slick.min.js"></script>
-
-    <script src="{{ url('/assets/js') }}/jquery.barfiller.js"></script>
-    <!-- jquery js -->
-
-    <!-- ragrslider js -->
-    <script src="{{ url('/assets/js') }}/rangeslider.js"></script>
-
-    <!-- ragrslider js -->
-    <script src="{{ url('/assets/js') }}/mixitup.min.js"></script>
-
-    <!-- theme js -->
-    <script src="{{ url('/assets/js') }}/theme.js"></script>
-
-    <!-- scroll js -->
-    <script src="{{ url('/assets/js') }}/script.js"></script>
 
     <!-- slim select -->
     <script src="https://unpkg.com/slim-select@latest/dist/slimselect.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/slim-select@latest/dist/slimselect.css" />
-    {{-- sweetalert2 --}}
+
+    <!-- sweetalert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.15.9/dist/sweetalert2.all.min.js"
         integrity="sha256-zXU3hnKwOJq62DswpQcW5m0q0zoQY4UpTLYdmlxwJHg=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.15.9/dist/sweetalert2.min.css"
         integrity="sha256-HivoIIkMGPypkWBoBzUEFAY/RZqAWSWLqW/MQFMBRXg=" crossorigin="anonymous">
 
-    {{-- datetime picker --}}
+    <!-- datetime picker -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
-    {{-- AOS --}}
+    <!-- AOS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     {{-- detail js --}}
@@ -754,6 +693,4 @@
             container.appendChild(video);
         });
     </script>
-</body>
-
-</html>
+@endsection
