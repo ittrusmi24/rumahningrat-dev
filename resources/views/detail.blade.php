@@ -91,14 +91,18 @@
 
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-5">
-                    <div><img src="{{ url('/assets/images/carousel') }}/5.png" alt="">
+                    <div>
+                        <iframe src="https://trusmiverse.com/vt/poi/bekasi/index.html" frameborder="0" width="100%" height="100%"></iframe>
+                    </div>
+                    {{-- <div><img src="{{ url('/assets/images/carousel') }}/5.png" alt="">
                     </div>
                     <div><img src="{{ url('/assets/images/carousel') }}/5.png" alt="">
                     </div>
                     <div><img src="{{ url('/assets/images/carousel') }}/5.png" alt="">
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-6">
+
                     <div><img src="{{ url('/assets/images/carousel') }}/6.png" alt="">
                     </div>
                     <div><img src="{{ url('/assets/images/carousel') }}/6.png" alt="">
@@ -622,7 +626,7 @@
                 <div class="sticky-container">
                     <div class="sticky-content d-flex justify-content-between align-items-center">
                         <div>
-                            <div class="price" id="price">Rp.500.000</div>
+                            <div class="price text-dark" id="price">Rp.500.000</div>
                             <div class="note">*biaya booking + BI checking</div>
                         </div>
                         <button class="btn btn-primary" onclick="validasiBook()" style="border-radius: 10px">Booking
@@ -764,7 +768,7 @@ var map = L.map('map', {
     maxBoundsViscosity: 1.0
 }).setView(center_point, 18);
 
-const key = 'R6nUJmbSNhAkmNyvEc52';
+const key = 'Q0RluLdskTtpcHzsahrp';
 const mtLayer = L.maptilerLayer({
     apiKey: key,
     style: L.MaptilerStyle.DATAVIZ.LIGHT, // optional
