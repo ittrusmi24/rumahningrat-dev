@@ -28,6 +28,7 @@ class BlokTersediaController extends Controller
                 $item->biaya_tembok = number_format($item->biaya_tembok, 0, ',', '.');
                 $item->biaya_ipl = number_format($item->biaya_ipl, 0, ',', '.');
                 $item->biaya_kelebihan_tanah = number_format($item->biaya_kelebihan_tanah, 0, ',', '.');
+                $item->biaya_hook = number_format($item->biaya_hook, 0, ',', '.');
                 $item->total = number_format($item->total, 0, ',', '.');
                 $item->potongan = number_format($item->potongan, 0, ',', '.');
                 $item->total_all = number_format($item->total_all, 0, ',', '.');

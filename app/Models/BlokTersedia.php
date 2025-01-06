@@ -26,11 +26,12 @@ class BlokTersedia extends Model
                 COALESCE(p.nominal_free_pagar,0) AS biaya_pagar,
                 COALESCE(p.nominal_free_tembok,0) AS biaya_tembok,
                 COALESCE(p.nominal_free_ipl,0) AS biaya_ipl,
+                COALESCE(p.nominal_hook,0) AS biaya_hook,
                 COALESCE(p.harga_tanah,0)*COALESCE(mpu.kelebihan_tanah,0) AS biaya_kelebihan_tanah,
                 COALESCE(p.nominal_bphtb,0) AS biaya_bphtb,
-                CASE WHEN p.id_project_tipe = 2 THEN 2500000 WHEN p.id_project_tipe != 2 AND (LEFT(mpu.type_blok,4) = 'Hook' OR LEFT(mpu.type_blok,3) = 'KLT') THEN 1000000 ELSE 500000 END + COALESCE(mpu.terima_kunci,5000000) + COALESCE(p.nominal_free_pagar,0) + COALESCE(p.nominal_free_tembok,0) + COALESCE(p.nominal_free_ipl,0) + (COALESCE(p.harga_tanah,0)*COALESCE(mpu.kelebihan_tanah,0)) + COALESCE(p.nominal_bphtb,0) AS total,
+                CASE WHEN p.id_project_tipe = 2 THEN 2500000 WHEN p.id_project_tipe != 2 AND (LEFT(mpu.type_blok,4) = 'Hook' OR LEFT(mpu.type_blok,3) = 'KLT') THEN 1000000 ELSE 500000 END + COALESCE(mpu.terima_kunci,5000000) + COALESCE(p.nominal_free_pagar,0) + COALESCE(p.nominal_free_tembok,0) + COALESCE(p.nominal_free_ipl,0) + (COALESCE(p.harga_tanah,0)*COALESCE(mpu.kelebihan_tanah,0)) + COALESCE(p.nominal_bphtb,0) + COALESCE(p.nominal_hook,0) AS total,
                 COALESCE(mpu.terima_kunci,5000000) + COALESCE(p.nominal_free_pagar,0) + COALESCE(p.nominal_free_tembok,0) + COALESCE(p.nominal_free_ipl,0) AS potongan,
-                (CASE WHEN p.id_project_tipe = 2 THEN 2500000 WHEN p.id_project_tipe != 2 AND (LEFT(mpu.type_blok,4) = 'Hook' OR LEFT(mpu.type_blok,3) = 'KLT') THEN 1000000 ELSE 500000 END + COALESCE(mpu.terima_kunci,5000000) + COALESCE(p.nominal_free_pagar,0) + COALESCE(p.nominal_free_tembok,0) + COALESCE(p.nominal_free_ipl,0) + (COALESCE(p.harga_tanah,0)*COALESCE(mpu.kelebihan_tanah,0))) - (COALESCE(mpu.terima_kunci,5000000) + COALESCE(p.nominal_free_pagar,0) + COALESCE(p.nominal_free_tembok,0) + COALESCE(p.nominal_free_ipl,0)) AS total_all
+                (CASE WHEN p.id_project_tipe = 2 THEN 2500000 WHEN p.id_project_tipe != 2 AND (LEFT(mpu.type_blok,4) = 'Hook' OR LEFT(mpu.type_blok,3) = 'KLT') THEN 1000000 ELSE 500000 END + COALESCE(mpu.terima_kunci,5000000) + COALESCE(p.nominal_free_pagar,0) + COALESCE(p.nominal_free_tembok,0) + COALESCE(p.nominal_free_ipl,0) + (COALESCE(p.harga_tanah,0)*COALESCE(mpu.kelebihan_tanah,0)) + COALESCE(p.nominal_bphtb,0) + COALESCE(p.nominal_hook,0)) - (COALESCE(mpu.terima_kunci,5000000) + COALESCE(p.nominal_free_pagar,0) + COALESCE(p.nominal_free_tembok,0) + COALESCE(p.nominal_free_ipl,0)) AS total_all
             FROM
                 m_project p
                 LEFT JOIN m_project_unit mpu ON mpu.id_project = p.id_project
