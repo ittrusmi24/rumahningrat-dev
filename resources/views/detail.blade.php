@@ -130,7 +130,8 @@
                                     <p id="project_tipe">{{ $project['project_tipe'] }}</p>
                                     <p>Tipe <span id="tipe_rumah">{{ $project['tipe_rumah'] }}</span> m</p>
                                     <p id="alamat">{{ $project['alamat'] }}</p>
-                                    <a data-target="#modalLokasi" data-toggle="modal" href="#modalLokasi">Lokasi selengkapnya</a>
+                                    <a data-bs-toggle="modal" data-bs-target="#modalLokasi" href="#modalLokasi">Lokasi
+                                        selengkapnya</a>
                                 </div>
                             </div>
                         </div>
@@ -291,6 +292,9 @@
                                 <div class="container-fasilitas">
                                     @foreach ($fasilitas as $item)
                                         <div class="item-fasilitas">
+                                            <div>
+                                                {!! $item->icon !!}
+                                            </div>
                                             {{-- <div>
                                             <img src="{{ url('/assets/images/icon') }}/bed.png" alt=""
                                                 width="16px" height="16px">
@@ -324,6 +328,37 @@
                                 <div class="tempat-container">
                                     @foreach ($fasilitasSekitar as $item)
                                         <div class="item-tempat">
+                                            <div>
+                                                @if ($item->category == 'Transportation')
+                                                    <i class="fas fa-bus"></i>
+                                                @elseif ($item->category == 'Pabrik')
+                                                    <i class="fas fa-industry"></i>
+                                                @elseif ($item->category == 'Pendidikan')
+                                                    <i class="fas fa-school"></i>
+                                                @elseif ($item->category == 'Minimarket')
+                                                    <i class="fas fa-store"></i>
+                                                @elseif ($item->category == 'Instansi')
+                                                    <i class="fas fa-building"></i>
+                                                @elseif ($item->category == 'Rumah Makan')
+                                                    <i class="fas fa-utensils"></i>
+                                                @elseif ($item->category == 'Coffe Shop')
+                                                    <i class="fas fa-coffee"></i>
+                                                @elseif ($item->category == 'Kontrakan')
+                                                    <i class="fas fa-home"></i>
+                                                @elseif ($item->category == 'Area Publik')
+                                                    <i class="fas fa-street-view"></i>
+                                                @elseif ($item->category == 'Keuangan')
+                                                    <i class="fas fa-hand-holding-usd"></i>
+                                                @elseif ($item->category == 'Tempat Ibadah')
+                                                    <i class="fas fa-mosque"></i>
+                                                @elseif ($item->category == 'Wisata dan Rekreasi')
+                                                    <i class="fas fa-umbrella-beach"></i>
+                                                @elseif ($item->category == 'Kesehatan')
+                                                    <i class="fas fa-heartbeat"></i>
+                                                @else
+                                                    <i class="fas fa-shopping-bag"></i>
+                                                @endif
+                                            </div>
                                             {{-- <div>
                                             <img src="{{ url('/assets/images/icon') }}/sekolah.png"
                                                 alt="" width="16px" height="16px">
@@ -588,14 +623,30 @@
                             <div class="price" id="price">Rp.500.000</div>
                             <div class="note">*biaya booking + BI checking</div>
                         </div>
-                        <button class="btn btn-primary btn-sm" onclick="validasiBook()"
-                            style="border-radius: 10px">Booking
+                        <button class="btn btn-primary" onclick="validasiBook()" style="border-radius: 10px">Booking
                             Sekarang</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <div class="modal" tabindex="-1" id="modalLokasi">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content rounded-4">
+
+                <div class="container-fluid bg-info">
+                    <div class="row bg-dark" style="padding: 0">
+                        <div class="col-6">
+                            <img src="{{ url('/assets/images/modal') }}/lokasi.png" alt=""
+                                style="width: 644px; height: inherit">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
     {{-- <div class="chat-ai d-flex flex-column shadow-sm">
     <div><i class="bi bi-chat-dots"></i></div>
