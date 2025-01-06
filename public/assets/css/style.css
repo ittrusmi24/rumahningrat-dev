@@ -142,13 +142,16 @@ Tags: 	agency, Business Agency, Business Consultant, business optimization, comp
 
 .header-area {
     position: relative;
+    background-color: #005991e5;
+    /* max-height: 75px; */
+    box-sizing: border-box;
 }
 
 .header-menu {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 30px 0;
+    /* padding: 30px 0; */
 }
 
 .header-menu ul {
@@ -163,7 +166,7 @@ Tags: 	agency, Business Agency, Business Consultant, business optimization, comp
 
 .header-menu ul li a {
     font-size: 18px;
-    color: #003d4d;
+    color: #ffffff;
     font-weight: 500;
     text-decoration: none;
     position: relative;
@@ -210,7 +213,7 @@ Tags: 	agency, Business Agency, Business Consultant, business optimization, comp
     animation: 500ms running fadeInUp;
     -webkit-box-shadow: 0 10px 15px rgba(25, 25, 25, 0.1);
     transition: 0.5s !important;
-    background: #ffff !important;
+    background: rgba(0, 89, 145, 0.9) !important;
     z-index: 9999 !important;
     animation-name: slideInDown;
     padding: 0 30px;
@@ -344,9 +347,9 @@ Tags: 	agency, Business Agency, Business Consultant, business optimization, comp
     border-bottom: 80px solid #003d4d;
 }
 
-.slider-button {
+/* .slider-button {
     position: relative;
-}
+} */
 
 /* about style two btn */
 
@@ -371,7 +374,7 @@ Tags: 	agency, Business Agency, Business Consultant, business optimization, comp
 .banner-carousel .slide-item {
     position: relative;
     overflow: hidden;
-    min-height: 900px;
+    min-height: 650px;
 }
 
 .banner-carousel .slide-item .image-layer {
@@ -383,6 +386,7 @@ Tags: 	agency, Business Agency, Business Consultant, business optimization, comp
     height: 100%;
     background-repeat: no-repeat;
     background-position: center;
+    background-size: contain;
     -webkit-transform: scale(1);
     -ms-transform: scale(1);
     transform: scale(1);
@@ -403,9 +407,13 @@ Tags: 	agency, Business Agency, Business Consultant, business optimization, comp
 
 .slider-content {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 42%;
+    /* top: 50%; */
+    /* transform: translateY(-50%); */
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .slider-title-shape {
@@ -445,6 +453,11 @@ Tags: 	agency, Business Agency, Business Consultant, business optimization, comp
     line-height: 24px;
     margin: 43px 10px 70px;
     width: 100%;
+}
+
+.slider-button button a {
+    text-decoration: none;
+    color: #fff;
 }
 
 /* search box */
