@@ -26,7 +26,7 @@
     <!-- transitions CSS -->
     <link rel="stylesheet" href="assets/css/owl.transitions.css" type="text/css" media="all">
     <!-- venobox CSS -->
-    <link rel="stylesheet" href="venobox/venobox.css" type="text/css" media="all">
+    <link rel="stylesheet" href="assets/venobox/venobox.css" type="text/css" media="all">
     <!-- bootstrap icons -->
     <link rel="stylesheet" href="assets/css/bootstrap-icons.css" type="text/css" media="all">
     <!-- Slick Slider -->
@@ -1250,13 +1250,13 @@
     <script src="assets/js/imagesloaded.pkgd.min.js"></script>
 
     <!-- venobox js -->
-    <script src="venobox/venobox.js"></script>
+    <script src="assets/venobox/venobox.js"></script>
 
     <!--  animated-text js -->
     <script src="assets/js/animated-text.js"></script>
 
     <!-- venobox min js -->
-    <script src="venobox/venobox.min.js"></script>
+    <script src="assets/venobox/venobox.min.js"></script>
 
     <!-- isotope js -->
     <script src="assets/js/isotope.pkgd.min.js"></script>
