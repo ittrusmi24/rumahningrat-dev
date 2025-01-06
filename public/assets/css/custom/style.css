@@ -450,6 +450,12 @@ label {
     width: 100%;
     height: 100vh;
 }
+/* untuk css map */
+#map {
+    height: 100vh;
+    width: 100%;
+}
+
 
 /* responsive breakpoints */
 

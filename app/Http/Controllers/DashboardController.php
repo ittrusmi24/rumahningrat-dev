@@ -26,6 +26,7 @@ class DashboardController extends Controller
             return view('welcome');
         }
         $project = Project::get_project_by_id($id_project);
+        $project_add = Project::get_project_additional($id_project);
         $fasilitas = Fasilitas::get_fasilitas_by_id_project($id_project);
         $fasilitasSekitar = FasilitasSekitar::get_fasilitas_sekitar_by_id_project_grouped($id_project);
         $blok = BlokTersedia::get_blok_by_id_project($id_project);

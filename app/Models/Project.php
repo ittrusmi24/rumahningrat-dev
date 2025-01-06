@@ -41,7 +41,7 @@ class Project extends Model
             m_project p
             LEFT JOIN m_project_tipe pt ON pt.id_project_tipe = p.id_project_tipe
             LEFT JOIN m_project_detail pd ON p.id_project = pd.id_project
-            WHERE pd.fasilitas IS NOT NULL AND p.id_project = $id_project 
+            WHERE pd.fasilitas IS NOT NULL AND p.id_project = $id_project
             AND p.`status` IS NULL
             ";
 
@@ -76,7 +76,7 @@ class Project extends Model
             m_project p
             LEFT JOIN m_project_tipe pt ON pt.id_project_tipe = p.id_project_tipe
             LEFT JOIN m_project_detail pd ON p.id_project = pd.id_project
-            WHERE p.id_project = $id_project 
+            WHERE p.id_project = $id_project
             ";
 
         $project = DB::connection('rsp_connection')
@@ -84,5 +84,22 @@ class Project extends Model
 
         // Return data sebagai array
         return $project[0] ?? [];
+    }
+
+    public static function get_project_additional($id_project)
+    {
+
+        if ($id_project == '') {
+            return [];
+        }
+
+        $query = "SELECT * FROM m_project_additional WHERE id_project = ?";
+
+        $data = DB::connection('rsp_connection')
+            ->selectOne($query, [$id_project]);
+
+
+        // Return data sebagai array
+        return $data;
     }
 }
