@@ -328,17 +328,23 @@ class BookingController extends Controller
             ];
         }
 
-        $no_ktp = $request->no_ktp ?? "";
-        if ($no_ktp == "") {
+        $no_hp = $request->no_hp ?? "";
+        if ($no_hp == "") {
             return [
                 "status" => false,
-                "message" => "No KTP Tidak Boleh Kosong"
+                "message" => "No HP Tidak Boleh Kosong"
             ];
         }
-        if ($no_ktp != "" && strlen($no_ktp) < 16) {
+        if (!is_numeric($no_hp)) {
             return [
                 "status" => false,
-                "message" => "No KTP Tidak Boleh Kurang dari 16 digit"
+                "message" => "No HP Harus Angka"
+            ];
+        }
+        if ($no_hp == "" && strlen($no_hp) < 6) {
+            return [
+                "status" => false,
+                "message" => "No HP Tidak Boleh Kurang dari 6 digit"
             ];
         }
         $tgl_lahir = $request->tgl_lahir ?? "";
@@ -364,43 +370,17 @@ class BookingController extends Controller
                 "message" => "Jenis Kelamin Tidak Boleh kosong"
             ];
         }
-        $pendapatan = $request->pendapatan ?? "";
-        if ($pendapatan == "") {
+        $no_ktp = $request->no_ktp ?? "";
+        if ($no_ktp == "") {
             return [
                 "status" => false,
-                "message" => "Pendapatan Tidak Boleh Kosong"
+                "message" => "No KTP Tidak Boleh Kosong"
             ];
         }
-        $nominal_booking = $request->nominal_booking ?? "";
-        if ($nominal_booking == "") {
+        if ($no_ktp != "" && strlen($no_ktp) < 16) {
             return [
                 "status" => false,
-                "message" => "Nominal Booking Tidak Boleh Kosong"
-            ];
-        }
-        if (!is_numeric(str_replace(".", "", $nominal_booking))) {
-            return [
-                "status" => false,
-                "message" => "Nominal Booking Harus Angka"
-            ];
-        }
-        $no_hp = $request->no_hp ?? "";
-        if ($no_hp == "") {
-            return [
-                "status" => false,
-                "message" => "No HP Tidak Boleh Kosong"
-            ];
-        }
-        if (!is_numeric($no_hp)) {
-            return [
-                "status" => false,
-                "message" => "No HP Harus Angka"
-            ];
-        }
-        if ($no_hp == "" && strlen($no_hp) < 6) {
-            return [
-                "status" => false,
-                "message" => "No HP Tidak Boleh Kurang dari 6 digit"
+                "message" => "No KTP Tidak Boleh Kurang dari 16 digit"
             ];
         }
         $alamat = $request->alamat ?? "";
@@ -408,6 +388,14 @@ class BookingController extends Controller
             return [
                 "status" => false,
                 "message" => "Alamat Tidak Boleh kosong"
+            ];
+        }
+
+        $pendapatan = $request->pendapatan ?? "";
+        if ($pendapatan == "") {
+            return [
+                "status" => false,
+                "message" => "Pendapatan Tidak Boleh Kosong"
             ];
         }
         $status = $request->status ?? "";
@@ -431,7 +419,19 @@ class BookingController extends Controller
                 "message" => "Nama Pasangan Harus diisi jika status Menikah"
             ];
         }
-
+        $nominal_booking = $request->nominal_booking ?? "";
+        if ($nominal_booking == "") {
+            return [
+                "status" => false,
+                "message" => "Nominal Booking Tidak Boleh Kosong"
+            ];
+        }
+        if (!is_numeric(str_replace(".", "", $nominal_booking))) {
+            return [
+                "status" => false,
+                "message" => "Nominal Booking Harus Angka"
+            ];
+        }
         return [
             "status" => true,
         ];
