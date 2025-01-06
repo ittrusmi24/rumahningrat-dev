@@ -22,6 +22,8 @@ class Project extends Model
             p.prj_eces,
             p.project,
             p.alias,
+            SUBSTRING_INDEX(p.alias, ' ', 2) AS title_satu,
+            TRIM(SUBSTR(p.alias, LENGTH(SUBSTRING_INDEX(p.alias, ' ', 2)) + 1)) AS title_dua,
             IF(COALESCE(p.`status`,'') = '', 'active', 'non_active') AS `status`,
             pt.project_tipe,
             COALESCE(p.tipe_rumah,'') AS tipe_rumah,
