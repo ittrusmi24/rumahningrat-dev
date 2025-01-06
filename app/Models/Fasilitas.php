@@ -20,7 +20,8 @@ class Fasilitas extends Model
             p.project,
             IF(COALESCE(p.`status`,'') = '', 'active', 'non_active') AS `status`,
             f.id AS id_fasilitas,
-            f.`name` AS fasilitas
+            f.`name` AS fasilitas,
+            icon_new as icon
         FROM
             m_project p
             LEFT JOIN m_project_detail pd ON p.id_project = pd.id_project
