@@ -1,6 +1,7 @@
 .mobile-menu-area {
     background: rgba(0, 89, 145, 1);
     padding: 20px;
+    box-sizing: border-box;
 }
 
 .mobile-menu-area.sticky-menu {
@@ -19,9 +20,15 @@
     z-index: 9999 !important;
     animation-name: slideInDown;
     padding: 20px;
+    box-sizing: border-box;
 }
 
-.mobile-logo img{
-  max-width: 20%;
-  height: auto;
+.mobile-menu {
+    display: flex !important;
+    justify-content: space-between;
+}
+
+.mobile-logo img {
+    max-width: 20%;
+    height: auto;
 }

@@ -2,7 +2,7 @@
 <!-- Start Header Area -->
 <!--==================================================-->
 <header class="header-area" id="sticky-header">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row align-items-center">
             <div class="col-lg-10">
                 <div class="logo">
@@ -10,7 +10,7 @@
                             alt="" style="height: 50px"></a>
                 </div>
             </div>
-            <div class="col-lg-2">
+            <div class="col-lg-2 text-end">
                 <button type="button" class="btn btn-primary btn-sm">Masuk</button>
             </div>
         </div>
