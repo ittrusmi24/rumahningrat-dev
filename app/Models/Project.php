@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class Project extends Model
 {
+    protected $connection = 'rsp_connection';
     protected $table = 'm_project';
 
     public static function get_project_by_id($id_project)
