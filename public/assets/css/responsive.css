@@ -748,9 +748,9 @@
         display: inherit;
     }
 
-    .mobile-menu-area.sticky-menu .sidebar-menu {
+    /* .mobile-menu-area.sticky-menu .sidebar-menu {
         top: 10px;
-    }
+    } */
 
     .sidebar-menu {
         display: inherit;
@@ -1209,9 +1209,9 @@
         display: inherit;
     }
 
-    .mobile-menu-area.sticky-menu .sidebar-menu {
+    /* .mobile-menu-area.sticky-menu .sidebar-menu {
         top: 10px;
-    }
+    } */
 
     .sidebar-menu {
         display: inherit;
@@ -1231,8 +1231,8 @@
 
     /* banner area */
 
-    .banner-carousel .slide-item .image-layer{
-        background-size: auto;
+    .banner-carousel .slide-item .image-layer {
+        background-size: cover !important;
     }
 
     .banner-carousel .slide-item {
@@ -1769,9 +1769,9 @@
         display: inherit;
     }
 
-    .mobile-menu-area.sticky-menu .sidebar-menu {
+    /* .mobile-menu-area.sticky-menu .sidebar-menu {
         top: 10px;
-    }
+    } */
 
     .sidebar-menu {
         display: inherit;
@@ -1790,6 +1790,10 @@
     }
 
     /* banner area */
+
+    .banner-carousel .slide-item .image-layer {
+        background-size: cover !important;
+    }
 
     .banner-carousel .slide-item {
         min-height: 700px;
@@ -2329,9 +2333,9 @@
         display: inherit;
     }
 
-    .mobile-menu-area.sticky-menu .sidebar-menu {
+    /* .mobile-menu-area.sticky-menu .sidebar-menu {
         top: 10px;
-    }
+    } */
 
     .sidebar-menu {
         display: inherit;
@@ -2350,6 +2354,9 @@
     }
 
     /* banner area */
+    .banner-carousel .slide-item .image-layer {
+        background-size: cover !important;
+    }
 
     .banner-carousel .slide-item {
         min-height: 700px;
@@ -2917,9 +2924,9 @@
         display: inherit;
     }
 
-    .mobile-menu-area.sticky-menu .sidebar-menu {
+    /* .mobile-menu-area.sticky-menu .sidebar-menu {
         top: 10px;
-    }
+    } */
 
     .sidebar-menu {
         display: inherit;
@@ -2938,6 +2945,10 @@
     }
 
     /* banner area */
+
+    .banner-carousel .slide-item .image-layer {
+        background-size: cover !important;
+    }
 
     .banner-carousel .slide-item {
         min-height: 700px;
