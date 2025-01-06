@@ -22,6 +22,8 @@ class Project extends Model
             p.prj_eces,
             p.project,
             p.alias,
+            SUBSTRING_INDEX(p.alias, ' ', 2) AS title_satu,
+            TRIM(SUBSTR(p.alias, LENGTH(SUBSTRING_INDEX(p.alias, ' ', 2)) + 1)) AS title_dua,
             IF(COALESCE(p.`status`,'') = '', 'active', 'non_active') AS `status`,
             pt.project_tipe,
             COALESCE(p.tipe_rumah,'') AS tipe_rumah,
@@ -32,7 +34,9 @@ class Project extends Model
             pd.denah,
 	        pd.link_video,
 	        pd.spesifikasi,
-	        p.usp AS poin_plus
+	        p.usp AS poin_plus,
+            COALESCE(p.is_free_pagar,0) AS is_free_pagar,
+            COALESCE(p.is_free_tembok,0) AS is_free_tembok
         FROM
             m_project p
             LEFT JOIN m_project_tipe pt ON pt.id_project_tipe = p.id_project_tipe
