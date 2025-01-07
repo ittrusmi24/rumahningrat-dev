@@ -1,6 +1,5 @@
 /* Normal desktop :1200px. */
 @media (min-width: 1200px) and (max-width: 1600px) {
-
     .mobile-menu-area {
         display: none;
     }
@@ -258,13 +257,10 @@
     .sidber-widget-recent-post {
         padding: 16px 20px;
     }
-
 }
-
 
 /* Normal desktop :992px. */
 @media (min-width: 992px) and (max-width: 1199px) {
-
     .mobile-menu-area {
         display: none;
     }
@@ -599,8 +595,6 @@
         margin-left: 30px;
     }
 
-
-
     /*==================================================
  <-- All Inner Page  Css-->
 ===================================================*/
@@ -746,22 +740,17 @@
     .widget-tags a {
         padding: 7px 8px;
     }
-
-
 }
-
-
 
 /* Tablet desktop :768px. */
 @media (min-width: 768px) and (max-width: 991px) {
-
     .mobile-menu-area {
         display: inherit;
     }
 
-    .mobile-menu-area.sticky-menu .sidebar-menu {
-        top: 24px;
-    }
+    /* .mobile-menu-area.sticky-menu .sidebar-menu {
+        top: 10px;
+    } */
 
     .sidebar-menu {
         display: inherit;
@@ -1212,22 +1201,17 @@
     .widget_search.box {
         margin-top: 30px;
     }
-
-
-
 }
-
 
 /* Tablet desktop :600px. */
 @media (min-width: 600px) and (max-width: 767px) {
-
     .mobile-menu-area {
         display: inherit;
     }
 
-    .mobile-menu-area.sticky-menu .sidebar-menu {
-        top: 24px;
-    }
+    /* .mobile-menu-area.sticky-menu .sidebar-menu {
+        top: 10px;
+    } */
 
     .sidebar-menu {
         display: inherit;
@@ -1246,6 +1230,10 @@
     }
 
     /* banner area */
+
+    .banner-carousel .slide-item .image-layer {
+        background-size: cover !important;
+    }
 
     .banner-carousel .slide-item {
         min-height: 700px;
@@ -1365,7 +1353,6 @@
         font-size: 20px;
     }
 
-
     .checkbox-box {
         display: none;
     }
@@ -1456,7 +1443,6 @@
         font-size: 18px;
         padding: 0 16px;
     }
-
 
     /* team area */
 
@@ -1569,8 +1555,6 @@
         margin-left: 0;
         margin-top: 15px;
     }
-
-
 
     /*==================================================
  <-- All nner Page  Css-->
@@ -1727,7 +1711,6 @@
         display: inline-block;
     }
 
-
     /* blog details inner page */
 
     .blog-details-area {
@@ -1780,17 +1763,15 @@
     }
 }
 
-
 /* small mobile :575px. */
 @media only screen and (min-width: 575px) and (max-width: 599px) {
-
     .mobile-menu-area {
         display: inherit;
     }
 
-    .mobile-menu-area.sticky-menu .sidebar-menu {
-        top: 24px;
-    }
+    /* .mobile-menu-area.sticky-menu .sidebar-menu {
+        top: 10px;
+    } */
 
     .sidebar-menu {
         display: inherit;
@@ -1809,6 +1790,10 @@
     }
 
     /* banner area */
+
+    .banner-carousel .slide-item .image-layer {
+        background-size: cover !important;
+    }
 
     .banner-carousel .slide-item {
         min-height: 700px;
@@ -1928,7 +1913,6 @@
         font-size: 20px;
     }
 
-
     .checkbox-box {
         display: none;
     }
@@ -2019,7 +2003,6 @@
         font-size: 18px;
         padding: 0 16px;
     }
-
 
     /* team area */
 
@@ -2132,10 +2115,6 @@
         margin-left: 0;
         margin-top: 15px;
     }
-
-
-
-
 
     /*==================================================
  <-- All nner Page  Css-->
@@ -2292,7 +2271,6 @@
         display: inline-block;
     }
 
-
     /* blog details inner page */
 
     .blog-details-area {
@@ -2351,14 +2329,13 @@
 
 /* small mobile :480px. */
 @media only screen and (min-width: 480px) and (max-width: 574px) {
-
     .mobile-menu-area {
         display: inherit;
     }
 
-    .mobile-menu-area.sticky-menu .sidebar-menu {
-        top: 24px;
-    }
+    /* .mobile-menu-area.sticky-menu .sidebar-menu {
+        top: 10px;
+    } */
 
     .sidebar-menu {
         display: inherit;
@@ -2377,6 +2354,9 @@
     }
 
     /* banner area */
+    .banner-carousel .slide-item .image-layer {
+        background-size: cover !important;
+    }
 
     .banner-carousel .slide-item {
         min-height: 700px;
@@ -2499,7 +2479,6 @@
         font-size: 20px;
     }
 
-
     .checkbox-box {
         display: none;
     }
@@ -2599,7 +2578,6 @@
         max-width: 160px;
         padding: 17px 22px;
     }
-
 
     /* team area */
 
@@ -2712,7 +2690,6 @@
         margin-left: 0;
         margin-top: 15px;
     }
-
 
     /*==================================================
  <-- All nner Page  Css-->
@@ -2941,17 +2918,15 @@
     }
 }
 
-
 /* small mobile :320px. */
 @media only screen and (min-width: 320px) and (max-width: 479px) {
-
     .mobile-menu-area {
         display: inherit;
     }
 
-    .mobile-menu-area.sticky-menu .sidebar-menu {
-        top: 24px;
-    }
+    /* .mobile-menu-area.sticky-menu .sidebar-menu {
+        top: 10px;
+    } */
 
     .sidebar-menu {
         display: inherit;
@@ -2970,6 +2945,10 @@
     }
 
     /* banner area */
+
+    .banner-carousel .slide-item .image-layer {
+        background-size: cover !important;
+    }
 
     .banner-carousel .slide-item {
         min-height: 700px;
@@ -3151,7 +3130,6 @@
         font-size: 22px;
     }
 
-
     /* apartment box */
 
     .apartment-box {
@@ -3222,7 +3200,6 @@
         right: 5px;
     }
 
-
     /*===============================================================
 <-- Home Two All Css-->
 =================================================================*/
@@ -3283,7 +3260,6 @@
         margin-left: 0;
         margin-top: 20px;
     }
-
 
     /* team area */
 
@@ -3399,7 +3375,6 @@
         padding: 12px 12px;
     }
 
-
     /* footer area */
 
     .footer-content h2 {
@@ -3410,8 +3385,6 @@
         margin-left: 0;
         margin-top: 15px;
     }
-
-
 
     /*==================================================
  <-- All nner Page  Css-->
@@ -3515,7 +3488,6 @@
 
     .accordion li p {
         padding: 11px 9px 28px;
-
     }
 
     /* contact inner page */
