@@ -46,7 +46,7 @@
 @endsection
 
 @section('content')
-    <div class="stikcy-nav-container">
+    <div class="stikcy-nav-container" id="sticky-header">
         <nav class="navbar" style="background-color: #005991E5">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
@@ -86,7 +86,7 @@
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-4">
                     <div id="video_tour">
                     </div>
-                    <div style="height: 100vh;">
+                    <div class="vt_view">
                         <iframe src="{{ url('/vt_view') }}" frameborder="0" width="100%" height="100%">
 
                         </iframe>
@@ -95,9 +95,8 @@
 
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-5">
-                    <div style="height: 100vh;">
-                        <iframe src="{{ url('/poi_view') }}" frameborder="0"
-                            width="100%" height="100%"></iframe>
+                    <div class="vt_view">
+                        <iframe src="{{ url('/poi_view') }}" frameborder="0" width="100%" height="100%"></iframe>
                     </div>
                     {{-- <div><img src="{{ url('/assets/images/carousel') }}/5.png" alt="">
                     </div>
@@ -665,6 +664,7 @@
 
     @include('modal.lokasi_detail')
     @include('modal.spesifikasi_detail')
+    @include('modal.sukses')
 
     {{-- <div class="chat-ai d-flex flex-column shadow-sm">
     <div><i class="bi bi-chat-dots"></i></div>
@@ -741,7 +741,6 @@
     {{-- <script src="{{ url('/assets') }}/detail.js"></script> --}}
 
     <script>
-        AOS.init();
         document.addEventListener("DOMContentLoaded", function() {
             const container = document.getElementById('video_tour');
 
@@ -805,7 +804,17 @@
 
         $(document).ready(function() {
 
-            // $('.selectpicker').select2()
+            // sticky menu===================
+            var wind = $(window);
+            var sticky = $('#sticky-header');
+            wind.on('scroll', function() {
+                var scroll = wind.scrollTop();
+                if (scroll < 100) {
+                    sticky.removeClass('sticky-nav');
+                } else {
+                    sticky.addClass('sticky-nav');
+                }
+            });
 
             const blok_select = new SlimSelect({
                 select: '#blok',
@@ -885,26 +894,7 @@
             // Ekstrak parameter terakhir dari URL
             const id = url.split('/').pop();
 
-            // Kirim request AJAX
-            // $.ajax({
-            //     url: `/project/${id}`, // Sesuaikan endpoint API
-            //     type: 'GET',
-            //     dataType: 'json',
-            //     headers: {
-            //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Jika diperlukan CSRF
-            //     },
-            //     success: function (response) {
-            //         $('#nama_project').text(response.data.project);
-            //         $('#harga_project').text(`Rp. ${response.data.harga_jual}`);
-            //         $('#project_tipe').text(response.data.project_tipe);
-            //         $('#tipe_rumah').text(response.data.tipe_rumah);
-            //         $('#alamat').text(response.data.alamat);
 
-            //     },
-            //     error: function (xhr, status, error) {
-            //         console.error(`Error: ${error}`);
-            //     }
-            // });
             load_data_blok();
             load_svg(bounds);
 
@@ -1387,14 +1377,18 @@
                     },
                     success: function(response) {
                         console.log(response);
+                        console.log(response)
                         if (response.status) {
-                            Swal.fire({
-                                icon: "success",
-                                title: "Berhasil",
-                                text: response.message,
-                                showConfirmButton: false,
-                                timer: 1000
-                            });
+                            $('#bayarGci').attr('href',
+                                `https://trusmicorp.com/rspproject/paygate/q/${response.id_gci}`);
+                            $("#modalSukses").modal('show');
+                            // Swal.fire({
+                            //     icon: "success",
+                            //     title: "Berhasil",
+                            //     text: response.message,
+                            //     showConfirmButton: false,
+                            //     timer: 1000
+                            // });
 
                             $('#formBooking')[0].reset();
                         } else {
