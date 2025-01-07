@@ -140,7 +140,8 @@
                                     <p id="project_tipe">{{ $project['project_tipe'] }}</p>
                                     <p>Tipe <span id="tipe_rumah">{{ $project['tipe_rumah'] }}</span> m</p>
                                     <p id="alamat">{{ $project['alamat'] }}</p>
-                                    <a data-bs-toggle="modal" data-bs-target="#modalLokasi" href="#modalLokasi">Lokasi
+                                    <a role="button" data-bs-toggle="modal" data-bs-target="#modalLokasi"
+                                        href="#modalLokasi">Lokasi
                                         selengkapnya</a>
                                 </div>
                             </div>
@@ -1416,5 +1417,4 @@
     </script>
     @include('modal.lokasi_detail_js')
     @include('modal.spesifikasi_detail_js')
-    @include('modal.success_js')
 @endsection
