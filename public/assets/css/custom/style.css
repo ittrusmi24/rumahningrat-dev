@@ -359,21 +359,9 @@ label {
 
 /* navbar */
 .stikcy-nav-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 300;
-    opacity: 1;
-}
-
-.sticky-nav {
-    position: fixed !important;
-    left: 0;
-    margin: auto;
-    top: 0;
-    right: 0;
-    width: 100%;
+    position: relative;
+    animation: fadeInDown;
+    animation-duration: 2s;
 }
 
 /* submit section */

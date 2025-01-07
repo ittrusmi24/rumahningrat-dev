@@ -26,7 +26,8 @@
     <!-- bootstrap icons -->
     <link rel="stylesheet" href="{{ url('/assets/css') }}/bootstrap-icons.css" type="text/css" media="all">
     <!-- Main Style CSS -->
-    <link rel="stylesheet" href="{{ url('/assets/css/custom') }}/style.css" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ url('/assets/css/custom') }}/style.css?v={{ time() }}" type="text/css"
+        media="all">
     <!-- Dropdown CSS -->
     <link rel="stylesheet" href="{{ url('/assets/css') }}/dropdown.css" type="text/css" media="all">
     <!-- responsive CSS -->
@@ -37,6 +38,8 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     {{-- AOS --}}
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    {{-- animatecss --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     {{-- css style this page --}}
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -47,11 +50,10 @@
 
 @section('content')
     <div class="stikcy-nav-container" id="sticky-header">
-        <nav class="navbar" style="background-color: #005991E5">
+        <nav class="navbar p-0" style="background-color: #005991E5">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
-                    <img src="{{ url('/assets/images/fav-icon') }}/icon-ningrat.png" alt="Logo" width="100px"
-                        height="48px">
+                    <img src="{{ url('/assets/images/fav-icon/icon-ningrat.png') }}" alt="Logo" height="40px">
                 </a>
             </div>
         </nav>
@@ -87,10 +89,7 @@
                     <div id="video_tour">
                     </div>
                     <div class="vt_view">
-                        <iframe src="{{ url('/vt_view') }}" frameborder="0" width="100%" height="100%">
-
-                        </iframe>
-                        {{-- @include('virtual_tour.rn_jayasampurna') --}}
+                        <iframe src="{{ url('/vt_view') }}" frameborder="0" width="100%" height="100%"></iframe>
                     </div>
 
                 </div>
@@ -884,20 +883,26 @@
         //     style: L.MaptilerStyle.DATAVIZ.LIGHT, // optional
         // }).addTo(map);
 
+        function isMobile() {
+            return window.innerWidth < 768;
+        }
 
         $(document).ready(function() {
 
-            // sticky menu===================
-            var wind = $(window);
+            const mobile = isMobile();
+            var wind = $('.container-group');
             var sticky = $('#sticky-header');
+
             wind.on('scroll', function() {
                 var scroll = wind.scrollTop();
-                if (scroll < 100) {
-                    sticky.removeClass('sticky-nav');
+
+                if (scroll > 0) {
+                    mobile ? '' : sticky.addClass('d-none')
                 } else {
-                    sticky.addClass('sticky-nav');
+                    sticky.removeClass('d-none');
                 }
             });
+
 
             const blok_select = new SlimSelect({
                 select: '#blok',
@@ -913,7 +918,7 @@
             });
 
             $('.owl-carousel').owlCarousel({
-                loop: true,
+                loop: false,
                 nav: true,
                 dots: false,
                 items: 1,
