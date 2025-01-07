@@ -787,7 +787,8 @@ var map = L.map('map', {
     maxBoundsViscosity: 1.0
 }).setView(center_point, 18);
 
-const key = 'Q0RluLdskTtpcHzsahrp';
+// const key = 'Q0RluLdskTtpcHzsahrp';
+const key = 'hP3RiELhMtFKqQl5dB60';
 const mtLayer = L.maptilerLayer({
     apiKey: key,
     style: L.MaptilerStyle.DATAVIZ.LIGHT, // optional
