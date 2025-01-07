@@ -17,7 +17,7 @@
                         </div>
                         <div class="sidebar-widget-menu">
                             <ul>
-                                <li class="dropdown"><a href="#" data-toggle="dropdown">Home <i
+                                {{-- <li class="dropdown"><a href="#" data-toggle="dropdown">Home <i
                                             class="icon-arrow"></i></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="index.html">Home</a></li>
@@ -50,19 +50,20 @@
                                         <li><a href="blog.html">Blog</a></li>
                                         <li><a href="blog-details.html">Blog Details</a></li>
                                     </ul>
-                                </li>
-                                <li class="dropdown"><a href="contact.html" data-toggle="dropdown">Contact</a>
+                                </li> --}}
+                                <li class="dropdown"><a href="contact.html" data-toggle="dropdown">Masuk</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="contact-info">
                             <h2>Contact Info</h2>
                             <ul class="list-style-one">
-                                <li><i class="bi bi-geo-alt-fill"></i>6391 Elgin St. Celina, Delaware</li>
-                                <li><i class="bi bi-telephone-fill"></i>(+001) 123-456-789</li>
-                                <li><i class="bi bi-envelope"></i> info@example.com</li>
-                                <li><i class="bi bi-alarm-fill"></i> Week Days: 08.00 to 10.00
-                                </li>
+                                <li><i class="bi bi-geo-alt-fill"></i>Jl. H. Abbas No.48, Trusmi Kulon, Weru, Kab.
+                                    Cirebon</li>
+                                <li><i class="bi bi-telephone-fill"></i>081122887878</li>
+                                <li><i class="bi bi-envelope"></i> rumahningrat@trusmi.com</li>
+                                {{-- <li><i class="bi bi-alarm-fill"></i> Week Days: 08.00 to 10.00
+                                </li> --}}
                             </ul>
                         </div>
                         <ul class="social-box">

@@ -4,7 +4,7 @@
  <div class="footer-area shadow">
      <div class="container">
          <div class="row">
-             <div class="col-lg-3 col-md-6">
+             <div class="col-lg-4 col-md-6">
                  <div class="footer-wiget">
                      <div class="footer-wiget-log">
                          <a href="index.html"><img src="assets/images/footer-logo.png" alt="" width="210"></a>
@@ -17,7 +17,6 @@
                      </div>
                  </div>
              </div>
-             <div class="col-lg-3 col-md-6"></div>
              <div class="col-lg-3 col-md-6">
                  <div class="footer-wiget">
                      <div class="footer-wiget-title">
@@ -47,12 +46,12 @@
              </div>
          </div>
          <div class="row line mt-90">
-             <div class="col-9">
+             <div class="col-lg-9 col-12">
                  <div class="copyright-text text-start">
                      <p class="text-dark">Copyright © <b>IT Trusmi Group</b> All Rights Reserved.</p>
                  </div>
              </div>
-             <div class="col-3">
+             <div class="col-lg-3 col-12">
                  <div class="footer-social">
                      <ul>
                          <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
