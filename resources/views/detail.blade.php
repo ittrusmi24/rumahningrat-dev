@@ -1371,7 +1371,7 @@
                     title: "Error",
                     text: "Nama belum diisi!",
                     showConfirmButton: false,
-                    timer: 1000
+                    timer: 3000
                 });
                 $('#nama').focus()
             } else if (no_hp == '') {
@@ -1380,7 +1380,7 @@
                     title: "Error",
                     text: "No HP belum diisi!",
                     showConfirmButton: false,
-                    timer: 1000
+                    timer: 3000
                 });
                 $('#no_hp').focus()
             } else if (tgl_lahir == '') {
@@ -1389,7 +1389,7 @@
                     title: "Error",
                     text: "Tanggal lahir belum diisi!",
                     showConfirmButton: false,
-                    timer: 1000
+                    timer: 3000
                 });
                 $('#tgl_lahir').focus()
             } else if (jenis_kl == '') {
@@ -1398,7 +1398,7 @@
                     title: "Error",
                     text: "Tanggal lahir belum diisi!",
                     showConfirmButton: false,
-                    timer: 1000
+                    timer: 3000
                 });
                 $('#jenis_kl').focus()
             } else if (no_ktp == '') {
@@ -1407,7 +1407,7 @@
                     title: "Error",
                     text: "No KTP belum diisi!",
                     showConfirmButton: false,
-                    timer: 1000
+                    timer: 3000
                 });
                 $('#no_ktp').focus()
             } else if (alamat == '' || alamat == null) {
@@ -1416,7 +1416,7 @@
                     title: "Error",
                     text: "Alamat belum diisi!",
                     showConfirmButton: false,
-                    timer: 1000
+                    timer: 3000
                 });
                 $('#alamat_book').focus()
             } else if (pendapatan == '' || pendapatan == null) {
@@ -1425,7 +1425,7 @@
                     title: "Error",
                     text: "Pendapatan belum diisi!",
                     showConfirmButton: false,
-                    timer: 1000
+                    timer: 3000
                 });
                 $('#pendapatan').focus()
             } else if (status == '') {
@@ -1434,7 +1434,7 @@
                     title: "Error",
                     text: "Status belum diisi!",
                     showConfirmButton: false,
-                    timer: 1000
+                    timer: 3000
                 });
                 $('#status').focus()
             } else if (no_ktp_psg == '') {
@@ -1443,7 +1443,7 @@
                     title: "Error",
                     text: "No KTP Peserta belum diisi!",
                     showConfirmButton: false,
-                    timer: 1000
+                    timer: 3000
                 });
                 $('#no_ktp_psg').focus()
             } else if (payment == '') {
@@ -1452,7 +1452,7 @@
                     title: "Error",
                     text: "Payment belum dipilih!",
                     showConfirmButton: false,
-                    timer: 1000
+                    timer: 3000
                 });
                 $("input[name='payment']").focus()
             } else if (bank == '') {
@@ -1461,7 +1461,7 @@
                     title: "Error",
                     text: "Bank belum dipilih!",
                     showConfirmButton: false,
-                    timer: 1000
+                    timer: 3000
                 });
                 $("input[name='bank']").focus()
             } else {
