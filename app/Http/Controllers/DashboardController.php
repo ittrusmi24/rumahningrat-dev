@@ -26,6 +26,7 @@ class DashboardController extends Controller
             return view('welcome');
         }
         $project = Project::get_project_by_id($id_project);
+
         $project_add = Project::get_project_additional($id_project);
         $fasilitas = Fasilitas::get_fasilitas_by_id_project($id_project);
         $fasilitasSekitar = FasilitasSekitar::get_fasilitas_sekitar_by_id_project_grouped($id_project);
@@ -40,13 +41,14 @@ class DashboardController extends Controller
             $value->terima_kunci = $value->terima_kunci ?? 0;
             return $value;
         });
+        // dd($blok);
 
-        $path = public_path('360_view/vt/'.$project_add->link_360.'/index.htm');  // Ambil path dari link_360
+        // $path = public_path('360_view/vt/'.$project_add->link_360.'/index.htm');  // Ambil path dari link_360
         // if (!file_exists($path)) {
         //     abort(404, 'Virtual tour not found');  // Tampilkan error jika file tidak ada
         // }
-        $content = file_get_contents($path);
-        $content = str_replace('../', url('/') . '/360_view/vt/' . $project_add->link_360.'/', $content);
+        // $content = file_get_contents($path);
+        // $content = str_replace('../', url('/') . '/360_view/vt/' . $project_add->link_360.'/', $content);
         // return view('virtual_tour', ['project' => $project, 'content' => $content]);
 
         return view(
@@ -58,7 +60,7 @@ class DashboardController extends Controller
                 'fasilitasSekitar' => $fasilitasSekitar,
                 'blokTersedia' => $groupBlok,
                 'bloks' => $blok,
-                'content'=>$content
+                // 'content'=>$content
             ]
         );
     }
