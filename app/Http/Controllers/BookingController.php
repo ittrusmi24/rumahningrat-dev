@@ -114,7 +114,7 @@ class BookingController extends Controller
                     'created_by' => 23139
                 );
                 $data_post_array[] = $data_post_konsumen_pasangan;
-                M_konsumen_pasangan::create($data_post_konsumen_pasangan);
+                // M_konsumen_pasangan::create($data_post_konsumen_pasangan);
             }
 
             // 3. TODO Insert Booking / GCI
@@ -276,7 +276,8 @@ class BookingController extends Controller
         return response()->json([
             'status' => true,
             'message' => 'Booking berhasil',
-            'data' => $data_post_array
+            'data' => $data_post_array,
+            'id_gci'  => md5($id_gci)
         ], 200);
     }
 
