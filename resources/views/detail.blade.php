@@ -1376,8 +1376,6 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Jika diperlukan CSRF
                     },
                     success: function(response) {
-                        console.log(response);
-                        console.log(response)
                         if (response.status) {
                             $('#bayarGci').attr('href',
                                 `https://trusmicorp.com/rspproject/paygate/q/${response.id_gci}`);
