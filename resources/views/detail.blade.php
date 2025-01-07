@@ -317,7 +317,8 @@
                         </div>
                         <div class="row mt-4">
                             <div class="col-12">
-                                <a role="button" data-bs-toggle="modal" data-bs-target="#modalSpesifikasi">Detail
+                                <a role="button" id="getSpesifikasiDetail" data-bs-toggle="modal"
+                                    data-bs-target="#modalSpesifikasi">Detail
                                     Spesifikasi</a>
                             </div>
                         </div>
