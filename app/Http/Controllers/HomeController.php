@@ -10,4 +10,9 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function vt_view()
+    {
+        return view('virtual_tour.rn_jayasampurna');
+    }
 }

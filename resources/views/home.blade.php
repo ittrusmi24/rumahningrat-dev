@@ -179,12 +179,386 @@
                         Rumah</p>
                 </div>
             </div>
-            <div class="row px-3">
-                <div class="col-12 col-lg-4 position-relative" style="min-height: 300px">
-                    <div class="position-absolute project-content"
-                        style="background: url('assets/images/project/1.png');">
+            <div class="row g-5">
+                <div class="col-12 project-container">
+                    <div class="position-relative" style="min-height: 300px">
+                        <div class="position-absolute project-content bg-primary"
+                            style="background: url('assets/images/project/1.png');">
+                        </div>
+                        <di-fluidv class="project-detail">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h3 class="text-white">RN Subang 2</h3>
+                                        <p style="margin: 0px !important;">Subang, Jawa Barat</p>
+                                        <p style="margin: 0px !important;">Rp.166.000.000 -,</p>
+                                        <div class="mt-1 mb-4 d-flex" style="gap: 8px">
+                                            <div class="d-flex" style="height: 20px; gap: 12px">
+                                                <div>
+                                                    <img src="{{ url('/assets/images/icon/kamar_tidur.png') }}"
+                                                        alt="" width="15px" height="15px" />
+                                                </div>
+                                                <div>
+                                                    <p>2</p>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex" style="height: 20px; gap: 8px">
+                                                <div>
+                                                    <img src="{{ url('/assets/images/icon/kamar_mandi.png') }}"
+                                                        alt="" width="15px" height="15px" />
+                                                </div>
+                                                <div>
+                                                    <p>1</p>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex" style="height: 20px; gap: 8px">
+                                                <div>
+                                                    <img src="{{ url('/assets/images/icon/carport.png') }}"
+                                                        alt="" width="15px" height="15px" />
+                                                </div>
+                                                <div>
+                                                    <p>Carport</p>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex" style="height: 20px; gap: 8px">
+                                                <div>
+                                                    <img src="{{ url('/assets/images/icon/luas_tanah.png') }}"
+                                                        alt="" width="15px" height="15px" />
+                                                </div>
+                                                <div>
+                                                    <p>60m</p>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex" style="height: 20px; gap: 8px">
+                                                <div>
+                                                    <img src="{{ url('/assets/images/icon/luas_bangunan.png') }}"
+                                                        alt="" width="15px" height="15px" />
+                                                </div>
+                                                <div>
+                                                    <p>30m</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </di-fluidv>
                     </div>
-                    <div></div>
+                    <div class="position-relative" style="min-height: 300px">
+                        <div class="position-absolute project-content"
+                            style="background: url('assets/images/project/1.png');">
+                        </div>
+                        <div class="project-detail">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h3 class="text-white">RN Subang 2</h3>
+                                        <p style="margin: 0px !important;">Subang, Jawa Barat</p>
+                                        <p style="margin: 0px !important;">Rp.166.000.000 -,</p>
+                                        <div class="mt-1 mb-4 d-flex" style="gap: 8px">
+                                            <div class="d-flex" style="height: 20px; gap: 12px">
+                                                <div>
+                                                    <img src="{{ url('/assets/images/icon/kamar_tidur.png') }}"
+                                                        alt="" width="15px" height="15px" />
+                                                </div>
+                                                <div>
+                                                    <p>2</p>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex" style="height: 20px; gap: 8px">
+                                                <div>
+                                                    <img src="{{ url('/assets/images/icon/kamar_mandi.png') }}"
+                                                        alt="" width="15px" height="15px" />
+                                                </div>
+                                                <div>
+                                                    <p>1</p>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex" style="height: 20px; gap: 8px">
+                                                <div>
+                                                    <img src="{{ url('/assets/images/icon/carport.png') }}"
+                                                        alt="" width="15px" height="15px" />
+                                                </div>
+                                                <div>
+                                                    <p>Carport</p>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex" style="height: 20px; gap: 8px">
+                                                <div>
+                                                    <img src="{{ url('/assets/images/icon/luas_tanah.png') }}"
+                                                        alt="" width="15px" height="15px" />
+                                                </div>
+                                                <div>
+                                                    <p>60m</p>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex" style="height: 20px; gap: 8px">
+                                                <div>
+                                                    <img src="{{ url('/assets/images/icon/luas_bangunan.png') }}"
+                                                        alt="" width="15px" height="15px" />
+                                                </div>
+                                                <div>
+                                                    <p>30m</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="position-relative" style="min-height: 300px">
+                        <div class="position-absolute project-content"
+                            style="background: url('assets/images/project/1.png');">
+                        </div>
+                        <div class="project-detail">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h3 class="text-white">RN Subang 2</h3>
+                                        <p style="margin: 0px !important;">Subang, Jawa Barat</p>
+                                        <p style="margin: 0px !important;">Rp.166.000.000 -,</p>
+                                        <div class="mt-1 mb-4 d-flex" style="gap: 8px">
+                                            <div class="d-flex" style="height: 20px; gap: 12px">
+                                                <div>
+                                                    <img src="{{ url('/assets/images/icon/kamar_tidur.png') }}"
+                                                        alt="" width="15px" height="15px" />
+                                                </div>
+                                                <div>
+                                                    <p>2</p>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex" style="height: 20px; gap: 8px">
+                                                <div>
+                                                    <img src="{{ url('/assets/images/icon/kamar_mandi.png') }}"
+                                                        alt="" width="15px" height="15px" />
+                                                </div>
+                                                <div>
+                                                    <p>1</p>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex" style="height: 20px; gap: 8px">
+                                                <div>
+                                                    <img src="{{ url('/assets/images/icon/carport.png') }}"
+                                                        alt="" width="15px" height="15px" />
+                                                </div>
+                                                <div>
+                                                    <p>Carport</p>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex" style="height: 20px; gap: 8px">
+                                                <div>
+                                                    <img src="{{ url('/assets/images/icon/luas_tanah.png') }}"
+                                                        alt="" width="15px" height="15px" />
+                                                </div>
+                                                <div>
+                                                    <p>60m</p>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex" style="height: 20px; gap: 8px">
+                                                <div>
+                                                    <img src="{{ url('/assets/images/icon/luas_bangunan.png') }}"
+                                                        alt="" width="15px" height="15px" />
+                                                </div>
+                                                <div>
+                                                    <p>30m</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="position-relative" style="min-height: 300px">
+                        <div class="position-absolute project-content"
+                            style="background: url('assets/images/project/1.png');">
+                        </div>
+                        <div class="project-detail">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h3 class="text-white">RN Subang 2</h3>
+                                        <p style="margin: 0px !important;">Subang, Jawa Barat</p>
+                                        <p style="margin: 0px !important;">Rp.166.000.000 -,</p>
+                                        <div class="mt-1 mb-4 d-flex" style="gap: 8px">
+                                            <div class="d-flex" style="height: 20px; gap: 12px">
+                                                <div>
+                                                    <img src="{{ url('/assets/images/icon/kamar_tidur.png') }}"
+                                                        alt="" width="15px" height="15px" />
+                                                </div>
+                                                <div>
+                                                    <p>2</p>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex" style="height: 20px; gap: 8px">
+                                                <div>
+                                                    <img src="{{ url('/assets/images/icon/kamar_mandi.png') }}"
+                                                        alt="" width="15px" height="15px" />
+                                                </div>
+                                                <div>
+                                                    <p>1</p>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex" style="height: 20px; gap: 8px">
+                                                <div>
+                                                    <img src="{{ url('/assets/images/icon/carport.png') }}"
+                                                        alt="" width="15px" height="15px" />
+                                                </div>
+                                                <div>
+                                                    <p>Carport</p>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex" style="height: 20px; gap: 8px">
+                                                <div>
+                                                    <img src="{{ url('/assets/images/icon/luas_tanah.png') }}"
+                                                        alt="" width="15px" height="15px" />
+                                                </div>
+                                                <div>
+                                                    <p>60m</p>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex" style="height: 20px; gap: 8px">
+                                                <div>
+                                                    <img src="{{ url('/assets/images/icon/luas_bangunan.png') }}"
+                                                        alt="" width="15px" height="15px" />
+                                                </div>
+                                                <div>
+                                                    <p>30m</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="position-relative" style="min-height: 300px">
+                        <div class="position-absolute project-content"
+                            style="background: url('assets/images/project/1.png');">
+                        </div>
+                        <div class="project-detail">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h3 class="text-white">RN Subang 2</h3>
+                                        <p style="margin: 0px !important;">Subang, Jawa Barat</p>
+                                        <p style="margin: 0px !important;">Rp.166.000.000 -,</p>
+                                        <div class="mt-1 mb-4 d-flex" style="gap: 8px">
+                                            <div class="d-flex" style="height: 20px; gap: 12px">
+                                                <div>
+                                                    <img src="{{ url('/assets/images/icon/kamar_tidur.png') }}"
+                                                        alt="" width="15px" height="15px" />
+                                                </div>
+                                                <div>
+                                                    <p>2</p>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex" style="height: 20px; gap: 8px">
+                                                <div>
+                                                    <img src="{{ url('/assets/images/icon/kamar_mandi.png') }}"
+                                                        alt="" width="15px" height="15px" />
+                                                </div>
+                                                <div>
+                                                    <p>1</p>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex" style="height: 20px; gap: 8px">
+                                                <div>
+                                                    <img src="{{ url('/assets/images/icon/carport.png') }}"
+                                                        alt="" width="15px" height="15px" />
+                                                </div>
+                                                <div>
+                                                    <p>Carport</p>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex" style="height: 20px; gap: 8px">
+                                                <div>
+                                                    <img src="{{ url('/assets/images/icon/luas_tanah.png') }}"
+                                                        alt="" width="15px" height="15px" />
+                                                </div>
+                                                <div>
+                                                    <p>60m</p>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex" style="height: 20px; gap: 8px">
+                                                <div>
+                                                    <img src="{{ url('/assets/images/icon/luas_bangunan.png') }}"
+                                                        alt="" width="15px" height="15px" />
+                                                </div>
+                                                <div>
+                                                    <p>30m</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="position-relative" style="min-height: 300px">
+                        <div class="position-absolute project-content"
+                            style="background: url('assets/images/project/1.png');">
+                        </div>
+                        <div class="project-detail">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h3 class="text-white">RN Subang 2</h3>
+                                        <p style="margin: 0px !important;">Subang, Jawa Barat</p>
+                                        <p style="margin: 0px !important;">Rp.166.000.000 -,</p>
+                                        <div class="mt-1 mb-4 d-flex" style="gap: 8px">
+                                            <div class="d-flex" style="height: 20px; gap: 12px">
+                                                <div>
+                                                    <img src="{{ url('/assets/images/icon/kamar_tidur.png') }}"
+                                                        alt="" width="15px" height="15px" />
+                                                </div>
+                                                <div>
+                                                    <p>2</p>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex" style="height: 20px; gap: 8px">
+                                                <div>
+                                                    <img src="{{ url('/assets/images/icon/kamar_mandi.png') }}"
+                                                        alt="" width="15px" height="15px" />
+                                                </div>
+                                                <div>
+                                                    <p>1</p>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex" style="height: 20px; gap: 8px">
+                                                <div>
+                                                    <img src="{{ url('/assets/images/icon/carport.png') }}"
+                                                        alt="" width="15px" height="15px" />
+                                                </div>
+                                                <div>
+                                                    <p>Carport</p>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex" style="height: 20px; gap: 8px">
+                                                <div>
+                                                    <img src="{{ url('/assets/images/icon/luas_tanah.png') }}"
+                                                        alt="" width="15px" height="15px" />
+                                                </div>
+                                                <div>
+                                                    <p>60m</p>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex" style="height: 20px; gap: 8px">
+                                                <div>
+                                                    <img src="{{ url('/assets/images/icon/luas_bangunan.png') }}"
+                                                        alt="" width="15px" height="15px" />
+                                                </div>
+                                                <div>
+                                                    <p>30m</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

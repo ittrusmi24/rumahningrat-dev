@@ -1,5 +1,9 @@
 /* Normal desktop :1200px. */
 @media (min-width: 1200px) and (max-width: 1600px) {
+    .project-container {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
     .mobile-menu-area {
         display: none;
     }
@@ -261,6 +265,10 @@
 
 /* Normal desktop :992px. */
 @media (min-width: 992px) and (max-width: 1199px) {
+    .project-container {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
     .mobile-menu-area {
         display: none;
     }
@@ -744,6 +752,9 @@
 
 /* Tablet desktop :768px. */
 @media (min-width: 768px) and (max-width: 991px) {
+    .project-container {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
     .mobile-menu-area {
         display: inherit;
     }
@@ -1205,6 +1216,10 @@
 
 /* Tablet desktop :600px. */
 @media (min-width: 600px) and (max-width: 767px) {
+    .project-container {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
     .mobile-menu-area {
         display: inherit;
     }
