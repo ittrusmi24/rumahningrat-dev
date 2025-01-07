@@ -115,13 +115,10 @@
                     </div>
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-7">
-                    <div id="map">
+                    <div id="map" style="height: 100vh;">
 
                     </div>
-                    {{-- <div><img src="{{ url('/assets/images/carousel') }}/7.png" alt="">
-                    </div>
-                    <div><img src="{{ url('/assets/images/carousel') }}/7.png" alt="">
-                    </div> --}}
+
                 </div>
             </div>
             <div class="col-lg-4 container-group pl-0 pr-0 mb-5">
@@ -552,8 +549,8 @@
                                             <p>Uang Muka DP</p>
                                         </div>
                                         <div class="col-6 text-end">
-                                            <p class="text-decoration-line-through d-inline">Rp.5.000.000</p>
-                                            <p class="text-danger d-inline">Rp. 0</p>
+                                            <p class="text-decoration-line-through d-inline text-danger">Rp.5.000.000</p>
+                                            <p class=" d-inline">Rp. 0</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -569,8 +566,8 @@
                                             <p>Pagar</p>
                                         </div>
                                         <div class="col-6 text-end">
-                                            <p class="text-decoration-line-through d-inline" id="value_pagar">Rp.10.000.000</p>
-                                            <p class="text-danger d-inline" >Rp. 0</p>
+                                            <p class="text-decoration-line-through d-inline text-danger" id="value_pagar">Rp.10.000.000</p>
+                                            <p class=" d-inline" >Rp. 0</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -578,8 +575,8 @@
                                             <p>Tembok Keliling</p>
                                         </div>
                                         <div class="col-6 text-end">
-                                            <p class="text-decoration-line-through d-inline" id="value_tembok">Rp.2.000.000</p>
-                                            <p class="text-danger d-inline">Rp. 0</p>
+                                            <p class="text-decoration-line-through d-inline text-danger " id="value_tembok">Rp.2.000.000</p>
+                                            <p class="d-inline">Rp. 0</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -587,8 +584,8 @@
                                             <p>Biaya IPL 2 Tahun</p>
                                         </div>
                                         <div class="col-6 text-end">
-                                            <p class="text-decoration-line-through d-inline" id="value_ipl">Rp.2.400.000</p>
-                                            <p class="text-danger d-inline">Rp. 0</p>
+                                            <p class="text-decoration-line-through d-inline text-danger" id="value_ipl">Rp.2.400.000</p>
+                                            <p class=" d-inline">Rp. 0</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -1511,6 +1508,8 @@
             }
 
         }
+
+
     </script>
     @include('modal.lokasi_detail_js')
     @include('modal.spesifikasi_detail_js')
