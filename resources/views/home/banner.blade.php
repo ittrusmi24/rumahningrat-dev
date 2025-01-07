@@ -12,14 +12,14 @@
                             <div class="d-flex flex-column align-items-center justify-content-center">
                                 <div class="slider-main-title text-center">
                                     <h1>RUMAH NINGRAT JAYASAMPURNA </h1>
-                                    <h1>SERIES 2025</h1>
+                                    <h4 class="text-white">SERIES 2025</h4>
                                 </div>
-                                <div class="slider-discripton">
-                                    <p>Cicilan mulai dari 1 Juta</p>
+                                <div class="slider-discripton mt-2">
+                                    <h5 class="text-white">Cicilan mulai dari 1 Juta</h5>
                                 </div>
-                                <div class="slider-button">
-                                    <button type="button" class="btn btn-primary btn-lg"><a
-                                            href="{{ url('/detail/70') }}">Booking Sekarang</a></button>
+                                <div class="slider-butto mt-3">
+                                    <a type="button" class="btn btn-primary btn-lg"
+                                        href="{{ url('/detail/70') }}">Booking Sekarang</a>
                                 </div>
                             </div>
                         </div>
