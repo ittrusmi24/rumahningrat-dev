@@ -49,3 +49,4 @@ Route::get('/vt/{id_project}', function ($id_project) {
 });
 
 Route::get('/vt_view', [HomeController::class, 'vt_view'])->name('vt_view');
+Route::get('/poi_view', [HomeController::class, 'poi_view'])->name('poi_view');

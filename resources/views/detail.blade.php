@@ -87,7 +87,7 @@
                     <div id="video_tour">
                     </div>
                     <div style="height: 100vh;">
-                        <iframe src="{{ url('/') }}" frameborder="0" width="100%" height="100%">
+                        <iframe src="{{ url('/vt_view') }}" frameborder="0" width="100%" height="100%">
 
                         </iframe>
                         {{-- @include('virtual_tour.rn_jayasampurna') --}}
@@ -95,9 +95,9 @@
 
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-5">
-                    <div>
-                        <iframe src="https://trusmiverse.com/vt/poi/bekasi/index.html" frameborder="0"
-                            width="100%"></iframe>
+                    <div style="height: 100vh;">
+                        <iframe src="{{ url('/poi_view') }}" frameborder="0"
+                            width="100%" height="100%"></iframe>
                     </div>
                     {{-- <div><img src="{{ url('/assets/images/carousel') }}/5.png" alt="">
                     </div>
@@ -119,10 +119,10 @@
                     <div id="map">
 
                     </div>
-                    <div><img src="{{ url('/assets/images/carousel') }}/7.png" alt="">
+                    {{-- <div><img src="{{ url('/assets/images/carousel') }}/7.png" alt="">
                     </div>
                     <div><img src="{{ url('/assets/images/carousel') }}/7.png" alt="">
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="col-lg-4 container-group pl-0 pr-0 mb-5">
@@ -903,7 +903,7 @@
             //     }
             // });
             load_data_blok();
-            load_svg();
+            load_svg(bounds);
 
 
         });
@@ -1125,6 +1125,8 @@
                 }
             });
         }
+
+        var svgOverlay;
 
         function load_svg(bounds) {
             var xhr = new XMLHttpRequest();

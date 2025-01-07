@@ -472,7 +472,7 @@
             style="
                     z-index: 4;
                     position: absolute;
-                    background-image: url('{{ url('/360_view/vt') }}/rn_jayasampurna/loading/HTMLImage_198D1E54_153F_E338_418B_5905E93EFF7A.png');
+                    background-image: url('/360_view/vt/rn_jayasampurna/loading/HTMLImage_198D1E54_153F_E338_418B_5905E93EFF7A.png');
                     background-size: contain;
                     background-repeat: no-repeat;
                     background-position: center center;

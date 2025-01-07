@@ -15,4 +15,8 @@ class HomeController extends Controller
     {
         return view('virtual_tour.rn_jayasampurna');
     }
+    public function poi_view()
+    {
+        return view('virtual_tour.poi_rn_jayasampurna');
+    }
 }
