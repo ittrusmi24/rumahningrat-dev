@@ -466,7 +466,10 @@
                                 <select class="select-blok" name="blok" id="blok">
                                     @foreach ($bloks as $blok)
                                         <option value="{{ $blok->blok }}" data-harga="{{ $blok->terima_kunci }}"
-                                            data-nominal="{{ $blok->nominal_booking }}">
+                                            data-nominal="{{ $blok->nominal_booking }}" data-harga_tanah="{{$blok->harga_tanah}}"
+                                            data-biaya_pagar="{{$blok->biaya_pagar}}"
+                                            data-biaya_tembok="{{$blok->biaya_tembok}}" data-biaya_ipl="{{$blok->biaya_ipl}}" data-biaya_hook="{{$blok->biaya_hook}}" data-biaya_kelebihan_tanah="{{$blok->biaya_kelebihan_tanah}}" data-biaya_bphtb="{{$blok->biaya_bphtb}}" data-total="{{$blok->total}}" data-potongan="{{$blok->potongan}}" data-total_all="{{$blok->total_all}}">Blok
+                                            {{ $blok->blok }}</option>
                                             Blok {{ $blok->blok }}</option>
                                     @endforeach
                                 </select>
@@ -549,8 +552,85 @@
                                         <div class="col-6">
                                             <p>Uang Muka DP</p>
                                         </div>
+                                        <div class="col-6 text-end">
+                                            <p class="text-decoration-line-through d-inline">Rp.5.000.000</p>
+                                            <p class="text-danger d-inline">Rp. 0</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
                                         <div class="col-6">
-                                            <p class="text-end text-decoration-line-through">Rp.5.000.000</p>
+                                            <p>Biaya BPHTP</p>
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <p class="d-inline" id="value_bphtb">Rp.8.750.000</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p>Pagar</p>
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <p class="text-decoration-line-through d-inline" id="value_pagar">Rp.10.000.000</p>
+                                            <p class="text-danger d-inline" >Rp. 0</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p>Tembok Keliling</p>
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <p class="text-decoration-line-through d-inline" id="value_tembok">Rp.2.000.000</p>
+                                            <p class="text-danger d-inline">Rp. 0</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p>Biaya IPL 2 Tahun</p>
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <p class="text-decoration-line-through d-inline" id="value_ipl">Rp.2.400.000</p>
+                                            <p class="text-danger d-inline">Rp. 0</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p>Hook</p>
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <p class="d-inline" id="value_hook">-</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p class="">Kelebihan Tanah</p>
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <p class="d-inline" id="value_kelta">-</p>
+                                        </div>
+                                    </div>
+                                    <hr style="border: 1.5px solid black;" class="mb-2 mt-0">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p class="mb-1">Total</p>
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <p class="d-inline mb-1" id="value_subtotal">Rp. 28.650.000</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p>Potongan</p>
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <p class="d-inline" id="value_potongan">Rp. 19.400.000</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p>Total Biaya</p>
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <p class="d-inline text-danger fw-bold" id="value_total">Rp. 9.250.000</p>
                                         </div>
                                     </div>
                                     <div class="mb-4 mt-5">
@@ -794,13 +874,15 @@
             maxBounds: extendedBounds,
             maxBoundsViscosity: 1.0
         }).setView(center_point, 18);
-
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+}).addTo(map);
         // const key = 'Q0RluLdskTtpcHzsahrp';
-        const key = 'hP3RiELhMtFKqQl5dB60';
-        const mtLayer = L.maptilerLayer({
-            apiKey: key,
-            style: L.MaptilerStyle.DATAVIZ.LIGHT, // optional
-        }).addTo(map);
+        // const key = 'hP3RiELhMtFKqQl5dB60';
+        // const mtLayer = L.maptilerLayer({
+        //     apiKey: key,
+        //     style: L.MaptilerStyle.DATAVIZ.LIGHT, // optional
+        // }).addTo(map);
 
 
         $(document).ready(function() {
@@ -1160,68 +1242,84 @@
             }
             return 'Rp ' + rupiah.split('', rupiah.length - 1).reverse().join('');
         }
+        var blinkInterval;
 
         $('#blok').change(function(e) {
             e.preventDefault();
             var blok = $(this).val();
             let harga = $(this).find(':selected').data('harga'),
-                nominal = $(this).find(':selected').data('nominal')
-            harga = formatRupiah(harga)
-            price = formatRupiah(nominal)
-            $('#harga_blok').text(harga);
-            $('#price').text(price);
+                nominal = $(this).find(':selected').data('nominal'),
+                hook = $(this).find(':selected').data('biaya_hook'),
+                ipl = $(this).find(':selected').data('biaya_ipl'),
+                pagar = $(this).find(':selected').data('biaya_pagar'),
+                kelebihan_tanah = $(this).find(':selected').data('biaya_kelebihan_tanah'),
+                bphtb = $(this).find(':selected').data('biaya_bphtb'),
+                total = $(this).find(':selected').data('total'),
+                potongan = $(this).find(':selected').data('potongan'),
+                total_all = $(this).find(':selected').data('total_all')
+            $('#harga_blok').text(formatRupiah(harga));
+            $('#price').text(formatRupiah(nominal));
             $('#nominal_booking').val(nominal);
+            $('#value_hook').text(formatRupiah(hook));
+            $('#value_ipl').text(formatRupiah(ipl));
+            $('#value_pagar').text(formatRupiah(pagar));
+            $('#value_kelta').text(formatRupiah(kelebihan_tanah));
+            $('#value_bphtb').text(formatRupiah(bphtb));
+            $('#value_subtotal').text(formatRupiah(total));
+            $('#value_potongan').text(formatRupiah(potongan));
+            $('#value_total').text(formatRupiah(total_all));
+            // clearInterval(blinkInterval);
 
-            clearInterval(blinkInterval);
+            // // Clear all blue strokes pada semua blok
+            // $('g').css({
+            //     'stroke': '',
+            //     'stroke-width': ''
+            // });
 
-            // Clear all blue strokes pada semua blok
-            $('g').css({
-                'stroke': '',
-                'stroke-width': ''
-            });
+            // var selectedBlok = $(`#${blok}`);
+            // if (selectedBlok.length && svgOverlay) {
+            //     console.log(svgOverlay);
 
-            var selectedBlok = $(`#${blok}`);
-            if (selectedBlok.length && svgOverlay) {
-                var bbox = selectedBlok[0].getBBox();
-                var bounds = svgOverlay.getBounds();
-                var svgWidth = svgOverlay._image.viewBox.baseVal.width;
-                var svgHeight = svgOverlay._image.viewBox.baseVal.height;
-                var scaleX = (bounds.getEast() - bounds.getWest()) / svgWidth;
-                var scaleY = (bounds.getNorth() - bounds.getSouth()) / svgHeight;
-                var centerX = bbox.x + bbox.width / 2;
-                var centerY = bbox.y + bbox.height / 2;
-                var adjustmentFactor = 0; // Sesuaikan jika perlu
-                var adjustedCenterY = centerY + bbox.height * adjustmentFactor;
+            //     var bbox = selectedBlok[0].getBBox();
+            //     var bounds = svgOverlay.getBounds();
+            //     var svgWidth = svgOverlay._image.viewBox.baseVal.width;
+            //     var svgHeight = svgOverlay._image.viewBox.baseVal.height;
+            //     var scaleX = (bounds.getEast() - bounds.getWest()) / svgWidth;
+            //     var scaleY = (bounds.getNorth() - bounds.getSouth()) / svgHeight;
+            //     var centerX = bbox.x + bbox.width / 2;
+            //     var centerY = bbox.y + bbox.height / 2;
+            //     var adjustmentFactor = 0; // Sesuaikan jika perlu
+            //     var adjustedCenterY = centerY + bbox.height * adjustmentFactor;
 
-                var lat = bounds.getSouth() + (svgHeight - adjustedCenterY) * scaleY;
-                var lng = bounds.getWest() + centerX * scaleX;
+            //     var lat = bounds.getSouth() + (svgHeight - adjustedCenterY) * scaleY;
+            //     var lng = bounds.getWest() + centerX * scaleX;
 
-                // Terbang ke blok yang dipilih
-                map.flyTo([lat, lng], 22, {
-                    animate: true,
-                    duration: 1.5
-                });
+            //     // Terbang ke blok yang dipilih
+            //     map.flyTo([lat, lng], 22, {
+            //         animate: true,
+            //         duration: 1.5
+            //     });
 
-                let isHighlighted = false;
+            //     let isHighlighted = false;
 
-                // Mulai animasi kedip
-                blinkInterval = setInterval(function() {
-                    if (isHighlighted) {
-                        selectedBlok.css({
-                            'stroke': 'blue',
-                            'stroke-width': '2',
-                            'stroke-opacity': 1 // Full opacity
-                        });
-                    } else {
-                        selectedBlok.css({
-                            'stroke': 'blue',
-                            'stroke-width': '2',
-                            'stroke-opacity': 0.3 // Kedip dengan opacity rendah
-                        });
-                    }
-                    isHighlighted = !isHighlighted;
-                }, 500); // Kedip setiap 0.5 detik
-            }
+            //     // Mulai animasi kedip
+            //     blinkInterval = setInterval(function() {
+            //         if (isHighlighted) {
+            //             selectedBlok.css({
+            //                 'stroke': 'blue',
+            //                 'stroke-width': '2',
+            //                 'stroke-opacity': 1 // Full opacity
+            //             });
+            //         } else {
+            //             selectedBlok.css({
+            //                 'stroke': 'blue',
+            //                 'stroke-width': '2',
+            //                 'stroke-opacity': 0.3 // Kedip dengan opacity rendah
+            //             });
+            //         }
+            //         isHighlighted = !isHighlighted;
+            //     }, 500); // Kedip setiap 0.5 detik
+            // }
         });
 
         const ulasan = document.getElementById('ulasan-container');
