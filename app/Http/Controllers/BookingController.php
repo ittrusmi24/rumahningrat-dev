@@ -59,9 +59,9 @@ class BookingController extends Controller
             ];
         }
 
-        // DB::connection('rsp_connection')->beginTransaction();
-        // DB::connection('eces_connection')->beginTransaction();
-        // DB::connection('rumahningrat_connection')->beginTransaction();
+        DB::connection('rsp_connection')->beginTransaction();
+        DB::connection('eces_connection')->beginTransaction();
+        DB::connection('rumahningrat_connection')->beginTransaction();
 
         try {
             // 1. TODO Insert Konsumen
@@ -96,7 +96,7 @@ class BookingController extends Controller
                 'perusahaan' => '',
                 'tipe_pembayaran' => 'Payment Gateway',
             ];
-            // Konsumen::create($data_post_konsumen);
+            Konsumen::create($data_post_konsumen);
             $data_post_array[] = $data_post_konsumen;
 
             // 2. TODO Insert Konsumen Pasangan Jika Status Menikah
@@ -140,7 +140,7 @@ class BookingController extends Controller
                 'created_by' => 23139, // Booking mandiri
                 'opsi_pagar' => '', // value Pakai Pagar atau Tanpa Pagar
             );
-            // $booking = Booking::create($data_post_booking);
+            $booking = Booking::create($data_post_booking);
 
             $data_post_array['gci'] = $data_post_booking;
 
@@ -153,7 +153,7 @@ class BookingController extends Controller
             );
 
             $data_post_array[] = $data_post_booking_status;
-            // BookingStatus::create($data_post_booking_status);
+            BookingStatus::create($data_post_booking_status);
 
 
             // 5. TODO Insert Booking History RSP Project
@@ -167,7 +167,7 @@ class BookingController extends Controller
             );
 
             $data_post_array[] = $data_post_booking_history;
-            // BookingHistoryRsp::create($data_post_booking_history);
+            BookingHistoryRsp::create($data_post_booking_history);
 
 
 
@@ -200,7 +200,7 @@ class BookingController extends Controller
                 'created_at' => date('Y-m-d H:i:s')
             );
             $data_post_array[] = $data_post_konsumen_clik;
-            // KonsumenClik::create($data_post_konsumen_clik);
+            KonsumenClik::create($data_post_konsumen_clik);
 
             // 8. TODO Insert Konsumen Eces
             $project_eces = Project::get_project_by_id_eces($id_project);
@@ -223,7 +223,7 @@ class BookingController extends Controller
                 'cus_instansi_nm' => $id_gci,
             );
             $data_post_array[] = $data_post_konsumen_eces;
-            // KonsumenEces::create($data_post_konsumen_eces);
+            KonsumenEces::create($data_post_konsumen_eces);
 
             // 9. TODO Create User Rumah Ningrat
             $data_post_user_rumah_ningrat = [
@@ -246,7 +246,7 @@ class BookingController extends Controller
                 $data_post_user_rumah_ningrat['no_ktp_p'] = $no_ktp_p;
             }
             $data_post_array[] = $data_post_user_rumah_ningrat;
-            // UserRumahNingrat::create($data_post_user_rumah_ningrat);
+            UserRumahNingrat::create($data_post_user_rumah_ningrat);
 
             // Trigger event
             // 1. Send Notifikasi Whatsapp
@@ -255,17 +255,17 @@ class BookingController extends Controller
             ];
 
             // Trigger event
-            // event(new BookingCreated($data_for_event_booking));
+            event(new BookingCreated($data_for_event_booking));
 
             // // Jika semua berhasil, commit perubahan
-            // DB::connection('rsp_connection')->commit();
-            // DB::connection('eces_connection')->commit();
-            // DB::connection('rumahningrat_connection')->commit();
+            DB::connection('rsp_connection')->commit();
+            DB::connection('eces_connection')->commit();
+            DB::connection('rumahningrat_connection')->commit();
         } catch (\Exception $e) {
             // // Jika terjadi error, batalkan perubahan
-            // DB::connection('rsp_connection')->rollBack();
-            // DB::connection('eces_connection')->rollBack();
-            // DB::connection('rumahningrat_connection')->rollBack();
+            DB::connection('rsp_connection')->rollBack();
+            DB::connection('eces_connection')->rollBack();
+            DB::connection('rumahningrat_connection')->rollBack();
 
             return response()->json([
                 'status' => false,
