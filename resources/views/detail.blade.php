@@ -96,8 +96,7 @@
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-5">
                     <div style="height: 100vh;">
-                        <iframe src="{{ url('/poi_view') }}" frameborder="0"
-                            width="100%" height="100%"></iframe>
+                        <iframe src="{{ url('/poi_view') }}" frameborder="0" width="100%" height="100%"></iframe>
                     </div>
                     {{-- <div><img src="{{ url('/assets/images/carousel') }}/5.png" alt="">
                     </div>
@@ -1417,4 +1416,5 @@
     </script>
     @include('modal.lokasi_detail_js')
     @include('modal.spesifikasi_detail_js')
+    @include('modal.success_js')
 @endsection
