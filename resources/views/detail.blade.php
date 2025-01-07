@@ -528,6 +528,25 @@
                                         <input type="text" class="form-control" name="no_ktp_p" id="no_ktp_psg">
                                     </div>
                                     <div class="mb-4 mt-5">
+                                        <h4 class="text-center">Biaya</h4>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p>Booking</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="text-end">Rp.500.000</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p>Uang Muka DP</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="text-end text-decoration-line-through">Rp.5.000.000</p>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4 mt-5">
                                         <h4 class="text-center">Pembayaran</h4>
                                     </div>
                                     <div class="mb-3">
