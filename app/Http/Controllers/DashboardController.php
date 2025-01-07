@@ -52,6 +52,7 @@ class DashboardController extends Controller
         return view(
             'detail',
             [
+                'id_project' => $id_project,
                 'project' => $project,
                 'fasilitas' => $fasilitas,
                 'fasilitasSekitar' => $fasilitasSekitar,

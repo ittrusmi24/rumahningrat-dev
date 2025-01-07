@@ -320,7 +320,9 @@
                         </div>
                         <div class="row mt-4">
                             <div class="col-12">
-                                <a href="">Detail Spesifikasi</a>
+                                <a role="button" id="getSpesifikasiDetail" data-bs-toggle="modal"
+                                    data-bs-target="#modalSpesifikasi">Detail
+                                    Spesifikasi</a>
                             </div>
                         </div>
                     </div>
@@ -662,6 +664,7 @@
     </section>
 
     @include('modal.lokasi_detail')
+    @include('modal.spesifikasi_detail')
 
     {{-- <div class="chat-ai d-flex flex-column shadow-sm">
     <div><i class="bi bi-chat-dots"></i></div>
@@ -946,7 +949,7 @@
 
                     response.forEach(value => {
                         $('#select_blok').append(
-                        `<option value="${value.blok}">${value.blok}</option>`);
+                            `<option value="${value.blok}">${value.blok}</option>`);
 
                         var defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
                         var gradient = document.createElementNS("http://www.w3.org/2000/svg",
@@ -1413,4 +1416,5 @@
         }
     </script>
     @include('modal.lokasi_detail_js')
+    @include('modal.spesifikasi_detail_js')
 @endsection
