@@ -86,15 +86,18 @@
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-4">
                     <div id="video_tour">
                     </div>
-                    <div><iframe src="https://trusmiverse.com/vt/bekasi_new/index.htm" frameborder="0" width="100%"
-                            height="100%"></iframe>
+                    <div style="height: 100vh;">
+                        <iframe src="{{ url('/') }}" frameborder="0" width="100%" height="100%">
+
+                        </iframe>
+                        {{-- @include('virtual_tour.rn_jayasampurna') --}}
                     </div>
 
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-5">
                     <div>
-                        <iframe src="https://trusmiverse.com/vt/poi/bekasi/index.html" frameborder="0" width="100%"
-                            height="100%"></iframe>
+                        <iframe src="https://trusmiverse.com/vt/poi/bekasi/index.html" frameborder="0"
+                            width="100%"></iframe>
                     </div>
                     {{-- <div><img src="{{ url('/assets/images/carousel') }}/5.png" alt="">
                     </div>
@@ -532,6 +535,25 @@
                                         <input type="text" class="form-control" name="no_ktp_p" id="no_ktp_psg">
                                     </div>
                                     <div class="mb-4 mt-5">
+                                        <h4 class="text-center">Biaya</h4>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p>Booking</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="text-end">Rp.500.000</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p>Uang Muka DP</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="text-end text-decoration-line-through">Rp.5.000.000</p>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4 mt-5">
                                         <h4 class="text-center">Pembayaran</h4>
                                     </div>
                                     <div class="mb-3">
@@ -773,7 +795,8 @@
             maxBoundsViscosity: 1.0
         }).setView(center_point, 18);
 
-        const key = 'Q0RluLdskTtpcHzsahrp';
+        // const key = 'Q0RluLdskTtpcHzsahrp';
+        const key = 'hP3RiELhMtFKqQl5dB60';
         const mtLayer = L.maptilerLayer({
             apiKey: key,
             style: L.MaptilerStyle.DATAVIZ.LIGHT, // optional
@@ -884,6 +907,8 @@
             // });
             load_data_blok();
             load_svg();
+
+
         });
 
 
