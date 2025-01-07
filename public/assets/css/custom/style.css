@@ -359,21 +359,9 @@ label {
 
 /* navbar */
 .stikcy-nav-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 300;
-    opacity: 1;
-}
-
-.sticky-nav {
-    position: fixed !important;
-    left: 0;
-    margin: auto;
-    top: 0;
-    right: 0;
-    width: 100%;
+    position: relative;
+    animation: fadeInDown;
+    animation-duration: 2s;
 }
 
 /* submit section */
@@ -563,7 +551,7 @@ video {
     #video_tour {
         position: relative;
         width: 100%;
-        height: 40vh !important;
+        height: 30vh !important;
     }
 
     video {
@@ -574,6 +562,21 @@ video {
     }
 
     .vt_view {
-        height: 40vh !important;
+        height: 30vh !important;
     }
+
+    #map {
+        height: 30vh !important;
+    }
+
+    .stikcy-nav-container {
+        position: relative;
+        top: unset;
+        left: unset;
+        right: unset;
+    }
+
+    /* .sticky-container {
+        position: relative;
+    } */
 }
