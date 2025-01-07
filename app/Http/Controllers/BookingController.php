@@ -142,7 +142,7 @@ class BookingController extends Controller
             );
             // $booking = Booking::create($data_post_booking);
 
-            $data_post_array[] = $data_post_booking;
+            $data_post_array['gci'] = $data_post_booking;
 
             // 4. TODO Insert Booking Status
             $data_post_booking_status = array(
@@ -278,7 +278,7 @@ class BookingController extends Controller
             'message' => 'Booking berhasil',
             'data' => $data_post_array,
             'id_gci'  => md5($id_gci)
-        ], 201);
+        ], 200);
     }
 
     private function validasi_manual($request)
