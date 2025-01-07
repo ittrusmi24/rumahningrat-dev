@@ -1,22 +1,21 @@
 
-
 <!DOCTYPE html>
 <html>
 <head>
     <title>Bekasi New</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="user-scalable=no, initial-scale=0.5, width=device-width, viewport-fit=cover" />
-    <link rel="preload" href="../script.js?v=1735803426674" as="script"/>
-<link rel="preload" href="../media/panorama_360D9AB9_24CB_5EF1_41AD_BC9CE4F5F5C2_0/l/2/0_0.jpg?v=1735803426674" as="image"/>
-<link rel="preload" href="../media/panorama_360D9AB9_24CB_5EF1_41AD_BC9CE4F5F5C2_0/r/2/0_0.jpg?v=1735803426674" as="image"/>
-<link rel="preload" href="../media/panorama_360D9AB9_24CB_5EF1_41AD_BC9CE4F5F5C2_0/u/2/0_0.jpg?v=1735803426674" as="image"/>
-<link rel="preload" href="../media/panorama_360D9AB9_24CB_5EF1_41AD_BC9CE4F5F5C2_0/d/2/0_0.jpg?v=1735803426674" as="image"/>
-<link rel="preload" href="../media/panorama_360D9AB9_24CB_5EF1_41AD_BC9CE4F5F5C2_0/f/2/0_0.jpg?v=1735803426674" as="image"/>
-<link rel="preload" href="../media/panorama_360D9AB9_24CB_5EF1_41AD_BC9CE4F5F5C2_0/b/2/0_0.jpg?v=1735803426674" as="image"/>
+    <link rel="preload" href="{{url('/')}}/360_view/vt/rn_jayasampurna/script.js?v=1735803426674" as="script"/>
+<link rel="preload" href="{{url('/')}}/360_view/vt/rn_jayasampurna/media/panorama_360D9AB9_24CB_5EF1_41AD_BC9CE4F5F5C2_0/l/2/0_0.jpg?v=1735803426674" as="image"/>
+<link rel="preload" href="{{url('/')}}/360_view/vt/rn_jayasampurna/media/panorama_360D9AB9_24CB_5EF1_41AD_BC9CE4F5F5C2_0/r/2/0_0.jpg?v=1735803426674" as="image"/>
+<link rel="preload" href="{{url('/')}}/360_view/vt/rn_jayasampurna/media/panorama_360D9AB9_24CB_5EF1_41AD_BC9CE4F5F5C2_0/u/2/0_0.jpg?v=1735803426674" as="image"/>
+<link rel="preload" href="{{url('/')}}/360_view/vt/rn_jayasampurna/media/panorama_360D9AB9_24CB_5EF1_41AD_BC9CE4F5F5C2_0/d/2/0_0.jpg?v=1735803426674" as="image"/>
+<link rel="preload" href="{{url('/')}}/360_view/vt/rn_jayasampurna/media/panorama_360D9AB9_24CB_5EF1_41AD_BC9CE4F5F5C2_0/f/2/0_0.jpg?v=1735803426674" as="image"/>
+<link rel="preload" href="{{url('/')}}/360_view/vt/rn_jayasampurna/media/panorama_360D9AB9_24CB_5EF1_41AD_BC9CE4F5F5C2_0/b/2/0_0.jpg?v=1735803426674" as="image"/>
 <script>(function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,"script","//www.google-analytics.com/analytics.js","ga");ga("create", "UA-116087-3", "auto"); ga("send", "pageview");</script>
 <meta name="description" content="Virtual Tour"/>
 <meta name="theme-color" content="#FFFFFF"/>
-    <script src="../lib/tdvplayer.js?v=1735803426674"></script>
+    <script src="{{url('/')}}/360_view/vt/rn_jayasampurna/lib/tdvplayer.js?v=1735803426674"></script>
     <script type="text/javascript">
         var player;
         var playersPlayingTmp = [];
@@ -54,9 +53,9 @@
             var settings = new TDV.PlayerSettings();
 
             settings.set(TDV.PlayerSettings.CONTAINER, document.getElementById('viewer'));
-            settings.set(TDV.PlayerSettings.SCRIPT_URL, '../script.js?v=1735803426674');
-            settings.set(TDV.PlayerSettings.WEBVR_POLYFILL_URL, 'lib/WebVRPolyfill.js?v=1735803426674');
-            settings.set(TDV.PlayerSettings.HLS_URL, '../lib/Hls.js?v=1735803426674');
+            settings.set(TDV.PlayerSettings.SCRIPT_URL, `{{url('/')}}/360_view/vt/rn_jayasampurna/script.js?v=1735803426674`);
+            settings.set(TDV.PlayerSettings.WEBVR_POLYFILL_URL, `{{url('/')}}/360_view/vt/rn_jayasampurna/lib/WebVRPolyfill.js?v=1735803426674`);
+            settings.set(TDV.PlayerSettings.HLS_URL, `{{url('/')}}/360_view/vt/rn_jayasampurna/lib/Hls.js?v=1735803426674`);
             settings.set(TDV.PlayerSettings.QUERY_STRING_PARAMETERS, 'v=1735803426674');
             window.tdvplayer = player = TDV.PlayerAPI.create(settings);
             player.bind('preloadMediaShow', beginFunc, player, true);
@@ -339,10 +338,11 @@ loadTour()
         #viewer { background-color: #FFFFFF; z-index:1; position:absolute; width: 100%; height: 100%; top: 0; }
         #preloadContainer { z-index:2; position:relative; width:100%; height:100%; transition: opacity 0.5s; -webkit-transition: opacity 0.5s; -moz-transition: opacity 0.5s; -o-transition: opacity 0.5s;}
     </style>
-    <link rel="stylesheet" href="../fonts.css?v=1735803426674">
+    <link rel="stylesheet" href="{{url('/')}}/360_view/vt/rn_jayasampurna/fonts.css?v=1735803426674">
 </head>
 <body onload="onLoad()">
-    <div id="preloadContainer" style="background-color:rgba(255,255,255,0.7)"><div style="z-index: 4; position: absolute; background-image: url('../loading/HTMLImage_198D1E54_153F_E338_418B_5905E93EFF7A.png'); background-size: contain; background-repeat: no-repeat; background-position: center center; overflow: hidden; left: 32.47%; top: 34.7%; width: 35.15%; height: 22.13%"></div><div style="z-index: 5; position: absolute; left: 0%; top: 50%; width: 100.00%; height: 10.00%"><div style="text-align:left; color:#000; "><DIV STYLE="text-align:center;"><SPAN STYLE="letter-spacing:0vmin;color:#777777;font-family:Arial, Helvetica, sans-serif;"><SPAN STYLE="font-size:1.89vmin;font-family:'Calibri';">Loading virtual tour. Please wait...</SPAN></SPAN></DIV><p STYLE="margin:0; line-height:1.89vmin;"><BR STYLE="letter-spacing:0vmin;color:#000000;font-size:1.03vmin;font-family:Arial, Helvetica, sans-serif;"/></p></div></div></div>
+    <div id="preloadContainer" style="background-color:rgba(255,255,255,0.7)"><div style="z-index: 4; position: absolute; background-image: url('../360_view/vt/rn_jayasampurna/loading/HTMLImage_198D1E54_153F_E338_418B_5905E93EFF7A.png'); background-size: contain; background-repeat: no-repeat; background-position: center center; overflow: hidden; left: 32.47%; top: 34.7%; width: 35.15%; height: 22.13%"></div><div style="z-index: 5; position: absolute; left: 0%; top: 50%; width: 100.00%; height: 10.00%"><div style="text-align:left; color:#000; "><DIV STYLE="text-align:center;"><SPAN STYLE="letter-spacing:0vmin;color:#777777;font-family:Arial, Helvetica, sans-serif;"><SPAN STYLE="font-size:1.89vmin;font-family:'Calibri';">Loading virtual tour. Please wait...</SPAN></SPAN></DIV><p STYLE="margin:0; line-height:1.89vmin;"><BR STYLE="letter-spacing:0vmin;color:#000000;font-size:1.03vmin;font-family:Arial, Helvetica, sans-serif;"/></p></div></div></div>
     <div id="viewer"></div>
 </body>
 </html>
+

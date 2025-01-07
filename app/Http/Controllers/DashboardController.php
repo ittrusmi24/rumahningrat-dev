@@ -41,6 +41,14 @@ class DashboardController extends Controller
             return $value;
         });
 
+        $path = public_path('360_view/vt/'.$project_add->link_360.'/index.htm');  // Ambil path dari link_360
+        // if (!file_exists($path)) {
+        //     abort(404, 'Virtual tour not found');  // Tampilkan error jika file tidak ada
+        // }
+        $content = file_get_contents($path);
+        $content = str_replace('../', url('/') . '/360_view/vt/' . $project_add->link_360.'/', $content);
+        // return view('virtual_tour', ['project' => $project, 'content' => $content]);
+
         return view(
             'detail',
             [
@@ -48,7 +56,8 @@ class DashboardController extends Controller
                 'fasilitas' => $fasilitas,
                 'fasilitasSekitar' => $fasilitasSekitar,
                 'blokTersedia' => $groupBlok,
-                'bloks' => $blok
+                'bloks' => $blok,
+                'content'=>$content
             ]
         );
     }

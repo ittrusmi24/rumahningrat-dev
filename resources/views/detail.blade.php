@@ -86,7 +86,8 @@
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-4">
                     <div id="video_tour">
                     </div>
-                    <div><iframe src="https://trusmiverse.com/vt/bekasi_new/index.htm" frameborder="0" width="100%" height="100%"></iframe>
+                    <div>
+                        @include('virtual_tour.rn_jayasampurna')
                     </div>
 
                 </div>
@@ -899,6 +900,8 @@ $(document).ready(function () {
     // });
     load_data_blok();
     load_svg();
+
+
 });
 
 
