@@ -124,8 +124,8 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="header-detail text-center mb-5 mt-5">
-                                    <h4>Rumah Ningrat</h4>
-                                    <h4 id="nama_project">{{ $project['project'] }}</h4>
+                                    <h4>{{ $project['title_satu'] }}</h4>
+                                    <h4 id="nama_project">{{ $project['title_dua'] }}</h4>
                                 </div>
                                 <div class="body-detail">
                                     <p><strong
