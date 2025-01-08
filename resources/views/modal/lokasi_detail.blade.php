@@ -23,8 +23,8 @@
                             <div class="ps-4 pe-4 pt-2">
                                 <h5>{{ $project['title_satu'] }}</h5>
                                 <h5>{{ $project['title_dua'] }}</h5>
-                                <p>{{ $project['alamat'] }}</p>
-                                <button type="button" class="btn btn-secondary float-end"
+                                <p class="pt-2 pb-2 mb-2 mb-2">{{ $project['alamat'] }}</p>
+                                <button type="button" class="btn btn-secondary float-end mb-4"
                                     data-bs-dismiss="modal">Close</button>
                             </div>
                         </div>

@@ -368,7 +368,7 @@
                         </div>
                         <div class="row mt-4">
                             <div class="col-12">
-                                <a href="">Detail Tempat</a>
+                                <a href="#" role="button" id="getDekatDengan">Detail Tempat</a>
                             </div>
                         </div>
                     </div>
@@ -585,6 +585,7 @@
                                         </div>
                                         <div class="col-6 text-end">
                                             <p class="text-decoration-line-through d-inline text-danger "
+                                               
                                                 id="value_tembok">Rp.2.000.000</p>
                                             <p class="d-inline">Rp. 0</p>
                                         </div>
@@ -753,6 +754,7 @@
     @include('modal.lokasi_detail')
     @include('modal.spesifikasi_detail')
     @include('modal.sukses')
+    @include('modal.dekat_dengan')
 
     {{-- <div class="chat-ai d-flex flex-column shadow-sm">
     <div><i class="bi bi-chat-dots"></i></div>
@@ -1038,29 +1040,30 @@
             var mapInitialized = false;
             var owl = $('.owl-carousel');
 
-            owl.on('translate.owl.carousel', function() {
-                if (!mapInitialized) {
-                    // map = L.map('map').setView([51.505, -0.09], 13);  // Inisialisasi pertama kali
-                    // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    //     maxZoom: 19,
-                    // }).addTo(map);
-                    map.invalidateSize(); // Paksa resize setelah inisialisasi
-                    mapInitialized = true; // Update flag agar tidak inisialisasi berulang
-                }
-            });
-            owl.on('changed.owl.carousel', function(e) {
-                map.invalidateSize();
-                console.log("current: ", e.relatedTarget.current())
-                // console.log("current: ",e.item.index) //same
-                // console.log("total: ",e.item.count)   //total
-            })
+            owl.on('translate.owl.carousel', function () {
+        if (!mapInitialized) {
+            console.log("Inisialisasi Map Pertama Kali");
+            // map = L.map('map').setView([51.505, -0.09], 13);  // Inisialisasi pertama kali
+            // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            //     maxZoom: 19,
+            // }).addTo(map);
+            map.invalidateSize();  // Paksa resize setelah inisialisasi
+            mapInitialized = true;  // Update flag agar tidak inisialisasi berulang
+        }
+    });
+owl.on('changed.owl.carousel', function (e) {
+    map.invalidateSize();
+    console.log("current: ",e.relatedTarget.current())
+    // console.log("current: ",e.item.index) //same
+    // console.log("total: ",e.item.count)   //total
+})
 
-            owl.on('initialized.owl.carousel', function() {
-                setTimeout(function() {
-                    map.invalidateSize();
-                    console.log("Map size invalidated on init");
-                }, 300); // Delay untuk memastikan semua rendering selesai
-            });
+owl.on('initialized.owl.carousel', function () {
+        setTimeout(function () {
+            map.invalidateSize();
+            console.log("Map size invalidated on init");
+        }, 300);  // Delay untuk memastikan semua rendering selesai
+    });
 
         });
 
@@ -1594,4 +1597,5 @@
     </script>
     @include('modal.lokasi_detail_js')
     @include('modal.spesifikasi_detail_js')
+    @include('modal.dekat_dengan_js')
 @endsection

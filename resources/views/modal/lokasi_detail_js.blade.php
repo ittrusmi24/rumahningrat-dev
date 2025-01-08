@@ -21,7 +21,9 @@
                     console.log(jsonResponseRumah.data);
                     console.log(jsonResponseRumah.data.latitude);
                     console.log(jsonResponseRumah.data.longitude);
-                    var map = L.map('map_lokasi').setView([jsonResponseRumah.data.latitude,
+                    var map = L.map('map_lokasi', {
+                        attributionControl: false
+                    }).setView([jsonResponseRumah.data.latitude,
                         jsonResponseRumah.data.longitude
                     ], 13);
 
