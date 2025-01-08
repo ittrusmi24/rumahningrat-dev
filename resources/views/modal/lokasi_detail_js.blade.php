@@ -41,6 +41,11 @@
                         .bindPopup(htmlPopup)
                         .openPopup();
                     // createHomepageOSM(jsonResponseRumah.data);
+
+                    $('#video_presentation').attr('src', jsonResponseRumah.data.link_video
+                        .replace(/\s/g,
+                            '%20'));
+
                 },
                 error: function(xhr, status, error) {
                     console.error('Error:', error);
