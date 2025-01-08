@@ -873,18 +873,19 @@
         var extendedBounds = L.latLngBounds(bounds).pad(1500 / 111320);
         var map = L.map('map', {
             maxBounds: extendedBounds,
-            maxZoom: 19,
             maxBoundsViscosity: 1.0
         }).setView(center_point, 18);
         // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         //     maxZoom: 19,
         // }).addTo(map);
-        // const key = 'Q0RluLdskTtpcHzsahrp';
-        const key = 'hP3RiELhMtFKqQl5dB60';
+        // const key = 'Q0RluLdskTtpcHzsahrp'; //khusus
+        // const key = 'hP3RiELhMtFKqQl5dB60';//umum
+        const key = 'hP3RiELhMtFKqQl5dB60'; // local
         const mtLayer = L.maptilerLayer({
             apiKey: key,
-            style: L.MaptilerStyle.DATAVIZ.LIGHT, // optional
+            style: L.MaptilerStyle.STREETS.LIGHT, // optional
         }).addTo(map);
+
 
         function isMobile() {
             return window.innerWidth < 768;
@@ -893,7 +894,7 @@
 
 
         $(document).ready(function() {
-
+            $('#map').find('a').remove();
             const mobile = isMobile();
             var wind = $('.container-group');
             var sticky = $('#sticky-header');
