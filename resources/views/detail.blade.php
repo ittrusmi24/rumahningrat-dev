@@ -46,6 +46,25 @@
     <script src="https://cdn.maptiler.com/maptiler-sdk-js/v2.5.1/maptiler-sdk.umd.js"></script>
     <link href="https://cdn.maptiler.com/maptiler-sdk-js/v2.5.1/maptiler-sdk.css" rel="stylesheet" />
     <script src="https://cdn.maptiler.com/leaflet-maptilersdk/v2.0.0/leaflet-maptilersdk.js"></script>
+    <style>
+        .legend-box {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        border-radius: 3px;
+    }
+    .legend.card {
+        /* font-family: Arial, sans-serif; */
+        font-size: 10px;
+        width: 100%;
+    }
+
+    .clickable:hover path {
+        stroke: #007bff;
+        stroke-width: 2;
+        cursor: pointer;
+    }
+    </style>
 @endsection
 
 @section('content')
@@ -897,7 +916,7 @@
         const key = 'hP3RiELhMtFKqQl5dB60'; // local
         const mtLayer = L.maptilerLayer({
             apiKey: key,
-            style: L.MaptilerStyle.STREETS.LIGHT, // optional
+            style: L.MaptilerStyle.OUTDOOR, // optional
         }).addTo(map);
 
 
@@ -931,6 +950,7 @@
 
         $(document).ready(function() {
             $('#map').find('a').remove();
+            addLegend(map);
             const mobile = isMobile();
             var wind = $('.container-group');
             var sticky = $('#sticky-header');
@@ -1048,28 +1068,21 @@
 
             owl.on('translate.owl.carousel', function () {
         if (!mapInitialized) {
-            console.log("Inisialisasi Map Pertama Kali");
-            // map = L.map('map').setView([51.505, -0.09], 13);  // Inisialisasi pertama kali
-            // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            //     maxZoom: 19,
-            // }).addTo(map);
             map.invalidateSize();  // Paksa resize setelah inisialisasi
             mapInitialized = true;  // Update flag agar tidak inisialisasi berulang
         }
     });
 owl.on('changed.owl.carousel', function (e) {
     map.invalidateSize();
-    console.log("current: ",e.relatedTarget.current())
-    // console.log("current: ",e.item.index) //same
-    // console.log("total: ",e.item.count)   //total
 })
 
 owl.on('initialized.owl.carousel', function () {
         setTimeout(function () {
             map.invalidateSize();
-            console.log("Map size invalidated on init");
+            // console.log("Map size invalidated on init");
         }, 300);  // Delay untuk memastikan semua rendering selesai
     });
+
 
 });
 
@@ -1293,6 +1306,33 @@ owl.on('initialized.owl.carousel', function () {
 
         var svgOverlay;
 
+        // $('g').hover(function() {
+        //     var descText = $(this).find('desc').text();
+        //     var descArray = descText.split(',');
+        //     if (descText != undefined && (descArray[0] == 'BLOK')) {
+        //         $(this).addClass('clickable');
+
+        //     } else {
+        //         $(this).removeClass('clickable');
+
+        //     }
+
+        // }, function() {
+        //     // console.log("Hover ended");
+        //     $(this).removeClass('clickable');
+        // });
+        // $('svg g').each(function() {
+        //     if ($(this).find('desc').length > 0) {
+        //         $(this).addClass('clickable');
+        //     }
+        // });
+        // $('svg g.clickable').on('click', function() {
+        //     var desc = $(this).find('desc').text();
+        //     if (desc) {
+        //         alert(desc);
+        //     }
+        // });
+
         function load_svg(bounds) {
             var xhr = new XMLHttpRequest();
             xhr.open('GET', `{{ url('/assets/siteplan') }}/bekasi_new.svg`, false); // false makes it synchronous
@@ -1309,6 +1349,11 @@ owl.on('initialized.owl.carousel', function () {
             } else {
                 console.error('Error loading SVG:', xhr.statusText);
             }
+            $('svg g').each(function() {
+            if ($(this).find('desc').length > 0) {
+                $(this).addClass('clickable');
+            }
+        });
         }
 
         // format rupiah
@@ -1600,6 +1645,66 @@ owl.on('initialized.owl.carousel', function () {
             }
 
         }
+
+        function addLegend(map) {
+            var legend = L.control({ position: 'bottomright' });
+
+legend.onAdd = function () {
+    var div = L.DomUtil.create('div', 'legend card shadow-sm');
+
+    var legendContent = $('<div>').addClass('legend-content');
+
+    legendContent.append('<div class="card-header fw-bold text-primary">Legend Status</div>');
+
+    var statusBody = $('<div>').addClass('card-body');
+
+    var statusItems = [
+        { color: '#C3C28E', text: 'Not Sale' },
+        { color: '#B3E5BE', text: 'Akad' },
+        { color: '#45b6fe', text: 'Booking Cash' },
+        { color: '#FD8A8A', text: 'Booking' },
+        { color: '#FDFFAE', text: 'SP3K' },
+        { color: 'white', border: '1px solid #ccc', text: 'Kosong' },
+        { color: '#990066', text: 'Pindah Blok' },
+        { color: '#B983FF', text: 'Bank' }
+    ];
+
+    statusItems.forEach(function(item) {
+        var legendItem = $('<div>').addClass('d-flex align-items-center mb-1');
+        var box = $('<span>').addClass('legend-box me-1').css({ background: item.color, border: item.border || 'none' });
+        legendItem.append(box).append(item.text);
+        statusBody.append(legendItem);
+    });
+
+    legendContent.append(statusBody);
+
+    legendContent.append('<div class="card-header fw-bold text-success mt-1">Legend Progres</div>');
+
+    var progresBody = $('<div>').addClass('card-body');
+    var progresItems = [
+        { color: '#B9F3FC', text: '0% - 9%' },
+        { color: '#9F8772', text: '10% - 29%' },
+        { color: '#B7B7B7', text: '30% - 59%' },
+        { color: '#1572A1', text: '60% - 84%' },
+        { color: '#FAAB78', text: '85% - 99%' },
+        { color: '#FF8DC7', text: '100%' }
+    ];
+
+    progresItems.forEach(function(item) {
+        var legendItem = $('<div>').addClass('d-flex align-items-center mb-1');
+        var box = $('<span>').addClass('legend-box me-1').css({ background: item.color });
+        legendItem.append(box).append(item.text);
+        progresBody.append(legendItem);
+    });
+
+    legendContent.append(progresBody);
+    $(div).append(legendContent);
+
+    return div;
+};
+
+legend.addTo(map);
+}
 
 
     </script>
