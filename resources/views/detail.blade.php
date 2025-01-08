@@ -97,19 +97,8 @@
                     <div class="vt_view">
                         <iframe src="{{ url('/poi_view') }}" frameborder="0" width="100%" height="100%"></iframe>
                     </div>
-                    {{-- <div><img src="{{ url('/assets/images/carousel') }}/5.png" alt="">
-                    </div>
-                    <div><img src="{{ url('/assets/images/carousel') }}/5.png" alt="">
-                    </div>
-                    <div><img src="{{ url('/assets/images/carousel') }}/5.png" alt="">
-                    </div> --}}
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-6">
-
-                    <div><img src="{{ url('/assets/images/carousel') }}/6.png" alt="">
-                    </div>
-                    <div><img src="{{ url('/assets/images/carousel') }}/6.png" alt="">
-                    </div>
                     <div><img src="{{ url('/assets/images/carousel') }}/6.png" alt="">
                     </div>
                 </div>
@@ -596,6 +585,7 @@
                                         </div>
                                         <div class="col-6 text-end">
                                             <p class="text-decoration-line-through d-inline text-danger "
+                                               
                                                 id="value_tembok">Rp.2.000.000</p>
                                             <p class="d-inline">Rp. 0</p>
                                         </div>
@@ -1050,37 +1040,30 @@
             var mapInitialized = false;
             var owl = $('.owl-carousel');
 
-            owl.on('translate.owl.carousel', function() {
-                if (!mapInitialized) {
-                    console.log("Inisialisasi Map Pertama Kali");
-                    // map = L.map('map').setView([51.505, -0.09], 13);  // Inisialisasi pertama kali
-                    // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    //     maxZoom: 19,
-                    // }).addTo(map);
-                    map.invalidateSize(); // Paksa resize setelah inisialisasi
-                    mapInitialized = true; // Update flag agar tidak inisialisasi berulang
-                }
-            });
-            owl.on('changed.owl.carousel', function(e) {
-                map.invalidateSize();
-                console.log("current: ", e.relatedTarget.current())
-                // console.log("current: ",e.item.index) //same
-                // console.log("total: ",e.item.count)   //total
-            })
+            owl.on('translate.owl.carousel', function () {
+        if (!mapInitialized) {
+            console.log("Inisialisasi Map Pertama Kali");
+            // map = L.map('map').setView([51.505, -0.09], 13);  // Inisialisasi pertama kali
+            // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            //     maxZoom: 19,
+            // }).addTo(map);
+            map.invalidateSize();  // Paksa resize setelah inisialisasi
+            mapInitialized = true;  // Update flag agar tidak inisialisasi berulang
+        }
+    });
+owl.on('changed.owl.carousel', function (e) {
+    map.invalidateSize();
+    console.log("current: ",e.relatedTarget.current())
+    // console.log("current: ",e.item.index) //same
+    // console.log("total: ",e.item.count)   //total
+})
 
-            owl.on('initialized.owl.carousel', function() {
-                setTimeout(function() {
-                    map.invalidateSize();
-                    console.log("Map size invalidated on init");
-                }, 300); // Delay untuk memastikan semua rendering selesai
-            });
-
-            owl.on('initialized.owl.carousel', function() {
-                setTimeout(function() {
-                    map.invalidateSize();
-                    console.log("Map size invalidated on init");
-                }, 300); // Delay untuk memastikan semua rendering selesai
-            });
+owl.on('initialized.owl.carousel', function () {
+        setTimeout(function () {
+            map.invalidateSize();
+            console.log("Map size invalidated on init");
+        }, 300);  // Delay untuk memastikan semua rendering selesai
+    });
 
         });
 
