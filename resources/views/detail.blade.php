@@ -115,12 +115,7 @@
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-7">
                     <div id="map">
-
                     </div>
-                    {{-- <div><img src="{{ url('/assets/images/carousel') }}/7.png" alt="">
-                    </div>
-                    <div><img src="{{ url('/assets/images/carousel') }}/7.png" alt="">
-                    </div> --}}
                 </div>
             </div>
             <div class="col-lg-4 container-group pl-0 pr-0 mb-5">
@@ -558,8 +553,8 @@
                                             <p>Uang Muka DP</p>
                                         </div>
                                         <div class="col-6 text-end">
-                                            <p class="text-decoration-line-through d-inline">Rp.5.000.000</p>
-                                            <p class="text-danger d-inline">Rp. 0</p>
+                                            <p class="text-decoration-line-through d-inline text-danger">Rp.5.000.000</p>
+                                            <p class=" d-inline">Rp. 0</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -575,9 +570,8 @@
                                             <p>Pagar</p>
                                         </div>
                                         <div class="col-6 text-end">
-                                            <p class="text-decoration-line-through d-inline" id="value_pagar">
-                                                Rp.10.000.000</p>
-                                            <p class="text-danger d-inline">Rp. 0</p>
+                                            <p class="text-decoration-line-through d-inline text-danger" id="value_pagar">Rp.10.000.000</p>
+                                            <p class=" d-inline" >Rp. 0</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -585,9 +579,8 @@
                                             <p>Tembok Keliling</p>
                                         </div>
                                         <div class="col-6 text-end">
-                                            <p class="text-decoration-line-through d-inline" id="value_tembok">
-                                                Rp.2.000.000</p>
-                                            <p class="text-danger d-inline">Rp. 0</p>
+                                            <p class="text-decoration-line-through d-inline text-danger " id="value_tembok">Rp.2.000.000</p>
+                                            <p class="d-inline">Rp. 0</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -595,9 +588,8 @@
                                             <p>Biaya IPL 2 Tahun</p>
                                         </div>
                                         <div class="col-6 text-end">
-                                            <p class="text-decoration-line-through d-inline" id="value_ipl">Rp.2.400.000
-                                            </p>
-                                            <p class="text-danger d-inline">Rp. 0</p>
+                                            <p class="text-decoration-line-through d-inline text-danger" id="value_ipl">Rp.2.400.000</p>
+                                            <p class=" d-inline">Rp. 0</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -853,7 +845,7 @@
 
 
         const baseURL = document.querySelector('meta[name="base-url"]').getAttribute('content');
-        console.log(baseURL); // Output: Base URL aplikasi
+        // console.log(baseURL); // Output: Base URL aplikasi
 
         function activateCarousel(sectionId, carouselId) {
             const section = $(sectionId);
@@ -868,6 +860,7 @@
                 $('.owl-carousel').addClass('d-none');
                 carousel.removeClass('d-none');
             }
+            map.invalidateSize();
         }
 
         var bounds = [
@@ -880,6 +873,7 @@
         var extendedBounds = L.latLngBounds(bounds).pad(1500 / 111320);
         var map = L.map('map', {
             maxBounds: extendedBounds,
+            maxZoom: 19,
             maxBoundsViscosity: 1.0
         }).setView(center_point, 18);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -895,6 +889,8 @@
         function isMobile() {
             return window.innerWidth < 768;
         }
+
+
 
         $(document).ready(function() {
 
@@ -994,9 +990,36 @@
 
             load_data_blok();
             load_svg(bounds);
+            map.invalidateSize();
+            var mapInitialized = false;
+            var owl = $('.owl-carousel');
 
+            owl.on('translate.owl.carousel', function () {
+        if (!mapInitialized) {
+            console.log("Inisialisasi Map Pertama Kali");
+            map = L.map('map').setView([51.505, -0.09], 13);  // Inisialisasi pertama kali
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+            }).addTo(map);
+            map.invalidateSize();  // Paksa resize setelah inisialisasi
+            mapInitialized = true;  // Update flag agar tidak inisialisasi berulang
+        }
+    });
+owl.on('changed.owl.carousel', function (e) {
+    map.invalidateSize();
+    console.log("current: ",e.relatedTarget.current())
+    // console.log("current: ",e.item.index) //same
+    // console.log("total: ",e.item.count)   //total
+})
 
-        });
+owl.on('initialized.owl.carousel', function () {
+        setTimeout(function () {
+            map.invalidateSize();
+            console.log("Map size invalidated on init");
+        }, 300);  // Delay untuk memastikan semua rendering selesai
+    });
+
+});
 
 
         function load_data_blok() {
@@ -1273,58 +1296,58 @@
             $('#value_subtotal').text(formatRupiah(total));
             $('#value_potongan').text(formatRupiah(potongan));
             $('#value_total').text(formatRupiah(total_all));
-            // clearInterval(blinkInterval);
+            clearInterval(blinkInterval);
 
-            // // Clear all blue strokes pada semua blok
-            // $('g').css({
-            //     'stroke': '',
-            //     'stroke-width': ''
-            // });
+            // Clear all blue strokes pada semua blok
+            $('g').css({
+                'stroke': '',
+                'stroke-width': ''
+            });
 
-            // var selectedBlok = $(`#${blok}`);
-            // if (selectedBlok.length && svgOverlay) {
-            //     console.log(svgOverlay);
+            var selectedBlok = $(`#${blok}`);
+            if (selectedBlok.length && svgOverlay) {
+                console.log(svgOverlay);
 
-            //     var bbox = selectedBlok[0].getBBox();
-            //     var bounds = svgOverlay.getBounds();
-            //     var svgWidth = svgOverlay._image.viewBox.baseVal.width;
-            //     var svgHeight = svgOverlay._image.viewBox.baseVal.height;
-            //     var scaleX = (bounds.getEast() - bounds.getWest()) / svgWidth;
-            //     var scaleY = (bounds.getNorth() - bounds.getSouth()) / svgHeight;
-            //     var centerX = bbox.x + bbox.width / 2;
-            //     var centerY = bbox.y + bbox.height / 2;
-            //     var adjustmentFactor = 0; // Sesuaikan jika perlu
-            //     var adjustedCenterY = centerY + bbox.height * adjustmentFactor;
+                var bbox = selectedBlok[0].getBBox();
+                var bounds = svgOverlay.getBounds();
+                var svgWidth = svgOverlay._image.viewBox.baseVal.width;
+                var svgHeight = svgOverlay._image.viewBox.baseVal.height;
+                var scaleX = (bounds.getEast() - bounds.getWest()) / svgWidth;
+                var scaleY = (bounds.getNorth() - bounds.getSouth()) / svgHeight;
+                var centerX = bbox.x + bbox.width / 2;
+                var centerY = bbox.y + bbox.height / 2;
+                var adjustmentFactor = 0; // Sesuaikan jika perlu
+                var adjustedCenterY = centerY + bbox.height * adjustmentFactor;
 
-            //     var lat = bounds.getSouth() + (svgHeight - adjustedCenterY) * scaleY;
-            //     var lng = bounds.getWest() + centerX * scaleX;
+                var lat = bounds.getSouth() + (svgHeight - adjustedCenterY) * scaleY;
+                var lng = bounds.getWest() + centerX * scaleX;
 
-            //     // Terbang ke blok yang dipilih
-            //     map.flyTo([lat, lng], 22, {
-            //         animate: true,
-            //         duration: 1.5
-            //     });
+                // Terbang ke blok yang dipilih
+                map.flyTo([lat, lng], 22, {
+                    animate: true,
+                    duration: 1.5
+                });
 
-            //     let isHighlighted = false;
+                let isHighlighted = false;
 
-            //     // Mulai animasi kedip
-            //     blinkInterval = setInterval(function() {
-            //         if (isHighlighted) {
-            //             selectedBlok.css({
-            //                 'stroke': 'blue',
-            //                 'stroke-width': '2',
-            //                 'stroke-opacity': 1 // Full opacity
-            //             });
-            //         } else {
-            //             selectedBlok.css({
-            //                 'stroke': 'blue',
-            //                 'stroke-width': '2',
-            //                 'stroke-opacity': 0.3 // Kedip dengan opacity rendah
-            //             });
-            //         }
-            //         isHighlighted = !isHighlighted;
-            //     }, 500); // Kedip setiap 0.5 detik
-            // }
+                // Mulai animasi kedip
+                blinkInterval = setInterval(function() {
+                    if (isHighlighted) {
+                        selectedBlok.css({
+                            'stroke': 'blue',
+                            'stroke-width': '2',
+                            'stroke-opacity': 1 // Full opacity
+                        });
+                    } else {
+                        selectedBlok.css({
+                            'stroke': 'blue',
+                            'stroke-width': '2',
+                            'stroke-opacity': 0.3 // Kedip dengan opacity rendah
+                        });
+                    }
+                    isHighlighted = !isHighlighted;
+                }, 500); // Kedip setiap 0.5 detik
+            }
         });
 
         const ulasan = document.getElementById('ulasan-container');
@@ -1519,6 +1542,8 @@
             }
 
         }
+
+
     </script>
     @include('modal.lokasi_detail_js')
     @include('modal.spesifikasi_detail_js')
