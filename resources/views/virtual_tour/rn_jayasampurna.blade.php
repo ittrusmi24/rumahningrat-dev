@@ -103,7 +103,7 @@
             );
             settings.set(
                 TDV.PlayerSettings.WEBVR_POLYFILL_URL,
-                "lib/WebVRPolyfill.js?v=1735803426674"
+                "{{ url('/360_view/vt') }}/rn_jayasampurna/lib/WebVRPolyfill.js?v=1735803426674"
             );
             settings.set(
                 TDV.PlayerSettings.HLS_URL,

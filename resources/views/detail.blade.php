@@ -46,6 +46,25 @@
     <script src="https://cdn.maptiler.com/maptiler-sdk-js/v2.5.1/maptiler-sdk.umd.js"></script>
     <link href="https://cdn.maptiler.com/maptiler-sdk-js/v2.5.1/maptiler-sdk.css" rel="stylesheet" />
     <script src="https://cdn.maptiler.com/leaflet-maptilersdk/v2.0.0/leaflet-maptilersdk.js"></script>
+    <style>
+        .legend-box {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        border-radius: 3px;
+    }
+    .legend.card {
+        /* font-family: Arial, sans-serif; */
+        font-size: 10px;
+        width: 100%;
+    }
+
+    .clickable:hover path {
+        stroke: #007bff;
+        stroke-width: 2;
+        cursor: pointer;
+    }
+    </style>
 @endsection
 
 @section('content')
@@ -99,11 +118,13 @@
                     </div>
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-6">
-                    <div><img src="{{ url('/assets/images/carousel') }}/6.png" alt="">
+                    <div id="map">
                     </div>
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-7">
-                    <div id="map">
+                    <div><img src="{{ url('/assets/images/carousel') }}/7.png" alt="">
+                    </div>
+                    <div><img src="{{ url('/assets/images/carousel') }}/8.png" alt="">
                     </div>
                 </div>
             </div>
@@ -112,7 +133,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-12">
-                                <div class="header-detail text-center mb-5 mt-5">
+                                <div class="header-detail text-center mb-5">
                                     <h4>{{ $project['title_satu'] }}</h4>
                                     <h4 id="nama_project">{{ $project['title_dua'] }}</h4>
                                 </div>
@@ -120,11 +141,101 @@
                                     <p><strong
                                             id="harga_project">{{ str_replace(',00', '', Number::currency($project['harga_jual'] ?? 0, in: 'IDR', locale: 'id_ID')) }}</strong>
                                     </p>
-                                    <p id="project_tipe">{{ $project['project_tipe'] }}</p>
-                                    <p>Tipe <span id="tipe_rumah">{{ $project['tipe_rumah'] }}</span> m</p>
+                                    {{-- <p id="project_tipe">{{ $project['project_tipe'] }}</p> --}}
+                                    <p>Rumah Tipe <span id="tipe_rumah">{{ $project['tipe_rumah'] }}</span> m²</p>
                                     <p id="alamat">{{ $project['alamat'] }}</p>
                                     <a id="getDetailLokasi" role="button" href="#">Lokasi
                                         selengkapnya</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-12">
+                                <nav>
+                                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#kprSubsidi"
+                                            type="button" role="tab" aria-controls="kprSubsidi"
+                                            aria-selected="true">KPR Subsidi</button>
+                                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#kprKormersil"
+                                            type="button" role="tab" aria-controls="kprKormersil"
+                                            aria-selected="false">KPR Kormersil</button>
+                                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#onlyCash"
+                                            type="button" role="tab" aria-controls="onlyCash"
+                                            aria-selected="false">Cash</button>
+                                    </div>
+                                </nav>
+                                <div class="tab-content  mt-4" id="nav-tabContent">
+                                    <div class="tab-pane fade show active" id="kprSubsidi" role="tabpanel"
+                                        aria-labelledby="kprSubsidi-tab" tabindex="0">
+                                        <div id="opsi-bayar-container">
+                                            <div class="item-opsi px-3 py-2">
+                                                <div>
+                                                    <p class="m-0">Cicilan 10 Tahun</p>
+                                                </div>
+                                                <div class="text-end">
+                                                    <strong class="m-0">Rp.1.730.400</strong>/bln
+                                                </div>
+                                            </div>
+                                            <div class="item-opsi px-3 py-2">
+                                                <div>
+                                                    <p class="m-0">Cicilan 15 Tahun</p>
+                                                </div>
+                                                <div class="text-end">
+                                                    <strong class="m-0">Rp. 1.287.300</strong>/bln
+                                                </div>
+                                            </div>
+                                            <div class="item-opsi px-3 py-2">
+                                                <div>
+                                                    <p class="m-0">Cicilan 20 Tahun</p>
+                                                </div>
+                                                <div class="text-end">
+                                                    <strong class="m-0">Rp.1.072.200</strong>/bln
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="kprKormersil" role="tabpanel"
+                                        aria-labelledby="kprKormersil-tab" tabindex="0">
+                                        <div id="opsi-bayar-container">
+                                            <div class="item-opsi px-3 py-2">
+                                                <div>
+                                                    <p class="m-0">Cicilan 10 Tahun</p>
+                                                </div>
+                                                <div class="text-end">
+                                                    <strong class="m-0">Rp.1.730.400</strong>/bln
+                                                </div>
+                                            </div>
+                                            <div class="item-opsi px-3 py-2">
+                                                <div>
+                                                    <p class="m-0">Cicilan 15 Tahun</p>
+                                                </div>
+                                                <div class="text-end">
+                                                    <strong class="m-0">Rp. 1.287.300</strong>/bln
+                                                </div>
+                                            </div>
+                                            <div class="item-opsi px-3 py-2">
+                                                <div>
+                                                    <p class="m-0">Cicilan 20 Tahun</p>
+                                                </div>
+                                                <div class="text-end">
+                                                    <strong class="m-0">Rp.1.072.200</strong>/bln
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="onlyCash" role="tabpanel"
+                                        aria-labelledby="nav-contact-tab" tabindex="0">
+                                        <div id="opsi-bayar-container">
+                                            <div class="item-opsi px-3 py-2">
+                                                <div>
+                                                    <p class="m-0">Tanpa Cicilan</p>
+                                                </div>
+                                                <div class="text-end">
+                                                    <strong class="m-0">Rp.186.000.000</strong>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -432,10 +543,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="aside-section" id="aside-section-7">
-                    <div class="container-fluid section-form">
                         <div class="row mb-3">
                             <div class="col-12">
                                 <div class="header-detail text-center mb-5">
@@ -472,6 +579,10 @@
                             </div>
                             <div class="col"></div>
                         </div>
+                    </div>
+                </div>
+                <div class="aside-section" id="aside-section-7">
+                    <div class="container-fluid section-form">
                         <div class="row mt-4">
                             <div class="col-12 text-center">
                                 <h4>Data Diri Pembeli</h4>
@@ -532,8 +643,7 @@
                                         <div class="mb-2">
                                             <label class="form-label">No KTP Pasangan</label>
                                             <input type="number" class="form-control" name="no_ktp_p" id="no_ktp_psg"
-                                                autocomplete="off"
-                                                oninput="validasiKtp(this)>
+                                                autocomplete="off" oninput="validasiKtp(this)">
                                         </div>
                                         <div class="mb-2">
                                             <label class="form-label">Nama Pasangan</label>
@@ -585,7 +695,6 @@
                                         </div>
                                         <div class="col-6 text-end">
                                             <p class="text-decoration-line-through d-inline text-danger "
-                                               
                                                 id="value_tembok">Rp.2.000.000</p>
                                             <p class="d-inline">Rp. 0</p>
                                         </div>
@@ -630,7 +739,7 @@
                                             <p>Potongan</p>
                                         </div>
                                         <div class="col-6 text-end">
-                                            <p class="d-inline" id="value_potongan">Rp. 19.400.000</p>
+                                            <p class="d-inline text-danger" id="value_potongan">Rp. 19.400.000</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -638,7 +747,7 @@
                                             <p>Total Biaya</p>
                                         </div>
                                         <div class="col-6 text-end">
-                                            <p class="d-inline text-danger fw-bold" id="value_total">Rp. 9.250.000</p>
+                                            <p class="d-inline fw-bold" id="value_total">Rp. 9.250.000</p>
                                         </div>
                                     </div>
                                     <div class="mb-4 mt-5">
@@ -675,7 +784,7 @@
                                     <div id="bank_group" class="d-none animate__animated animate__fadeIn">
                                         <div class="radio-button-group">
                                             <label class="radio-card">
-                                                <input type="radio" name="bank" value="bca">
+                                                <input type="radio" name="bank" value="bca" checked>
                                                 <div class="card-body">
                                                     <div class="check-box">
                                                         <div class="check-icon">✔</div>
@@ -740,7 +849,7 @@
                 <div class="sticky-container">
                     <div class="sticky-content d-flex justify-content-between align-items-center">
                         <div>
-                            <div class="price text-dark" id="price">Rp.0,-</div>
+                            <div class="price text-dark" id="price">Rp.500.000</div>
                             <div class="note">*biaya booking + BI checking</div>
                         </div>
                         <button class="btn btn-primary" onclick="validasiBook()" style="border-radius: 10px">Booking
@@ -891,7 +1000,7 @@
         const key = 'hP3RiELhMtFKqQl5dB60'; // local
         const mtLayer = L.maptilerLayer({
             apiKey: key,
-            style: L.MaptilerStyle.STREETS.LIGHT, // optional
+            style: L.MaptilerStyle.OUTDOOR, // optional
         }).addTo(map);
 
 
@@ -925,6 +1034,7 @@
 
         $(document).ready(function() {
             $('#map').find('a').remove();
+            addLegend(map);
             const mobile = isMobile();
             var wind = $('.container-group');
             var sticky = $('#sticky-header');
@@ -1040,30 +1150,30 @@
             var mapInitialized = false;
             var owl = $('.owl-carousel');
 
-            owl.on('translate.owl.carousel', function () {
-        if (!mapInitialized) {
-            console.log("Inisialisasi Map Pertama Kali");
-            // map = L.map('map').setView([51.505, -0.09], 13);  // Inisialisasi pertama kali
-            // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            //     maxZoom: 19,
-            // }).addTo(map);
-            map.invalidateSize();  // Paksa resize setelah inisialisasi
-            mapInitialized = true;  // Update flag agar tidak inisialisasi berulang
-        }
-    });
-owl.on('changed.owl.carousel', function (e) {
-    map.invalidateSize();
-    console.log("current: ",e.relatedTarget.current())
-    // console.log("current: ",e.item.index) //same
-    // console.log("total: ",e.item.count)   //total
-})
+            owl.on('translate.owl.carousel', function() {
+                if (!mapInitialized) {
+                    console.log("Inisialisasi Map Pertama Kali");
+                    // map = L.map('map').setView([51.505, -0.09], 13);  // Inisialisasi pertama kali
+                    // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    //     maxZoom: 19,
+                    // }).addTo(map);
+                    map.invalidateSize(); // Paksa resize setelah inisialisasi
+                    mapInitialized = true; // Update flag agar tidak inisialisasi berulang
+                }
+            });
+            owl.on('changed.owl.carousel', function(e) {
+                map.invalidateSize();
+                console.log("current: ", e.relatedTarget.current())
+                // console.log("current: ",e.item.index) //same
+                // console.log("total: ",e.item.count)   //total
+            })
 
-owl.on('initialized.owl.carousel', function () {
-        setTimeout(function () {
-            map.invalidateSize();
-            console.log("Map size invalidated on init");
-        }, 300);  // Delay untuk memastikan semua rendering selesai
-    });
+            owl.on('initialized.owl.carousel', function() {
+                setTimeout(function() {
+                    map.invalidateSize();
+                    console.log("Map size invalidated on init");
+                }, 300); // Delay untuk memastikan semua rendering selesai
+            });
 
         });
 
@@ -1303,6 +1413,11 @@ owl.on('initialized.owl.carousel', function () {
             } else {
                 console.error('Error loading SVG:', xhr.statusText);
             }
+            $('svg g').each(function() {
+            if ($(this).find('desc').length > 0) {
+                $(this).addClass('clickable');
+            }
+        });
         }
 
         // format rupiah
@@ -1594,6 +1709,53 @@ owl.on('initialized.owl.carousel', function () {
             }
 
         }
+        function addLegend(map) {
+    var legend = L.control({ position: 'bottomleft' }); // Gunakan bottomleft untuk dasar
+
+    legend.onAdd = function () {
+        var div = L.DomUtil.create('div', 'legend card shadow-sm text-center leaflet-bottom-center');
+
+        var legendContent = $('<div>').addClass('legend-content d-flex flex-wrap justify-content-center align-items-center p-2');
+
+        var statusItems = [
+            { color: '#C3C28E', text: 'Not Sale' },
+            { color: '#B3E5BE', text: 'Akad' },
+            { color: '#45b6fe', text: 'Booking Cash' },
+            { color: '#FD8A8A', text: 'Booking' },
+            { color: '#FDFFAE', text: 'SP3K' },
+            { color: 'white', border: '1px solid #ccc', text: 'Kosong' },
+            { color: '#990066', text: 'Pindah Blok' },
+            { color: '#B983FF', text: 'Bank' }
+        ];
+
+        var progresItems = [
+            { color: '#B9F3FC', text: '0% - 9%' },
+            { color: '#9F8772', text: '10% - 29%' },
+            { color: '#B7B7B7', text: '30% - 59%' },
+            { color: '#1572A1', text: '60% - 84%' },
+            { color: '#FAAB78', text: '85% - 99%' },
+            { color: '#FF8DC7', text: '100%' }
+        ];
+
+        function appendItems(items) {
+            items.forEach(function(item) {
+                var legendItem = $('<div>').addClass('d-flex align-items-center me-3 mb-2');
+                var box = $('<span>').addClass('legend-box me-1').css({ background: item.color, border: item.border || 'none' });
+                legendItem.append(box).append(item.text);
+                legendContent.append(legendItem);
+            });
+        }
+
+        appendItems(statusItems);
+        appendItems(progresItems);
+
+        $(div).append(legendContent);
+
+        return div;
+    };
+
+    legend.addTo(map);
+}
     </script>
     @include('modal.lokasi_detail_js')
     @include('modal.spesifikasi_detail_js')
