@@ -1,5 +1,4 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/2.2.0/css/dataTables.bootstrap5.css">
+<link rel="stylesheet" href="{{ asset('assets/css/datatable/dataTables.bootstrap5.css') }}">
 
 <div class="modal fade" id="modalDekatDengan" aria-labelledby="modalDekatDenganLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-scrollable">

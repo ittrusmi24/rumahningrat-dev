@@ -9,6 +9,16 @@
                                 #map_lokasi {
                                     height: 400px;
                                 }
+
+                                @media (max-width: 767px) {
+                                    #map_lokasi {
+                                        height: 250px;
+                                    }
+
+                                    #video_presentation {
+                                        height: 250px;
+                                    }
+                                }
                             </style>
                             <div id="map_lokasi"></div>
                         </div>
@@ -21,9 +31,9 @@
                                 </iframe>
                             </div>
                             <div class="ps-4 pe-4 pt-2">
-                                <h5>{{ $project['title_satu'] }}</h5>
-                                <h5>{{ $project['title_dua'] }}</h5>
-                                <p class="pt-2 pb-2 mb-2 mb-2">{{ $project['alamat'] }}</p>
+                                <h5 class="fw-bold mt-2">{{ $project['title_satu'] }}</h5>
+                                <h5 class="fw-bold">{{ $project['title_dua'] }}</h5>
+                                <p class="pt-2 pb-2 mb-4">{{ $project['alamat'] }}</p>
                                 <button type="button" class="btn btn-secondary float-end mb-4"
                                     data-bs-dismiss="modal">Close</button>
                             </div>
