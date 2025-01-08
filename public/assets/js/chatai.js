@@ -13,7 +13,7 @@
         const chatBubbleWidth = chatPopupOpen ? "422px" : "84px";
         const iframe2Styles = {
             position: "fixed",
-            "z-index": "2147483639",
+            "z-index": "1054",
             overflow: "hidden",
             border: "0px",
             "background-color": "transparent",
@@ -22,8 +22,8 @@
             width: mobile ? (chatPopupOpen ? "100%" : "84px") : chatBubbleWidth,
             height: mobile ? (chatPopupOpen ? "100%" : "84px") : chatBubbleHeight,
             bottom: mobile ? "unset" : "0px", // Non-mobile: pojok kiri bawah
-            top: mobile ? "75px" : "unset",   // Mobile: pojok kiri atas
-            left: "10px",                     // Selalu di kiri
+            top: mobile ? "50px" : "unset",   // Mobile: pojok kiri atas
+            left: "8px",                     // Selalu di kiri
             right: "unset",
             "max-width": mobile ? "100%" : "80%",
             "max-height": mobile ? "100%" : "90%",
