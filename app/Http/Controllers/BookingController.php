@@ -12,7 +12,9 @@ use App\Models\KonsumenEces;
 use App\Models\Project;
 use App\Models\ProjectUnit;
 use App\Models\UserRumahNingrat;
+use Carbon\Carbon;
 use DateTime;
+use DateTimeZone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -273,11 +275,39 @@ class BookingController extends Controller
             ], 500);
         }
 
+        $date = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
+
+        // Tambahkan 3 jam
+        $date->modify('+3 hours');
+
+        // Format tanggal ke "6 Januari 14:30:00"
+        $months = [
+            'January' => 'Januari',
+            'February' => 'Februari',
+            'March' => 'Maret',
+            'April' => 'April',
+            'May' => 'Mei',
+            'June' => 'Juni',
+            'July' => 'Juli',
+            'August' => 'Agustus',
+            'September' => 'September',
+            'October' => 'Oktober',
+            'November' => 'November',
+            'December' => 'Desember'
+        ];
+
+        $formattedDate = $date->format('j F H:i:s');
+        foreach ($months as $en => $id) {
+            $formattedDate = str_replace($en, $id, $formattedDate);
+        }
+        $expired_time = $formattedDate;
+
         return response()->json([
             'status' => true,
             'message' => 'Booking berhasil',
             'data' => $data_post_array,
-            'id_gci'  => md5($id_gci)
+            'id_gci'  => md5($id_gci),
+            'expired_time'  => $expired_time
         ], 200);
     }
 
