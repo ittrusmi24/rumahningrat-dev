@@ -7,7 +7,8 @@
             }
         });
 
-        $('#getSelengkapnya').on('click', function() {
+        $('#getDetailLokasi').on('click', function() {
+            $('#modalDetailLokasi').modal('show');
             id_project = "{{ $id_project ?? '' }}";
             $.ajax({
                 url: "{{ url('project') }}/" + id_project, // Ganti dengan endpoint Anda
@@ -18,7 +19,28 @@
                     jsonResponseRumah = JSON.parse(response);
                     console.log('create osm map');
                     console.log(jsonResponseRumah.data);
-                    createHomepageOSM(jsonResponseRumah.data);
+                    console.log(jsonResponseRumah.data.latitude);
+                    console.log(jsonResponseRumah.data.longitude);
+                    var map = L.map('map_lokasi').setView([jsonResponseRumah.data.latitude,
+                        jsonResponseRumah.data.longitude
+                    ], 13);
+
+                    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(
+                        map);
+
+                    const htmlPopup = `
+                        <div style="text-align: center;">
+                            <p class="m-0">${jsonResponseRumah.data.title_satu}</p>
+                            <p class="m-0">${jsonResponseRumah.data.title_dua}</p>
+                        </div>
+                    `;
+
+                    L.marker([jsonResponseRumah.data.latitude,
+                            jsonResponseRumah.data.longitude
+                        ]).addTo(map)
+                        .bindPopup(htmlPopup)
+                        .openPopup();
+                    // createHomepageOSM(jsonResponseRumah.data);
                 },
                 error: function(xhr, status, error) {
                     console.error('Error:', error);
@@ -34,13 +56,13 @@
 
     function createHomepageOSM(data) {
         console.log(data);
-        if (document.getElementById('property-detail-map') != null) {
+        if (document.getElementById('map_lokasi_') != null) {
             var data = [];
             // MAP                       
             if (data.latitude != null) {
                 latitude = data.latitude;
                 longitude = data.longitude;
-                map = L.map('property-detail-map', {
+                map = L.map('map_lokasi_', {
                     center: [latitude, longitude],
                     zoom: 15,
                     scrollWheelZoom: false,

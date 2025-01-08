@@ -140,8 +140,7 @@
                                     <p id="project_tipe">{{ $project['project_tipe'] }}</p>
                                     <p>Tipe <span id="tipe_rumah">{{ $project['tipe_rumah'] }}</span> m</p>
                                     <p id="alamat">{{ $project['alamat'] }}</p>
-                                    <a role="button" data-bs-toggle="modal" data-bs-target="#modalLokasi"
-                                        href="#modalLokasi">Lokasi
+                                    <a id="getDetailLokasi" role="button" href="#">Lokasi
                                         selengkapnya</a>
                                 </div>
                             </div>
@@ -466,11 +465,18 @@
                                 <select class="select-blok" name="blok" id="blok">
                                     @foreach ($bloks as $blok)
                                         <option value="{{ $blok->blok }}" data-harga="{{ $blok->terima_kunci }}"
-                                            data-nominal="{{ $blok->nominal_booking }}" data-harga_tanah="{{$blok->harga_tanah}}"
-                                            data-biaya_pagar="{{$blok->biaya_pagar}}"
-                                            data-biaya_tembok="{{$blok->biaya_tembok}}" data-biaya_ipl="{{$blok->biaya_ipl}}" data-biaya_hook="{{$blok->biaya_hook}}" data-biaya_kelebihan_tanah="{{$blok->biaya_kelebihan_tanah}}" data-biaya_bphtb="{{$blok->biaya_bphtb}}" data-total="{{$blok->total}}" data-potongan="{{$blok->potongan}}" data-total_all="{{$blok->total_all}}">Blok
+                                            data-nominal="{{ $blok->nominal_booking }}"
+                                            data-harga_tanah="{{ $blok->harga_tanah }}"
+                                            data-biaya_pagar="{{ $blok->biaya_pagar }}"
+                                            data-biaya_tembok="{{ $blok->biaya_tembok }}"
+                                            data-biaya_ipl="{{ $blok->biaya_ipl }}"
+                                            data-biaya_hook="{{ $blok->biaya_hook }}"
+                                            data-biaya_kelebihan_tanah="{{ $blok->biaya_kelebihan_tanah }}"
+                                            data-biaya_bphtb="{{ $blok->biaya_bphtb }}" data-total="{{ $blok->total }}"
+                                            data-potongan="{{ $blok->potongan }}"
+                                            data-total_all="{{ $blok->total_all }}">Blok
                                             {{ $blok->blok }}</option>
-                                            Blok {{ $blok->blok }}</option>
+                                        Blok {{ $blok->blok }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -570,8 +576,9 @@
                                             <p>Pagar</p>
                                         </div>
                                         <div class="col-6 text-end">
-                                            <p class="text-decoration-line-through d-inline" id="value_pagar">Rp.10.000.000</p>
-                                            <p class="text-danger d-inline" >Rp. 0</p>
+                                            <p class="text-decoration-line-through d-inline" id="value_pagar">
+                                                Rp.10.000.000</p>
+                                            <p class="text-danger d-inline">Rp. 0</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -579,7 +586,8 @@
                                             <p>Tembok Keliling</p>
                                         </div>
                                         <div class="col-6 text-end">
-                                            <p class="text-decoration-line-through d-inline" id="value_tembok">Rp.2.000.000</p>
+                                            <p class="text-decoration-line-through d-inline" id="value_tembok">
+                                                Rp.2.000.000</p>
                                             <p class="text-danger d-inline">Rp. 0</p>
                                         </div>
                                     </div>
@@ -588,7 +596,8 @@
                                             <p>Biaya IPL 2 Tahun</p>
                                         </div>
                                         <div class="col-6 text-end">
-                                            <p class="text-decoration-line-through d-inline" id="value_ipl">Rp.2.400.000</p>
+                                            <p class="text-decoration-line-through d-inline" id="value_ipl">Rp.2.400.000
+                                            </p>
                                             <p class="text-danger d-inline">Rp. 0</p>
                                         </div>
                                     </div>
@@ -875,8 +884,8 @@
             maxBoundsViscosity: 1.0
         }).setView(center_point, 18);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-}).addTo(map);
+            maxZoom: 19,
+        }).addTo(map);
         // const key = 'Q0RluLdskTtpcHzsahrp';
         // const key = 'hP3RiELhMtFKqQl5dB60';
         // const mtLayer = L.maptilerLayer({
