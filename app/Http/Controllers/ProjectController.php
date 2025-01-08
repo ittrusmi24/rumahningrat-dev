@@ -7,6 +7,18 @@ use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
+
+    public function get_all_project()
+    {
+        $project = Project::get_all_project();
+        echo json_encode([
+            'status' => true,
+            'message' => 'success',
+            'data' => $project
+        ]);
+    }
+
+
     public function index(Request $request)
     {
         $id_project = $request->id_project;

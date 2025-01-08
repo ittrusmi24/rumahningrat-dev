@@ -4,10 +4,22 @@
             <div class="modal-body modal-body p-0 m-0">
                 <div class="container-fluid p-0 m-0">
                     <div class="row p-0 m-0">
-                        <div class="p-0 m-0 col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6">
+                        <div class="p-0 m-0 col-12 col-md-12 col-lg-6 position-relative">
                             <style>
                                 #map_lokasi {
-                                    height: 400px;
+                                    height: 100%;
+                                    position: absolute;
+                                    inset: 0;
+                                }
+
+                                @media (max-width: 767px) {
+                                    #map_lokasi {
+                                        height: 250px;
+                                    }
+
+                                    #video_presentation {
+                                        height: 250px;
+                                    }
                                 }
                             </style>
                             <div id="map_lokasi"></div>
@@ -21,10 +33,10 @@
                                 </iframe>
                             </div>
                             <div class="ps-4 pe-4 pt-2">
-                                <h5>{{ $project['title_satu'] }}</h5>
-                                <h5>{{ $project['title_dua'] }}</h5>
-                                <p>{{ $project['alamat'] }}</p>
-                                <button type="button" class="btn btn-secondary float-end"
+                                <h5 class="fw-bold mt-2">{{ $project['title_satu'] }}</h5>
+                                <h5 class="fw-bold">{{ $project['title_dua'] }}</h5>
+                                <p class="pt-2 pb-2 mb-4">{{ $project['alamat'] }}</p>
+                                <button type="button" class="btn btn-secondary float-end mb-4"
                                     data-bs-dismiss="modal">Close</button>
                             </div>
                         </div>
