@@ -1710,51 +1710,59 @@
 
         }
         function addLegend(map) {
-    var legend = L.control({ position: 'bottomleft' }); // Gunakan bottomleft untuk dasar
+            var legend = L.control({ position: 'bottomright' }); // Gunakan bottomleft untuk dasar
 
-    legend.onAdd = function () {
-        var div = L.DomUtil.create('div', 'legend card shadow-sm text-center leaflet-bottom-center');
+legend.onAdd = function () {
+    var div = L.DomUtil.create('div', 'legend card shadow-sm text-center leaflet-bottom-center');
 
-        var legendContent = $('<div>').addClass('legend-content d-flex flex-wrap justify-content-center align-items-center p-2');
+    var legendContent = $('<div>').addClass('legend-content d-flex flex-column p-2');
 
-        var statusItems = [
-            { color: '#C3C28E', text: 'Not Sale' },
-            { color: '#B3E5BE', text: 'Akad' },
-            { color: '#45b6fe', text: 'Booking Cash' },
-            { color: '#FD8A8A', text: 'Booking' },
-            { color: '#FDFFAE', text: 'SP3K' },
-            { color: 'white', border: '1px solid #ccc', text: 'Kosong' },
-            { color: '#990066', text: 'Pindah Blok' },
-            { color: '#B983FF', text: 'Bank' }
-        ];
+    var statusRow = $('<div>').addClass('d-flex flex-wrap justify-content-center align-items-center');
+    var progresRow = $('<div>').addClass('d-flex flex-wrap justify-content-center align-items-center');
 
-        var progresItems = [
-            { color: '#B9F3FC', text: '0% - 9%' },
-            { color: '#9F8772', text: '10% - 29%' },
-            { color: '#B7B7B7', text: '30% - 59%' },
-            { color: '#1572A1', text: '60% - 84%' },
-            { color: '#FAAB78', text: '85% - 99%' },
-            { color: '#FF8DC7', text: '100%' }
-        ];
+    var statusItems = [
+        { color: '#C3C28E', text: 'Not Sale' },
+        { color: '#B3E5BE', text: 'Akad' },
+        { color: '#45b6fe', text: 'Booking Cash' },
+        { color: '#FD8A8A', text: 'Booking' },
+        { color: '#FDFFAE', text: 'SP3K' },
+        { color: 'white', border: '1px solid #ccc', text: 'Kosong' },
+        { color: '#990066', text: 'Pindah Blok' },
+        { color: '#B983FF', text: 'Bank' }
+    ];
 
-        function appendItems(items) {
-            items.forEach(function(item) {
-                var legendItem = $('<div>').addClass('d-flex align-items-center me-3 mb-2');
-                var box = $('<span>').addClass('legend-box me-1').css({ background: item.color, border: item.border || 'none' });
-                legendItem.append(box).append(item.text);
-                legendContent.append(legendItem);
-            });
-        }
+    var progresItems = [
+        { color: '#B9F3FC', text: '0% - 9%' },
+        { color: '#9F8772', text: '10% - 29%' },
+        { color: '#B7B7B7', text: '30% - 59%' },
+        { color: '#1572A1', text: '60% - 84%' },
+        { color: '#FAAB78', text: '85% - 99%' },
+        { color: '#FF8DC7', text: '100%' }
+    ];
 
-        appendItems(statusItems);
-        appendItems(progresItems);
+    function appendItems(items, container) {
+        items.forEach(function(item) {
+            var legendItem = $('<div>').addClass('d-flex align-items-center me-3');
+            var box = $('<span>').addClass('legend-box me-1').css({ background: item.color, border: item.border || 'none' });
+            legendItem.append(box).append(item.text);
+            container.append(legendItem);
+        });
+    }
 
-        $(div).append(legendContent);
+    appendItems(statusItems, statusRow);
+    appendItems(progresItems, progresRow);
 
-        return div;
-    };
+    legendContent.append(statusRow);
+    legendContent.append($('<hr style="border: 0,6px solid black">').addClass('my-1'));
+    legendContent.append(progresRow);
 
-    legend.addTo(map);
+    $(div).append(legendContent);
+
+    return div;
+};
+
+legend.addTo(map);
+
 }
     </script>
     @include('modal.lokasi_detail_js')
