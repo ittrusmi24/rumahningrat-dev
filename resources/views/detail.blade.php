@@ -26,7 +26,8 @@
     <!-- bootstrap icons -->
     <link rel="stylesheet" href="{{ url('/assets/css') }}/bootstrap-icons.css" type="text/css" media="all">
     <!-- Main Style CSS -->
-    <link rel="stylesheet" href="{{ url('/assets/css/custom') }}/style.css" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ url('/assets/css/custom') }}/style.css?v={{ time() }}" type="text/css"
+        media="all">
     <!-- Dropdown CSS -->
     <link rel="stylesheet" href="{{ url('/assets/css') }}/dropdown.css" type="text/css" media="all">
     <!-- responsive CSS -->
@@ -37,6 +38,8 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     {{-- AOS --}}
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    {{-- animatecss --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     {{-- css style this page --}}
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -46,12 +49,11 @@
 @endsection
 
 @section('content')
-    <div class="stikcy-nav-container">
-        <nav class="navbar" style="background-color: #005991E5">
+    <div class="stikcy-nav-container" id="sticky-header">
+        <nav class="navbar p-0" style="background-color: #005991E5">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
-                    <img src="{{ url('/assets/images/fav-icon') }}/icon-ningrat.png" alt="Logo" width="100px"
-                        height="48px">
+                    <img src="{{ url('/assets/images/fav-icon/icon-ningrat.png') }}" alt="Logo" height="40px">
                 </a>
             </div>
         </nav>
@@ -86,16 +88,13 @@
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-4">
                     <div id="video_tour">
                     </div>
-                    <div style="height: 100vh;">
-                        <iframe src="{{ url('/vt_view') }}" frameborder="0" width="100%" height="100%">
-
-                        </iframe>
-                        {{-- @include('virtual_tour.rn_jayasampurna') --}}
+                    <div class="vt_view">
+                        <iframe src="{{ url('/vt_view') }}" frameborder="0" width="100%" height="100%"></iframe>
                     </div>
 
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-5">
-                    <div style="height: 100vh;">
+                    <div class="vt_view">
                         <iframe src="{{ url('/poi_view') }}" frameborder="0" width="100%" height="100%"></iframe>
                     </div>
                     {{-- <div><img src="{{ url('/assets/images/carousel') }}/5.png" alt="">
@@ -137,8 +136,7 @@
                                     <p id="project_tipe">{{ $project['project_tipe'] }}</p>
                                     <p>Tipe <span id="tipe_rumah">{{ $project['tipe_rumah'] }}</span> m</p>
                                     <p id="alamat">{{ $project['alamat'] }}</p>
-                                    <a role="button" data-bs-toggle="modal" data-bs-target="#modalLokasi"
-                                        href="#modalLokasi">Lokasi
+                                    <a id="getDetailLokasi" role="button" href="#">Lokasi
                                         selengkapnya</a>
                                 </div>
                             </div>
@@ -463,11 +461,18 @@
                                 <select class="select-blok" name="blok" id="blok">
                                     @foreach ($bloks as $blok)
                                         <option value="{{ $blok->blok }}" data-harga="{{ $blok->terima_kunci }}"
-                                            data-nominal="{{ $blok->nominal_booking }}" data-harga_tanah="{{$blok->harga_tanah}}"
-                                            data-biaya_pagar="{{$blok->biaya_pagar}}"
-                                            data-biaya_tembok="{{$blok->biaya_tembok}}" data-biaya_ipl="{{$blok->biaya_ipl}}" data-biaya_hook="{{$blok->biaya_hook}}" data-biaya_kelebihan_tanah="{{$blok->biaya_kelebihan_tanah}}" data-biaya_bphtb="{{$blok->biaya_bphtb}}" data-total="{{$blok->total}}" data-potongan="{{$blok->potongan}}" data-total_all="{{$blok->total_all}}">Blok
+                                            data-nominal="{{ $blok->nominal_booking }}"
+                                            data-harga_tanah="{{ $blok->harga_tanah }}"
+                                            data-biaya_pagar="{{ $blok->biaya_pagar }}"
+                                            data-biaya_tembok="{{ $blok->biaya_tembok }}"
+                                            data-biaya_ipl="{{ $blok->biaya_ipl }}"
+                                            data-biaya_hook="{{ $blok->biaya_hook }}"
+                                            data-biaya_kelebihan_tanah="{{ $blok->biaya_kelebihan_tanah }}"
+                                            data-biaya_bphtb="{{ $blok->biaya_bphtb }}" data-total="{{ $blok->total }}"
+                                            data-potongan="{{ $blok->potongan }}"
+                                            data-total_all="{{ $blok->total_all }}">Blok
                                             {{ $blok->blok }}</option>
-                                            Blok {{ $blok->blok }}</option>
+                                        Blok {{ $blok->blok }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -742,6 +747,7 @@
 
     @include('modal.lokasi_detail')
     @include('modal.spesifikasi_detail')
+    @include('modal.sukses')
 
     {{-- <div class="chat-ai d-flex flex-column shadow-sm">
     <div><i class="bi bi-chat-dots"></i></div>
@@ -818,7 +824,6 @@
     {{-- <script src="{{ url('/assets') }}/detail.js"></script> --}}
 
     <script>
-        AOS.init();
         document.addEventListener("DOMContentLoaded", function() {
             const container = document.getElementById('video_tour');
 
@@ -872,8 +877,8 @@
             maxBoundsViscosity: 1.0
         }).setView(center_point, 18);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-}).addTo(map);
+            maxZoom: 19,
+        }).addTo(map);
         // const key = 'Q0RluLdskTtpcHzsahrp';
         // const key = 'hP3RiELhMtFKqQl5dB60';
         // const mtLayer = L.maptilerLayer({
@@ -881,10 +886,26 @@
         //     style: L.MaptilerStyle.DATAVIZ.LIGHT, // optional
         // }).addTo(map);
 
+        function isMobile() {
+            return window.innerWidth < 768;
+        }
 
         $(document).ready(function() {
 
-            // $('.selectpicker').select2()
+            const mobile = isMobile();
+            var wind = $('.container-group');
+            var sticky = $('#sticky-header');
+
+            wind.on('scroll', function() {
+                var scroll = wind.scrollTop();
+
+                if (scroll > 0) {
+                    mobile ? '' : sticky.addClass('d-none')
+                } else {
+                    sticky.removeClass('d-none');
+                }
+            });
+
 
             const blok_select = new SlimSelect({
                 select: '#blok',
@@ -900,7 +921,7 @@
             });
 
             $('.owl-carousel').owlCarousel({
-                loop: true,
+                loop: false,
                 nav: true,
                 dots: false,
                 items: 1,
@@ -964,26 +985,7 @@
             // Ekstrak parameter terakhir dari URL
             const id = url.split('/').pop();
 
-            // Kirim request AJAX
-            // $.ajax({
-            //     url: `/project/${id}`, // Sesuaikan endpoint API
-            //     type: 'GET',
-            //     dataType: 'json',
-            //     headers: {
-            //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Jika diperlukan CSRF
-            //     },
-            //     success: function (response) {
-            //         $('#nama_project').text(response.data.project);
-            //         $('#harga_project').text(`Rp. ${response.data.harga_jual}`);
-            //         $('#project_tipe').text(response.data.project_tipe);
-            //         $('#tipe_rumah').text(response.data.tipe_rumah);
-            //         $('#alamat').text(response.data.alamat);
 
-            //     },
-            //     error: function (xhr, status, error) {
-            //         console.error(`Error: ${error}`);
-            //     }
-            // });
             load_data_blok();
             load_svg(bounds);
 
@@ -1481,15 +1483,17 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Jika diperlukan CSRF
                     },
                     success: function(response) {
-                        console.log(response);
                         if (response.status) {
-                            Swal.fire({
-                                icon: "success",
-                                title: "Berhasil",
-                                text: response.message,
-                                showConfirmButton: false,
-                                timer: 1000
-                            });
+                            $('#bayarGci').attr('href',
+                                `https://trusmicorp.com/rspproject/paygate/q/${response.id_gci}`);
+                            $("#modalSukses").modal('show');
+                            // Swal.fire({
+                            //     icon: "success",
+                            //     title: "Berhasil",
+                            //     text: response.message,
+                            //     showConfirmButton: false,
+                            //     timer: 1000
+                            // });
 
                             $('#formBooking')[0].reset();
                         } else {

@@ -1,18 +1,26 @@
-<div class="modal" tabindex="-1" id="modalLokasi">
-    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+<div class="modal fade" id="modalDetailLokasi" aria-labelledby="modalDetailLokasiLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
         <div class="modal-content rounded-4">
+            <div class="modal-body modal-body p-0 m-0">
+                <div class="container-fluid p-0 m-0">
+                    <div class="row p-0 m-0">
+                        <div class="ps-0 pt-0 pb-0 ms-0 mt-0 mb-0 col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6">
+                            <style>
+                                #map_lokasi {
+                                    height: 400px;
+                                }
+                            </style>
+                            <div id="map_lokasi"></div>
+                        </div>
+                        <div class="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6">
 
-            <div class="container-fluid bg-info">
-                <div class="row bg-dark" style="padding: 0">
-                    <div class="col-6">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor animi ipsam voluptas cupiditate
-                        harum perferendis numquam magni est repellendus molestias. Fuga iure esse aspernatur quidem nisi
-                        eos possimus perferendis? Tempore?
-                        {{-- <div id="property-detail-map" style="max-height: 200px;max-width: 200px;"></div> --}}
+                        </div>
                     </div>
                 </div>
             </div>
-
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
         </div>
     </div>
 </div>
