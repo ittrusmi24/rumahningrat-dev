@@ -35,12 +35,6 @@ label {
     color: #de0000;
 }
 
-.item-rumah {
-    background-size: contain;
-    background: url(https://dummyimage.com/500x400/bfbfbf/ffffff&text=dummy);
-    height: 400px;
-}
-
 .aside-section a {
     color: #383838;
     font-size: 13px;
@@ -55,6 +49,30 @@ label {
     font-weight: 700;
     color: #383838;
 }
+
+/* opsi bayar section */
+#opsi-bayar-container {
+    overflow-y: auto;
+    max-height: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#opsi-bayar-container::-webkit-scrollbar {
+    display: none; /* Hides scrollbar in WebKit browsers */
+}
+
+.item-opsi {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    height: 63px;
+    border-radius: 12px;
+    border: 1px solid #ababab;
+}
+
 /* prioritas section */
 .prioritas-container {
     display: grid;
@@ -511,7 +529,7 @@ video {
     }
 
     .price {
-        font-size: 12px; /* Adjust font size for smaller screens */
+        font-size: 20px; /* Adjust font size for smaller screens */
     }
 
     .note {
