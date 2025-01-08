@@ -28,6 +28,7 @@ class SendWhatsappNotification
         $id_gci = $booking['id_gci'];
         $wa_content = $this->get_content_wa($id_gci);
 
+        $wa_no_konsumen = trim($wa_content['no_hp']); // Nama konsumen
         $wa_nama_konsumen = trim($wa_content['nama_konsumen']); // Nama konsumen
         $wa_project = trim($wa_content['project']); // Nama proyek perumahan
         $wa_blok = $wa_content['blok']; // Blok rumah
@@ -54,13 +55,15 @@ class SendWhatsappNotification
         $msg_customer .= "https://trusmicorp.com/rspproject/paygate/q/{$md_gci}\n\n";
         $msg_customer .= "Link tersebut akan mengarahkan Anda ke halaman pembayaran yang aman dan terjamin. Kami ingin memastikan bahwa proses pembayaran Anda berjalan dengan lancar dan nyaman.\n\n";
         // $msg_customer .= "Untuk pembayaran selanjutnya anda dapat membuat link pembayaran / virtual akun yang aman dan terjamin melalui link berikut :\nhttps://trusmicorp.com/rspproject/paygate/q/{$md_gci}\n\n";
-        $msg_customer .= "Kami informasikan juga untuk pengecekan status proses pengajuan KPR bapak/ibu dapat di akses melalui link berikut dengan menginputkan nomor KTP.\n\n";
-        $msg_customer .= "https://trusmicorp.com/rspstatus/ \n\n";
+        $msg_customer .= "Kami informasikan juga untuk pengecekan status proses pengajuan KPR bapak/ibu dapat di akses melalui link berikut dengan login menggunakan nomor hp yang terdaftar.\n\n";
+        $msg_customer .= "https://punyarumah.rumahningrat.com/login \n\n";
+        $msg_customer .= "Nomor hp yang terdaftar : {$wa_no_konsumen}\n";
+        $msg_customer .= "Password : ningrat123\n";
         $msg_customer .= "{$project_promo}_Jika link tidak bisa di klik, balas \"OK\" pada pesan ini_\n\n";
         $msg_customer .= "Hormat kami,\n\n";
         $msg_customer .= "*Rumah Ningrat*\n";
         $msg_customer .= "#SemuaBisaPunyaRumah";
-        $this->sendWhatsApp('6285324409384', $msg_customer);
+        $send_customer = $this->sendWhatsApp('6285324409384', $msg_customer);
 
         // Kirim notifikasi ke marketing
         // Template pesan WhatsApp ke Head Marketing
@@ -80,7 +83,11 @@ class SendWhatsappNotification
             . "⏳ Progres Vendor : " . $wa_content['progres'] . "%\n"
             . "🏗️ Progres Pelaksana : " . $wa_content['progres_pelaksana'] . "%\n"
             . "⏱️ Umur Bangunan : " . $wa_content['umur_bangunan'];
-        $this->sendWhatsApp('6285324409384', $msg_head_marketing);
+        $send_head_mkt = $this->sendWhatsApp('6285324409384', $msg_head_marketing);
+
+        \Log::info('BookingCreated was triggered', ['data' => $event->booking]);
+        \Log::info('BookingCreated send_head_mkt', ['send_head_mkt' => $send_head_mkt]);
+        \Log::info('BookingCreated send_customer', ['send_customer' => $send_customer]);
     }
 
     private function get_content_wa($id_gci)
@@ -170,6 +177,6 @@ class SendWhatsappNotification
                 'withCase' => true,
             ],
         ]);
-        $response_body = json_decode($post_message->getBody()->getContents(), true);
+        return $response_body = json_decode($post_message->getBody()->getContents(), true);
     }
 }
