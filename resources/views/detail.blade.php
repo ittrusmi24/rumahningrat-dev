@@ -493,7 +493,7 @@
                                 <h4>Data Diri Pembeli</h4>
                             </div>
                         </div>
-                        <div class="row mt-5 mb-5">
+                        <div class="row mt-5" style="margin-bottom: 15vh">
                             <div class="col-12">
                                 <form class="form-booking" id="formBooking">
                                     @csrf
@@ -502,15 +502,17 @@
                                     <input type="hidden" name="nominal_booking" id="nominal_booking">
                                     <div class="mb-2">
                                         <label class="form-label">Nama Lengkap</label>
-                                        <input type="text" class="form-control" name="nama_lengkap" id="nama">
+                                        <input type="text" class="form-control" name="nama_lengkap" id="nama"
+                                            autocomplete="off">
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">No Handphone</label>
-                                        <input type="text" class="form-control" name="no_hp" id="no_hp">
+                                        <input type="tel" class="form-control" name="no_hp" id="no_hp"
+                                            placeholder="6281234567812" autocomplete="off" oninput="validasiNoHp(this)">
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">Tanggal Lahir</label>
-                                        <input class="form-control" name="tgl_lahir" id="tgl_lahir">
+                                        <input class="form-control" name="tgl_lahir" id="tgl_lahir" autocomplete="off">
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">Jenis Kelamin</label>
@@ -521,26 +523,39 @@
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">No KTP</label>
-                                        <input type="text" class="form-control" name="no_ktp" id="no_ktp">
+                                        <input type="number" class="form-control" name="no_ktp" id="no_ktp"
+                                            autocomplete="off" oninput="validasiKtp(this)">
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">Alamat</label>
-                                        <input type="text" class="form-control" name="alamat" id="alamat_book">
+                                        <input type="text" class="form-control" name="alamat" id="alamat_book"
+                                            autocomplete="off">
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">Pendapatan</label>
-                                        <input type="number" class="form-control" name="pendapatan" id="pendapatan">
+                                        <input type="text" class="form-control" name="pendapatan" id="pendapatan"
+                                            oninput="validasiPendapatan(this)" autocomplete="off">
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">Status</label>
                                         <select class="form-select" name="status" id="status">
-                                            <option value="meried">Menikah</option>
-                                            <option value="single">Belum Menikah</option>
+                                            <option value="1">Lajang</option>
+                                            <option value="2">Menikah</option>
+                                            <option value="3">Cerai</option>
                                         </select>
                                     </div>
-                                    <div class="mb-2">
-                                        <label class="form-label">No KTP Pasangan</label>
-                                        <input type="text" class="form-control" name="no_ktp_p" id="no_ktp_psg">
+                                    <div class="d-none animate__animated animate__fadeIn" id="row_ktp_pg">
+                                        <div class="mb-2">
+                                            <label class="form-label">No KTP Pasangan</label>
+                                            <input type="number" class="form-control" name="no_ktp_p" id="no_ktp_psg"
+                                                autocomplete="off"
+                                                oninput="validasiKtp(this)>
+                                        </div>
+                                        <div class="mb-2">
+                                            <label class="form-label">Nama Pasangan</label>
+                                            <input type="text" class="form-control" name="nama_pasangan"
+                                                id="nama_pasangan">
+                                        </div>
                                     </div>
                                     <div class="mb-4 mt-5">
                                         <h4 class="text-center">Biaya</h4>
@@ -651,31 +666,31 @@
                                         <div class="d-flex flex-wrap gap-3">
                                             <div class="payment-method">
                                                 <input type="radio" id="alfamart" name="payment" class="payment"
-                                                    value="alfamart">
+                                                    value="1" checked>
                                                 <label for="alfamart">
                                                     <img src="{{ url('/assets/images/icon/') }}/alfamart.png" />
                                                 </label>
                                             </div>
                                             <div class="payment-method">
                                                 <input type="radio" id="indomaret" name="payment" class="payment"
-                                                    value="indomaret">
+                                                    value="2">
                                                 <label for="indomaret">
                                                     <img src="{{ url('/assets/images/icon/') }}/indomaret.png" />
                                                 </label>
                                             </div>
                                             <div class="payment-method">
                                                 <input type="radio" id="virtual-account" name="payment"
-                                                    class="payment" value="virtual-account">
+                                                    class="payment" value="3">
                                                 <label for="virtual-account">
                                                     <img src="{{ url('/assets/images/icon/') }}/va.png" />
                                                 </label>
                                             </div>
                                         </div>
                                     </div>
-                                    <div style="margin-bottom: 20vh">
+                                    <div id="bank_group" class="d-none animate__animated animate__fadeIn">
                                         <div class="radio-button-group">
                                             <label class="radio-card">
-                                                <input type="radio" name="bank" value="bca" checked>
+                                                <input type="radio" name="bank" value="bca">
                                                 <div class="card-body">
                                                     <div class="check-box">
                                                         <div class="check-icon">✔</div>
@@ -740,7 +755,7 @@
                 <div class="sticky-container">
                     <div class="sticky-content d-flex justify-content-between align-items-center">
                         <div>
-                            <div class="price text-dark" id="price">Rp.500.000</div>
+                            <div class="price text-dark" id="price">Rp.0,-</div>
                             <div class="note">*biaya booking + BI checking</div>
                         </div>
                         <button class="btn btn-primary" onclick="validasiBook()" style="border-radius: 10px">Booking
@@ -853,7 +868,6 @@
 
 
         const baseURL = document.querySelector('meta[name="base-url"]').getAttribute('content');
-        console.log(baseURL); // Output: Base URL aplikasi
 
         function activateCarousel(sectionId, carouselId) {
             const section = $(sectionId);
@@ -894,6 +908,30 @@
 
         function isMobile() {
             return window.innerWidth < 768;
+        }
+
+        function validasiKtp(input) {
+            let value = input.value;
+            console.log(value)
+            if (value.length > 16) {
+                value = value.slice(0, 16);
+            }
+            input.value = value.replace(/[^0-9]/g, '');
+        }
+
+        function validasiNoHp(input) {
+            let value = input.value;
+            if (value.startsWith('0')) {
+                input.value = '62' + value.slice(1);
+            }
+        }
+
+        function validasiPendapatan(input) {
+            let value = input.value.replace(/\D/g, '');
+            value = new Intl.NumberFormat('id-ID', {
+                minimumFractionDigits: 0
+            }).format(value);
+            input.value = value;
         }
 
         $(document).ready(function() {
@@ -984,13 +1022,28 @@
                 }
             });
 
-            // get data project
-            // Ambil URL saat ini
-            const url = window.location.href;
+            //cek status user
+            $('#status').change(function(e) {
+                e.preventDefault();
+                const status = $(this).val()
+                if (status == 2) {
+                    $('#row_ktp_pg').removeClass('d-none');
+                    $('#row_ktp_pg').removeClass('animate__fadeOut');
+                    $('#row_ktp_pg').addClass('animate__fadeIn');
+                } else {
+                    $('#row_ktp_pg').addClass('d-none');
+                    $('#row_ktp_pg').removeClass('animate__fadeIn');
+                    $('#row_ktp_pg').addClass('animate__fadeOut');
+                }
+            });
 
-            // Ekstrak parameter terakhir dari URL
-            const id = url.split('/').pop();
-
+            // cek pembayaran
+            $('[name="payment"]').change(function(e) {
+                e.preventDefault();
+                const payment = $("input[name='payment']:checked").val()
+                payment == 3 ? $('#bank_group').removeClass('d-none') : $('#bank_group')
+                    .addClass('d-none');
+            });
 
             load_data_blok();
             load_svg(bounds);
@@ -1238,14 +1291,13 @@
 
         // format rupiah
         function formatRupiah(angka) {
-            var rupiah = '';
-            var angkarev = angka.toString().split('').reverse().join('');
-            for (var i = 0; i < angkarev.length; i++) {
-                if (i % 3 == 0) {
-                    rupiah += angkarev.substr(i, 3) + '.';
-                }
-            }
-            return 'Rp ' + rupiah.split('', rupiah.length - 1).reverse().join('');
+            let currency = new Intl.NumberFormat('id', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0
+            }).format(angka);
+
+            return currency
         }
         var blinkInterval;
 
@@ -1358,6 +1410,7 @@
             ulasan.scrollLeft = scrollLeft - walk;
         });
 
+        // validasi booking
         function validasiBook() {
             let nama = $('#nama').val(),
                 no_hp = $('#no_hp').val(),
@@ -1368,13 +1421,14 @@
                 pendapatan = $('#pendapatan').val(),
                 status = $('#status').find(":selected").val(),
                 no_ktp_psg = $('#no_ktp_psg').val(),
+                nama_pasangan = $('#nama_pasangan').val(),
                 payment = $("input[name='payment']:checked").val(),
                 bank = $("input[name='bank']:checked").val()
 
             if (nama == '') {
                 Swal.fire({
-                    icon: "error",
-                    title: "Error",
+                    icon: "warning",
+                    title: "Opps!",
                     text: "Nama belum diisi!",
                     showConfirmButton: false,
                     timer: 3000
@@ -1382,8 +1436,8 @@
                 $('#nama').focus()
             } else if (no_hp == '') {
                 Swal.fire({
-                    icon: "error",
-                    title: "Error",
+                    icon: "warning",
+                    title: "Opps!",
                     text: "No HP belum diisi!",
                     showConfirmButton: false,
                     timer: 3000
@@ -1391,8 +1445,8 @@
                 $('#no_hp').focus()
             } else if (tgl_lahir == '') {
                 Swal.fire({
-                    icon: "error",
-                    title: "Error",
+                    icon: "warning",
+                    title: "Opps!",
                     text: "Tanggal lahir belum diisi!",
                     showConfirmButton: false,
                     timer: 3000
@@ -1400,8 +1454,8 @@
                 $('#tgl_lahir').focus()
             } else if (jenis_kl == '') {
                 Swal.fire({
-                    icon: "error",
-                    title: "Error",
+                    icon: "warning",
+                    title: "Opps!",
                     text: "Tanggal lahir belum diisi!",
                     showConfirmButton: false,
                     timer: 3000
@@ -1409,8 +1463,8 @@
                 $('#jenis_kl').focus()
             } else if (no_ktp == '') {
                 Swal.fire({
-                    icon: "error",
-                    title: "Error",
+                    icon: "warning",
+                    title: "Opps!",
                     text: "No KTP belum diisi!",
                     showConfirmButton: false,
                     timer: 3000
@@ -1418,8 +1472,8 @@
                 $('#no_ktp').focus()
             } else if (alamat == '' || alamat == null) {
                 Swal.fire({
-                    icon: "error",
-                    title: "Error",
+                    icon: "warning",
+                    title: "Opps!",
                     text: "Alamat belum diisi!",
                     showConfirmButton: false,
                     timer: 3000
@@ -1427,8 +1481,8 @@
                 $('#alamat_book').focus()
             } else if (pendapatan == '' || pendapatan == null) {
                 Swal.fire({
-                    icon: "error",
-                    title: "Error",
+                    icon: "warning",
+                    title: "Opps!",
                     text: "Pendapatan belum diisi!",
                     showConfirmButton: false,
                     timer: 3000
@@ -1436,26 +1490,35 @@
                 $('#pendapatan').focus()
             } else if (status == '') {
                 Swal.fire({
-                    icon: "error",
-                    title: "Error",
+                    icon: "warning",
+                    title: "Opps!",
                     text: "Status belum diisi!",
                     showConfirmButton: false,
                     timer: 3000
                 });
                 $('#status').focus()
-            } else if (no_ktp_psg == '') {
+            } else if (status == 2 && no_ktp_psg == '') {
                 Swal.fire({
-                    icon: "error",
-                    title: "Error",
-                    text: "No KTP Peserta belum diisi!",
+                    icon: "warning",
+                    title: "Opps!",
+                    text: "No KTP Pasangan belum diisi!",
                     showConfirmButton: false,
                     timer: 3000
                 });
                 $('#no_ktp_psg').focus()
+            } else if (status == 2 && nama_pasangan == '') {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Opps!",
+                    text: "Nama Pasangan belum diisi!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                $('#nama_pasangan').focus()
             } else if (payment == '') {
                 Swal.fire({
-                    icon: "error",
-                    title: "Error",
+                    icon: "warning",
+                    title: "Opps!",
                     text: "Payment belum dipilih!",
                     showConfirmButton: false,
                     timer: 3000
@@ -1463,8 +1526,8 @@
                 $("input[name='payment']").focus()
             } else if (bank == '') {
                 Swal.fire({
-                    icon: "error",
-                    title: "Error",
+                    icon: "warning",
+                    title: "Opps!",
                     text: "Bank belum dipilih!",
                     showConfirmButton: false,
                     timer: 3000
@@ -1473,11 +1536,14 @@
             } else {
                 var form = $('#formBooking')[0]; // Ambil elemen DOM dari jQuery
                 var formData = new FormData(form); // Buat objek FormData
-                // Ambil nilai dari input dengan id "blok"
-                var blokValue = $('#blok').val();
 
-                // Tambahkan nilai ke FormData
+                // set blok to form
+                var blokValue = $('#blok').val();
                 formData.append('blok', blokValue);
+
+                // set pendapatan to form
+                var pendapatanValue = $('#pendapatan').val().replace(/\./g, '');
+                formData.set('pendapatan', pendapatanValue);
                 $.ajax({
                     url: `${baseURL}/simpan_booking`, // Sesuaikan endpoint API
                     type: 'POST',
@@ -1493,13 +1559,6 @@
                             $('#bayarGci').attr('href',
                                 `https://trusmicorp.com/rspproject/paygate/q/${response.id_gci}`);
                             $("#modalSukses").modal('show');
-                            // Swal.fire({
-                            //     icon: "success",
-                            //     title: "Berhasil",
-                            //     text: response.message,
-                            //     showConfirmButton: false,
-                            //     timer: 1000
-                            // });
 
                             $('#formBooking')[0].reset();
                         } else {
