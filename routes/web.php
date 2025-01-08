@@ -54,6 +54,7 @@ Route::get('/test-event', function () {
 });
 // Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/detail/{id_project}', [DashboardController::class, 'detail'])->name('detail');
+Route::get('project/get_all_project', [ProjectController::class, 'get_all_project'])->name('project.get_all_project');
 Route::get('project/{id_project}', [ProjectController::class, 'index'])->name('project');
 Route::get('ulasan/{id_project}', [UlasanController::class, 'index'])->name('ulasan');
 Route::get('fasilitas/{id_project}', [FasilitasController::class, 'index'])->name('fasilitas');

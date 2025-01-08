@@ -10,6 +10,47 @@ class Project extends Model
     protected $connection = 'rsp_connection';
     protected $table = 'm_project';
 
+    public static function get_all_project()
+    {
+        $query = "SELECT
+                p.id_project,
+                p.project,
+                mpd.alamat,
+                SUBSTRING_INDEX(p.alias, ' ', 2) AS title_satu,
+                TRIM(SUBSTR(p.alias, LENGTH(SUBSTRING_INDEX(p.alias, ' ', 2)) + 1)) AS title_dua,
+                mpd.gambar,
+                mpd.kmr_tidur,
+                mpd.kmr_mandi,
+                mpd.garasi,
+                p.harga_jual,
+                SUBSTR(mpu.type,1,2) AS luas_rumah,
+                SUBSTR(mpu.type,4,5) AS luas_tanah
+            FROM
+                m_project p
+                LEFT JOIN m_project_unit mpu ON mpu.id_project = p.id_project
+                LEFT JOIN m_project_detail mpd ON mpd.id_project = p.id_project
+            WHERE
+                p.id_project IN (
+                    70,
+                    90,
+                    56,
+                    40,
+                    77,
+                    68,
+                    53,
+                    64,
+                    61
+                )";
+
+        $project = DB::connection('rsp_connection')
+            ->select($query);
+
+        // Konversi hasil menjadi array asosiatif
+        $projectArray = json_decode(json_encode($project), true);
+
+        // Return data sebagai array
+        return $projectArray[0] ?? [];
+    }
     public static function get_project_by_id($id_project)
     {
 
