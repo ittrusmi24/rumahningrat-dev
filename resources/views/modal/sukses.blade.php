@@ -10,16 +10,18 @@
                     <div class="row">
                         <div class="col-6">
                             <h1>Berhasil!</h1>
-                            <p><strong>Permintaan Booking kamu di Rumah Ningrat Jayasampurna Series 2025 sudah kami
+                            <p><strong>Permintaan Booking kamu di {{ $project['title_satu'] }}
+                                    {{ $project['title_dua'] }} sudah kami
                                     terima.</strong></p>
                             <p>Sedikit lagi Kamu bisa menjadi bagian dari Keluarga Ningrat.</p>
 
-                            <p>Ayo lakukan pembayaran Booking Fee sebelum 6 Januari 14:30:00 agar kita bisa sama-sama
+                            <p>Ayo lakukan pembayaran Booking Fee sebelum <span id="expired_time">6 Januari
+                                    14:30:00</span> agar kita bisa sama-sama
                                 merasakan Hidup Lebih Baik!</p>
                         </div>
                         <div class="col-6">
-                            <img src="{{ asset('/assets/images/modal/sukses.png') }}"
-                                alt="Rumah Ningrat Jayasampurna Series 2025" class="img-fluid">
+                            <img src="{{ asset('/assets/images/modal/sukses.png') }}" alt="image sukses"
+                                class="img-fluid">
                         </div>
                     </div>
                     <div class="row mt-5">

@@ -48,22 +48,23 @@
     <script src="https://cdn.maptiler.com/leaflet-maptilersdk/v2.0.0/leaflet-maptilersdk.js"></script>
     <style>
         .legend-box {
-        display: inline-block;
-        width: 15px;
-        height: 15px;
-        border-radius: 3px;
-    }
-    .legend.card {
-        /* font-family: Arial, sans-serif; */
-        font-size: 10px;
-        width: 100%;
-    }
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            border-radius: 3px;
+        }
 
-    .clickable:hover path {
-        stroke: #007bff;
-        stroke-width: 2;
-        cursor: pointer;
-    }
+        .legend.card {
+            /* font-family: Arial, sans-serif; */
+            font-size: 10px;
+            width: 100%;
+        }
+
+        .clickable:hover path {
+            stroke: #007bff;
+            stroke-width: 2;
+            cursor: pointer;
+        }
     </style>
 @endsection
 
@@ -1414,10 +1415,10 @@
                 console.error('Error loading SVG:', xhr.statusText);
             }
             $('svg g').each(function() {
-            if ($(this).find('desc').length > 0) {
-                $(this).addClass('clickable');
-            }
-        });
+                if ($(this).find('desc').length > 0) {
+                    $(this).addClass('clickable');
+                }
+            });
         }
 
         // format rupiah
@@ -1689,6 +1690,7 @@
                         if (response.status) {
                             $('#bayarGci').attr('href',
                                 `https://trusmicorp.com/rspproject/paygate/q/${response.id_gci}`);
+                            $('#expired_time').text(response.expired_time);
                             $("#modalSukses").modal('show');
 
                             $('#formBooking')[0].reset();
@@ -1703,59 +1705,114 @@
                         }
                     },
                     error: function(xhr, status, error) {
-                        console.error(`Error: ${error}`);
+                        // console.error(`Error: ${error}`);
+                        Swal.fire({
+                            icon: "error",
+                            title: status,
+                            text: error,
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
                     }
                 });
             }
 
         }
+
         function addLegend(map) {
-    var legend = L.control({ position: 'bottomleft' }); // Gunakan bottomleft untuk dasar
+            var legend = L.control({
+                position: 'bottomleft'
+            }); // Gunakan bottomleft untuk dasar
 
-    legend.onAdd = function () {
-        var div = L.DomUtil.create('div', 'legend card shadow-sm text-center leaflet-bottom-center');
+            legend.onAdd = function() {
+                var div = L.DomUtil.create('div', 'legend card shadow-sm text-center leaflet-bottom-center');
 
-        var legendContent = $('<div>').addClass('legend-content d-flex flex-wrap justify-content-center align-items-center p-2');
+                var legendContent = $('<div>').addClass(
+                    'legend-content d-flex flex-wrap justify-content-center align-items-center p-2');
 
-        var statusItems = [
-            { color: '#C3C28E', text: 'Not Sale' },
-            { color: '#B3E5BE', text: 'Akad' },
-            { color: '#45b6fe', text: 'Booking Cash' },
-            { color: '#FD8A8A', text: 'Booking' },
-            { color: '#FDFFAE', text: 'SP3K' },
-            { color: 'white', border: '1px solid #ccc', text: 'Kosong' },
-            { color: '#990066', text: 'Pindah Blok' },
-            { color: '#B983FF', text: 'Bank' }
-        ];
+                var statusItems = [{
+                        color: '#C3C28E',
+                        text: 'Not Sale'
+                    },
+                    {
+                        color: '#B3E5BE',
+                        text: 'Akad'
+                    },
+                    {
+                        color: '#45b6fe',
+                        text: 'Booking Cash'
+                    },
+                    {
+                        color: '#FD8A8A',
+                        text: 'Booking'
+                    },
+                    {
+                        color: '#FDFFAE',
+                        text: 'SP3K'
+                    },
+                    {
+                        color: 'white',
+                        border: '1px solid #ccc',
+                        text: 'Kosong'
+                    },
+                    {
+                        color: '#990066',
+                        text: 'Pindah Blok'
+                    },
+                    {
+                        color: '#B983FF',
+                        text: 'Bank'
+                    }
+                ];
 
-        var progresItems = [
-            { color: '#B9F3FC', text: '0% - 9%' },
-            { color: '#9F8772', text: '10% - 29%' },
-            { color: '#B7B7B7', text: '30% - 59%' },
-            { color: '#1572A1', text: '60% - 84%' },
-            { color: '#FAAB78', text: '85% - 99%' },
-            { color: '#FF8DC7', text: '100%' }
-        ];
+                var progresItems = [{
+                        color: '#B9F3FC',
+                        text: '0% - 9%'
+                    },
+                    {
+                        color: '#9F8772',
+                        text: '10% - 29%'
+                    },
+                    {
+                        color: '#B7B7B7',
+                        text: '30% - 59%'
+                    },
+                    {
+                        color: '#1572A1',
+                        text: '60% - 84%'
+                    },
+                    {
+                        color: '#FAAB78',
+                        text: '85% - 99%'
+                    },
+                    {
+                        color: '#FF8DC7',
+                        text: '100%'
+                    }
+                ];
 
-        function appendItems(items) {
-            items.forEach(function(item) {
-                var legendItem = $('<div>').addClass('d-flex align-items-center me-3 mb-2');
-                var box = $('<span>').addClass('legend-box me-1').css({ background: item.color, border: item.border || 'none' });
-                legendItem.append(box).append(item.text);
-                legendContent.append(legendItem);
-            });
+                function appendItems(items) {
+                    items.forEach(function(item) {
+                        var legendItem = $('<div>').addClass('d-flex align-items-center me-3 mb-2');
+                        var box = $('<span>').addClass('legend-box me-1').css({
+                            background: item.color,
+                            border: item.border || 'none'
+                        });
+                        legendItem.append(box).append(item.text);
+                        legendContent.append(legendItem);
+                    });
+                }
+
+                appendItems(statusItems);
+                appendItems(progresItems);
+
+                $(div).append(legendContent);
+
+                return div;
+            };
+
+            legend.addTo(map);
         }
-
-        appendItems(statusItems);
-        appendItems(progresItems);
-
-        $(div).append(legendContent);
-
-        return div;
-    };
-
-    legend.addTo(map);
-}
     </script>
     @include('modal.lokasi_detail_js')
     @include('modal.spesifikasi_detail_js')
