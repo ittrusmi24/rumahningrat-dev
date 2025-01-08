@@ -865,8 +865,8 @@
 
         var bounds = [
             [-6.397245, 107.068464],
-            [-6.397245, 107.072861],
-            [-6.400081, 107.072861],
+            [-6.397245, 107.073051],
+            [-6.400081, 107.073051],
             [-6.400081, 107.068464]
         ];
         var center_point = [-6.398496, 107.071440];
@@ -876,15 +876,15 @@
             maxZoom: 19,
             maxBoundsViscosity: 1.0
         }).setView(center_point, 18);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-        }).addTo(map);
-        // const key = 'Q0RluLdskTtpcHzsahrp';
-        // const key = 'hP3RiELhMtFKqQl5dB60';
-        // const mtLayer = L.maptilerLayer({
-        //     apiKey: key,
-        //     style: L.MaptilerStyle.DATAVIZ.LIGHT, // optional
+        // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        //     maxZoom: 19,
         // }).addTo(map);
+        // const key = 'Q0RluLdskTtpcHzsahrp';
+        const key = 'hP3RiELhMtFKqQl5dB60';
+        const mtLayer = L.maptilerLayer({
+            apiKey: key,
+            style: L.MaptilerStyle.DATAVIZ.LIGHT, // optional
+        }).addTo(map);
 
         function isMobile() {
             return window.innerWidth < 768;
@@ -997,10 +997,10 @@
             owl.on('translate.owl.carousel', function () {
         if (!mapInitialized) {
             console.log("Inisialisasi Map Pertama Kali");
-            map = L.map('map').setView([51.505, -0.09], 13);  // Inisialisasi pertama kali
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-            }).addTo(map);
+            // map = L.map('map').setView([51.505, -0.09], 13);  // Inisialisasi pertama kali
+            // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            //     maxZoom: 19,
+            // }).addTo(map);
             map.invalidateSize();  // Paksa resize setelah inisialisasi
             mapInitialized = true;  // Update flag agar tidak inisialisasi berulang
         }
