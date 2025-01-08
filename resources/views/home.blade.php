@@ -22,7 +22,7 @@
     <!-- theme-default CSS -->
     <link rel="stylesheet" href="assets/css/theme-default.css" type="text/css" media="all">
     <!-- meanmenu CSS -->
-    <link rel="stylesheet" href="assets/css/meanmenu.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="assets/css/meanmenu.min.css?v={{ time() }}" type="text/css" media="all">
     <!-- transitions CSS -->
     <link rel="stylesheet" href="assets/css/owl.transitions.css" type="text/css" media="all">
     <!-- venobox CSS -->
@@ -33,11 +33,11 @@
     <link rel="stylesheet" type="text/css" href="assets/slick/slick.css">
     <link rel="stylesheet" type="text/css" href="assets/slick/slick-theme.css">
     <!-- Main Style CSS -->
-    <link rel="stylesheet" href="assets/css/style.css" type="text/css" media="all">
+    <link rel="stylesheet" href="assets/css/style.css?v={{ time() }}" type="text/css" media="all">
     <!-- Dropdown CSS -->
     <link rel="stylesheet" href="assets/css/dropdown.css" type="text/css" media="all">
     <!-- responsive CSS -->
-    <link rel="stylesheet" href="assets/css/responsive.css" type="text/css" media="all">
+    <link rel="stylesheet" href="assets/css/responsive.css?v={{ time() }}" type="text/css" media="all">
     <!-- rangeslider CSS -->
     <link rel="stylesheet" href="assets/css/rangeslider.css" type="text/css" media="all">
     <!-- modernizr js -->
