@@ -25,7 +25,7 @@ class FasilitasSekitar extends Model
             m_poi, 
             (select id_project, latitude, longitude FROM m_project WHERE id_project = $id_project) AS p
         WHERE category != 'Kontrakan'
-        HAVING jarak_km <= 2
+        HAVING jarak_km <= 4
         ORDER BY jarak_km ASC";
 
         $fasilitas_sekitar = DB::connection('rsp_connection')
@@ -53,7 +53,7 @@ class FasilitasSekitar extends Model
                         m_poi, 
                         (select id_project, latitude, longitude FROM m_project WHERE id_project = $id_project) AS p
                     WHERE category != 'Kontrakan'
-                    HAVING jarak_km <= 5
+                    HAVING jarak_km <= 4
                     ORDER BY jarak_km ASC 
                 ) AS m_poix
                 GROUP BY m_poix.category";
