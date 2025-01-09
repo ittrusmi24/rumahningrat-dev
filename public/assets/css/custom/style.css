@@ -382,8 +382,9 @@ label {
     animation-duration: 2s;
 }
 
-nav.container-fluid button {
-    background-color: #000 !important;
+.navbar .btn.btn-primary.btn-sm {
+    background-color: transparent !important;
+    border: none !important;
 }
 
 /* submit section */
@@ -603,7 +604,8 @@ video {
         right: unset;
     }
 
-    /* .sticky-container {
-        position: relative;
-    } */
+    .navbar .btn.btn-primary.btn-sm {
+        font-size: 10px;
+        padding: 4px;
+    }
 }
