@@ -884,7 +884,7 @@
             </div>
         </div>
     </section>
-    @include('chat.app')
+    {{-- @include('chat.app') --}}
     @include('modal.lokasi_detail')
     @include('modal.spesifikasi_detail')
     @include('modal.sukses')
