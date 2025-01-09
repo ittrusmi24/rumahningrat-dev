@@ -47,23 +47,19 @@
     <link href="https://cdn.maptiler.com/maptiler-sdk-js/v2.5.1/maptiler-sdk.css" rel="stylesheet" />
     <script src="https://cdn.maptiler.com/leaflet-maptilersdk/v2.0.0/leaflet-maptilersdk.js"></script>
     <style>
-        .legend-box {
-        display: inline-block;
-        width: 15px;
-        height: 15px;
-        border-radius: 3px;
-    }
-    .legend.card {
-        /* font-family: Arial, sans-serif; */
-        font-size: 10px;
-        width: 100%;
-    }
 
-    .clickable:hover path {
-        stroke: #007bff;
-        stroke-width: 2;
-        cursor: pointer;
-    }
+.leaflet-overlay-pane svg {
+  pointer-events: auto; /* Pastikan SVG dapat menangkap klik */
+}
+.leaflet-overlay-pane svg .clickable {
+  pointer-events: auto; /* Pastikan SVG dapat menangkap klik */
+}
+.leaflet-overlay-pane svg g {
+  pointer-events: auto; /* Pastikan SVG dapat menangkap klik */
+}
+
+
+
     </style>
 @endsection
 
@@ -117,7 +113,7 @@
                         <iframe src="{{ url('/poi_view') }}" frameborder="0" width="100%" height="100%"></iframe>
                     </div>
                 </div>
-                <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-6">
+                <div class="d-none owl-hidden" id="gallery-carousel-6">
                     <div id="map">
                     </div>
                 </div>
@@ -543,9 +539,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row mb-3">
+                        <div class="row mb-3 mt-5">
                             <div class="col-12">
-                                <div class="header-detail text-center mb-5">
+                                <div class="header-detail text-center">
                                     <h4>Pilih Blok</h4>
                                 </div>
                             </div>
@@ -555,7 +551,8 @@
                                 <select class="select-blok" name="blok" id="blok">
                                     @foreach ($bloks as $blok)
                                         <option value="{{ $blok->blok }}" data-harga="{{ $blok->terima_kunci }}"
-                                            data-nominal="{{ $blok->nominal_booking }}"
+                                            data-nominal="{{ $blok->nominal_booking }}" data-dp="{{ $blok->dp }}"
+
                                             data-harga_tanah="{{ $blok->harga_tanah }}"
                                             data-biaya_pagar="{{ $blok->biaya_pagar }}"
                                             data-biaya_tembok="{{ $blok->biaya_tembok }}"
@@ -659,7 +656,7 @@
                                             <p>Booking</p>
                                         </div>
                                         <div class="col-6">
-                                            <p class="text-end">Rp.500.000</p>
+                                            <p class="text-end" id="value_booking">Rp.500.000</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -667,7 +664,7 @@
                                             <p>Uang Muka DP</p>
                                         </div>
                                         <div class="col-6 text-end">
-                                            <p class="text-decoration-line-through d-inline text-danger">Rp.5.000.000</p>
+                                            <p class="text-decoration-line-through d-inline text-danger" id="value_dp">Rp.5.000.000</p>
                                             <p class=" d-inline">Rp. 0</p>
                                         </div>
                                     </div>
@@ -1152,7 +1149,7 @@
 
             owl.on('translate.owl.carousel', function() {
                 if (!mapInitialized) {
-                    console.log("Inisialisasi Map Pertama Kali");
+                    // console.log("Inisialisasi Map Pertama Kali");
                     // map = L.map('map').setView([51.505, -0.09], 13);  // Inisialisasi pertama kali
                     // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     //     maxZoom: 19,
@@ -1163,7 +1160,7 @@
             });
             owl.on('changed.owl.carousel', function(e) {
                 map.invalidateSize();
-                console.log("current: ", e.relatedTarget.current())
+                // console.log("current: ", e.relatedTarget.current())
                 // console.log("current: ",e.item.index) //same
                 // console.log("total: ",e.item.count)   //total
             })
@@ -1171,7 +1168,7 @@
             owl.on('initialized.owl.carousel', function() {
                 setTimeout(function() {
                     map.invalidateSize();
-                    console.log("Map size invalidated on init");
+                    // console.log("Map size invalidated on init");
                 }, 300); // Delay untuk memastikan semua rendering selesai
             });
 
@@ -1414,8 +1411,9 @@
                 console.error('Error loading SVG:', xhr.statusText);
             }
             $('svg g').each(function() {
-            if ($(this).find('desc').length > 0) {
+            if ($(this).find('desc').length > 0 && $(this).find('desc').text().includes(',')) {
                 $(this).addClass('clickable');
+                $(this).css('cursor', 'pointer');
             }
         });
         }
@@ -1437,6 +1435,7 @@
             var blok = $(this).val();
             let harga = $(this).find(':selected').data('harga'),
                 nominal = $(this).find(':selected').data('nominal'),
+                dp = $(this).find(':selected').data('dp'),
                 hook = $(this).find(':selected').data('biaya_hook'),
                 ipl = $(this).find(':selected').data('biaya_ipl'),
                 pagar = $(this).find(':selected').data('biaya_pagar'),
@@ -1448,6 +1447,8 @@
             $('#harga_blok').text(formatRupiah(harga));
             $('#price').text(formatRupiah(nominal));
             $('#nominal_booking').val(nominal);
+            $('#value_booking').val(nominal);
+            $('#value_dp').val(dp);
             $('#value_hook').text(formatRupiah(hook));
             $('#value_ipl').text(formatRupiah(ipl));
             $('#value_pagar').text(formatRupiah(pagar));
@@ -1466,7 +1467,7 @@
 
             var selectedBlok = $(`#${blok}`);
             if (selectedBlok.length && svgOverlay) {
-                console.log(svgOverlay);
+                // console.log(svgOverlay);
 
                 var bbox = selectedBlok[0].getBBox();
                 var bounds = svgOverlay.getBounds();
@@ -1483,7 +1484,8 @@
                 var lng = bounds.getWest() + centerX * scaleX;
 
                 // Terbang ke blok yang dipilih
-                map.flyTo([lat, lng], 22, {
+                const zoomLevel = isMobile() ? 20 : 22;
+                map.flyTo([lat, lng], zoomLevel, {
                     animate: true,
                     duration: 1.5
                 });
@@ -1709,6 +1711,7 @@
             }
 
         }
+
         function addLegend(map) {
             var legend = L.control({ position: 'bottomright' }); // Gunakan bottomleft untuk dasar
 
@@ -1756,7 +1759,7 @@ legend.onAdd = function () {
     legendContent.append($('<hr style="border: 0,6px solid black">').addClass('my-1'));
     legendContent.append(progresRow);
 
-    $(div).append(legendContent);
+        $(div).append(legendContent);
 
     return div;
 };
@@ -1764,6 +1767,21 @@ legend.onAdd = function () {
 legend.addTo(map);
 
 }
+
+
+$(document).on('click', '.leaflet-overlay-pane svg', function (e) {
+
+  console.log($(this));
+  alert('Klik pada elemen SVG <g>');
+});
+$(document).on('click', '.leaflet-overlay-pane .clickable', function (e) {
+
+  console.log($(this));
+  alert('Klik pada elemen SVG <g>');
+});
+
+
+
     </script>
     @include('modal.lokasi_detail_js')
     @include('modal.spesifikasi_detail_js')
