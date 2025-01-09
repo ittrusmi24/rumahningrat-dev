@@ -147,6 +147,11 @@ Tags: 	agency, Business Agency, Business Consultant, business optimization, comp
     box-sizing: border-box;
 }
 
+#sticky-header .col-lg-2.text-end .btn.btn-primary.btn-sm {
+    background-color: transparent !important;
+    border: none !important;
+}
+
 .header-menu {
     display: flex;
     align-items: center;
@@ -738,10 +743,13 @@ Gallery Area
     );
     color: #fff;
     position: absolute;
-    /* top: 0; */
     bottom: 0;
     right: 0;
     left: 0;
+}
+
+.project-detail h3{
+    font-size: 22px !important;
 }
 /*==================================================
  <-- Hamilton Service Area Css-->
