@@ -75,7 +75,7 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{ url('/assets/images/fav-icon/icon-ningrat.png') }}" alt="Logo" height="40px">
                 </a>
-                <button type="button" class="btn btn-primary btn-sm">Masuk</button>
+                <button type="button" class="btn btn-primary btn-sm">Masuk <i class="bi bi-person"></i></button>
             </div>
         </nav>
     </div>
@@ -591,7 +591,7 @@
                                 <h4>Data Diri Pembeli</h4>
                             </div>
                         </div>
-                        <div class="row mt-5" id="form-section">
+                        <div class="row mt-5">
                             <div class="col-12">
                                 <form class="form-booking" id="formBooking">
                                     @csrf
@@ -759,89 +759,95 @@
                                     <div class="mb-3">
                                         <p>Jenis Pembayaran</p>
                                     </div>
-                                    <div class="mb-4">
-                                        <div class="d-flex flex-wrap gap-3">
-                                            <div class="payment-method">
-                                                <input type="radio" id="alfamart" name="payment" class="payment"
-                                                    value="1" checked>
-                                                <label for="alfamart">
-                                                    <img src="{{ url('/assets/images/icon/') }}/alfamart.png" />
-                                                </label>
-                                            </div>
-                                            <div class="payment-method">
-                                                <input type="radio" id="indomaret" name="payment" class="payment"
-                                                    value="2">
-                                                <label for="indomaret">
-                                                    <img src="{{ url('/assets/images/icon/') }}/indomaret.png" />
-                                                </label>
-                                            </div>
-                                            <div class="payment-method">
-                                                <input type="radio" id="virtual-account" name="payment"
-                                                    class="payment" value="3">
-                                                <label for="virtual-account">
-                                                    <img src="{{ url('/assets/images/icon/') }}/va.png" />
-                                                </label>
+                                    <div id="form-section">
+                                        <div class="mb-4">
+                                            <div class="d-flex flex-wrap gap-3">
+                                                <div class="payment-method">
+                                                    <input type="radio" id="alfamart" name="payment" class="payment"
+                                                        value="1" checked>
+                                                    <label for="alfamart">
+                                                        <img src="{{ url('/assets/images/icon/') }}/alfamart.png" />
+                                                    </label>
+                                                </div>
+                                                <div class="payment-method">
+                                                    <input type="radio" id="indomaret" name="payment" class="payment"
+                                                        value="2">
+                                                    <label for="indomaret">
+                                                        <img src="{{ url('/assets/images/icon/') }}/indomaret.png" />
+                                                    </label>
+                                                </div>
+                                                <div class="payment-method">
+                                                    <input type="radio" id="virtual-account" name="payment"
+                                                        class="payment" value="3">
+                                                    <label for="virtual-account">
+                                                        <img src="{{ url('/assets/images/icon/') }}/va.png" />
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div id="bank_group" class="d-none animate__animated animate__fadeIn">
-                                        <div class="radio-button-group">
-                                            <label class="radio-card">
-                                                <input type="radio" name="bank" value="bca" checked>
-                                                <div class="card-body">
-                                                    <div class="check-box">
-                                                        <div class="check-icon">✔</div>
+                                        <div id="bank_group" class="d-none animate__animated animate__fadeIn">
+                                            <div class="radio-button-group">
+                                                <label class="radio-card">
+                                                    <input type="radio" name="bank" value="bca" checked>
+                                                    <div class="card-body">
+                                                        <div class="check-box">
+                                                            <div class="check-icon">✔</div>
+                                                        </div>
+                                                        <img src="{{ url('/assets/images/icon') }}/bca.png"
+                                                            alt="BCA">
                                                     </div>
-                                                    <img src="{{ url('/assets/images/icon') }}/bca.png" alt="BCA">
-                                                </div>
-                                            </label>
-                                            <label class="radio-card">
-                                                <input type="radio" name="bank" value="mandiri">
-                                                <div class="card-body">
-                                                    <div class="check-box">
-                                                        <div class="check-icon">✔</div>
+                                                </label>
+                                                <label class="radio-card">
+                                                    <input type="radio" name="bank" value="mandiri">
+                                                    <div class="card-body">
+                                                        <div class="check-box">
+                                                            <div class="check-icon">✔</div>
+                                                        </div>
+                                                        <img src="{{ url('/assets/images/icon') }}/mandiri.png"
+                                                            alt="Mandiri">
                                                     </div>
-                                                    <img src="{{ url('/assets/images/icon') }}/mandiri.png"
-                                                        alt="Mandiri">
-                                                </div>
-                                            </label>
-                                            <label class="radio-card">
-                                                <input type="radio" name="bank" value="bri">
-                                                <div class="card-body">
-                                                    <div class="check-box">
-                                                        <div class="check-icon">✔</div>
+                                                </label>
+                                                <label class="radio-card">
+                                                    <input type="radio" name="bank" value="bri">
+                                                    <div class="card-body">
+                                                        <div class="check-box">
+                                                            <div class="check-icon">✔</div>
+                                                        </div>
+                                                        <img src="{{ url('/assets/images/icon') }}/bri.png"
+                                                            alt="BRI">
                                                     </div>
-                                                    <img src="{{ url('/assets/images/icon') }}/bri.png" alt="BRI">
-                                                </div>
-                                            </label>
-                                            <label class="radio-card">
-                                                <input type="radio" name="bank" value="bni">
-                                                <div class="card-body">
-                                                    <div class="check-box">
-                                                        <div class="check-icon">✔</div>
+                                                </label>
+                                                <label class="radio-card">
+                                                    <input type="radio" name="bank" value="bni">
+                                                    <div class="card-body">
+                                                        <div class="check-box">
+                                                            <div class="check-icon">✔</div>
+                                                        </div>
+                                                        <img src="{{ url('/assets/images/icon') }}/bni.png"
+                                                            alt="BNI">
                                                     </div>
-                                                    <img src="{{ url('/assets/images/icon') }}/bni.png" alt="BNI">
-                                                </div>
-                                            </label>
-                                            <label class="radio-card">
-                                                <input type="radio" name="bank" value="cimb">
-                                                <div class="card-body">
-                                                    <div class="check-box">
-                                                        <div class="check-icon">✔</div>
+                                                </label>
+                                                <label class="radio-card">
+                                                    <input type="radio" name="bank" value="cimb">
+                                                    <div class="card-body">
+                                                        <div class="check-box">
+                                                            <div class="check-icon">✔</div>
+                                                        </div>
+                                                        <img src="{{ url('/assets/images/icon') }}/cimb.png"
+                                                            alt="cimb">
                                                     </div>
-                                                    <img src="{{ url('/assets/images/icon') }}/cimb.png" alt="cimb">
-                                                </div>
-                                            </label>
-                                            <label class="radio-card">
-                                                <input type="radio" name="bank" value="permata">
-                                                <div class="card-body">
-                                                    <div class="check-box">
-                                                        <div class="check-icon">✔</div>
+                                                </label>
+                                                <label class="radio-card">
+                                                    <input type="radio" name="bank" value="permata">
+                                                    <div class="card-body">
+                                                        <div class="check-box">
+                                                            <div class="check-icon">✔</div>
+                                                        </div>
+                                                        <img src="{{ url('/assets/images/icon') }}/permata.png"
+                                                            alt="permata">
                                                     </div>
-                                                    <img src="{{ url('/assets/images/icon') }}/permata.png"
-                                                        alt="permata">
-                                                </div>
-                                            </label>
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </form>
