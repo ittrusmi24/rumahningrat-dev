@@ -502,7 +502,7 @@
                                                     <p style="line-height: 10px">Sisa {{ $blok->sisa_unit }} unit</p>
                                                 </div>
                                                 <div class="d-flex flex-column text-end">
-                                                    <p style="line-height: 10px">Terima kunci mulai</p>
+                                                    <p style="line-height: 10px">Biaya Mulai</p>
                                                     <p style="line-height: 10px; color: #DE0000;">
                                                         {{ $blok->terima_kunci }}
                                                     </p>
@@ -1656,7 +1656,7 @@
                     timer: 3000
                 });
                 $("input[name='payment']").focus()
-            } else if (bank == '') {
+            } else if (payment == 3 && bank == '') {
                 Swal.fire({
                     icon: "warning",
                     title: "Opps!",
