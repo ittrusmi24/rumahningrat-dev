@@ -24,8 +24,9 @@
                             </style>
                             <div id="map_lokasi"></div>
                         </div>
-                        <div class="p-0 m-0 col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6">
-                            <div class="video">
+                        <div class="d-flex align-items-center p-0 m-0 col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6"
+                            style="height: 400px">
+                            <div class="video d-none">
                                 <iframe id="video_presentation" width="100%" height="200" src=""
                                     title="Rumah Ningrat" frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
