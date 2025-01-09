@@ -589,7 +589,7 @@
                                 <h4>Data Diri Pembeli</h4>
                             </div>
                         </div>
-                        <div class="row mt-5" style="margin-bottom: 15vh">
+                        <div class="row mt-5" id="form-section">
                             <div class="col-12">
                                 <form class="form-booking" id="formBooking">
                                     @csrf

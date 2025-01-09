@@ -456,10 +456,10 @@ label {
 
 /* form section */
 
-.owl-carousel .item video {
-    width: 100%;
-    height: 100vh;
+#form-section {
+    margin-bottom: 15vh;
 }
+
 /* untuk css map */
 #video_tour {
     /* position: absolute; */
@@ -509,6 +509,11 @@ video {
     }
     * {
         font-size: 10px;
+    }
+
+    /* form section */
+    #form-section {
+        margin-bottom: 40vh !important;
     }
 
     /* bonus section */
