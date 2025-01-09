@@ -591,7 +591,7 @@
                                 <h4>Data Diri Pembeli</h4>
                             </div>
                         </div>
-                        <div class="row mt-5">
+                        <div class="row mt-5" id="form-section">
                             <div class="col-12">
                                 <form class="form-booking" id="formBooking">
                                     @csrf
@@ -759,7 +759,7 @@
                                     <div class="mb-3">
                                         <p>Jenis Pembayaran</p>
                                     </div>
-                                    <div id="form-section">
+                                    <div class="mb-4">
                                         <div class="d-flex flex-wrap gap-3">
                                             <div class="payment-method">
                                                 <input type="radio" id="alfamart" name="payment" class="payment"
