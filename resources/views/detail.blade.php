@@ -76,7 +76,7 @@
     <section class="container-fluid" id="wrapper-detail">
         <div class="row">
             <div class="col-12 col-lg-8 pl-0 pr-0">
-                <div class="owl-carousel bg-info" id="gallery-carousel-1">
+                <div class="owl-carousel" id="gallery-carousel-1">
                     <div><img src="{{ url('/assets/images/carousel') }}/1.png" alt="">
                     </div>
                     <div><img src="{{ url('/assets/images/carousel') }}/1.png" alt="">
@@ -113,7 +113,7 @@
                         <iframe src="{{ url('/poi_view') }}" frameborder="0" width="100%" height="100%"></iframe>
                     </div>
                 </div>
-                <div class="d-none owl-hidden" id="gallery-carousel-6">
+                <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-6">
                     <div id="map">
                     </div>
                 </div>
