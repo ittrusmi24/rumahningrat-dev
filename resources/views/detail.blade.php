@@ -511,17 +511,16 @@
                                                     @if ($blok->sisa_unit >= 10)
                                                         <?php $ket_blok = 'Tersedia'; ?>
                                                     @elseif($blok->sisa_unit < 10 && $blok->sisa_unit > 3)
-                                                        <?php $ket_blok = 'Kurang Dari'; ?>
+                                                        <?php $ket_blok = 'Kurang Dari ' . $blok->sisa_unit . ' unit'; ?>
                                                     @else
-                                                        <?php $ket_blok = 'Sisa'; ?>
+                                                        <?php $ket_blok = 'Sisa ' . $blok->sisa_unit . ' unit'; ?>
                                                     @endif
-                                                    <p style="margin-bottom:0px;line-height: 10px">{{ $ket_blok }}
-                                                        {{ $blok->sisa_unit }} unit</p>
+                                                    <p style="margin-bottom:0px;line-height: 10px">{{ $ket_blok }}</p>
                                                 </div>
                                                 <div class="d-flex flex-column justify-content-center text-end">
                                                     <p style="line-height: 10px">Biaya Mulai</p>
                                                     <p style="margin-bottom:0px;line-height: 10px; color: #DE0000;">
-                                                        {{ $blok->terima_kunci }}
+                                                        {{-- {{ $blok->terima_kunci }} --}} Rp. 1.000.000,-
                                                     </p>
                                                 </div>
                                             </div>
