@@ -382,6 +382,10 @@ label {
     animation-duration: 2s;
 }
 
+nav.container-fluid button {
+    background-color: #000 !important;
+}
+
 /* submit section */
 .sticky-container {
     position: fixed;
@@ -513,7 +517,7 @@ video {
 
     /* form section */
     #form-section {
-        margin-bottom: 40vh !important;
+        margin-bottom: 30vh !important;
     }
 
     /* bonus section */
