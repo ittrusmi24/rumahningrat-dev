@@ -42,10 +42,12 @@
     <link rel="stylesheet" href="assets/css/rangeslider.css" type="text/css" media="all">
     <!-- modernizr js -->
     <script src="assets/js/vendor/modernizr-3.5.0.min.js"></script>
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 @endsection
 
 @section('content')
-    <div class="gallery-area mt-2">
+    <div class="gallery-area mt-2" data-aos="fade-down">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 col-md-6 p-0 gallery-content">
@@ -66,7 +68,7 @@
         </div>
     </div>
 
-    <div class="prioritas mt-3 py-5" style="background-color: #11689B">
+    <div class="prioritas mt-3 py-5" style="background-color: #11689B" data-aos="fade-down">
         <div class="container-fluid">
             <div class="row">
                 <div class="col">
@@ -119,7 +121,7 @@
         </div>
     </div>
 
-    <div class="slider-gallery-container mt-3">
+    <div class="slider-gallery-container mt-3" data-aos="fade-down">
         <div class="container-fluid">
             <div class="row">
                 <div class="slider-gallery owl-carousel">
@@ -164,7 +166,7 @@
         </div>
     </div>
 
-    <div class="project mt-5 mb-5">
+    <div class="project mt-5 mb-5" data-aos="fade-down">
         <div class="container-fluid">
             <div class="row text-center">
                 <div class="col-12">
@@ -185,7 +187,7 @@
                         <div class="position-absolute project-content bg-primary"
                             style="background: url('assets/images/project/1.png');">
                         </div>
-                        <di-fluidv class="project-detail">
+                        <div class="project-detail">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-12">
@@ -242,18 +244,18 @@
                                     </div>
                                 </div>
                             </div>
-                        </di-fluidv>
+                        </div>
                     </div>
                     <div class="position-relative" style="min-height: 300px">
                         <div class="position-absolute project-content"
-                            style="background: url('assets/images/project/1.png');">
+                            style="background: url('assets/images/project/2.png');">
                         </div>
                         <div class="project-detail">
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-12">
-                                        <h3 class="text-white">RN Subang 2</h3>
-                                        <p style="margin: 0px !important;">Subang, Jawa Barat</p>
+                                        <h3 class="text-white">RN MAJALENGKA 2</h3>
+                                        <p style="margin: 0px !important;">Majalengka, Jawa Barat</p>
                                         <p style="margin: 0px !important;">Rp.166.000.000 -,</p>
                                         <div class="mt-1 mb-4 d-flex" style="gap: 8px">
                                             <div class="d-flex" style="height: 20px; gap: 12px">
@@ -309,14 +311,14 @@
                     </div>
                     <div class="position-relative" style="min-height: 300px">
                         <div class="position-absolute project-content"
-                            style="background: url('assets/images/project/1.png');">
+                            style="background: url('assets/images/project/3.png');">
                         </div>
                         <div class="project-detail">
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-12">
-                                        <h3 class="text-white">RN Subang 2</h3>
-                                        <p style="margin: 0px !important;">Subang, Jawa Barat</p>
+                                        <h3 class="text-white">RN KENDAL 2</h3>
+                                        <p style="margin: 0px !important;">Kendal, Jawa Tengah</p>
                                         <p style="margin: 0px !important;">Rp.166.000.000 -,</p>
                                         <div class="mt-1 mb-4 d-flex" style="gap: 8px">
                                             <div class="d-flex" style="height: 20px; gap: 12px">
@@ -372,14 +374,14 @@
                     </div>
                     <div class="position-relative" style="min-height: 300px">
                         <div class="position-absolute project-content"
-                            style="background: url('assets/images/project/1.png');">
+                            style="background: url('assets/images/project/4.png');">
                         </div>
                         <div class="project-detail">
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-12">
-                                        <h3 class="text-white">RN Subang 2</h3>
-                                        <p style="margin: 0px !important;">Subang, Jawa Barat</p>
+                                        <h3 class="text-white">RN INDRAMAYU 2 (MARGADADI)</h3>
+                                        <p style="margin: 0px !important;">Indramayu, Jawa Barat</p>
                                         <p style="margin: 0px !important;">Rp.166.000.000 -,</p>
                                         <div class="mt-1 mb-4 d-flex" style="gap: 8px">
                                             <div class="d-flex" style="height: 20px; gap: 12px">
@@ -435,14 +437,14 @@
                     </div>
                     <div class="position-relative" style="min-height: 300px">
                         <div class="position-absolute project-content"
-                            style="background: url('assets/images/project/1.png');">
+                            style="background: url('assets/images/project/5.png');">
                         </div>
                         <div class="project-detail">
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-12">
-                                        <h3 class="text-white">RN Subang 2</h3>
-                                        <p style="margin: 0px !important;">Subang, Jawa Barat</p>
+                                        <h3 class="text-white">RN SAMPORA</h3>
+                                        <p style="margin: 0px !important;">Kuningan, Jawa Barat</p>
                                         <p style="margin: 0px !important;">Rp.166.000.000 -,</p>
                                         <div class="mt-1 mb-4 d-flex" style="gap: 8px">
                                             <div class="d-flex" style="height: 20px; gap: 12px">
@@ -498,14 +500,14 @@
                     </div>
                     <div class="position-relative" style="min-height: 300px">
                         <div class="position-absolute project-content"
-                            style="background: url('assets/images/project/1.png');">
+                            style="background: url('assets/images/project/6.png');">
                         </div>
                         <div class="project-detail">
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-12">
-                                        <h3 class="text-white">RN Subang 2</h3>
-                                        <p style="margin: 0px !important;">Subang, Jawa Barat</p>
+                                        <h3 class="text-white">RN KAYANGAN</h3>
+                                        <p style="margin: 0px !important;">Cirebon, Jawa Barat</p>
                                         <p style="margin: 0px !important;">Rp.166.000.000 -,</p>
                                         <div class="mt-1 mb-4 d-flex" style="gap: 8px">
                                             <div class="d-flex" style="height: 20px; gap: 12px">
@@ -619,6 +621,9 @@
     <!-- ragrslider js -->
     <script src="assets/js/mixitup.min.js"></script>
 
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     <!-- theme js -->
     <script src="assets/js/theme.js"></script>
 
@@ -626,6 +631,8 @@
     <script src="assets/js/script.js"></script>
 
     <script>
+        AOS.init();
+
         function changeToggle() {
             let toggle = document.getElementById("toggle");
             let h3 = document.getElementsByClassName("h3");

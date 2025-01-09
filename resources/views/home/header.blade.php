@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="col-lg-2 text-end">
-                <button type="button" class="btn btn-primary btn-sm">Masuk</button>
+                <button type="button" class="btn btn-primary btn-sm">Masuk <i class="bi bi-person"></i></button>
             </div>
         </div>
     </div>
