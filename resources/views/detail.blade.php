@@ -45,19 +45,20 @@
     <link href="https://cdn.maptiler.com/maptiler-sdk-js/v2.5.1/maptiler-sdk.css" rel="stylesheet" />
     <script src="https://cdn.maptiler.com/leaflet-maptilersdk/v2.0.0/leaflet-maptilersdk.js"></script>
     <style>
+        .leaflet-overlay-pane svg {
+            pointer-events: auto;
+            /* Pastikan SVG dapat menangkap klik */
+        }
 
-.leaflet-overlay-pane svg {
-  pointer-events: auto; /* Pastikan SVG dapat menangkap klik */
-}
-.leaflet-overlay-pane svg .clickable {
-  pointer-events: auto; /* Pastikan SVG dapat menangkap klik */
-}
-.leaflet-overlay-pane svg g {
-  pointer-events: auto; /* Pastikan SVG dapat menangkap klik */
-}
+        .leaflet-overlay-pane svg .clickable {
+            pointer-events: auto;
+            /* Pastikan SVG dapat menangkap klik */
+        }
 
-
-
+        .leaflet-overlay-pane svg g {
+            pointer-events: auto;
+            /* Pastikan SVG dapat menangkap klik */
+        }
     </style>
 @endsection
 
@@ -502,14 +503,22 @@
                                     <div id="blok-container">
                                         @foreach ($blokTersedia as $blok)
                                             <div class="item-blok px-3 py-2">
-                                                <div class="d-flex flex-column">
+                                                <div class="d-flex flex-column justify-content-center">
                                                     <p style="line-height: 10px" class="fw-bold">Blok
                                                         {{ $blok->blok }}</p>
-                                                    <p style="line-height: 10px">Sisa {{ $blok->sisa_unit }} unit</p>
+                                                    @if ($blok->sisa_unit >= 10)
+                                                        <?php $ket_blok = 'Tersedia'; ?>
+                                                    @elseif($blok->sisa_unit < 10 && $blok->sisa_unit > 3)
+                                                        <?php $ket_blok = 'Kurang Dari'; ?>
+                                                    @else
+                                                        <?php $ket_blok = 'Sisa'; ?>
+                                                    @endif
+                                                    <p style="margin-bottom:0px;line-height: 10px">{{ $ket_blok }}
+                                                        {{ $blok->sisa_unit }} unit</p>
                                                 </div>
-                                                <div class="d-flex flex-column text-end">
+                                                <div class="d-flex flex-column justify-content-center text-end">
                                                     <p style="line-height: 10px">Biaya Mulai</p>
-                                                    <p style="line-height: 10px; color: #DE0000;">
+                                                    <p style="margin-bottom:0px;line-height: 10px; color: #DE0000;">
                                                         {{ $blok->terima_kunci }}
                                                     </p>
                                                 </div>
@@ -532,7 +541,6 @@
                                     @foreach ($bloks as $blok)
                                         <option value="{{ $blok->blok }}" data-harga="{{ $blok->terima_kunci }}"
                                             data-nominal="{{ $blok->nominal_booking }}" data-dp="{{ $blok->dp }}"
-
                                             data-harga_tanah="{{ $blok->harga_tanah }}"
                                             data-biaya_pagar="{{ $blok->biaya_pagar }}"
                                             data-biaya_tembok="{{ $blok->biaya_tembok }}"
@@ -646,7 +654,8 @@
                                             <p>Uang Muka DP</p>
                                         </div>
                                         <div class="col-6 text-end">
-                                            <p class="text-decoration-line-through d-inline text-danger" id="value_dp">Rp.5.000.000</p>
+                                            <p class="text-decoration-line-through d-inline text-danger" id="value_dp">
+                                                Rp.5.000.000</p>
                                             <p class=" d-inline">Rp. 0</p>
                                         </div>
                                     </div>
@@ -1431,11 +1440,11 @@
                 console.error('Error loading SVG:', xhr.statusText);
             }
             $('svg g').each(function() {
-            if ($(this).find('desc').length > 0 && $(this).find('desc').text().includes(',')) {
-                $(this).addClass('clickable');
-                $(this).css('cursor', 'pointer');
-            }
-        });
+                if ($(this).find('desc').length > 0 && $(this).find('desc').text().includes(',')) {
+                    $(this).addClass('clickable');
+                    $(this).css('cursor', 'pointer');
+                }
+            });
         }
 
         // format rupiah
@@ -1750,75 +1759,118 @@
         }
 
         function addLegend(map) {
-            var legend = L.control({ position: 'bottomright' }); // Gunakan bottomleft untuk dasar
+            var legend = L.control({
+                position: 'bottomright'
+            }); // Gunakan bottomleft untuk dasar
 
-legend.onAdd = function () {
-    var div = L.DomUtil.create('div', 'legend card shadow-sm text-center leaflet-bottom-center');
+            legend.onAdd = function() {
+                var div = L.DomUtil.create('div', 'legend card shadow-sm text-center leaflet-bottom-center');
 
-    var legendContent = $('<div>').addClass('legend-content d-flex flex-column p-2');
+                var legendContent = $('<div>').addClass('legend-content d-flex flex-column p-2');
 
-    var statusRow = $('<div>').addClass('d-flex flex-wrap justify-content-center align-items-center');
-    var progresRow = $('<div>').addClass('d-flex flex-wrap justify-content-center align-items-center');
+                var statusRow = $('<div>').addClass('d-flex flex-wrap justify-content-center align-items-center');
+                var progresRow = $('<div>').addClass('d-flex flex-wrap justify-content-center align-items-center');
 
-    var statusItems = [
-        { color: '#C3C28E', text: 'Not Sale' },
-        { color: '#B3E5BE', text: 'Akad' },
-        { color: '#45b6fe', text: 'Booking Cash' },
-        { color: '#FD8A8A', text: 'Booking' },
-        { color: '#FDFFAE', text: 'SP3K' },
-        { color: 'white', border: '1px solid #ccc', text: 'Kosong' },
-        { color: '#990066', text: 'Pindah Blok' },
-        { color: '#B983FF', text: 'Bank' }
-    ];
+                var statusItems = [{
+                        color: '#C3C28E',
+                        text: 'Not Sale'
+                    },
+                    {
+                        color: '#B3E5BE',
+                        text: 'Akad'
+                    },
+                    {
+                        color: '#45b6fe',
+                        text: 'Booking Cash'
+                    },
+                    {
+                        color: '#FD8A8A',
+                        text: 'Booking'
+                    },
+                    {
+                        color: '#FDFFAE',
+                        text: 'SP3K'
+                    },
+                    {
+                        color: 'white',
+                        border: '1px solid #ccc',
+                        text: 'Kosong'
+                    },
+                    {
+                        color: '#990066',
+                        text: 'Pindah Blok'
+                    },
+                    {
+                        color: '#B983FF',
+                        text: 'Bank'
+                    }
+                ];
 
-    var progresItems = [
-        { color: '#B9F3FC', text: '0% - 9%' },
-        { color: '#9F8772', text: '10% - 29%' },
-        { color: '#B7B7B7', text: '30% - 59%' },
-        { color: '#1572A1', text: '60% - 84%' },
-        { color: '#FAAB78', text: '85% - 99%' },
-        { color: '#FF8DC7', text: '100%' }
-    ];
+                var progresItems = [{
+                        color: '#B9F3FC',
+                        text: '0% - 9%'
+                    },
+                    {
+                        color: '#9F8772',
+                        text: '10% - 29%'
+                    },
+                    {
+                        color: '#B7B7B7',
+                        text: '30% - 59%'
+                    },
+                    {
+                        color: '#1572A1',
+                        text: '60% - 84%'
+                    },
+                    {
+                        color: '#FAAB78',
+                        text: '85% - 99%'
+                    },
+                    {
+                        color: '#FF8DC7',
+                        text: '100%'
+                    }
+                ];
 
-    function appendItems(items, container) {
-        items.forEach(function(item) {
-            var legendItem = $('<div>').addClass('d-flex align-items-center me-3');
-            var box = $('<span>').addClass('legend-box me-1').css({ background: item.color, border: item.border || 'none' });
-            legendItem.append(box).append(item.text);
-            container.append(legendItem);
-        });
-    }
+                function appendItems(items, container) {
+                    items.forEach(function(item) {
+                        var legendItem = $('<div>').addClass('d-flex align-items-center me-3');
+                        var box = $('<span>').addClass('legend-box me-1').css({
+                            background: item.color,
+                            border: item.border || 'none'
+                        });
+                        legendItem.append(box).append(item.text);
+                        container.append(legendItem);
+                    });
+                }
 
-    appendItems(statusItems, statusRow);
-    appendItems(progresItems, progresRow);
+                appendItems(statusItems, statusRow);
+                appendItems(progresItems, progresRow);
 
-    legendContent.append(statusRow);
-    legendContent.append($('<hr style="border: 0,6px solid black">').addClass('my-1'));
-    legendContent.append(progresRow);
+                legendContent.append(statusRow);
+                legendContent.append($('<hr style="border: 0,6px solid black">').addClass('my-1'));
+                legendContent.append(progresRow);
 
                 $(div).append(legendContent);
 
-    return div;
-};
+                return div;
+            };
 
-legend.addTo(map);
+            legend.addTo(map);
 
-}
-
-
-$(document).on('click', '.leaflet-overlay-pane svg', function (e) {
-
-  console.log($(this));
-  alert('Klik pada elemen SVG <g>');
-});
-$(document).on('click', '.leaflet-overlay-pane .clickable', function (e) {
-
-  console.log($(this));
-  alert('Klik pada elemen SVG <g>');
-});
+        }
 
 
+        $(document).on('click', '.leaflet-overlay-pane svg', function(e) {
 
+            console.log($(this));
+            alert('Klik pada elemen SVG <g>');
+        });
+        $(document).on('click', '.leaflet-overlay-pane .clickable', function(e) {
+
+            console.log($(this));
+            alert('Klik pada elemen SVG <g>');
+        });
     </script>
     @include('modal.lokasi_detail_js')
     @include('modal.spesifikasi_detail_js')
