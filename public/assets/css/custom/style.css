@@ -1,9 +1,32 @@
 /* custome css */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap");
 
+:root {
+    --fontFamily: "Poppins", serif;
+    --fontSize: 12px;
+    --fontWeight: 500;
+}
+
+body {
+    font-family: var(--fontFamily);
+    font-weight: var(--fontWeight);
+}
+
 html,
 body {
     overflow-y: hidden;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    :root {
+        scroll-behavior: smooth;
+    }
 }
 
 #wrapper-detail p,
@@ -379,7 +402,7 @@ label {
 .stikcy-nav-container {
     position: relative;
     animation: fadeInDown;
-    animation-duration: 2s;
+    animation-duration: 1s;
 }
 
 .navbar .btn.btn-primary.btn-sm {
