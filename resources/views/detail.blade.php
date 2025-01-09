@@ -72,9 +72,10 @@
     <div class="stikcy-nav-container" id="sticky-header">
         <nav class="navbar p-0" style="background-color: #005991E5">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{ url('/assets/images/fav-icon/icon-ningrat.png') }}" alt="Logo" height="40px">
                 </a>
+                <button type="button" class="btn btn-primary btn-sm">Masuk</button>
             </div>
         </nav>
     </div>

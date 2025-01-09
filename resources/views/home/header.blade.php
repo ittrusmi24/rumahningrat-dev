@@ -7,7 +7,7 @@
             <div class="col-lg-10">
                 <div class="logo">
                     <a href="{{ url('/') }}"><img src="{{ url('/assets/images/fav-icon') }}/icon-ningrat.png"
-                            alt="" style="height: 50px"></a>
+                            alt="logo" style="height: 50px"></a>
                 </div>
             </div>
             <div class="col-lg-2 text-end">
@@ -22,7 +22,7 @@
     <div class="mobile-menu">
         <div class="mobile-logo">
             <a href="{{ url('/') }}"><img src="{{ url('/assets/images/fav-icon') }}/icon-ningrat.png"
-                    alt=""></a>
+                    alt="logo" style="height: 50px"></a>
         </div>
         <div class="side-menu-info">
             <div class="sidebar-menu">
