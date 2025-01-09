@@ -32,6 +32,7 @@ class DashboardController extends Controller
         $fasilitasSekitar = FasilitasSekitar::get_fasilitas_sekitar_by_id_project_grouped($id_project);
         $blok = BlokTersedia::get_blok_by_id_project($id_project);
         $groupBlok = BlokTersedia::get_grup_blok_by_id_project($id_project);
+        // dd($blok);
         $groupBlok = Arr::map($groupBlok, function ($value) {
             $value->terima_kunci = Number::currency($value->terima_kunci ?? 0, in: 'IDR', locale: 'id_ID');
             $value->terima_kunci = str_replace(',00', '',  $value->terima_kunci);
@@ -63,5 +64,20 @@ class DashboardController extends Controller
                 // 'content'=>$content
             ]
         );
+    }
+    public function status_blok(){
+        $blok = BlokTersedia::get_blok_by_id_project($id_project);
+        $groupBlok = BlokTersedia::get_grup_blok_by_id_project($id_project);
+        // dd($blok);
+        $groupBlok = Arr::map($groupBlok, function ($value) {
+            $value->terima_kunci = Number::currency($value->terima_kunci ?? 0, in: 'IDR', locale: 'id_ID');
+            $value->terima_kunci = str_replace(',00', '',  $value->terima_kunci);
+            return $value;
+        });
+        $blok = Arr::map($blok, function ($value) {
+            $value->terima_kunci = $value->terima_kunci ?? 0;
+            return $value;
+        });
+        return response()->json($blok);
     }
 }
