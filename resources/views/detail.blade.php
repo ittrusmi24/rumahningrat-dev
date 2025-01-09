@@ -1196,7 +1196,7 @@
 
         function load_data_blok() {
             $.ajax({
-                url: `{{ url('/') }}/dummy.json`,
+                url: `{{ url('/status_blok/70') }}`,
                 method: 'GET',
                 dataType: 'json',
                 success: function(response) {
@@ -1796,15 +1796,15 @@ legend.addTo(map);
 }
 
 
-$(document).on('click', '.leaflet-overlay-pane svg', function (e) {
+$(document).on('click', '.leaflet-overlay-pane #A34', function (e) {
 
   console.log($(this));
-  alert('Klik pada elemen SVG <g>');
+//   alert('Klik pada elemen SVG <g>');
 });
 $(document).on('click', '.leaflet-overlay-pane .clickable', function (e) {
 
   console.log($(this));
-  alert('Klik pada elemen SVG <g>');
+//   alert('Klik pada elemen SVG <g>');
 });
 
 
