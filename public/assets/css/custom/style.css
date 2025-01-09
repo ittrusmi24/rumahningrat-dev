@@ -492,6 +492,19 @@ video {
     height: 100vh;
 }
 
+.legend-box {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+}
+.legend.card {
+    /* font-family: Arial, sans-serif; */
+    font-size: 10px;
+    width: 100%;
+}
+
+
 /* responsive breakpoints */
 
 /* desktop */
@@ -604,8 +617,27 @@ video {
         right: unset;
     }
 
+<<<<<<< HEAD
     .navbar .btn.btn-primary.btn-sm {
         font-size: 10px;
         padding: 4px;
     }
+=======
+    .legend-box {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 3px;
+    }
+    .legend.card {
+        /* font-family: Arial, sans-serif; */
+        font-size: 8px;
+        width: 100%;
+    }
+
+
+    /* .sticky-container {
+        position: relative;
+    } */
+>>>>>>> 67efa4f1f91ae50f8810038a9189a3ea472ebdce
 }
