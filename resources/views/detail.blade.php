@@ -113,7 +113,7 @@
                         <iframe src="{{ url('/poi_view') }}" frameborder="0" width="100%" height="100%"></iframe>
                     </div>
                 </div>
-                <div class="d-none owl-hidden" id="gallery-carousel-6">
+                <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-6">
                     <div id="map">
                     </div>
                 </div>
