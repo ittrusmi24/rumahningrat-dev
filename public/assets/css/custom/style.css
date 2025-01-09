@@ -502,7 +502,7 @@ video {
     z-index: 9 !important;
 }
 .chatboxes.align-center {
-    left: var(--WinDOORS-sidebar-width);
+    left: 250px;
     right: 0;
     top: auto;
     display: inline-block;
@@ -561,7 +561,7 @@ video {
     z-index: 1;
 }
 .chatboxes .dropdown-toggle.show {
-    border: 2px solid var(--WinDOORS-theme-color);
+    border: 2px solid #fff;
 }
 .chatboxes > div,
 .chatboxes > .dropmenu {
@@ -607,19 +607,19 @@ video {
 }
 
 .rightbar-open .chatboxes.align-right {
-    right: calc(var(--WinDOORS-rightbar-width) + 30px);
+    right: calc(310px + 30px);
 }
 
 .chat-list {
     margin: 0px auto 0px auto;
-    font-size: var(--WinDOORS-fontSize);
-    background-color: rgba(var(--WinDOORS-theme-rgb), 0.05) !important;
+    font-size: 12px;
+    background-color: rgba(1, 94, 194, 0.05) !important;
 }
 .chat-list .figure,
 .chat-list figure,
 .chat-list iframe,
 .chat-list video {
-    border-radius: var(--WinDOORS-rounded);
+    border-radius: 0.25rem;
     overflow: hidden;
     display: block;
     max-width: 100%;
@@ -628,11 +628,10 @@ video {
     margin-bottom: 15px;
 }
 .chat-list .left-chat .chat-block {
-    background-color: var(--WinDOORS-theme);
-    color: var(--WinDOORS-theme-color);
+    background-color: #015ec2;
+    color: #ffffff;
     padding: 15px;
-    border-radius: var(--WinDOORS-rounded) var(--WinDOORS-rounded)
-        var(--WinDOORS-rounded) 0px;
+    border-radius: 0.25rem 0.25rem 0.25rem 0px;
     margin-right: 3px;
     position: relative;
     width: auto;
@@ -655,8 +654,8 @@ video {
     border-style: solid;
     border-width: 10px;
     z-index: 1;
-    border-top-color: var(--WinDOORS-theme);
-    border-left-color: var(--WinDOORS-theme);
+    border-top-color: #015ec2;
+    border-left-color: #015ec2;
 }
 .chat-list .left-chat .time {
     padding-left: 15px;
@@ -667,11 +666,10 @@ video {
 }
 .chat-list .right-chat .chat-block {
     text-align: left;
-    background-color: var(--WinDOORS-theme-color);
-    color: var(--WinDOORS-theme-text);
+    background-color: #ffffff;
+    color: #000000;
     padding: 15px;
-    border-radius: var(--WinDOORS-rounded) var(--WinDOORS-rounded) 0px
-        var(--WinDOORS-rounded);
+    border-radius: 0.25rem 0.25rem 0px 0.25rem;
     margin-left: 3px;
     position: relative;
     width: auto;

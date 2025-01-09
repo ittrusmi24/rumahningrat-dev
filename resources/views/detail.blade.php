@@ -36,8 +36,6 @@
     <script src="{{ url('/') }}/assets/js/vendor/modernizr-3.5.0.min.js"></script>
     {{-- datetime picker --}}
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-    {{-- AOS --}}
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     {{-- animatecss --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     {{-- css style this page --}}
@@ -523,41 +521,10 @@
                                             </div>
                                         @endforeach
                                     </div>
-                                    <div class="bank-section mt-5">
-                                        <h4 class="text-center">Bank Tersedia</h4>
-                                        <div class="row mt-3">
-                                            <div class="col-4">
-                                                <img src="{{ url('/assets/images/icon') }}/bca.png" alt=""
-                                                    width="75px" height="24px">
-                                            </div>
-                                            <div class="col-4">
-                                                <img src="{{ url('/assets/images/icon') }}/bjb.png" alt=""
-                                                    width="75px" height="24px">
-                                            </div>
-                                            <div class="col-4">
-                                                <img src="{{ url('/assets/images/icon') }}/bri.png" alt=""
-                                                    width="75px" height="24px">
-                                            </div>
-                                        </div>
-                                        <div class="row mt-3">
-                                            <div class="col-4">
-                                                <img src="{{ url('/assets/images/icon') }}/mandiri.png" alt=""
-                                                    width="75px" height="24px">
-                                            </div>
-                                            <div class="col-4">
-                                                <img src="{{ url('/assets/images/icon') }}/bni.png" alt=""
-                                                    width="75px" height="24px">
-                                            </div>
-                                            <div class="col-4">
-                                                <img src="{{ url('/assets/images/icon') }}/btn.png" alt=""
-                                                    width="75px" height="24px">
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row mb-3">
+                        <div class="row mb-3 mt-4">
                             <div class="col-12">
                                 <div class="header-detail text-center mb-5">
                                     <h4>Pilih Blok</h4>
@@ -585,14 +552,14 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="row mt-3">
+                        {{-- <div class="row mt-3">
                             <div class="col"></div>
                             <div class="col-10 text-center">
                                 <p>Sudah dapat terima kunci dengan nominal</p>
                                 <p class="text-danger" id="harga_blok">Rp.1.000.000</p>
                             </div>
                             <div class="col"></div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="aside-section" id="aside-section-7">
@@ -617,7 +584,7 @@
                                     <div class="mb-2">
                                         <label class="form-label">No Handphone</label>
                                         <input type="tel" class="form-control" name="no_hp" id="no_hp"
-                                            placeholder="6281234567812" autocomplete="off" oninput="validasiNoHp(this)">
+                                            autocomplete="off" oninput="validasiNoHp(this)">
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">Tanggal Lahir</label>
@@ -626,6 +593,7 @@
                                     <div class="mb-2">
                                         <label class="form-label">Jenis Kelamin</label>
                                         <select class="form-select" name="jenis_kelamin" id="jenis_kl">
+                                            <option value="" selected>-- Pilih Jenis Kelamin --</option>
                                             <option value="l">Laki - laki</option>
                                             <option value="p">Perempuan</option>
                                         </select>
@@ -648,6 +616,7 @@
                                     <div class="mb-2">
                                         <label class="form-label">Status</label>
                                         <select class="form-select" name="status" id="status">
+                                            <option value="" selected>-- Pilih Status --</option>
                                             <option value="1">Lajang</option>
                                             <option value="2">Menikah</option>
                                             <option value="3">Cerai</option>
@@ -764,6 +733,37 @@
                                             <p class="d-inline fw-bold" id="value_total">Rp. 9.250.000</p>
                                         </div>
                                     </div>
+                                    <div class="bank-section mt-5">
+                                        <h4 class="text-center">Bank Tersedia</h4>
+                                        <div class="row mt-3">
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/bca.png" alt=""
+                                                    width="75px" height="24px">
+                                            </div>
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/bjb.png" alt=""
+                                                    width="75px" height="24px">
+                                            </div>
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/bri.png" alt=""
+                                                    width="75px" height="24px">
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/mandiri.png" alt=""
+                                                    width="75px" height="24px">
+                                            </div>
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/bni.png" alt=""
+                                                    width="75px" height="24px">
+                                            </div>
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/btn.png" alt=""
+                                                    width="75px" height="24px">
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="mb-4 mt-5">
                                         <h4 class="text-center">Pembayaran</h4>
                                     </div>
@@ -872,7 +872,8 @@
                             <div class="price text-dark" id="price">Rp.500.000</div>
                             <div class="note">*biaya booking + BI checking</div>
                         </div>
-                        <button class="btn btn-primary" onclick="validasiBook()" style="border-radius: 10px">Booking
+                        <button class="btn btn-primary" id="btn-booking" onclick="validasiBook()"
+                            style="border-radius: 10px">Booking
                             Sekarang</button>
                     </div>
                 </div>
@@ -952,12 +953,6 @@
     <!-- datetime picker -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-
-    <!-- AOS -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-    {{-- detail js --}}
-    {{-- <script src="{{ url('/assets') }}/detail.js"></script> --}}
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -1080,7 +1075,13 @@
                 singleDatePicker: true,
                 showDropdowns: true,
                 minYear: 1901,
-                maxYear: parseInt(moment().format('YYYY'), 10)
+                maxYear: parseInt(moment().format('YYYY'), 10),
+                autoUpdateInput: false // Membuat input awal kosong
+            });
+
+            // Menangani event apply untuk memperbarui nilai input
+            $('input[name="tgl_lahir"]').on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('DD/MM/YYYY')); // Format menjadi DD/MM/YYYY
             });
 
             $('.owl-carousel').owlCarousel({
@@ -1705,6 +1706,12 @@
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Jika diperlukan CSRF
                     },
+                    beforeSend: function() {
+                        $('#btn-booking').html(`Loading...
+                            <div class="spinner-border" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>`);
+                    },
                     success: function(response) {
                         if (response.status) {
                             $('#bayarGci').attr('href',
@@ -1732,6 +1739,9 @@
                             showConfirmButton: false,
                             timer: 3000
                         });
+                    },
+                    complete: function() {
+                        $('#btn-booking').html('Booking Sekarang');
                     }
                 });
             }
