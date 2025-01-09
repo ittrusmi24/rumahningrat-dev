@@ -140,9 +140,9 @@
                                     <h4 id="nama_project">{{ $project['title_dua'] }}</h4>
                                 </div>
                                 <div class="body-detail">
-                                    <p><strong
+                                    {{-- <p><strong
                                             id="harga_project">{{ str_replace(',00', '', Number::currency($project['harga_jual'] ?? 0, in: 'IDR', locale: 'id_ID')) }}</strong>
-                                    </p>
+                                    </p> --}}
                                     {{-- <p id="project_tipe">{{ $project['project_tipe'] }}</p> --}}
                                     <p>Rumah Tipe <span id="tipe_rumah">{{ $project['tipe_rumah'] }}</span> m²</p>
                                     <p id="alamat">{{ $project['alamat'] }}</p>
@@ -175,7 +175,7 @@
                                                     <p class="m-0">Cicilan 10 Tahun</p>
                                                 </div>
                                                 <div class="text-end">
-                                                    <strong class="m-0">Rp.1.933.400</strong>/bln
+                                                    <strong class="m-0">Rp.1.730.400</strong>/bln
                                                 </div>
                                             </div>
                                             <div class="item-opsi px-3 py-2">
@@ -183,7 +183,7 @@
                                                     <p class="m-0">Cicilan 15 Tahun</p>
                                                 </div>
                                                 <div class="text-end">
-                                                    <strong class="m-0">Rp. 1.198.000</strong>/bln
+                                                    <strong class="m-0">Rp.1.287.300</strong>/bln
                                                 </div>
                                             </div>
                                             <div class="item-opsi px-3 py-2">
@@ -349,7 +349,9 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="header-detail text-center mb-5">
-                                    <h4>Gratis Pagar & Tembok Keliling</h4>
+                                    <p>Dalam Rangka menjadi devloper terbaik Kami berikan <strong>Free pagar</strong> dan
+                                        <strong>Tembok keliling</strong> untuk rumah Edisi tahun 2025
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -381,6 +383,15 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container mt-3">
+                        <div class="row">
+                            <div class="col text-center">
+                                <p>Program ini kami dedikasikan untuk konsumen dengan kualitas matrial besi terbaik sehingga
+                                    bisa menghemat sampai dengan 10 juta dengan free pagar</p>
+                                <p>Dilengkapi dengan tembok dapur dengan kualitas bata habel terbaik</p>
                             </div>
                         </div>
                     </div>
