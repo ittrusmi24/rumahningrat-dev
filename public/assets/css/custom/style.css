@@ -52,15 +52,15 @@ label {
 
 /* opsi bayar section */
 #opsi-bayar-container {
-    overflow-y: auto;
-    max-height: 200px;
+    /* overflow-y: auto;
+    max-height: 200px; */
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
 #opsi-bayar-container::-webkit-scrollbar {
-    display: none; /* Hides scrollbar in WebKit browsers */
+    /* display: none; */
 }
 
 .item-opsi {

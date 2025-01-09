@@ -174,7 +174,7 @@
                                                     <p class="m-0">Cicilan 10 Tahun</p>
                                                 </div>
                                                 <div class="text-end">
-                                                    <strong class="m-0">Rp.1.730.400</strong>/bln
+                                                    <strong class="m-0">Rp.1.933.400</strong>/bln
                                                 </div>
                                             </div>
                                             <div class="item-opsi px-3 py-2">
@@ -182,7 +182,7 @@
                                                     <p class="m-0">Cicilan 15 Tahun</p>
                                                 </div>
                                                 <div class="text-end">
-                                                    <strong class="m-0">Rp. 1.287.300</strong>/bln
+                                                    <strong class="m-0">Rp. 1.198.000</strong>/bln
                                                 </div>
                                             </div>
                                             <div class="item-opsi px-3 py-2">
@@ -203,7 +203,7 @@
                                                     <p class="m-0">Cicilan 10 Tahun</p>
                                                 </div>
                                                 <div class="text-end">
-                                                    <strong class="m-0">Rp.1.730.400</strong>/bln
+                                                    <strong class="m-0">Rp.1.933.400</strong>/bln
                                                 </div>
                                             </div>
                                             <div class="item-opsi px-3 py-2">
@@ -211,7 +211,7 @@
                                                     <p class="m-0">Cicilan 15 Tahun</p>
                                                 </div>
                                                 <div class="text-end">
-                                                    <strong class="m-0">Rp. 1.287.300</strong>/bln
+                                                    <strong class="m-0">Rp. 1.198.000</strong>/bln
                                                 </div>
                                             </div>
                                             <div class="item-opsi px-3 py-2">
@@ -232,7 +232,8 @@
                                                     <p class="m-0">Tanpa Cicilan</p>
                                                 </div>
                                                 <div class="text-end">
-                                                    <strong class="m-0">Rp.186.000.000</strong>
+                                                    <strong
+                                                        class="m-0">{{ str_replace(',00', '', Number::currency($project['harga_jual'] ?? 0, in: 'IDR', locale: 'id_ID')) }}</strong>
                                                 </div>
                                             </div>
                                         </div>
