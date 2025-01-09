@@ -1,4 +1,3 @@
- <link rel="stylesheet" href="{{ asset('/assets/css/custom/style2.css') }}">
  <!-- dropdown for support  -->
  <div class="chatboxes w-auto align-right bottom-0 mb-2">
 
@@ -16,7 +15,7 @@
          </div>
          <div class="dropdown-menu dropdown-menu-end w-300 p-0">
              <!-- chat box here  -->
-             <div class="card shadow-none border-0">
+             <div class="card shadow-none border-0" style="width: 600px; height: 80vh;">
                  <div class="card-header">
                      <div class="row align-items-center">
                          <div class="col align-self-center">
