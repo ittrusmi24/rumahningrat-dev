@@ -46,11 +46,14 @@ Route::get('/test', function () {
 });
 Route::get('/test-event', function () {
     $data = [
-        'id_gci' => 'GCI2501020001',
+        'id_gci' => 'GCI2501080089',
     ];
     // Trigger event
     dd(event(new \App\Events\BookingCreated($data)));
-    return 'Event telah dijalankan';
+    echo 'Event telah dijalankan';
+});
+Route::get('/test-whatsapp', function () {
+    dd("env : " . env('WHATSAPP_CHANNEL_ID'));
 });
 // Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/detail/{id_project}', [DashboardController::class, 'detail'])->name('detail');

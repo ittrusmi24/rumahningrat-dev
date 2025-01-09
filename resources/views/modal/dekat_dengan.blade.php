@@ -7,9 +7,9 @@
                 <div class="container-fluid p-0 m-0">
                     <div class="row p-0 m-0">
                         <div class="p-0 m-0 col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6">
-                            <div class="vt_view">
+                            <div class="vt_view_detail">
                                 <iframe src="{{ url('/poi_view') }}" frameborder="0" width="100%"
-                                    height="100%"></iframe>
+                                    height="320px"></iframe>
                             </div>
                         </div>
                         <div class="p-0 m-0 col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6">
@@ -58,18 +58,20 @@
                                     </div>
                                 @endforeach
                             </div>
+                        </div>
+                        <div class="p-0 m-0 col-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                             <div class="ps-4 pe-4 pt-2">
                                 <div id="loader_table_dekat_dengan" class="placeholder-glow">
                                     <div class="placeholder" style="height: 300px;width:100%;border-radius: 10px;">
                                     </div>
                                 </div>
                                 <div class="table-responsive">
-                                    <table id="table_dekat_dengan"
+                                    <table id="table_dekat_dengan" width="100%"
                                         class="table table-sm table-borderless small text-nowrap">
                                         <thead>
                                             <tr>
-                                                <th>Nama</th>
-                                                <th>Alamat</th>
+                                                <th style="width: 50%">Nama</th>
+                                                <th style="width: 50%">Alamat</th>
                                             </tr>
                                         </thead>
                                         <tbody id="tbody_dekat_dengan">
