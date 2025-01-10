@@ -1204,7 +1204,7 @@
 
         function load_data_blok() {
             $.ajax({
-                url: `{{ url('/') }}/dummy.json`,
+                url: `{{ url('/status_blok/70') }}`,
                 method: 'GET',
                 dataType: 'json',
                 success: function(response) {
@@ -1438,11 +1438,12 @@
                 console.error('Error loading SVG:', xhr.statusText);
             }
             $('svg g').each(function() {
-                if ($(this).find('desc').length > 0 && $(this).find('desc').text().includes(',')) {
-                    $(this).addClass('clickable');
-                    $(this).css('cursor', 'pointer');
-                }
-            });
+            if ($(this).find('desc').length > 0 && $(this).find('desc').text().includes(',')) {
+                $(this).addClass('clickable');
+                $(this).css('cursor', 'pointer');
+                $(this).css('pointer-events', 'auto');
+            }
+        });
         }
 
         // format rupiah
