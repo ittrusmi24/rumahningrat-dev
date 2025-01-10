@@ -47,18 +47,25 @@
     <style>
         .leaflet-overlay-pane svg {
             pointer-events: auto;
-            /* Pastikan SVG dapat menangkap klik */
+        }
+        .leaflet-overlay-pane g {
+            pointer-events: auto;
         }
 
-        .leaflet-overlay-pane svg .clickable {
+        svg .clickable {
             pointer-events: auto;
-            /* Pastikan SVG dapat menangkap klik */
+            cursor: pointer;
         }
 
         .leaflet-overlay-pane svg g {
             pointer-events: auto;
             /* Pastikan SVG dapat menangkap klik */
         }
+
+        #svg {
+    pointer-events: visible;
+}
+
     </style>
 @endsection
 
@@ -109,7 +116,7 @@
 
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-5">
-                    <div class="vt_view">
+                    <div class="vt_view" >
                         <iframe src="{{ url('/poi_view') }}" frameborder="0" width="100%" height="100%"></iframe>
                     </div>
                 </div>
@@ -957,6 +964,7 @@
     <!-- datetime picker -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r132/three.min.js"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -1289,36 +1297,20 @@
 
                         if (value.status == 'Not Sale') {
                             stop1.setAttribute("stop-color", "#C3C28E");
-                            total_not_sale++;
-
                         } else if (value.status == 'Akad') {
                             stop1.setAttribute("stop-color", "#B3E5BE");
-                            total_akad++;
-
                         } else if (value.status == 'Booking Cash') {
                             stop1.setAttribute("stop-color", "#45b6fe");
-                            total_booking_cash++;
-
                         } else if (value.status == 'Booking') {
                             stop1.setAttribute("stop-color", "#FD8A8A");
-                            total_booking++;
-
                         } else if (value.status == 'SP3K') {
                             stop1.setAttribute("stop-color", "#FDFFAE");
-                            total_sp3k++;
-
                         } else if (value.status == 'Kosong') {
                             stop1.setAttribute("stop-color", "white");
-                            total_kosong++;
-
                         } else if (value.status == 'Pindah Blok') {
                             stop1.setAttribute("stop-color", "#990066");
-                            total_pindah_blok++;
-
                         } else { // Bank
                             stop1.setAttribute("stop-color", "#B983FF");
-                            total_bank++;
-
                         }
 
                         // // Resume Status
@@ -1341,28 +1333,16 @@
 
                         if (parseInt(value.progres) < 10) {
                             stop2.setAttribute("stop-color", "#B9F3FC");
-                            total_persen_0++;
-
                         } else if (parseInt(value.progres) >= 10 && parseInt(value.progres) < 30) {
                             stop2.setAttribute("stop-color", "#9F8772");
-                            total_persen_10++;
-
                         } else if (parseInt(value.progres) >= 30 && parseInt(value.progres) < 60) {
                             stop2.setAttribute("stop-color", "#B7B7B7");
-                            total_persen_30++;
-
                         } else if (parseInt(value.progres) >= 60 && parseInt(value.progres) < 85) {
                             stop2.setAttribute("stop-color", "#1572A1");
-                            total_persen_60++;
-
                         } else if (parseInt(value.progres) >= 85 && parseInt(value.progres) < 100) {
                             stop2.setAttribute("stop-color", "#FAAB78");
-                            total_persen_85++;
-
                         } else if (parseInt(value.progres) > 99) {
                             stop2.setAttribute("stop-color", "#FF8DC7");
-                            total_persen_100++;
-
                         } else {
                             stop2.setAttribute("stop-color", "black");
 
@@ -1374,7 +1354,6 @@
                         defs.append(gradient);
                         // Menambahkan elemen gradient ke dalam SVG
                         $(`svg`).append(defs);
-                        // a08.css('fill', 'red');
                         // Mengatur atribut fill elemen path dengan URL gradient yang diinginkan
                         $(`#${value.blok} path`).css("fill", `url(#myGradient-${value.blok})`);
 
@@ -1438,11 +1417,16 @@
             } else {
                 console.error('Error loading SVG:', xhr.statusText);
             }
+            $('#svg').css('pointer-events', 'auto');
             $('svg g').each(function() {
             if ($(this).find('desc').length > 0 && $(this).find('desc').text().includes(',')) {
                 $(this).addClass('clickable');
                 $(this).css('cursor', 'pointer');
                 $(this).css('pointer-events', 'auto');
+            }else{
+                $(this).css('cursor', 'default');
+                $(this).css('pointer-events', 'auto');
+
             }
         });
         }
@@ -1860,17 +1844,21 @@
 
         }
 
-
-        $(document).on('click', '.leaflet-overlay-pane svg', function(e) {
-
-            console.log($(this));
-            alert('Klik pada elemen SVG <g>');
+        $(document).on('click', function(e) {
+            if ($(e.target).closest('#svg g').length > 0) {
+                console.log('SVG clicked:', e.target);
+            } else {
+                console.log(e.target);
+            }
         });
-        $(document).on('click', '.leaflet-overlay-pane .clickable', function(e) {
+        // $(document).on('click', '#svg', function(e) {
+        //     console.log($(this));
+        // });
+        // $(document).on('click', '.leaflet-overlay-pane svg g', function(e) {
 
-            console.log($(this));
-            alert('Klik pada elemen SVG <g>');
-        });
+        //     console.log($(this));
+        //     // alert('Klik pada elemen SVG <g>');
+        // });
     </script>
     @include('modal.lokasi_detail_js')
     @include('modal.spesifikasi_detail_js')
