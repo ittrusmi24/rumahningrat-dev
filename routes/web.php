@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BlokTersediaController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\FasilitasSekitarController;
@@ -65,6 +66,9 @@ Route::get('fasilitas_sekitar/grouped/{id_project}', [FasilitasSekitarController
 Route::get('fasilitas_sekitar/{id_project}', [FasilitasSekitarController::class, 'index'])->name('fasilitas.sekitar');
 Route::get('blok_tersedia/{id_project}', [BlokTersediaController::class, 'index'])->name('blok');
 Route::get('blok_tersedia_grouped/{id_project}', [BlokTersediaController::class, 'grouped'])->name('blok.grouped');
+Route::post('chat/kategori', [ChatController::class, 'kategori'])->name('chat.kategori');
+Route::post('chat/sub_kategori', [ChatController::class, 'sub_kategori'])->name('chat.sub_kategori');
+Route::post('chat/jawaban', [ChatController::class, 'jawaban'])->name('chat.jawaban');
 Route::get('get_csrf', function () {
     echo csrf_field();
 });

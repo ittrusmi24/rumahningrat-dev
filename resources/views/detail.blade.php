@@ -36,8 +36,6 @@
     <script src="{{ url('/') }}/assets/js/vendor/modernizr-3.5.0.min.js"></script>
     {{-- datetime picker --}}
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-    {{-- AOS --}}
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     {{-- animatecss --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     {{-- css style this page --}}
@@ -47,19 +45,20 @@
     <link href="https://cdn.maptiler.com/maptiler-sdk-js/v2.5.1/maptiler-sdk.css" rel="stylesheet" />
     <script src="https://cdn.maptiler.com/leaflet-maptilersdk/v2.0.0/leaflet-maptilersdk.js"></script>
     <style>
+        .leaflet-overlay-pane svg {
+            pointer-events: auto;
+            /* Pastikan SVG dapat menangkap klik */
+        }
 
-.leaflet-overlay-pane svg {
-  pointer-events: auto; /* Pastikan SVG dapat menangkap klik */
-}
-.leaflet-overlay-pane svg .clickable {
-  pointer-events: auto; /* Pastikan SVG dapat menangkap klik */
-}
-.leaflet-overlay-pane svg g {
-  pointer-events: auto; /* Pastikan SVG dapat menangkap klik */
-}
+        .leaflet-overlay-pane svg .clickable {
+            pointer-events: auto;
+            /* Pastikan SVG dapat menangkap klik */
+        }
 
-
-
+        .leaflet-overlay-pane svg g {
+            pointer-events: auto;
+            /* Pastikan SVG dapat menangkap klik */
+        }
     </style>
 @endsection
 
@@ -77,7 +76,7 @@
     <section class="container-fluid" id="wrapper-detail">
         <div class="row">
             <div class="col-12 col-lg-8 pl-0 pr-0">
-                <div class="owl-carousel bg-info" id="gallery-carousel-1">
+                <div class="owl-carousel" id="gallery-carousel-1">
                     <div><img src="{{ url('/assets/images/carousel') }}/1.png" alt="">
                     </div>
                     <div><img src="{{ url('/assets/images/carousel') }}/1.png" alt="">
@@ -114,7 +113,7 @@
                         <iframe src="{{ url('/poi_view') }}" frameborder="0" width="100%" height="100%"></iframe>
                     </div>
                 </div>
-                <div class="d-none owl-hidden" id="gallery-carousel-6">
+                <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-6">
                     <div id="map">
                     </div>
                 </div>
@@ -504,55 +503,31 @@
                                     <div id="blok-container">
                                         @foreach ($blokTersedia as $blok)
                                             <div class="item-blok px-3 py-2">
-                                                <div class="d-flex flex-column">
+                                                <div class="d-flex flex-column justify-content-center">
                                                     <p style="line-height: 10px" class="fw-bold">Blok
                                                         {{ $blok->blok }}</p>
-                                                    <p style="line-height: 10px">Sisa {{ $blok->sisa_unit }} unit</p>
+                                                    @if ($blok->sisa_unit >= 10)
+                                                        <?php $ket_blok = 'Tersedia'; ?>
+                                                    @elseif($blok->sisa_unit < 10 && $blok->sisa_unit > 3)
+                                                        <?php $ket_blok = 'Kurang Dari ' . $blok->sisa_unit . ' unit'; ?>
+                                                    @else
+                                                        <?php $ket_blok = 'Sisa ' . $blok->sisa_unit . ' unit'; ?>
+                                                    @endif
+                                                    <p style="margin-bottom:0px;line-height: 10px">{{ $ket_blok }}</p>
                                                 </div>
-                                                <div class="d-flex flex-column text-end">
+                                                <div class="d-flex flex-column justify-content-center text-end">
                                                     <p style="line-height: 10px">Biaya Mulai</p>
-                                                    <p style="line-height: 10px; color: #DE0000;">
-                                                        {{ $blok->terima_kunci }}
+                                                    <p style="margin-bottom:0px;line-height: 10px; color: #DE0000;">
+                                                        {{-- {{ $blok->terima_kunci }} --}} Rp. 1.000.000,-
                                                     </p>
                                                 </div>
                                             </div>
                                         @endforeach
                                     </div>
-                                    <div class="bank-section mt-5">
-                                        <h4 class="text-center">Bank Tersedia</h4>
-                                        <div class="row mt-3">
-                                            <div class="col-4">
-                                                <img src="{{ url('/assets/images/icon') }}/bca.png" alt=""
-                                                    width="75px" height="24px">
-                                            </div>
-                                            <div class="col-4">
-                                                <img src="{{ url('/assets/images/icon') }}/bjb.png" alt=""
-                                                    width="75px" height="24px">
-                                            </div>
-                                            <div class="col-4">
-                                                <img src="{{ url('/assets/images/icon') }}/bri.png" alt=""
-                                                    width="75px" height="24px">
-                                            </div>
-                                        </div>
-                                        <div class="row mt-3">
-                                            <div class="col-4">
-                                                <img src="{{ url('/assets/images/icon') }}/mandiri.png" alt=""
-                                                    width="75px" height="24px">
-                                            </div>
-                                            <div class="col-4">
-                                                <img src="{{ url('/assets/images/icon') }}/bni.png" alt=""
-                                                    width="75px" height="24px">
-                                            </div>
-                                            <div class="col-4">
-                                                <img src="{{ url('/assets/images/icon') }}/btn.png" alt=""
-                                                    width="75px" height="24px">
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row mb-3 mt-5">
+                        <div class="row mb-3 mt-4">
                             <div class="col-12">
                                 <div class="header-detail text-center">
                                     <h4>Pilih Blok</h4>
@@ -565,7 +540,6 @@
                                     @foreach ($bloks as $blok)
                                         <option value="{{ $blok->blok }}" data-harga="{{ $blok->terima_kunci }}"
                                             data-nominal="{{ $blok->nominal_booking }}" data-dp="{{ $blok->dp }}"
-
                                             data-harga_tanah="{{ $blok->harga_tanah }}"
                                             data-biaya_pagar="{{ $blok->biaya_pagar }}"
                                             data-biaya_tembok="{{ $blok->biaya_tembok }}"
@@ -581,14 +555,14 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="row mt-3">
+                        {{-- <div class="row mt-3">
                             <div class="col"></div>
                             <div class="col-10 text-center">
                                 <p>Sudah dapat terima kunci dengan nominal</p>
                                 <p class="text-danger" id="harga_blok">Rp.1.000.000</p>
                             </div>
                             <div class="col"></div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="aside-section" id="aside-section-7">
@@ -613,7 +587,7 @@
                                     <div class="mb-2">
                                         <label class="form-label">No Handphone</label>
                                         <input type="tel" class="form-control" name="no_hp" id="no_hp"
-                                            placeholder="6281234567812" autocomplete="off" oninput="validasiNoHp(this)">
+                                            autocomplete="off" oninput="validasiNoHp(this)">
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">Tanggal Lahir</label>
@@ -622,6 +596,7 @@
                                     <div class="mb-2">
                                         <label class="form-label">Jenis Kelamin</label>
                                         <select class="form-select" name="jenis_kelamin" id="jenis_kl">
+                                            <option value="" selected>-- Pilih Jenis Kelamin --</option>
                                             <option value="l">Laki - laki</option>
                                             <option value="p">Perempuan</option>
                                         </select>
@@ -644,6 +619,7 @@
                                     <div class="mb-2">
                                         <label class="form-label">Status</label>
                                         <select class="form-select" name="status" id="status">
+                                            <option value="" selected>-- Pilih Status --</option>
                                             <option value="1">Lajang</option>
                                             <option value="2">Menikah</option>
                                             <option value="3">Cerai</option>
@@ -677,7 +653,8 @@
                                             <p>Uang Muka DP</p>
                                         </div>
                                         <div class="col-6 text-end">
-                                            <p class="text-decoration-line-through d-inline text-danger" id="value_dp">Rp.5.000.000</p>
+                                            <p class="text-decoration-line-through d-inline text-danger" id="value_dp">
+                                                Rp.5.000.000</p>
                                             <p class=" d-inline">Rp. 0</p>
                                         </div>
                                     </div>
@@ -758,6 +735,37 @@
                                         </div>
                                         <div class="col-6 text-end">
                                             <p class="d-inline fw-bold" id="value_total">Rp. 9.250.000</p>
+                                        </div>
+                                    </div>
+                                    <div class="bank-section mt-5">
+                                        <h4 class="text-center">Bank Tersedia</h4>
+                                        <div class="row mt-3">
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/bca.png" alt=""
+                                                    width="75px" height="24px">
+                                            </div>
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/bjb.png" alt=""
+                                                    width="75px" height="24px">
+                                            </div>
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/bri.png" alt=""
+                                                    width="75px" height="24px">
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/mandiri.png" alt=""
+                                                    width="75px" height="24px">
+                                            </div>
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/bni.png" alt=""
+                                                    width="75px" height="24px">
+                                            </div>
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/btn.png" alt=""
+                                                    width="75px" height="24px">
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="mb-4 mt-5">
@@ -868,14 +876,15 @@
                             <div class="price text-dark" id="price">Rp.500.000</div>
                             <div class="note">*biaya booking + BI checking</div>
                         </div>
-                        <button class="btn btn-primary" onclick="validasiBook()" style="border-radius: 10px">Booking
+                        <button class="btn btn-primary" id="btn-booking" onclick="validasiBook()"
+                            style="border-radius: 10px">Booking
                             Sekarang</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
+    {{-- @include('chat.app') --}}
     @include('modal.lokasi_detail')
     @include('modal.spesifikasi_detail')
     @include('modal.sukses')
@@ -948,12 +957,6 @@
     <!-- datetime picker -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-
-    <!-- AOS -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-    {{-- detail js --}}
-    {{-- <script src="{{ url('/assets') }}/detail.js"></script> --}}
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -1076,7 +1079,13 @@
                 singleDatePicker: true,
                 showDropdowns: true,
                 minYear: 1901,
-                maxYear: parseInt(moment().format('YYYY'), 10)
+                maxYear: parseInt(moment().format('YYYY'), 10),
+                autoUpdateInput: false // Membuat input awal kosong
+            });
+
+            // Menangani event apply untuk memperbarui nilai input
+            $('input[name="tgl_lahir"]').on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('DD/MM/YYYY')); // Format menjadi DD/MM/YYYY
             });
 
             $('.owl-carousel').owlCarousel({
@@ -1707,6 +1716,12 @@
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Jika diperlukan CSRF
                     },
+                    beforeSend: function() {
+                        $('#btn-booking').html(`Loading...
+                            <div class="spinner-border" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>`);
+                    },
                     success: function(response) {
                         if (response.status) {
                             $('#bayarGci').attr('href',
@@ -1734,6 +1749,9 @@
                             showConfirmButton: false,
                             timer: 3000
                         });
+                    },
+                    complete: function() {
+                        $('#btn-booking').html('Booking Sekarang');
                     }
                 });
             }
@@ -1741,75 +1759,118 @@
         }
 
         function addLegend(map) {
-            var legend = L.control({ position: 'bottomright' }); // Gunakan bottomleft untuk dasar
+            var legend = L.control({
+                position: 'bottomright'
+            }); // Gunakan bottomleft untuk dasar
 
-legend.onAdd = function () {
-    var div = L.DomUtil.create('div', 'legend card shadow-sm text-center leaflet-bottom-center');
+            legend.onAdd = function() {
+                var div = L.DomUtil.create('div', 'legend card shadow-sm text-center leaflet-bottom-center');
 
-    var legendContent = $('<div>').addClass('legend-content d-flex flex-column p-2');
+                var legendContent = $('<div>').addClass('legend-content d-flex flex-column p-2');
 
-    var statusRow = $('<div>').addClass('d-flex flex-wrap justify-content-center align-items-center');
-    var progresRow = $('<div>').addClass('d-flex flex-wrap justify-content-center align-items-center');
+                var statusRow = $('<div>').addClass('d-flex flex-wrap justify-content-center align-items-center');
+                var progresRow = $('<div>').addClass('d-flex flex-wrap justify-content-center align-items-center');
 
-    var statusItems = [
-        { color: '#C3C28E', text: 'Not Sale' },
-        { color: '#B3E5BE', text: 'Akad' },
-        { color: '#45b6fe', text: 'Booking Cash' },
-        { color: '#FD8A8A', text: 'Booking' },
-        { color: '#FDFFAE', text: 'SP3K' },
-        { color: 'white', border: '1px solid #ccc', text: 'Kosong' },
-        { color: '#990066', text: 'Pindah Blok' },
-        { color: '#B983FF', text: 'Bank' }
-    ];
+                var statusItems = [{
+                        color: '#C3C28E',
+                        text: 'Not Sale'
+                    },
+                    {
+                        color: '#B3E5BE',
+                        text: 'Akad'
+                    },
+                    {
+                        color: '#45b6fe',
+                        text: 'Booking Cash'
+                    },
+                    {
+                        color: '#FD8A8A',
+                        text: 'Booking'
+                    },
+                    {
+                        color: '#FDFFAE',
+                        text: 'SP3K'
+                    },
+                    {
+                        color: 'white',
+                        border: '1px solid #ccc',
+                        text: 'Kosong'
+                    },
+                    {
+                        color: '#990066',
+                        text: 'Pindah Blok'
+                    },
+                    {
+                        color: '#B983FF',
+                        text: 'Bank'
+                    }
+                ];
 
-    var progresItems = [
-        { color: '#B9F3FC', text: '0% - 9%' },
-        { color: '#9F8772', text: '10% - 29%' },
-        { color: '#B7B7B7', text: '30% - 59%' },
-        { color: '#1572A1', text: '60% - 84%' },
-        { color: '#FAAB78', text: '85% - 99%' },
-        { color: '#FF8DC7', text: '100%' }
-    ];
+                var progresItems = [{
+                        color: '#B9F3FC',
+                        text: '0% - 9%'
+                    },
+                    {
+                        color: '#9F8772',
+                        text: '10% - 29%'
+                    },
+                    {
+                        color: '#B7B7B7',
+                        text: '30% - 59%'
+                    },
+                    {
+                        color: '#1572A1',
+                        text: '60% - 84%'
+                    },
+                    {
+                        color: '#FAAB78',
+                        text: '85% - 99%'
+                    },
+                    {
+                        color: '#FF8DC7',
+                        text: '100%'
+                    }
+                ];
 
-    function appendItems(items, container) {
-        items.forEach(function(item) {
-            var legendItem = $('<div>').addClass('d-flex align-items-center me-3');
-            var box = $('<span>').addClass('legend-box me-1').css({ background: item.color, border: item.border || 'none' });
-            legendItem.append(box).append(item.text);
-            container.append(legendItem);
-        });
-    }
+                function appendItems(items, container) {
+                    items.forEach(function(item) {
+                        var legendItem = $('<div>').addClass('d-flex align-items-center me-3');
+                        var box = $('<span>').addClass('legend-box me-1').css({
+                            background: item.color,
+                            border: item.border || 'none'
+                        });
+                        legendItem.append(box).append(item.text);
+                        container.append(legendItem);
+                    });
+                }
 
-    appendItems(statusItems, statusRow);
-    appendItems(progresItems, progresRow);
+                appendItems(statusItems, statusRow);
+                appendItems(progresItems, progresRow);
 
-    legendContent.append(statusRow);
-    legendContent.append($('<hr style="border: 0,6px solid black">').addClass('my-1'));
-    legendContent.append(progresRow);
+                legendContent.append(statusRow);
+                legendContent.append($('<hr style="border: 0,6px solid black">').addClass('my-1'));
+                legendContent.append(progresRow);
 
                 $(div).append(legendContent);
 
-    return div;
-};
+                return div;
+            };
 
-legend.addTo(map);
+            legend.addTo(map);
 
-}
-
-
-$(document).on('click', '.leaflet-overlay-pane #A34', function (e) {
-
-  console.log($(this));
-//   alert('Klik pada elemen SVG <g>');
-});
-$(document).on('click', '.leaflet-overlay-pane .clickable', function (e) {
-
-  console.log($(this));
-//   alert('Klik pada elemen SVG <g>');
-});
+        }
 
 
+        $(document).on('click', '.leaflet-overlay-pane svg', function(e) {
 
+            console.log($(this));
+            alert('Klik pada elemen SVG <g>');
+        });
+        $(document).on('click', '.leaflet-overlay-pane .clickable', function(e) {
+
+            console.log($(this));
+            alert('Klik pada elemen SVG <g>');
+        });
     </script>
     @include('modal.lokasi_detail_js')
     @include('modal.spesifikasi_detail_js')
