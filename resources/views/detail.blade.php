@@ -884,7 +884,7 @@
             </div>
         </div>
     </section>
-    {{-- @include('chat.app') --}}
+    @include('chat.app')
     @include('modal.lokasi_detail')
     @include('modal.spesifikasi_detail')
     @include('modal.sukses')
@@ -899,7 +899,7 @@
 @endsection
 
 @section('javascript')
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         const urlai = `{{ url('/assets/js/') }}/chatai.js`
         window.mychat = window.mychat || {};
         // window.mychat.server = 'https://live.cekat.ai/widget.js';
@@ -915,7 +915,7 @@
             var s = document.getElementsByTagName('script')[0];
             s.parentNode.insertBefore(mychat, s);
         })();
-    </script>
+    </script> --}}
 
     <!-- jquery js -->
     <script src="{{ url('/assets/js') }}/vendor/jquery-3.6.2.min.js"></script>
@@ -1029,7 +1029,6 @@
 
         function validasiKtp(input) {
             let value = input.value;
-            console.log(value)
             if (value.length > 16) {
                 value = value.slice(0, 16);
             }
@@ -1720,6 +1719,7 @@
                             <div class="spinner-border" role="status">
                                 <span class="visually-hidden">Loading...</span>
                             </div>`);
+                        $('#btn-booking').attr('disable', true);
                     },
                     success: function(response) {
                         if (response.status) {
@@ -1751,6 +1751,7 @@
                     },
                     complete: function() {
                         $('#btn-booking').html('Booking Sekarang');
+                        $('#btn-booking').attr('disable', false);
                     }
                 });
             }
@@ -1874,4 +1875,5 @@
     @include('modal.lokasi_detail_js')
     @include('modal.spesifikasi_detail_js')
     @include('modal.dekat_dengan_js')
+    @include('chat.jsChat')
 @endsection
