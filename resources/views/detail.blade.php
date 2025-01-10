@@ -343,8 +343,9 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="header-detail text-center mb-5">
-                                    <p>Dalam Rangka menjadi devloper terbaik Kami berikan <strong>Free pagar</strong> dan
-                                        <strong>Tembok keliling</strong> untuk rumah Edisi tahun 2025
+                                    <p>Dalam rangka merayakan Penghargaan Developer Terbaik Nasional, Kami memberikan
+                                        <b>Gratis
+                                            Pagar</b> dan <b>Tembok Keliling</b> untuk Rumah Ningrat Edisi 2025
                                     </p>
                                 </div>
                             </div>
@@ -359,9 +360,9 @@
                                             <h5>Pagar Besi</h5>
                                             <p><s>Rp. 10.000.000</s></p>
                                             <p class="text-danger">Rp. 0</p>
-                                            <p class="text-detail-card-bonus">Dibangun dengan tembok
+                                            {{-- <p class="text-detail-card-bonus">Dibangun dengan tembok
                                                 keliling
-                                                untuk privasi anda</p>
+                                                untuk privasi anda</p> --}}
                                         </div>
                                     </div>
                                     <div class="card card-bonus text-center">
@@ -371,9 +372,9 @@
                                             <h5>Tembok Dapur</h5>
                                             <p><s>Rp. 2.000.000</s></p>
                                             <p class="text-danger">Rp. 0</p>
-                                            <p class="text-detail-card-bonus">Dilengkapi tembok dapur
+                                            {{-- <p class="text-detail-card-bonus">Dilengkapi tembok dapur
                                                 belakang
-                                                setinggi 1,5 meter</p>
+                                                setinggi 1,5 meter</p> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -383,8 +384,8 @@
                     <div class="container mt-3">
                         <div class="row">
                             <div class="col text-center">
-                                <p>Program ini kami dedikasikan untuk konsumen dengan kualitas matrial besi terbaik sehingga
-                                    bisa menghemat sampai dengan 10 juta dengan free pagar</p>
+                                <p>Kami memahami bahwa konsumen adalah prioritas, sehingga Kami berdedikasi meningkatkan
+                                    rasa nyaman dan aman bagi Konsumen untuk Hidup Lebih Baik.</p>
                                 <p>Dilengkapi dengan tembok dapur dengan kualitas bata habel terbaik</p>
                             </div>
                         </div>
