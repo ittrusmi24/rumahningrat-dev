@@ -1433,6 +1433,7 @@
             if ($(this).find('desc').length > 0 && $(this).find('desc').text().includes(',')) {
                 $(this).addClass('clickable');
                 $(this).css('cursor', 'pointer');
+                $(this).css('pointer-events', 'auto');
             }
         });
         }
