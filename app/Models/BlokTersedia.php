@@ -274,6 +274,7 @@ class BlokTersedia extends Model
 
 
             WHERE m_project_unit.id_project = 70
+            -- AND m_project_unit.not_sale IS NULL
             -- and SUBSTR(m_project_unit.blok,1,1) in ('F','G','H')
 
             GROUP BY m_project_unit.blok
