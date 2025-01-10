@@ -45,26 +45,8 @@
     <link href="https://cdn.maptiler.com/maptiler-sdk-js/v2.5.1/maptiler-sdk.css" rel="stylesheet" />
     <script src="https://cdn.maptiler.com/leaflet-maptilersdk/v2.0.0/leaflet-maptilersdk.js"></script>
     <style>
-        .leaflet-overlay-pane svg {
-            pointer-events: auto;
-        }
-        .leaflet-overlay-pane g {
-            pointer-events: auto;
-        }
 
-        svg .clickable {
-            pointer-events: auto;
-            cursor: pointer;
-        }
 
-        .leaflet-overlay-pane svg g {
-            pointer-events: auto;
-            /* Pastikan SVG dapat menangkap klik */
-        }
-
-        #svg {
-    pointer-events: visible;
-}
 
     </style>
 @endsection
@@ -116,6 +98,8 @@
 
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-5">
+                    <div><img src="{{ url('/assets/images/carousel') }}/9.jpg" alt="">
+                    </div>
                     <div class="vt_view" >
                         <iframe src="{{ url('/poi_view') }}" frameborder="0" width="100%" height="100%"></iframe>
                     </div>
@@ -1212,6 +1196,7 @@
 
 
         function load_data_blok() {
+
             $.ajax({
                 url: `{{ url('/status_blok/70') }}`,
                 method: 'GET',
@@ -1258,7 +1243,7 @@
                         var descText = $(`#${value.blok}`).find('desc').text().replace(/\s+/g, '');
                         var descArray = descText.split(',');
 
-                        $(`#path`).css("fill", `#D3D3D3`);
+                        $(`#path`).css("fill", `#B8B8B8`);
 
                         if (descArray[1] == 'U') {
                             // UTARA
@@ -1296,7 +1281,7 @@
                         stop1.setAttribute("offset", "50%");
 
                         if (value.status == 'Not Sale') {
-                            stop1.setAttribute("stop-color", "#C3C28E");
+                            stop1.setAttribute("stop-color", "#B8B8B8");
                         } else if (value.status == 'Akad') {
                             stop1.setAttribute("stop-color", "#B3E5BE");
                         } else if (value.status == 'Booking Cash') {
@@ -1313,25 +1298,12 @@
                             stop1.setAttribute("stop-color", "#B983FF");
                         }
 
-                        // // Resume Status
-                        // $('#total_akad').html(total_akad);
-                        // $('#total_booking_cash').html(total_booking_cash);
-                        // $('#total_booking').html(total_booking);
-                        // $('#total_bank').html(total_bank);
-                        // $('#total_sp3k').html(total_sp3k);
-                        // $('#total_kosong').html(total_kosong);
-                        // $('#total_not_sale').html(total_not_sale);
-                        // $('#total_pindah_blok').html(total_pindah_blok);
-
-
-
                         // Warna kedua (PROGRES)
                         var stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
                         stop2.setAttribute("offset", "50%");
-
-                        // console.info(parseInt(value.progres));
-
-                        if (parseInt(value.progres) < 10) {
+                        if (value.status == 'Not Sale') {
+                            stop2.setAttribute("stop-color", "#B8B8B8");
+                        } else if (parseInt(value.progres) < 10) {
                             stop2.setAttribute("stop-color", "#B9F3FC");
                         } else if (parseInt(value.progres) >= 10 && parseInt(value.progres) < 30) {
                             stop2.setAttribute("stop-color", "#9F8772");
@@ -1397,6 +1369,7 @@
                     console.error('Error loading JSON:', textStatus, errorThrown);
                 }
             });
+
         }
 
         var svgOverlay;
@@ -1417,15 +1390,15 @@
             } else {
                 console.error('Error loading SVG:', xhr.statusText);
             }
-            $('#svg').css('pointer-events', 'auto');
+
             $('svg g').each(function() {
             if ($(this).find('desc').length > 0 && $(this).find('desc').text().includes(',')) {
                 $(this).addClass('clickable');
-                $(this).css('cursor', 'pointer');
-                $(this).css('pointer-events', 'auto');
+                // $(this).css('cursor', 'pointer');
+                // $(this).css('pointer-events', 'auto');
             }else{
-                $(this).css('cursor', 'default');
-                $(this).css('pointer-events', 'auto');
+                // $(this).css('cursor', 'default');
+                // $(this).css('pointer-events', 'none');
 
             }
         });
@@ -1843,13 +1816,42 @@
             legend.addTo(map);
 
         }
+            $('#map').on('click', function(e) {
+                // Nonaktifkan pointer events untuk sementara agar bisa mendeteksi elemen di bawah #map
+                $('#map').css('pointer-events', 'none');
+                $('.leaflet-map-pane').css('pointer-events', 'none');
+                $('.leaflet-overlay-pane').css('pointer-events', 'none');
+                $('svg').css('pointer-events', 'none');
+                $('g').css('pointer-events', 'auto');
+
+                const x = e.clientX;
+                const y = e.clientY;
+                const clickedElement = document.elementFromPoint(x, y);
+
+                // Aktifkan kembali pointer-events pada .leaflet-map-pane
+                // $('.leaflet-map-pane').css('pointer-events', 'auto');
+                console.log(clickedElement);
+
+                // if (clickedElement) {
+                //     if ($(clickedElement).is('.leaflet-overlay-pane') || $(clickedElement).closest('.leaflet-overlay-pane').length > 0) {
+                //         const targetElement = $(clickedElement).closest('.leaflet-overlay-pane');
+                //         console.log('Klik diarahkan ke elemen .leaflet-overlay-pane:', targetElement);
+
+                //         // Contoh: Tambahkan logika untuk menangani klik pada elemen .leaflet-overlay-pane
+                //         targetElement.trigger('click');
+                //     } else {
+                //         console.log('Tidak ada elemen .leaflet-overlay-pane yang diklik.');
+                //     }
+                // } else {
+                //     console.log('Tidak ada elemen di bawah titik klik.');
+                // }
+            });
+
 
         $(document).on('click', function(e) {
-            if ($(e.target).closest('#svg g').length > 0) {
-                console.log('SVG clicked:', e.target);
-            } else {
+
                 console.log(e.target);
-            }
+
         });
         // $(document).on('click', '#svg', function(e) {
         //     console.log($(this));
