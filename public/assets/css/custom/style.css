@@ -126,7 +126,7 @@ label {
 }
 
 .card-bonus {
-    min-height: 245px;
+    min-height: 165px;
     border-radius: 12px;
     border: 1px solid #ababab;
 }
@@ -292,6 +292,7 @@ label {
 
 .select-blok {
     height: 78px;
+    width: 100%;
 }
 
 /* jenis pembayaran */
@@ -448,26 +449,29 @@ label {
 
 /* button chat ai */
 .chat-ai {
-    position: fixed;
-    z-index: 99999;
+    /* position: fixed; */
+    /* z-index: 99999; */
     background-color: #fff;
     border-radius: 20px;
-    max-height: 67px;
-    max-width: 75px;
+    height: 55px;
+    width: 55px;
     justify-content: center;
     align-items: center;
     color: #005991;
-    padding: 8px 8px 0px 8px;
+    padding: 4px;
+    gap: 2px;
+    box-sizing: border-box;
 }
 
 .chat-ai i {
-    font-size: 29px;
+    font-size: 19px;
     font-weight: 600 !important;
 }
 
 .chat-ai p {
-    line-height: 15px;
+    line-height: 8px;
     font-weight: 600 !important;
+    font-size: 10px;
 }
 
 /* form section */
@@ -516,13 +520,27 @@ video {
 }
 
 /* chat list */
+.dd-arrow-none:after,
+.dd-arrow-none:before {
+    display: none !important;
+}
+
+.w-300 {
+    max-width: 300px;
+    min-width: 300px;
+}
+
+.h-70 {
+    height: 70vh;
+}
+
 .chatboxes {
     position: fixed;
     padding: 0;
     bottom: 0;
     display: none;
     text-align: center;
-    z-index: 9 !important;
+    z-index: 9999 !important;
 }
 .chatboxes.align-center {
     left: 250px;
@@ -532,17 +550,15 @@ video {
     margin: 0 10px;
 }
 .chatboxes.align-center .dropdown-toggle.show {
-    margin-bottom: 15px;
+    margin-bottom: 8px;
 }
 .chatboxes.align-right {
     margin: 0 0 0 auto;
-    left: auto;
-    right: 15px;
-    top: 40%;
+    left: 8px;
 }
 .chatboxes.align-right > div,
 .chatboxes.align-right > .dropmenu {
-    margin: 10px 0;
+    /* margin: 10px 0; */
     display: block;
     clear: both;
     text-align: right;
@@ -561,8 +577,9 @@ video {
     display: inline-block;
     margin: 0 5px;
 }
+/* chat on toggle */
 .chatboxes.align-right.bottom-0 .dropdown-toggle.show {
-    margin-bottom: 15px;
+    display: none;
 }
 .chatboxes.align-right .dropdown-menu-middle {
     top: -150px;
@@ -632,9 +649,9 @@ video {
     right: calc(310px + 30px);
 }
 .chat-list {
-    margin: 0px auto 0px auto;
+    margin: 0px 4px 0px 4px;
     font-size: 12px;
-    background-color: rgba(1, 94, 194, 0.05) !important;
+    background-color: rgba(255, 255, 255, 0.05) !important;
 }
 .chat-list .figure,
 .chat-list figure,
@@ -649,8 +666,8 @@ video {
     margin-bottom: 15px;
 }
 .chat-list .left-chat .chat-block {
-    background-color: #015ec2;
-    color: #ffffff;
+    background-color: #f4f4f4;
+    color: #000000;
     padding: 15px;
     border-radius: 0.25rem 0.25rem 0.25rem 0px;
     margin-right: 3px;
@@ -675,8 +692,8 @@ video {
     border-style: solid;
     border-width: 10px;
     z-index: 1;
-    border-top-color: #015ec2;
-    border-left-color: #015ec2;
+    border-top-color: #f4f4f4;
+    border-left-color: #f4f4f4;
 }
 .chat-list .left-chat .time {
     padding-left: 15px;
@@ -687,7 +704,7 @@ video {
 }
 .chat-list .right-chat .chat-block {
     text-align: left;
-    background-color: #ffffff;
+    background-color: #f4f4f4;
     color: #111111;
     padding: 15px;
     border-radius: 0.25rem 0.25rem 0px 0.25rem;
@@ -716,6 +733,27 @@ video {
     border-top-color: #ffffff;
     z-index: 0;
 }
+.chat-list .right-chat .chat-block.opsi {
+    text-align: left;
+    background-color: #f4f4f4;
+    color: #111111;
+    padding: 2px 4px;
+    border-radius: 0.25rem 0.25rem 0px 0.25rem;
+    border: 1px solid #a8a8a8;
+    margin-left: 3px;
+    position: relative;
+    width: auto;
+    display: inline-block;
+    margin-bottom: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+    -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+    max-width: 90%;
+}
+.chat-list .right-chat .chat-block.opsi::before {
+    content: "";
+    border: none;
+}
 .chat-list .right-chat .time {
     padding-right: 15px;
 }
@@ -731,6 +769,28 @@ video {
 }
 .chat-list.bg-none {
     background-color: transparent !important;
+}
+
+.option-categori,
+.option-sub-categori,
+.option-chat,
+.option-session-chat {
+    cursor: pointer;
+}
+
+#chat-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+#chat-list::-webkit-scrollbar-track {
+    box-shadow: inset 0 0px 2px 0px rgba(0, 0, 0, 0.15);
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+#chat-list::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 /* responsive breakpoints */
@@ -753,13 +813,14 @@ video {
     .owl-carousel .owl-item img {
         height: 30vh;
     }
+
     * {
         font-size: 10px;
     }
 
     /* form section */
     #form-section {
-        margin-bottom: 30vh !important;
+        margin-bottom: 20vh !important;
     }
 
     /* bonus section */
@@ -860,5 +921,23 @@ video {
         /* font-family: Arial, sans-serif; */
         font-size: 8px;
         width: 100%;
+    }
+    /* nira ai */
+
+    .dropup:has(.show) {
+        bottom: 10vh; /* Dropdown naik ke posisi 10vh dari bawah */
+    }
+
+    .chatboxes.align-right.bottom-0 {
+        top: 55px;
+        bottom: 4px !important;
+    }
+
+    .dropdown-menu {
+        transform: translate3d(0, 0, 0) !important; /* Reset transform */
+        top: 100% !important; /* Tampilkan ke bawah */
+        left: 0 !important; /* Tampilkan ke kanan bawah */
+        z-index: 999999;
+        height: 90vh;
     }
 }

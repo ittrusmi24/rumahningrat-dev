@@ -98,9 +98,7 @@
 
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-5">
-                    <div><img src="{{ url('/assets/images/carousel') }}/9.jpg" alt="">
-                    </div>
-                    <div class="vt_view" >
+                    <div class="vt_view">
                         <iframe src="{{ url('/poi_view') }}" frameborder="0" width="100%" height="100%"></iframe>
                     </div>
                 </div>
@@ -289,7 +287,27 @@
                         <div class="row mt-3">
                             <h5 class="text-center mb-3 col-12">Ulasan</h5>
                             <div class="col-12" id="ulasan-container">
-                                <div class="item-ulasan">
+                                @foreach ($ulasan as $item)
+                                    <div class="item-ulasan">
+                                        <div class="card rounded">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between">
+                                                    <p class="text-primary">
+                                                        <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
+                                                        <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
+                                                        <i class="bi bi-star-fill"></i>
+                                                    </p>
+                                                    <p>{{ $item['ulasan_at'] }}</p>
+                                                </div>
+                                                <p class="card-text">{{ $item['tags'] }}</p>
+                                                <p class="card-text">{{ $item['ulasan'] }}</p>
+                                                <p class="nama-review">{{ $item['nama'] }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+
+                                {{-- <div class="item-ulasan">
                                     <div class="card rounded">
                                         <div class="card-body">
                                             <div class="d-flex justify-content-between">
@@ -306,25 +324,7 @@
                                             <p class="nama-review">Fujiyanto Hasan</p>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="item-ulasan">
-                                    <div class="card rounded">
-                                        <div class="card-body">
-                                            <div class="d-flex justify-content-between">
-                                                <p class="text-primary"><i class="bi bi-star-fill"></i> <i
-                                                        class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
-                                                </p>
-                                                <p>Des 2024</p>
-                                            </div>
-                                            <p class="card-text">Rumahnya keren, clean</p>
-                                            <p class="card-text">Memilih Rumah Ningrat adalah keputusan
-                                                yang tepat! Desain rumah elegan dan lingkungan asri
-                                                benar-benar membuat nyaman.</p>
-                                            <p class="nama-review">Fujiyanto Hasan</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -334,8 +334,9 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="header-detail text-center mb-5">
-                                    <p>Dalam Rangka menjadi devloper terbaik Kami berikan <strong>Free pagar</strong> dan
-                                        <strong>Tembok keliling</strong> untuk rumah Edisi tahun 2025
+                                    <p>Dalam rangka merayakan Penghargaan Developer Terbaik Nasional, Kami memberikan
+                                        <b>Gratis
+                                            Pagar</b> dan <b>Tembok Keliling</b> untuk Rumah Ningrat Edisi 2025
                                     </p>
                                 </div>
                             </div>
@@ -350,9 +351,9 @@
                                             <h5>Pagar Besi</h5>
                                             <p><s>Rp. 10.000.000</s></p>
                                             <p class="text-danger">Rp. 0</p>
-                                            <p class="text-detail-card-bonus">Dibangun dengan tembok
+                                            {{-- <p class="text-detail-card-bonus">Dibangun dengan tembok
                                                 keliling
-                                                untuk privasi anda</p>
+                                                untuk privasi anda</p> --}}
                                         </div>
                                     </div>
                                     <div class="card card-bonus text-center">
@@ -362,9 +363,9 @@
                                             <h5>Tembok Dapur</h5>
                                             <p><s>Rp. 2.000.000</s></p>
                                             <p class="text-danger">Rp. 0</p>
-                                            <p class="text-detail-card-bonus">Dilengkapi tembok dapur
+                                            {{-- <p class="text-detail-card-bonus">Dilengkapi tembok dapur
                                                 belakang
-                                                setinggi 1,5 meter</p>
+                                                setinggi 1,5 meter</p> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -374,8 +375,8 @@
                     <div class="container mt-3">
                         <div class="row">
                             <div class="col text-center">
-                                <p>Program ini kami dedikasikan untuk konsumen dengan kualitas matrial besi terbaik sehingga
-                                    bisa menghemat sampai dengan 10 juta dengan free pagar</p>
+                                <p>Kami memahami bahwa konsumen adalah prioritas, sehingga Kami berdedikasi meningkatkan
+                                    rasa nyaman dan aman bagi Konsumen untuk Hidup Lebih Baik.</p>
                                 <p>Dilengkapi dengan tembok dapur dengan kualitas bata habel terbaik</p>
                             </div>
                         </div>
@@ -875,7 +876,7 @@
             </div>
         </div>
     </section>
-    {{-- @include('chat.app') --}}
+    @include('chat.app')
     @include('modal.lokasi_detail')
     @include('modal.spesifikasi_detail')
     @include('modal.sukses')
@@ -890,7 +891,8 @@
 @endsection
 
 @section('javascript')
-    <script type="text/javascript">
+    {{-- cekat AI --}}
+    {{-- <script type="text/javascript">
         const urlai = `{{ url('/assets/js/') }}/chatai.js`
         window.mychat = window.mychat || {};
         // window.mychat.server = 'https://live.cekat.ai/widget.js';
@@ -906,7 +908,7 @@
             var s = document.getElementsByTagName('script')[0];
             s.parentNode.insertBefore(mychat, s);
         })();
-    </script>
+    </script> --}}
 
     <!-- jquery js -->
     <script src="{{ url('/assets/js') }}/vendor/jquery-3.6.2.min.js"></script>
@@ -1021,7 +1023,6 @@
 
         function validasiKtp(input) {
             let value = input.value;
-            console.log(value)
             if (value.length > 16) {
                 value = value.slice(0, 16);
             }
@@ -1400,8 +1401,8 @@
                 // $(this).css('cursor', 'default');
                 // $(this).css('pointer-events', 'none');
 
-            }
-        });
+                }
+            });
         }
 
         // format rupiah
@@ -1678,6 +1679,7 @@
                             <div class="spinner-border" role="status">
                                 <span class="visually-hidden">Loading...</span>
                             </div>`);
+                        $('#btn-booking').attr('disable', true);
                     },
                     success: function(response) {
                         if (response.status) {
@@ -1709,6 +1711,7 @@
                     },
                     complete: function() {
                         $('#btn-booking').html('Booking Sekarang');
+                        $('#btn-booking').attr('disable', false);
                     }
                 });
             }
@@ -1865,4 +1868,5 @@
     @include('modal.lokasi_detail_js')
     @include('modal.spesifikasi_detail_js')
     @include('modal.dekat_dengan_js')
+    @include('chat.jsChat')
 @endsection
