@@ -525,13 +525,22 @@ video {
     display: none !important;
 }
 
+.w-300 {
+    max-width: 300px;
+    min-width: 300px;
+}
+
+.h-70 {
+    height: 70vh;
+}
+
 .chatboxes {
     position: fixed;
     padding: 0;
     bottom: 0;
     display: none;
     text-align: center;
-    z-index: 9 !important;
+    z-index: 9999 !important;
 }
 .chatboxes.align-center {
     left: 250px;
@@ -728,7 +737,7 @@ video {
     text-align: left;
     background-color: #f4f4f4;
     color: #111111;
-    padding: 8px;
+    padding: 2px 4px;
     border-radius: 0.25rem 0.25rem 0px 0.25rem;
     border: 1px solid #a8a8a8;
     margin-left: 3px;
@@ -764,7 +773,8 @@ video {
 
 .option-categori,
 .option-sub-categori,
-.option-chat {
+.option-chat,
+.option-session-chat {
     cursor: pointer;
 }
 
@@ -781,7 +791,6 @@ video {
 #chat-list::-webkit-scrollbar-thumb {
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.1);
-    background-color: rgba(var(--WinDOORS-theme-bg-rgb), 0.85);
 }
 
 /* responsive breakpoints */
@@ -911,5 +920,23 @@ video {
         /* font-family: Arial, sans-serif; */
         font-size: 8px;
         width: 100%;
+    }
+    /* nira ai */
+
+    .dropup:has(.show) {
+        bottom: 10vh; /* Dropdown naik ke posisi 10vh dari bawah */
+    }
+
+    .chatboxes.align-right.bottom-0 {
+        top: 55px;
+        bottom: 4px !important;
+    }
+
+    .dropdown-menu {
+        transform: translate3d(0, 0, 0) !important; /* Reset transform */
+        top: 100% !important; /* Tampilkan ke bawah */
+        left: 0 !important; /* Tampilkan ke kanan bawah */
+        z-index: 999999;
+        height: 90vh;
     }
 }

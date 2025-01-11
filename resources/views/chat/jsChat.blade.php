@@ -3,6 +3,7 @@
     let getSectionId = 0
     let getSectionIdSub = 0
     let getSectionIdJawaban = 0
+    let getSectionIdSesi = 0
 
     function newChat() {
         $.ajax({
@@ -53,6 +54,15 @@
 
     $(document).ready(function() {
         newChat();
+
+        // Ambil elemen dropdown
+        const chatDropdownElement = document.getElementById('chatNira');
+        const chatDropdown = new bootstrap.Dropdown(chatDropdownElement);
+
+        // Tambahkan event click pada tombol btn-close-nira
+        $('#btn-close-nira').on('click', function() {
+            chatDropdown.hide(); // Menutup dropdown
+        });
     });
 
     // Tambahkan event listener untuk elemen dengan kelas 'option-categori'
@@ -182,7 +192,7 @@
                              <div class="chat-block opsi">
                                  <div class="row">
                                      <div class="col">
-                                         <span class="option-chat" data-chat="2" >Chat dengan AI</span>
+                                         <span class="option-chat" data-chat="2" >Chat dengan Asisten Nira</span>
                                      </div>
                                  </div>
                              </div>
@@ -204,6 +214,25 @@
         });
     })
 
+    function renderCekatAI() {
+        const urlai = `{{ url('/assets/js/') }}/chatai.js`; // URL script widget
+        window.mychat = window.mychat || {};
+        window.mychat.server = urlai;
+        window.mychat.iframeWidth = '300px';
+        window.mychat.iframeHeight = '70vh';
+        window.mychat.accessKey = 'Trusmi-lgeisqBy';
+
+        (function() {
+            var mychat = document.createElement('script');
+            mychat.type = 'text/javascript';
+            mychat.async = true;
+            mychat.src = window.mychat.server;
+
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(mychat, s);
+        })();
+    }
+
     // opsi new chat
     $(document).on('click', '.option-chat', function() {
         let idJawaban = $(this).data('chat');
@@ -211,12 +240,97 @@
 
         $(this).closest('.section-jawaban').addClass('d-none');
 
+        chatlist.append(`<div class="row mt-2 right-chat">
+                         <div class="col-12">
+                             <div class="chat-block">
+                                 <div class="row">
+                                     <div class="col">
+                                         ${textOpsiJawab}
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>`);
+        const currentSectionId = `sesi-${++getSectionIdSesi}`;
+        const sectionSesi = $(
+            `<div id="${currentSectionId}" class="section-sesi-chat"></div>`)
+        chatlist.append(sectionSesi);
         if (idJawaban == 1) {
             newChat()
         } else if (idJawaban == 2) {
-            return true;
+            renderCekatAI();
+
+            setTimeout(() => {
+                $('.chatboxes').hide();
+            }, 300);
         } else {
-            return false;
+            sectionSesi.append(`
+            <div class="row mt-2 left-chat">
+                     <div class="col-12">
+                         <div class="chat-block">
+                             <div class="row">
+                                 <div class="col">
+                                     Ingin chat sesi baru?
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+            <div class="row mt-2 right-chat">
+                         <div class="col-12">
+                             <div class="chat-block opsi">
+                                 <div class="row">
+                                     <div class="col">
+                                        <span class="option-session-chat" data-chat="1" >Ya</span>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="row mt-2 right-chat">
+                         <div class="col-12">
+                             <div class="chat-block opsi">
+                                 <div class="row">
+                                     <div class="col">
+                                        <span class="option-session-chat" data-chat="2" >Tidak</span>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>`);
+        }
+    })
+
+    $(document).on('click', '.option-session-chat', function() {
+        let idSesi = $(this).data('chat');
+        $(this).closest('.section-sesi-chat').addClass('d-none');
+
+        if (idSesi == 1) {
+            chatlist.empty();
+            chatlist.append(`<div class="row mt-2 left-chat">
+                     <div class="col-12">
+                         <div class="chat-block">
+                             <div class="row">
+                                 <div class="col">
+                                    Bagaimana kami bisa membantu?
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>`)
+            newChat()
+        } else {
+            chatlist.append(`<div class="row mt-2 left-chat">
+                     <div class="col-12">
+                         <div class="chat-block">
+                             <div class="row">
+                                 <div class="col">
+                                    Terimakasih!
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>`)
         }
     })
 </script>

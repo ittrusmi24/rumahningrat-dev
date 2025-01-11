@@ -48,6 +48,7 @@
         .leaflet-overlay-pane svg {
             pointer-events: auto;
         }
+
         .leaflet-overlay-pane g {
             pointer-events: auto;
         }
@@ -63,9 +64,8 @@
         }
 
         #svg {
-    pointer-events: visible;
-}
-
+            pointer-events: visible;
+        }
     </style>
 @endsection
 
@@ -116,7 +116,7 @@
 
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-5">
-                    <div class="vt_view" >
+                    <div class="vt_view">
                         <iframe src="{{ url('/poi_view') }}" frameborder="0" width="100%" height="100%"></iframe>
                     </div>
                 </div>
@@ -907,6 +907,7 @@
 @endsection
 
 @section('javascript')
+    {{-- cekat AI --}}
     {{-- <script type="text/javascript">
         const urlai = `{{ url('/assets/js/') }}/chatai.js`
         window.mychat = window.mychat || {};
@@ -1419,16 +1420,16 @@
             }
             $('#svg').css('pointer-events', 'auto');
             $('svg g').each(function() {
-            if ($(this).find('desc').length > 0 && $(this).find('desc').text().includes(',')) {
-                $(this).addClass('clickable');
-                $(this).css('cursor', 'pointer');
-                $(this).css('pointer-events', 'auto');
-            }else{
-                $(this).css('cursor', 'default');
-                $(this).css('pointer-events', 'auto');
+                if ($(this).find('desc').length > 0 && $(this).find('desc').text().includes(',')) {
+                    $(this).addClass('clickable');
+                    $(this).css('cursor', 'pointer');
+                    $(this).css('pointer-events', 'auto');
+                } else {
+                    $(this).css('cursor', 'default');
+                    $(this).css('pointer-events', 'auto');
 
-            }
-        });
+                }
+            });
         }
 
         // format rupiah
@@ -1847,11 +1848,11 @@
         }
 
         $(document).on('click', function(e) {
-            if ($(e.target).closest('#svg g').length > 0) {
-                console.log('SVG clicked:', e.target);
-            } else {
-                console.log(e.target);
-            }
+            // if ($(e.target).closest('#svg g').length > 0) {
+            //     console.log('SVG clicked:', e.target);
+            // } else {
+            //     console.log(e.target);
+            // }
         });
         // $(document).on('click', '#svg', function(e) {
         //     console.log($(this));

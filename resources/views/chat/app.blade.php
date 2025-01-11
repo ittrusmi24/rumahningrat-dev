@@ -10,9 +10,9 @@
                  <p>Nira AI</p>
              </div>
          </div>
-         <div class="dropdown-menu p-0" style="width: 300px;">
+         <div class="dropdown-menu w-300 p-0">
              <!-- chat box here  -->
-             <div class="card shadow-none border-0" style="height: 70vh">
+             <div class="card shadow-none border-0">
                  <div class="card-header">
                      <div class="row align-items-center">
                          <div class="col align-self-center">
@@ -20,12 +20,11 @@
                          </div>
                          <div class="col-auto">
                              <!-- Close button -->
-                             <button type="button" class="btn-close" aria-label="Close"
-                                 data-bs-dismiss="dropdown"></button>
+                             <button type="button" class="btn-close" id="btn-close-nira"></button>
                          </div>
                      </div>
                  </div>
-                 <div class="card-body overflow-y-auto h-250 chat-list" id="chat-list">
+                 <div class="card-body overflow-y-auto chat-list h-70" id="chat-list">
                      <div class="row mt-2 left-chat">
                          <div class="col-12">
                              <div class="chat-block">

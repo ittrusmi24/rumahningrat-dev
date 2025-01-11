@@ -20,7 +20,7 @@
             "pointer-events": "all",
             opacity: "1",
             width: mobile ? (chatPopupOpen ? "100%" : "84px") : chatBubbleWidth,
-            height: mobile ? (chatPopupOpen ? "100%" : "84px") : chatBubbleHeight,
+            height: mobile ? (chatPopupOpen ? "90%" : "84px") : chatBubbleHeight,
             bottom: mobile ? "unset" : "0px", // Non-mobile: pojok kiri bawah
             top: mobile ? "50px" : "unset",   // Mobile: pojok kiri atas
             left: "8px",                     // Selalu di kiri
