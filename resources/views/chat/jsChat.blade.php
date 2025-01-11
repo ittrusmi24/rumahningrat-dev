@@ -172,7 +172,23 @@
                          </div>
                      </div>`)
 
+                    const offering = $(`<div class="row mt-1 mb-0 left-chat animate__animated animate__fadeIn">
+                         <div class="col-12">
+                             <div class="chat-block">
+                                 <div class="row">
+                                     <div class="col">
+                                         Apakah anda berminat untuk Booking ?
+                                         <div class="d-grid p-2">
+                                         <button type="button" class="btn btn-light btn-sm border offeringBook">Booking sekarang</button>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>`)
+
                     chatlist.append(jawabanSection);
+                    chatlist.append(offering);
                 })
 
                 chatlist.append(sectionJawaban);
@@ -333,4 +349,9 @@
                  </div>`)
         }
     })
+
+    $(document).on('click', '.offeringBook', function() {
+        $('#nama').focus()
+    })
+    
 </script>
