@@ -813,13 +813,14 @@ video {
     .owl-carousel .owl-item img {
         height: 30vh;
     }
+
     * {
         font-size: 10px;
     }
 
     /* form section */
     #form-section {
-        margin-bottom: 30vh !important;
+        margin-bottom: 20vh !important;
     }
 
     /* bonus section */

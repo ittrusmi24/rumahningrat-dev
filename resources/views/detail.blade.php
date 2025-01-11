@@ -305,7 +305,27 @@
                         <div class="row mt-3">
                             <h5 class="text-center mb-3 col-12">Ulasan</h5>
                             <div class="col-12" id="ulasan-container">
-                                <div class="item-ulasan">
+                                @foreach ($ulasan as $item)
+                                    <div class="item-ulasan">
+                                        <div class="card rounded">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between">
+                                                    <p class="text-primary">
+                                                        <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
+                                                        <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
+                                                        <i class="bi bi-star-fill"></i>
+                                                    </p>
+                                                    <p>{{ $item['ulasan_at'] }}</p>
+                                                </div>
+                                                <p class="card-text">{{ $item['tags'] }}</p>
+                                                <p class="card-text">{{ $item['ulasan'] }}</p>
+                                                <p class="nama-review">{{ $item['nama'] }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+
+                                {{-- <div class="item-ulasan">
                                     <div class="card rounded">
                                         <div class="card-body">
                                             <div class="d-flex justify-content-between">
@@ -322,25 +342,7 @@
                                             <p class="nama-review">Fujiyanto Hasan</p>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="item-ulasan">
-                                    <div class="card rounded">
-                                        <div class="card-body">
-                                            <div class="d-flex justify-content-between">
-                                                <p class="text-primary"><i class="bi bi-star-fill"></i> <i
-                                                        class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
-                                                </p>
-                                                <p>Des 2024</p>
-                                            </div>
-                                            <p class="card-text">Rumahnya keren, clean</p>
-                                            <p class="card-text">Memilih Rumah Ningrat adalah keputusan
-                                                yang tepat! Desain rumah elegan dan lingkungan asri
-                                                benar-benar membuat nyaman.</p>
-                                            <p class="nama-review">Fujiyanto Hasan</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>

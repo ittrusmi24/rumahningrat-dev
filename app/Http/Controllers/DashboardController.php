@@ -9,6 +9,7 @@ use App\Models\Fasilitas;
 use App\Models\FasilitasSekitar;
 use App\Models\Project;
 use App\Models\BlokTersedia;
+use App\Models\Ulasan;
 
 use function PHPSTORM_META\map;
 
@@ -32,6 +33,7 @@ class DashboardController extends Controller
         $fasilitasSekitar = FasilitasSekitar::get_fasilitas_sekitar_by_id_project_grouped($id_project);
         $blok = BlokTersedia::get_blok_by_id_project($id_project);
         $groupBlok = BlokTersedia::get_grup_blok_by_id_project($id_project);
+        $ulasan = Ulasan::get_ulasan_by_id_project($id_project);
         // dd($blok);
         $groupBlok = Arr::map($groupBlok, function ($value) {
             $value->terima_kunci = Number::currency($value->terima_kunci ?? 0, in: 'IDR', locale: 'id_ID');
@@ -61,11 +63,13 @@ class DashboardController extends Controller
                 'fasilitasSekitar' => $fasilitasSekitar,
                 'blokTersedia' => $groupBlok,
                 'bloks' => $blok,
+                'ulasan' => $ulasan
                 // 'content'=>$content
             ]
         );
     }
-    public function status_blok($id_project){
+    public function status_blok($id_project)
+    {
         // $blok = BlokTersedia::get_blok_by_id_project($id_project);
         // $groupBlok = BlokTersedia::get_grup_blok_by_id_project($id_project);
         // // dd($blok);
