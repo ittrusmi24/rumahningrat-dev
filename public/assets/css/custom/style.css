@@ -793,6 +793,10 @@ video {
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+.dropdown-menu.show {
+    animation: fadeInUp;
+}
+
 /* responsive breakpoints */
 
 /* desktop */

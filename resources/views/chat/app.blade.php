@@ -12,7 +12,7 @@
          </div>
          <div class="dropdown-menu w-300 p-0">
              <!-- chat box here  -->
-             <div class="card shadow-none border-0">
+             <div class="card shadow-none border-0" style="height: 95%;">
                  <div class="card-header">
                      <div class="row align-items-center">
                          <div class="col align-self-center">

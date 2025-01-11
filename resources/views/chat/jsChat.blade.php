@@ -351,7 +351,10 @@
     })
 
     $(document).on('click', '.offeringBook', function() {
+        const chatDropdownElement = document.getElementById('chatNira');
+        const chatDropdown = new bootstrap.Dropdown(chatDropdownElement);
         $('#nama').focus()
+        chatDropdown.hide();
     })
     
 </script>

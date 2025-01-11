@@ -1851,11 +1851,11 @@
             });
 
 
-        $(document).on('click', function(e) {
+        // $(document).on('click', function(e) {
 
-                console.log(e.target);
+        //         console.log(e.target);
 
-        });
+        // });
         // $(document).on('click', '#svg', function(e) {
         //     console.log($(this));
         // });
