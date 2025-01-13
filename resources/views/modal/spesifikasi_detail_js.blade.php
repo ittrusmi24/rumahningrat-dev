@@ -8,6 +8,7 @@
         });
 
         $('#getSpesifikasiDetail').on('click', function() {
+            $('#modalSpesifikasi').modal('show');
             id_project = "{{ $id_project ?? '' }}";
             $.ajax({
                 url: "{{ url('fasilitas') }}/" + id_project, // Ganti dengan endpoint Anda

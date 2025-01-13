@@ -409,10 +409,12 @@
                             </div>
                         </div>
                         <div class="row mt-4">
-                            <div class="col-12">
-                                <a role="button" id="getSpesifikasiDetail" data-bs-toggle="modal"
-                                    data-bs-target="#modalSpesifikasi">Detail
-                                    Spesifikasi</a>
+                            <div class="col-6">
+                                    <a id="getSpesifikasiDetail" role="button" href="#">Detail
+                                        Spesifikasi</a>
+                            </div>
+                            <div class="col-6">
+                                <a href="{{ url('/vt_view') }}" target="_blank">Lihat 360 virtual view</a>
                             </div>
                         </div>
                     </div>
