@@ -349,7 +349,7 @@
     })
 
     $(document).on('click', '.offeringBook', function() {
-        $('#blok').focus()
+        $('#nama').focus()
         chatDropdown.hide();
     })
 </script>
