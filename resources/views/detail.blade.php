@@ -649,14 +649,6 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-6">
-                                            <p>Biaya BPHTP</p>
-                                        </div>
-                                        <div class="col-6 text-end">
-                                            <p class="d-inline" id="value_bphtb">Rp.8.750.000</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-6">
                                             <p>Pagar</p>
                                         </div>
                                         <div class="col-6 text-end">
@@ -699,6 +691,14 @@
                                         </div>
                                         <div class="col-6 text-end">
                                             <p class="d-inline" id="value_kelta">-</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p>Biaya Lain-lain</p>
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <p class="d-inline" id="value_bphtb">Rp.8.750.000</p>
                                         </div>
                                     </div>
                                     <hr style="border: 1.5px solid black;" class="mb-2 mt-0">
