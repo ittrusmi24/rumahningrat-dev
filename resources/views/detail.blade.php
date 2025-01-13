@@ -242,7 +242,7 @@
                                         </h5>
                                         <p class="card-text">Mendukung kesehatan dengan fasilitas
                                             jogging
-                                            tack,
+                                            track,
                                             lapangan olahraga dan lainnya</p>
                                     </div>
                                 </div>
