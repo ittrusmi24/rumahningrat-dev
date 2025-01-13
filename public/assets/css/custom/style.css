@@ -541,7 +541,7 @@ video {
     bottom: 0;
     display: none;
     text-align: center;
-    z-index: 9999 !important;
+    z-index: 1053 !important;
 }
 .chatboxes.align-center {
     left: 250px;
