@@ -27,7 +27,9 @@ class SendWhatsappNotification
         $booking = $event->booking;
         $id_gci = $booking['id_gci'];
         $wa_content = $this->get_content_wa($id_gci);
-
+        $wa_no_spv = trim($wa_content['no_spv']); // Nama konsumen
+        $wa_no_mm = trim($wa_content['no_mm']); // Nama konsumen
+        $wa_no_gm = trim($wa_content['no_gm']); // Nama konsumen
         $wa_no_konsumen = trim($wa_content['no_hp']); // Nama konsumen
         $wa_nama_konsumen = trim($wa_content['nama_konsumen']); // Nama konsumen
         $wa_project = trim($wa_content['project']); // Nama proyek perumahan
@@ -63,6 +65,7 @@ class SendWhatsappNotification
         $msg_customer .= "Hormat kami,\n\n";
         $msg_customer .= "*Rumah Ningrat*\n";
         $msg_customer .= "#SemuaBisaPunyaRumah";
+        $send_customer = $this->sendWhatsApp($wa_no_konsumen, $msg_customer);
         $send_customer = $this->sendWhatsApp('6285324409384', $msg_customer);
 
         // Kirim notifikasi ke marketing
@@ -83,6 +86,10 @@ class SendWhatsappNotification
             . "⏳ Progres Vendor : " . $wa_content['progres'] . "%\n"
             . "🏗️ Progres Pelaksana : " . $wa_content['progres_pelaksana'] . "%\n"
             . "⏱️ Umur Bangunan : " . $wa_content['umur_bangunan'];
+
+        // $send_head_mkt = $this->sendWhatsApp($wa_no_spv, $msg_head_marketing);
+        // $send_head_mkt = $this->sendWhatsApp($wa_no_mm, $msg_head_marketing);
+        // $send_head_mkt = $this->sendWhatsApp($wa_no_gm, $msg_head_marketing);
         $send_head_mkt = $this->sendWhatsApp('6285324409384', $msg_head_marketing);
 
         \Log::info('BookingCreated was triggered', ['data' => $event->booking]);
