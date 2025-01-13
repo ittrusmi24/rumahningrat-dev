@@ -64,7 +64,7 @@
     </div>
     <section class="container-fluid" id="wrapper-detail">
         <div class="row">
-            <div class="col-12 col-lg-8 pl-0 pr-0">
+            <div class="col-12 col-lg-8 p-0">
                 <div class="owl-carousel" id="gallery-carousel-1">
                     <div><img src="{{ url('/assets/images/carousel') }}/1.png" alt="">
                     </div>
@@ -92,15 +92,12 @@
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-4">
                     <div id="video_tour">
                     </div>
-                    <div class="vt_view">
-                        <iframe src="{{ url('/vt_view') }}" frameborder="0" width="100%" height="100%"></iframe>
-                    </div>
-
+                    <iframe src="{{ url('/vt_view') }}" frameborder="0" width="100%" height="100%"
+                        class="vt_view"></iframe>
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-5">
-                    <div class="vt_view">
-                        <iframe src="{{ url('/poi_view') }}" frameborder="0" width="100%" height="100%"></iframe>
-                    </div>
+                    <embed src="{{ url('/poi_view') }}" class="vt_view">
+                    {{-- <iframe src="{{ url('/poi_view') }}" frameborder="0" width="100%" height="100%"></iframe> --}}
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-6">
                     <div id="map">
@@ -113,7 +110,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 container-group pl-0 pr-0 mb-5">
+            <div class="col-12 col-lg-4 container-group p-0">
                 <div class="aside-section" id="aside-section-1">
                     <div class="container-fluid">
                         <div class="row">
@@ -529,6 +526,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <select class="select-blok" name="blok" id="blok">
+                                    <option value="">-- Pilih Blok --</option>
                                     @foreach ($bloks as $blok)
                                         <option value="{{ $blok->blok }}" data-harga="{{ $blok->terima_kunci }}"
                                             data-nominal="{{ $blok->nominal_booking }}" data-dp="{{ $blok->dp }}"
@@ -542,7 +540,6 @@
                                             data-potongan="{{ $blok->potongan }}"
                                             data-total_all="{{ $blok->total_all }}">Blok
                                             {{ $blok->blok }}</option>
-                                        Blok {{ $blok->blok }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -1393,13 +1390,13 @@
             }
 
             $('svg g').each(function() {
-            if ($(this).find('desc').length > 0 && $(this).find('desc').text().includes(',')) {
-                $(this).addClass('clickable');
-                // $(this).css('cursor', 'pointer');
-                // $(this).css('pointer-events', 'auto');
-            }else{
-                // $(this).css('cursor', 'default');
-                // $(this).css('pointer-events', 'none');
+                if ($(this).find('desc').length > 0 && $(this).find('desc').text().includes(',')) {
+                    $(this).addClass('clickable');
+                    // $(this).css('cursor', 'pointer');
+                    // $(this).css('pointer-events', 'auto');
+                } else {
+                    // $(this).css('cursor', 'default');
+                    // $(this).css('pointer-events', 'none');
 
                 }
             });
@@ -1543,9 +1540,18 @@
                 no_ktp_psg = $('#no_ktp_psg').val(),
                 nama_pasangan = $('#nama_pasangan').val(),
                 payment = $("input[name='payment']:checked").val(),
-                bank = $("input[name='bank']:checked").val()
+                bank = $("input[name='bank']:checked").val(),
+                blok = $('#blok').val()
 
-            if (nama == '') {
+            if (blok == '') {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Opps!",
+                    text: "Blok belum dipilih!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            } else if (nama == '') {
                 Swal.fire({
                     icon: "warning",
                     title: "Opps!",
@@ -1553,7 +1559,6 @@
                     showConfirmButton: false,
                     timer: 3000
                 });
-                $('#nama').focus()
             } else if (no_hp == '') {
                 Swal.fire({
                     icon: "warning",
@@ -1562,7 +1567,6 @@
                     showConfirmButton: false,
                     timer: 3000
                 });
-                $('#no_hp').focus()
             } else if (tgl_lahir == '') {
                 Swal.fire({
                     icon: "warning",
@@ -1571,16 +1575,14 @@
                     showConfirmButton: false,
                     timer: 3000
                 });
-                $('#tgl_lahir').focus()
             } else if (jenis_kl == '') {
                 Swal.fire({
                     icon: "warning",
                     title: "Opps!",
-                    text: "Tanggal lahir belum diisi!",
+                    text: "Jenis kelamin belum dipilih!",
                     showConfirmButton: false,
                     timer: 3000
                 });
-                $('#jenis_kl').focus()
             } else if (no_ktp == '') {
                 Swal.fire({
                     icon: "warning",
@@ -1589,7 +1591,6 @@
                     showConfirmButton: false,
                     timer: 3000
                 });
-                $('#no_ktp').focus()
             } else if (alamat == '' || alamat == null) {
                 Swal.fire({
                     icon: "warning",
@@ -1598,7 +1599,6 @@
                     showConfirmButton: false,
                     timer: 3000
                 });
-                $('#alamat_book').focus()
             } else if (pendapatan == '' || pendapatan == null) {
                 Swal.fire({
                     icon: "warning",
@@ -1607,16 +1607,14 @@
                     showConfirmButton: false,
                     timer: 3000
                 });
-                $('#pendapatan').focus()
             } else if (status == '') {
                 Swal.fire({
                     icon: "warning",
                     title: "Opps!",
-                    text: "Status belum diisi!",
+                    text: "Status belum dipilih!",
                     showConfirmButton: false,
                     timer: 3000
                 });
-                $('#status').focus()
             } else if (status == 2 && no_ktp_psg == '') {
                 Swal.fire({
                     icon: "warning",
@@ -1625,7 +1623,6 @@
                     showConfirmButton: false,
                     timer: 3000
                 });
-                $('#no_ktp_psg').focus()
             } else if (status == 2 && nama_pasangan == '') {
                 Swal.fire({
                     icon: "warning",
@@ -1634,7 +1631,6 @@
                     showConfirmButton: false,
                     timer: 3000
                 });
-                $('#nama_pasangan').focus()
             } else if (payment == '') {
                 Swal.fire({
                     icon: "warning",
@@ -1643,7 +1639,6 @@
                     showConfirmButton: false,
                     timer: 3000
                 });
-                $("input[name='payment']").focus()
             } else if (payment == 3 && bank == '') {
                 Swal.fire({
                     icon: "warning",
@@ -1652,14 +1647,11 @@
                     showConfirmButton: false,
                     timer: 3000
                 });
-                $("input[name='bank']").focus()
             } else {
                 var form = $('#formBooking')[0]; // Ambil elemen DOM dari jQuery
                 var formData = new FormData(form); // Buat objek FormData
 
-                // set blok to form
-                var blokValue = $('#blok').val();
-                formData.append('blok', blokValue);
+                formData.append('blok', blok);
 
                 // set pendapatan to form
                 var pendapatanValue = $('#pendapatan').val().replace(/\./g, '');
@@ -1675,11 +1667,7 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Jika diperlukan CSRF
                     },
                     beforeSend: function() {
-                        $('#btn-booking').html(`Loading...
-                            <div class="spinner-border" role="status">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>`);
-                        $('#btn-booking').attr('disable', true);
+                        $('#btn-booking').attr('disabled', true);
                     },
                     success: function(response) {
                         if (response.status) {
@@ -1710,8 +1698,7 @@
                         });
                     },
                     complete: function() {
-                        $('#btn-booking').html('Booking Sekarang');
-                        $('#btn-booking').attr('disable', false);
+                        $('#btn-booking').attr('disabled', false);
                     }
                 });
             }
@@ -1819,36 +1806,36 @@
             legend.addTo(map);
 
         }
-            $('#map').on('click', function(e) {
-                // Nonaktifkan pointer events untuk sementara agar bisa mendeteksi elemen di bawah #map
-                $('#map').css('pointer-events', 'none');
-                $('.leaflet-map-pane').css('pointer-events', 'none');
-                $('.leaflet-overlay-pane').css('pointer-events', 'none');
-                $('svg').css('pointer-events', 'none');
-                $('g').css('pointer-events', 'auto');
+        $('#map').on('click', function(e) {
+            // Nonaktifkan pointer events untuk sementara agar bisa mendeteksi elemen di bawah #map
+            $('#map').css('pointer-events', 'none');
+            $('.leaflet-map-pane').css('pointer-events', 'none');
+            $('.leaflet-overlay-pane').css('pointer-events', 'none');
+            $('svg').css('pointer-events', 'none');
+            $('g').css('pointer-events', 'auto');
 
-                const x = e.clientX;
-                const y = e.clientY;
-                const clickedElement = document.elementFromPoint(x, y);
+            const x = e.clientX;
+            const y = e.clientY;
+            const clickedElement = document.elementFromPoint(x, y);
 
-                // Aktifkan kembali pointer-events pada .leaflet-map-pane
-                // $('.leaflet-map-pane').css('pointer-events', 'auto');
-                console.log(clickedElement);
+            // Aktifkan kembali pointer-events pada .leaflet-map-pane
+            // $('.leaflet-map-pane').css('pointer-events', 'auto');
+            console.log(clickedElement);
 
-                // if (clickedElement) {
-                //     if ($(clickedElement).is('.leaflet-overlay-pane') || $(clickedElement).closest('.leaflet-overlay-pane').length > 0) {
-                //         const targetElement = $(clickedElement).closest('.leaflet-overlay-pane');
-                //         console.log('Klik diarahkan ke elemen .leaflet-overlay-pane:', targetElement);
+            // if (clickedElement) {
+            //     if ($(clickedElement).is('.leaflet-overlay-pane') || $(clickedElement).closest('.leaflet-overlay-pane').length > 0) {
+            //         const targetElement = $(clickedElement).closest('.leaflet-overlay-pane');
+            //         console.log('Klik diarahkan ke elemen .leaflet-overlay-pane:', targetElement);
 
-                //         // Contoh: Tambahkan logika untuk menangani klik pada elemen .leaflet-overlay-pane
-                //         targetElement.trigger('click');
-                //     } else {
-                //         console.log('Tidak ada elemen .leaflet-overlay-pane yang diklik.');
-                //     }
-                // } else {
-                //     console.log('Tidak ada elemen di bawah titik klik.');
-                // }
-            });
+            //         // Contoh: Tambahkan logika untuk menangani klik pada elemen .leaflet-overlay-pane
+            //         targetElement.trigger('click');
+            //     } else {
+            //         console.log('Tidak ada elemen .leaflet-overlay-pane yang diklik.');
+            //     }
+            // } else {
+            //     console.log('Tidak ada elemen di bawah titik klik.');
+            // }
+        });
 
 
         // $(document).on('click', function(e) {

@@ -505,6 +505,7 @@ video {
 
 .vt_view {
     height: 100vh;
+    width: 100%;
 }
 
 .legend-box {
@@ -668,7 +669,7 @@ video {
 .chat-list .left-chat .chat-block {
     background-color: #f4f4f4;
     color: #000000;
-    padding: 15px;
+    padding: 12px;
     border-radius: 0.25rem 0.25rem 0.25rem 0px;
     margin-right: 3px;
     position: relative;

@@ -1,4 +1,6 @@
 <script>
+    const chatDropdownElement = document.getElementById('chatNira');
+    const chatDropdown = new bootstrap.Dropdown(chatDropdownElement);
     const chatlist = $('#chat-list');
     let getSectionId = 0
     let getSectionIdSub = 0
@@ -54,10 +56,6 @@
 
     $(document).ready(function() {
         newChat();
-
-        // Ambil elemen dropdown
-        const chatDropdownElement = document.getElementById('chatNira');
-        const chatDropdown = new bootstrap.Dropdown(chatDropdownElement);
 
         // Tambahkan event click pada tombol btn-close-nira
         $('#btn-close-nira').on('click', function() {
@@ -172,7 +170,7 @@
                          </div>
                      </div>`)
 
-                    const offering = $(`<div class="row mt-1 mb-0 left-chat animate__animated animate__fadeIn">
+                    const offering = $(`<div class="row mt-2 mb-0 left-chat animate__animated animate__fadeIn">
                          <div class="col-12">
                              <div class="chat-block">
                                  <div class="row">
@@ -351,10 +349,7 @@
     })
 
     $(document).on('click', '.offeringBook', function() {
-        const chatDropdownElement = document.getElementById('chatNira');
-        const chatDropdown = new bootstrap.Dropdown(chatDropdownElement);
-        $('#nama').focus()
+        $('#blok').focus()
         chatDropdown.hide();
     })
-    
 </script>
