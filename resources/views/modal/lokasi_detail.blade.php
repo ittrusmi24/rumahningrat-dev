@@ -4,35 +4,17 @@
             <div class="modal-body modal-body p-0 m-0">
                 <div class="container-fluid p-0 m-0">
                     <div class="row p-0 m-0">
-                        <div class="p-0 m-0 col-12 col-md-12 col-lg-6 position-relative">
-                            <style>
-                                #map_lokasi {
-                                    height: 100%;
-                                    position: absolute;
-                                    inset: 0;
-                                }
-
-                                @media (max-width: 767px) {
-                                    #map_lokasi {
-                                        height: 250px;
-                                    }
-
-                                    #video_presentation {
-                                        height: 250px;
-                                    }
-                                }
-                            </style>
+                        <div class="p-0 m-0 col-12 col-lg-6 position-relative" id="modalSectionMap">
                             <div id="map_lokasi"></div>
                         </div>
-                        <div class="d-flex align-items-center p-0 m-0 col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6"
-                            style="height: 400px">
-                            <div class="video d-none">
+                        <div class="d-flex align-items-center p-0 m-0 col-12 col-lg-6" id="modalSectionDetail">
+                            {{-- <div class="video d-none">
                                 <iframe id="video_presentation" width="100%" height="200" src=""
                                     title="Rumah Ningrat" frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
                                 </iframe>
-                            </div>
+                            </div> --}}
                             <div class="ps-4 pe-4 pt-2">
                                 <h5 class="fw-bold mt-2">{{ $project['title_satu'] }}</h5>
                                 <h5 class="fw-bold">{{ $project['title_dua'] }}</h5>

@@ -333,7 +333,7 @@
                                 <div class="header-detail text-center mb-5">
                                     <p>Dalam rangka merayakan Penghargaan Developer Terbaik Nasional, Kami memberikan
                                         <b>Gratis
-                                            Pagar</b> dan <b>Tembok Keliling</b> untuk Rumah Ningrat Edisi 2025
+                                            Pagar</b> pada Rumah Ningrat Edisi 2025 untuk Hidup Lebih Baik
                                     </p>
                                 </div>
                             </div>
@@ -345,26 +345,22 @@
                                         <div class="card-bonus-body">
                                             <img src="{{ url('/assets') }}/images/icon/pagar.png" alt=""
                                                 width="45px" height="45px">
-                                            <h5>Pagar Besi</h5>
+                                            <h5>Pagar</h5>
                                             <p><s>Rp. 10.000.000</s></p>
                                             <p class="text-danger">Rp. 0</p>
-                                            {{-- <p class="text-detail-card-bonus">Dibangun dengan tembok
-                                                keliling
-                                                untuk privasi anda</p> --}}
+                                            <p class="text-detail-card-bonus">Spesial hanya berlaku untuk booking di bulan
+                                                ini!</p>
                                         </div>
                                     </div>
-                                    <div class="card card-bonus text-center">
+                                    {{-- <div class="card card-bonus text-center">
                                         <div class="card-bonus-body">
                                             <img src="{{ url('/assets') }}/images/icon/wall.png" alt=""
                                                 width="45px" height="45px">
                                             <h5>Tembok Dapur</h5>
                                             <p><s>Rp. 2.000.000</s></p>
                                             <p class="text-danger">Rp. 0</p>
-                                            {{-- <p class="text-detail-card-bonus">Dilengkapi tembok dapur
-                                                belakang
-                                                setinggi 1,5 meter</p> --}}
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -372,9 +368,9 @@
                     <div class="container mt-3">
                         <div class="row">
                             <div class="col text-center">
-                                <p>Kami memahami bahwa konsumen adalah prioritas, sehingga Kami berdedikasi meningkatkan
+                                {{-- <p>Kami memahami bahwa konsumen adalah prioritas, sehingga Kami berdedikasi meningkatkan
                                     rasa nyaman dan aman bagi Konsumen untuk Hidup Lebih Baik.</p>
-                                <p>Dilengkapi dengan tembok dapur dengan kualitas bata habel terbaik</p>
+                                <p>Dilengkapi dengan tembok dapur dengan kualitas bata habel terbaik</p> --}}
                             </div>
                         </div>
                     </div>
@@ -410,8 +406,8 @@
                         </div>
                         <div class="row mt-4">
                             <div class="col-6">
-                                    <a id="getSpesifikasiDetail" role="button" href="#">Detail
-                                        Spesifikasi</a>
+                                <a id="getSpesifikasiDetail" role="button" href="#">Detail
+                                    Spesifikasi</a>
                             </div>
                             <div class="col-6">
                                 <a href="{{ url('/vt_view') }}" target="_blank">Lihat 360 virtual view</a>

@@ -122,14 +122,19 @@ label {
 /* bonus section */
 .bonus-container {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1fr);
     gap: 8px;
+    justify-content: center;
 }
 
 .card-bonus {
     min-height: 165px;
     border-radius: 12px;
     border: 1px solid #ababab;
+    box-sizing: border-box;
+    margin: auto;
+    padding: 12px;
+    max-width: 225px;
 }
 
 .card-bonus-body {
@@ -799,6 +804,20 @@ video {
     animation: fadeInUp;
 }
 
+/* modal lokasi selengkapnya */
+#modalSectionMap {
+    min-height: 400px;
+}
+
+#map_lokasi {
+    height: 100%;
+    position: absolute;
+    inset: 0;
+}
+#modalSectionDetail {
+    min-height: 400px;
+}
+
 /* responsive breakpoints */
 
 /* desktop */
@@ -945,5 +964,20 @@ video {
         left: 0 !important; /* Tampilkan ke kanan bawah */
         z-index: 999999;
         height: 90vh;
+    }
+
+    /* modal lokasi selengkapnya */
+    #modalSectionMap {
+        min-height: 200px;
+    }
+    #modalSectionDetail {
+        min-height: auto !important;
+    }
+    #map_lokasi {
+        height: 200px;
+    }
+
+    #video_presentation {
+        height: 250px;
     }
 }
