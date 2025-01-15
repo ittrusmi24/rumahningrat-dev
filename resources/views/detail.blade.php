@@ -276,7 +276,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-3">
+                        {{-- <div class="row mt-3">
                             <h5 class="text-center mb-3 col-12">Ulasan</h5>
                             <div class="col-12" id="ulasan-container">
                                 @foreach ($ulasan as $item)
@@ -298,27 +298,8 @@
                                         </div>
                                     </div>
                                 @endforeach
-
-                                {{-- <div class="item-ulasan">
-                                    <div class="card rounded">
-                                        <div class="card-body">
-                                            <div class="d-flex justify-content-between">
-                                                <p class="text-primary"><i class="bi bi-star-fill"></i> <i
-                                                        class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i>
-                                                </p>
-                                                <p>Des 2024</p>
-                                            </div>
-                                            <p class="card-text">Rumahnya keren, clean</p>
-                                            <p class="card-text">Memilih Rumah Ningrat adalah keputusan
-                                                yang tepat! Desain rumah elegan dan lingkungan asri
-                                                benar-benar membuat nyaman.</p>
-                                            <p class="nama-review">Fujiyanto Hasan</p>
-                                        </div>
-                                    </div>
-                                </div> --}}
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="aside-section" id="aside-section-3">
@@ -499,9 +480,15 @@
                                                 </div>
                                                 <div class="d-flex flex-column justify-content-center text-end">
                                                     <p style="line-height: 10px">Biaya Mulai</p>
-                                                    <p style="margin-bottom:0px;line-height: 10px; color: #DE0000;">
-                                                        {{-- {{ $blok->terima_kunci }} --}} Rp. 1.000.000,-
-                                                    </p>
+                                                    @if ($blok->sisa_unit >= 10)
+                                                        <p style="margin-bottom:0px;line-height: 10px; color: #000000;">
+                                                            {{-- {{ $blok->terima_kunci }} --}} Rp. 1.000.000,-
+                                                        </p>
+                                                    @else
+                                                        <p style="margin-bottom:0px;line-height: 10px; color: #DE0000;">
+                                                            {{-- {{ $blok->terima_kunci }} --}} Rp. 1.000.000,-
+                                                        </p>
+                                                    @endif
                                                 </div>
                                             </div>
                                         @endforeach
