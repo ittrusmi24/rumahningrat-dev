@@ -699,7 +699,11 @@
                                             <p>Potongan</p>
                                         </div>
                                         <div class="col-6 text-end">
-                                            <p class="d-inline text-danger" id="value_potongan">Rp. 19.400.000</p>
+                                            <p class="d-inline text-danger d-none" id="value_potongan">Rp. 19.400.000</p>
+                                            <button type="button" id="btn-potongan" class="btn btn-primary btn-sm"
+                                                data-bs-toggle="modal" data-bs-target="#agreementModal">
+                                                Dapatkan Potongan
+                                            </button>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -707,7 +711,8 @@
                                             <p>Total Biaya</p>
                                         </div>
                                         <div class="col-6 text-end">
-                                            <p class="d-inline fw-bold" id="value_total">Rp. 9.250.000</p>
+                                            <p class="d-inline fw-bold" id="value_total_awal">Rp. 28.650.000</p>
+                                            <p class="d-inline fw-bold d-none" id="value_total">Rp. 9.250.000</p>
                                         </div>
                                     </div>
                                     <div class="bank-section mt-5">
@@ -862,6 +867,7 @@
     @include('modal.spesifikasi_detail')
     @include('modal.sukses')
     @include('modal.dekat_dengan')
+    @include('modal.potongan')
 
     {{-- <div class="chat-ai d-flex flex-column shadow-sm">
     <div><i class="bi bi-chat-dots"></i></div>
@@ -1026,6 +1032,19 @@
         }
 
         $(document).ready(function() {
+            // potongan harga js
+            $('#agreeCheckbox').on('change', function() {
+                $('#okButton').prop('disabled', !this.checked);
+            });
+            $('#okButton').on('click', function() {
+                $('#value_potongan').removeClass('d-none');
+                $('#btn-potongan').addClass('d-none');
+                $('#value_total_awal').addClass('d-none');
+                $('#value_total').removeClass('d-none');
+                $('#agreementModal').modal('hide');
+
+            });
+
             $('#map').find('a').remove();
             addLegend(map);
             const mobile = isMobile();
@@ -1425,6 +1444,7 @@
             $('#value_subtotal').text(formatRupiah(total));
             $('#value_potongan').text(formatRupiah(potongan));
             $('#value_total').text(formatRupiah(total_all));
+            $('#value_total_awal').text(formatRupiah(total_all));
             clearInterval(blinkInterval);
 
             // Clear all blue strokes pada semua blok
@@ -1480,36 +1500,37 @@
             }
         });
 
-        const ulasan = document.getElementById('ulasan-container');
+        // ulasan js
+        // const ulasan = document.getElementById('ulasan-container');
 
-        let isDragging = false;
-        let startX;
-        let scrollLeft;
+        // let isDragging = false;
+        // let startX;
+        // let scrollLeft;
 
-        ulasan.addEventListener('mousedown', (e) => {
-            isDragging = true;
-            ulasan.classList.add('dragging');
-            startX = e.pageX - ulasan.offsetLeft;
-            scrollLeft = ulasan.scrollLeft;
-        });
+        // ulasan.addEventListener('mousedown', (e) => {
+        //     isDragging = true;
+        //     ulasan.classList.add('dragging');
+        //     startX = e.pageX - ulasan.offsetLeft;
+        //     scrollLeft = ulasan.scrollLeft;
+        // });
 
-        ulasan.addEventListener('mouseleave', () => {
-            isDragging = false;
-            ulasan.classList.remove('dragging');
-        });
+        // ulasan.addEventListener('mouseleave', () => {
+        //     isDragging = false;
+        //     ulasan.classList.remove('dragging');
+        // });
 
-        ulasan.addEventListener('mouseup', () => {
-            isDragging = false;
-            ulasan.classList.remove('dragging');
-        });
+        // ulasan.addEventListener('mouseup', () => {
+        //     isDragging = false;
+        //     ulasan.classList.remove('dragging');
+        // });
 
-        ulasan.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
-            e.preventDefault();
-            const x = e.pageX - ulasan.offsetLeft;
-            const walk = (x - startX) * 2;
-            ulasan.scrollLeft = scrollLeft - walk;
-        });
+        // ulasan.addEventListener('mousemove', (e) => {
+        //     if (!isDragging) return;
+        //     e.preventDefault();
+        //     const x = e.pageX - ulasan.offsetLeft;
+        //     const walk = (x - startX) * 2;
+        //     ulasan.scrollLeft = scrollLeft - walk;
+        // });
 
         // validasi booking
         function validasiBook() {
