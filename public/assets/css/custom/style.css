@@ -980,4 +980,14 @@ video {
     #video_presentation {
         height: 250px;
     }
+    /* potongan harga */
+    #btn-potongan {
+        font-size: 10px !important;
+        padding: 5px 10px !important;
+    }
+
+    #okButton {
+        font-size: 10px !important;
+        padding: 5px 10px !important;
+    }
 }
