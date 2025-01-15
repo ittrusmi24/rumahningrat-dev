@@ -3,7 +3,7 @@
 @section('head')
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Rumah Ningrat</title>
+    <title>Rumah Ningrat | Booking</title>
     <meta name="description" content="halaman detail beli rumah ningrat harga merakyat">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -44,11 +44,6 @@
     <script src="https://cdn.maptiler.com/maptiler-sdk-js/v2.5.1/maptiler-sdk.umd.js"></script>
     <link href="https://cdn.maptiler.com/maptiler-sdk-js/v2.5.1/maptiler-sdk.css" rel="stylesheet" />
     <script src="https://cdn.maptiler.com/leaflet-maptilersdk/v2.0.0/leaflet-maptilersdk.js"></script>
-    <style>
-
-
-
-    </style>
 @endsection
 
 @section('content')
@@ -1597,7 +1592,7 @@
                     showConfirmButton: false,
                     timer: 3000
                 });
-            } else if (pendapatan == '' || pendapatan == null) {
+            } else if (pendapatan == '' || pendapatan == null || pendapatan == 0) {
                 Swal.fire({
                     icon: "warning",
                     title: "Opps!",
@@ -1646,57 +1641,70 @@
                     timer: 3000
                 });
             } else {
-                var form = $('#formBooking')[0]; // Ambil elemen DOM dari jQuery
-                var formData = new FormData(form); // Buat objek FormData
+                Swal.fire({
+                    title: 'Submit!',
+                    text: 'Data pada form sudah benar?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes',
+                    cancelButtonText: 'No'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        var form = $('#formBooking')[0]; // Ambil elemen DOM dari jQuery
+                        var formData = new FormData(form); // Buat objek FormData
 
-                formData.append('blok', blok);
+                        formData.append('blok', blok);
 
-                // set pendapatan to form
-                var pendapatanValue = $('#pendapatan').val().replace(/\./g, '');
-                formData.set('pendapatan', pendapatanValue);
-                $.ajax({
-                    url: `${baseURL}/simpan_booking`, // Sesuaikan endpoint API
-                    type: 'POST',
-                    dataType: 'json',
-                    data: formData,
-                    processData: false, // Jangan proses data
-                    contentType: false, // Jangan tetapkan content-type secara otomatis
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Jika diperlukan CSRF
-                    },
-                    beforeSend: function() {
-                        $('#btn-booking').attr('disabled', true);
-                    },
-                    success: function(response) {
-                        if (response.status) {
-                            $('#bayarGci').attr('href',
-                                `https://trusmicorp.com/rspproject/paygate/q/${response.id_gci}`);
-                            $('#expired_time').text(response.expired_time);
-                            $("#modalSukses").modal('show');
+                        // set pendapatan to form
+                        var pendapatanValue = $('#pendapatan').val().replace(/\./g, '');
+                        formData.set('pendapatan', pendapatanValue);
+                        $.ajax({
+                            url: `${baseURL}/simpan_booking`, // Sesuaikan endpoint API
+                            type: 'POST',
+                            dataType: 'json',
+                            data: formData,
+                            processData: false, // Jangan proses data
+                            contentType: false, // Jangan tetapkan content-type secara otomatis
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+                                    'content') // Jika diperlukan CSRF
+                            },
+                            beforeSend: function() {
+                                $('#btn-booking').attr('disabled', true);
+                            },
+                            success: function(response) {
+                                if (response.status) {
+                                    $('#bayarGci').attr('href',
+                                        `https://trusmicorp.com/rspproject/paygate/q/${response.id_gci}`
+                                    );
+                                    $('#expired_time').text(response.expired_time);
+                                    $("#modalSukses").modal('show');
 
-                            $('#formBooking')[0].reset();
-                        } else {
-                            Swal.fire({
-                                icon: "warning",
-                                title: "Reject!",
-                                text: response.message,
-                                showConfirmButton: false,
-                                timer: 3000
-                            });
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        // console.error(`Error: ${error}`);
-                        Swal.fire({
-                            icon: "error",
-                            title: status,
-                            text: error,
-                            showConfirmButton: false,
-                            timer: 3000
+                                    $('#formBooking')[0].reset();
+                                } else {
+                                    Swal.fire({
+                                        icon: "warning",
+                                        title: "Reject!",
+                                        text: response.message,
+                                        showConfirmButton: false,
+                                        timer: 3000
+                                    });
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                                // console.error(`Error: ${error}`);
+                                Swal.fire({
+                                    icon: "error",
+                                    title: status,
+                                    text: error,
+                                    showConfirmButton: false,
+                                    timer: 3000
+                                });
+                            },
+                            complete: function() {
+                                $('#btn-booking').attr('disabled', false);
+                            }
                         });
-                    },
-                    complete: function() {
-                        $('#btn-booking').attr('disabled', false);
                     }
                 });
             }
