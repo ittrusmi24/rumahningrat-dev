@@ -44,6 +44,7 @@
     <script src="https://cdn.maptiler.com/maptiler-sdk-js/v2.5.1/maptiler-sdk.umd.js"></script>
     <link href="https://cdn.maptiler.com/maptiler-sdk-js/v2.5.1/maptiler-sdk.css" rel="stylesheet" />
     <script src="https://cdn.maptiler.com/leaflet-maptilersdk/v2.0.0/leaflet-maptilersdk.js"></script>
+
 @endsection
 
 @section('content')
@@ -1145,30 +1146,30 @@
             var mapInitialized = false;
             var owl = $('.owl-carousel');
 
-            owl.on('translate.owl.carousel', function() {
-                if (!mapInitialized) {
-                    // console.log("Inisialisasi Map Pertama Kali");
-                    // map = L.map('map').setView([51.505, -0.09], 13);  // Inisialisasi pertama kali
-                    // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    //     maxZoom: 19,
-                    // }).addTo(map);
-                    map.invalidateSize(); // Paksa resize setelah inisialisasi
-                    mapInitialized = true; // Update flag agar tidak inisialisasi berulang
-                }
-            });
-            owl.on('changed.owl.carousel', function(e) {
-                map.invalidateSize();
-                // console.log("current: ", e.relatedTarget.current())
-                // console.log("current: ",e.item.index) //same
-                // console.log("total: ",e.item.count)   //total
-            })
+            // owl.on('translate.owl.carousel', function() {
+            //     if (!mapInitialized) {
+            //         // console.log("Inisialisasi Map Pertama Kali");
+            //         // map = L.map('map').setView([51.505, -0.09], 13);  // Inisialisasi pertama kali
+            //         // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            //         //     maxZoom: 19,
+            //         // }).addTo(map);
+            //         map.invalidateSize(); // Paksa resize setelah inisialisasi
+            //         mapInitialized = true; // Update flag agar tidak inisialisasi berulang
+            //     }
+            // });
+            // owl.on('changed.owl.carousel', function(e) {
+            //     map.invalidateSize();
+            //     // console.log("current: ", e.relatedTarget.current())
+            //     // console.log("current: ",e.item.index) //same
+            //     // console.log("total: ",e.item.count)   //total
+            // })
 
-            owl.on('initialized.owl.carousel', function() {
-                setTimeout(function() {
-                    map.invalidateSize();
-                    // console.log("Map size invalidated on init");
-                }, 300); // Delay untuk memastikan semua rendering selesai
-            });
+            // owl.on('initialized.owl.carousel', function() {
+            //     setTimeout(function() {
+            //         map.invalidateSize();
+            //         // console.log("Map size invalidated on init");
+            //     }, 300); // Delay untuk memastikan semua rendering selesai
+            // });
 
         });
 
@@ -1258,49 +1259,59 @@
                         var stop1 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
                         stop1.setAttribute("offset", "50%");
 
+                        // if (value.status == 'Not Sale') {
+                        //     stop1.setAttribute("stop-color", "#B8B8B8");
+                        // } else if (value.status == 'Akad') {
+                        //     stop1.setAttribute("stop-color", "#B3E5BE");
+                        // } else if (value.status == 'Booking Cash') {
+                        //     stop1.setAttribute("stop-color", "#45b6fe");
+                        // } else if (value.status == 'Booking') {
+                        //     stop1.setAttribute("stop-color", "#FD8A8A");
+                        // } else if (value.status == 'SP3K') {
+                        //     stop1.setAttribute("stop-color", "#FDFFAE");
+                        // } else if (value.status == 'Kosong') {
+                        //     stop1.setAttribute("stop-color", "white");
+                        // } else if (value.status == 'Pindah Blok') {
+                        //     stop1.setAttribute("stop-color", "#990066");
+                        // } else { // Bank
+                        //     stop1.setAttribute("stop-color", "#B983FF");
+                        // }
                         if (value.status == 'Not Sale') {
                             stop1.setAttribute("stop-color", "#B8B8B8");
-                        } else if (value.status == 'Akad') {
-                            stop1.setAttribute("stop-color", "#B3E5BE");
-                        } else if (value.status == 'Booking Cash') {
-                            stop1.setAttribute("stop-color", "#45b6fe");
-                        } else if (value.status == 'Booking') {
+
+                        } else if (value.status == 'Booking' || value.status == 'Akad' || value.status == 'Booking Cash' || value.status == 'SP3K' || value.status == 'Pindah Blok' || value.status == 'Bank') {
                             stop1.setAttribute("stop-color", "#FD8A8A");
-                        } else if (value.status == 'SP3K') {
-                            stop1.setAttribute("stop-color", "#FDFFAE");
                         } else if (value.status == 'Kosong') {
                             stop1.setAttribute("stop-color", "white");
-                        } else if (value.status == 'Pindah Blok') {
-                            stop1.setAttribute("stop-color", "#990066");
-                        } else { // Bank
-                            stop1.setAttribute("stop-color", "#B983FF");
+                        }else{
+                            stop1.setAttribute("stop-color", "#B8B8B8");
                         }
 
                         // Warna kedua (PROGRES)
-                        var stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
-                        stop2.setAttribute("offset", "50%");
-                        if (value.status == 'Not Sale') {
-                            stop2.setAttribute("stop-color", "#B8B8B8");
-                        } else if (parseInt(value.progres) < 10) {
-                            stop2.setAttribute("stop-color", "#B9F3FC");
-                        } else if (parseInt(value.progres) >= 10 && parseInt(value.progres) < 30) {
-                            stop2.setAttribute("stop-color", "#9F8772");
-                        } else if (parseInt(value.progres) >= 30 && parseInt(value.progres) < 60) {
-                            stop2.setAttribute("stop-color", "#B7B7B7");
-                        } else if (parseInt(value.progres) >= 60 && parseInt(value.progres) < 85) {
-                            stop2.setAttribute("stop-color", "#1572A1");
-                        } else if (parseInt(value.progres) >= 85 && parseInt(value.progres) < 100) {
-                            stop2.setAttribute("stop-color", "#FAAB78");
-                        } else if (parseInt(value.progres) > 99) {
-                            stop2.setAttribute("stop-color", "#FF8DC7");
-                        } else {
-                            stop2.setAttribute("stop-color", "black");
+                        // var stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+                        // stop2.setAttribute("offset", "50%");
+                        // if (value.status == 'Not Sale') {
+                        //     stop2.setAttribute("stop-color", "#B8B8B8");
+                        // } else if (parseInt(value.progres) < 10) {
+                        //     stop2.setAttribute("stop-color", "#B9F3FC");
+                        // } else if (parseInt(value.progres) >= 10 && parseInt(value.progres) < 30) {
+                        //     stop2.setAttribute("stop-color", "#9F8772");
+                        // } else if (parseInt(value.progres) >= 30 && parseInt(value.progres) < 60) {
+                        //     stop2.setAttribute("stop-color", "#B7B7B7");
+                        // } else if (parseInt(value.progres) >= 60 && parseInt(value.progres) < 85) {
+                        //     stop2.setAttribute("stop-color", "#1572A1");
+                        // } else if (parseInt(value.progres) >= 85 && parseInt(value.progres) < 100) {
+                        //     stop2.setAttribute("stop-color", "#FAAB78");
+                        // } else if (parseInt(value.progres) > 99) {
+                        //     stop2.setAttribute("stop-color", "#FF8DC7");
+                        // } else {
+                        //     stop2.setAttribute("stop-color", "black");
 
-                            // console.info(`${value.blok} - ${parseInt(value.progres)}`)
-                        }
+                        //     // console.info(`${value.blok} - ${parseInt(value.progres)}`)
+                        // }
 
                         gradient.append(stop1);
-                        gradient.append(stop2);
+                        // gradient.append(stop2);
                         defs.append(gradient);
                         // Menambahkan elemen gradient ke dalam SVG
                         $(`svg`).append(defs);
@@ -1711,66 +1722,26 @@
                 var statusRow = $('<div>').addClass('d-flex flex-wrap justify-content-center align-items-center');
                 var progresRow = $('<div>').addClass('d-flex flex-wrap justify-content-center align-items-center');
 
-                var statusItems = [{
-                        color: '#C3C28E',
-                        text: 'Not Sale'
-                    },
-                    {
-                        color: '#B3E5BE',
-                        text: 'Akad'
-                    },
-                    {
-                        color: '#45b6fe',
-                        text: 'Booking Cash'
-                    },
-                    {
-                        color: '#FD8A8A',
-                        text: 'Booking'
-                    },
-                    {
-                        color: '#FDFFAE',
-                        text: 'SP3K'
-                    },
+                var statusItems = [
                     {
                         color: 'white',
                         border: '1px solid #ccc',
                         text: 'Kosong'
                     },
                     {
-                        color: '#990066',
-                        text: 'Pindah Blok'
+                        color: '#B8B8B8',
+                        text: 'Not Sale'
                     },
                     {
-                        color: '#B983FF',
-                        text: 'Bank'
-                    }
+                        color: '#FD8A8A',
+                        text: 'Terjual'
+                    },
+
+
+
                 ];
 
-                var progresItems = [{
-                        color: '#B9F3FC',
-                        text: '0% - 9%'
-                    },
-                    {
-                        color: '#9F8772',
-                        text: '10% - 29%'
-                    },
-                    {
-                        color: '#B7B7B7',
-                        text: '30% - 59%'
-                    },
-                    {
-                        color: '#1572A1',
-                        text: '60% - 84%'
-                    },
-                    {
-                        color: '#FAAB78',
-                        text: '85% - 99%'
-                    },
-                    {
-                        color: '#FF8DC7',
-                        text: '100%'
-                    }
-                ];
+
 
                 function appendItems(items, container) {
                     items.forEach(function(item) {
@@ -1785,11 +1756,9 @@
                 }
 
                 appendItems(statusItems, statusRow);
-                appendItems(progresItems, progresRow);
+                // appendItems(progresItems, progresRow);
 
                 legendContent.append(statusRow);
-                legendContent.append($('<hr style="border: 0,6px solid black">').addClass('my-1'));
-                legendContent.append(progresRow);
 
                 $(div).append(legendContent);
 
