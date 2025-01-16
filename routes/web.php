@@ -63,7 +63,7 @@ Route::get('project/{id_project}', [ProjectController::class, 'index'])->name('p
 Route::get('ulasan/{id_project}', [UlasanController::class, 'index'])->name('ulasan');
 Route::get('fasilitas/{id_project}', [FasilitasController::class, 'index'])->name('fasilitas');
 Route::get('fasilitas_sekitar/grouped/{id_project}', [FasilitasSekitarController::class, 'grouped'])->name('fasilitas.sekitar.grouped');
-Route::get('fasilitas_sekitar/{id_project}', [FasilitasSekitarController::class, 'index'])->name('fasilitas.sekitar');
+Route::get('fasilitas_sekitar/{id_project}/{category_id}', [FasilitasSekitarController::class, 'index'])->name('fasilitas.sekitar');
 Route::get('blok_tersedia/{id_project}', [BlokTersediaController::class, 'index'])->name('blok');
 Route::get('blok_tersedia_grouped/{id_project}', [BlokTersediaController::class, 'grouped'])->name('blok.grouped');
 Route::post('chat/kategori', [ChatController::class, 'kategori'])->name('chat.kategori');
