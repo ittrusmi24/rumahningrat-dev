@@ -626,9 +626,16 @@
                                             <p>Uang Muka DP</p>
                                         </div>
                                         <div class="col-6 text-end">
-                                            <p class="text-decoration-line-through d-inline text-danger" id="value_dp">
-                                                Rp.5.000.000</p>
-                                            <p class=" d-inline">Rp. 0</p>
+                                            <div id="dpPotongan" class="d-none">
+                                                <p class="text-decoration-line-through d-inline text-danger"
+                                                    id="value_dp">
+                                                    Rp.5.000.000</p>
+                                                <p class=" d-inline">Rp. 0</p>
+                                            </div>
+                                            <div id="dpNonPotongan">
+                                                <p class="d-inline" id="value_dp2">
+                                                    Rp.5.000.000</p>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -636,9 +643,15 @@
                                             <p>Pagar</p>
                                         </div>
                                         <div class="col-6 text-end">
-                                            <p class="text-decoration-line-through d-inline text-danger" id="value_pagar">
-                                                Rp.10.000.000</p>
-                                            <p class=" d-inline">Rp. 0</p>
+                                            <div id="pagarPotongan" class="d-none">
+                                                <p class="text-decoration-line-through d-inline text-danger"
+                                                    id="value_pagar">
+                                                    Rp.10.000.000</p>
+                                                <p class=" d-inline">Rp. 0</p>
+                                            </div>
+                                            <div id="pagarNonPotongan">
+                                                <p class=" d-inline" id="value_pagar2">Rp.10.000.000</p>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -646,9 +659,14 @@
                                             <p>Tembok Keliling</p>
                                         </div>
                                         <div class="col-6 text-end">
-                                            <p class="text-decoration-line-through d-inline text-danger "
-                                                id="value_tembok">Rp.2.000.000</p>
-                                            <p class="d-inline">Rp. 0</p>
+                                            <div id="tembokPotongan" class="d-none">
+                                                <p class="text-decoration-line-through d-inline text-danger "
+                                                    id="value_tembok">Rp.2.000.000</p>
+                                                <p class="d-inline">Rp. 0</p>
+                                            </div>
+                                            <div id="tembokNonPotongan">
+                                                <p class="d-inline" id="value_tembok2">Rp.2.000.000</p>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -656,9 +674,15 @@
                                             <p>Biaya IPL 2 Tahun</p>
                                         </div>
                                         <div class="col-6 text-end">
-                                            <p class="text-decoration-line-through d-inline text-danger" id="value_ipl">
-                                                Rp.2.400.000</p>
-                                            <p class=" d-inline">Rp. 0</p>
+                                            <div id="iplPotongan" class="d-none">
+                                                <p class="text-decoration-line-through d-inline text-danger"
+                                                    id="value_ipl">
+                                                    Rp.2.400.000</p>
+                                                <p class=" d-inline">Rp. 0</p>
+                                            </div>
+                                            <div id="iplNonPotongan">
+                                                <p class=" d-inline" id="value_ipl2">Rp.2.400.000</p>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -1042,7 +1066,14 @@
                 $('#value_total_awal').addClass('d-none');
                 $('#value_total').removeClass('d-none');
                 $('#agreementModal').modal('hide');
-
+                $('#dpPotongan').removeClass('d-none');
+                $('#dpNonPotongan').addClass('d-none');
+                $('#pagarPotongan').removeClass('d-none');
+                $('#pagarNonPotongan').addClass('d-none');
+                $('#tembokPotongan').removeClass('d-none');
+                $('#tembokNonPotongan').addClass('d-none');
+                $('#iplPotongan').removeClass('d-none');
+                $('#iplNonPotongan').addClass('d-none');
             });
 
             $('#map').find('a').remove();
@@ -1168,30 +1199,30 @@
             var mapInitialized = false;
             var owl = $('.owl-carousel');
 
-            owl.on('translate.owl.carousel', function() {
-                if (!mapInitialized) {
-                    // console.log("Inisialisasi Map Pertama Kali");
-                    // map = L.map('map').setView([51.505, -0.09], 13);  // Inisialisasi pertama kali
-                    // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    //     maxZoom: 19,
-                    // }).addTo(map);
-                    map.invalidateSize(); // Paksa resize setelah inisialisasi
-                    mapInitialized = true; // Update flag agar tidak inisialisasi berulang
-                }
-            });
-            owl.on('changed.owl.carousel', function(e) {
-                map.invalidateSize();
-                // console.log("current: ", e.relatedTarget.current())
-                // console.log("current: ",e.item.index) //same
-                // console.log("total: ",e.item.count)   //total
-            })
+            // owl.on('translate.owl.carousel', function() {
+            //     if (!mapInitialized) {
+            //         // console.log("Inisialisasi Map Pertama Kali");
+            //         // map = L.map('map').setView([51.505, -0.09], 13);  // Inisialisasi pertama kali
+            //         // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            //         //     maxZoom: 19,
+            //         // }).addTo(map);
+            //         map.invalidateSize(); // Paksa resize setelah inisialisasi
+            //         mapInitialized = true; // Update flag agar tidak inisialisasi berulang
+            //     }
+            // });
+            // owl.on('changed.owl.carousel', function(e) {
+            //     map.invalidateSize();
+            //     // console.log("current: ", e.relatedTarget.current())
+            //     // console.log("current: ",e.item.index) //same
+            //     // console.log("total: ",e.item.count)   //total
+            // })
 
-            owl.on('initialized.owl.carousel', function() {
-                setTimeout(function() {
-                    map.invalidateSize();
-                    // console.log("Map size invalidated on init");
-                }, 300); // Delay untuk memastikan semua rendering selesai
-            });
+            // owl.on('initialized.owl.carousel', function() {
+            //     setTimeout(function() {
+            //         map.invalidateSize();
+            //         // console.log("Map size invalidated on init");
+            //     }, 300); // Delay untuk memastikan semua rendering selesai
+            // });
 
         });
 
@@ -1281,49 +1312,61 @@
                         var stop1 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
                         stop1.setAttribute("offset", "50%");
 
+                        // if (value.status == 'Not Sale') {
+                        //     stop1.setAttribute("stop-color", "#B8B8B8");
+                        // } else if (value.status == 'Akad') {
+                        //     stop1.setAttribute("stop-color", "#B3E5BE");
+                        // } else if (value.status == 'Booking Cash') {
+                        //     stop1.setAttribute("stop-color", "#45b6fe");
+                        // } else if (value.status == 'Booking') {
+                        //     stop1.setAttribute("stop-color", "#FD8A8A");
+                        // } else if (value.status == 'SP3K') {
+                        //     stop1.setAttribute("stop-color", "#FDFFAE");
+                        // } else if (value.status == 'Kosong') {
+                        //     stop1.setAttribute("stop-color", "white");
+                        // } else if (value.status == 'Pindah Blok') {
+                        //     stop1.setAttribute("stop-color", "#990066");
+                        // } else { // Bank
+                        //     stop1.setAttribute("stop-color", "#B983FF");
+                        // }
                         if (value.status == 'Not Sale') {
                             stop1.setAttribute("stop-color", "#B8B8B8");
-                        } else if (value.status == 'Akad') {
-                            stop1.setAttribute("stop-color", "#B3E5BE");
-                        } else if (value.status == 'Booking Cash') {
-                            stop1.setAttribute("stop-color", "#45b6fe");
-                        } else if (value.status == 'Booking') {
+
+                        } else if (value.status == 'Booking' || value.status == 'Akad' || value
+                            .status == 'Booking Cash' || value.status == 'SP3K' || value.status ==
+                            'Pindah Blok' || value.status == 'Bank') {
                             stop1.setAttribute("stop-color", "#FD8A8A");
-                        } else if (value.status == 'SP3K') {
-                            stop1.setAttribute("stop-color", "#FDFFAE");
                         } else if (value.status == 'Kosong') {
                             stop1.setAttribute("stop-color", "white");
-                        } else if (value.status == 'Pindah Blok') {
-                            stop1.setAttribute("stop-color", "#990066");
-                        } else { // Bank
-                            stop1.setAttribute("stop-color", "#B983FF");
+                        } else {
+                            stop1.setAttribute("stop-color", "#B8B8B8");
                         }
 
                         // Warna kedua (PROGRES)
-                        var stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
-                        stop2.setAttribute("offset", "50%");
-                        if (value.status == 'Not Sale') {
-                            stop2.setAttribute("stop-color", "#B8B8B8");
-                        } else if (parseInt(value.progres) < 10) {
-                            stop2.setAttribute("stop-color", "#B9F3FC");
-                        } else if (parseInt(value.progres) >= 10 && parseInt(value.progres) < 30) {
-                            stop2.setAttribute("stop-color", "#9F8772");
-                        } else if (parseInt(value.progres) >= 30 && parseInt(value.progres) < 60) {
-                            stop2.setAttribute("stop-color", "#B7B7B7");
-                        } else if (parseInt(value.progres) >= 60 && parseInt(value.progres) < 85) {
-                            stop2.setAttribute("stop-color", "#1572A1");
-                        } else if (parseInt(value.progres) >= 85 && parseInt(value.progres) < 100) {
-                            stop2.setAttribute("stop-color", "#FAAB78");
-                        } else if (parseInt(value.progres) > 99) {
-                            stop2.setAttribute("stop-color", "#FF8DC7");
-                        } else {
-                            stop2.setAttribute("stop-color", "black");
+                        // var stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+                        // stop2.setAttribute("offset", "50%");
+                        // if (value.status == 'Not Sale') {
+                        //     stop2.setAttribute("stop-color", "#B8B8B8");
+                        // } else if (parseInt(value.progres) < 10) {
+                        //     stop2.setAttribute("stop-color", "#B9F3FC");
+                        // } else if (parseInt(value.progres) >= 10 && parseInt(value.progres) < 30) {
+                        //     stop2.setAttribute("stop-color", "#9F8772");
+                        // } else if (parseInt(value.progres) >= 30 && parseInt(value.progres) < 60) {
+                        //     stop2.setAttribute("stop-color", "#B7B7B7");
+                        // } else if (parseInt(value.progres) >= 60 && parseInt(value.progres) < 85) {
+                        //     stop2.setAttribute("stop-color", "#1572A1");
+                        // } else if (parseInt(value.progres) >= 85 && parseInt(value.progres) < 100) {
+                        //     stop2.setAttribute("stop-color", "#FAAB78");
+                        // } else if (parseInt(value.progres) > 99) {
+                        //     stop2.setAttribute("stop-color", "#FF8DC7");
+                        // } else {
+                        //     stop2.setAttribute("stop-color", "black");
 
-                            // console.info(`${value.blok} - ${parseInt(value.progres)}`)
-                        }
+                        //     // console.info(`${value.blok} - ${parseInt(value.progres)}`)
+                        // }
 
                         gradient.append(stop1);
-                        gradient.append(stop2);
+                        // gradient.append(stop2);
                         defs.append(gradient);
                         // Menambahkan elemen gradient ke dalam SVG
                         $(`svg`).append(defs);
@@ -1435,10 +1478,13 @@
             $('#price').text(formatRupiah(nominal));
             $('#nominal_booking').val(nominal);
             $('#value_booking').val(nominal);
-            $('#value_dp').val(dp);
+            $('#value_dp').text(formatRupiah(dp));
+            $('#value_dp2').text(formatRupiah(dp));
             $('#value_hook').text(formatRupiah(hook));
             $('#value_ipl').text(formatRupiah(ipl));
+            $('#value_ipl2').text(formatRupiah(ipl));
             $('#value_pagar').text(formatRupiah(pagar));
+            $('#value_pagar2').text(formatRupiah(pagar));
             $('#value_kelta').text(formatRupiah(kelebihan_tanah));
             $('#value_bphtb').text(formatRupiah(bphtb));
             $('#value_subtotal').text(formatRupiah(total));
@@ -1737,65 +1783,24 @@
                 var progresRow = $('<div>').addClass('d-flex flex-wrap justify-content-center align-items-center');
 
                 var statusItems = [{
-                        color: '#C3C28E',
-                        text: 'Not Sale'
-                    },
-                    {
-                        color: '#B3E5BE',
-                        text: 'Akad'
-                    },
-                    {
-                        color: '#45b6fe',
-                        text: 'Booking Cash'
-                    },
-                    {
-                        color: '#FD8A8A',
-                        text: 'Booking'
-                    },
-                    {
-                        color: '#FDFFAE',
-                        text: 'SP3K'
-                    },
-                    {
                         color: 'white',
                         border: '1px solid #ccc',
                         text: 'Kosong'
                     },
                     {
-                        color: '#990066',
-                        text: 'Pindah Blok'
+                        color: '#B8B8B8',
+                        text: 'Not Sale'
                     },
                     {
-                        color: '#B983FF',
-                        text: 'Bank'
-                    }
+                        color: '#FD8A8A',
+                        text: 'Terjual'
+                    },
+
+
+
                 ];
 
-                var progresItems = [{
-                        color: '#B9F3FC',
-                        text: '0% - 9%'
-                    },
-                    {
-                        color: '#9F8772',
-                        text: '10% - 29%'
-                    },
-                    {
-                        color: '#B7B7B7',
-                        text: '30% - 59%'
-                    },
-                    {
-                        color: '#1572A1',
-                        text: '60% - 84%'
-                    },
-                    {
-                        color: '#FAAB78',
-                        text: '85% - 99%'
-                    },
-                    {
-                        color: '#FF8DC7',
-                        text: '100%'
-                    }
-                ];
+
 
                 function appendItems(items, container) {
                     items.forEach(function(item) {
@@ -1810,11 +1815,9 @@
                 }
 
                 appendItems(statusItems, statusRow);
-                appendItems(progresItems, progresRow);
+                // appendItems(progresItems, progresRow);
 
                 legendContent.append(statusRow);
-                legendContent.append($('<hr style="border: 0,6px solid black">').addClass('my-1'));
-                legendContent.append(progresRow);
 
                 $(div).append(legendContent);
 
