@@ -44,7 +44,6 @@
     <script src="https://cdn.maptiler.com/maptiler-sdk-js/v2.5.1/maptiler-sdk.umd.js"></script>
     <link href="https://cdn.maptiler.com/maptiler-sdk-js/v2.5.1/maptiler-sdk.css" rel="stylesheet" />
     <script src="https://cdn.maptiler.com/leaflet-maptilersdk/v2.0.0/leaflet-maptilersdk.js"></script>
-
 @endsection
 
 @section('content')
@@ -623,9 +622,16 @@
                                             <p>Uang Muka DP</p>
                                         </div>
                                         <div class="col-6 text-end">
-                                            <p class="text-decoration-line-through d-inline text-danger" id="value_dp">
-                                                Rp.5.000.000</p>
-                                            <p class=" d-inline">Rp. 0</p>
+                                            <div id="dpPotongan" class="d-none">
+                                                <p class="text-decoration-line-through d-inline text-danger"
+                                                    id="value_dp">
+                                                    Rp.5.000.000</p>
+                                                <p class=" d-inline">Rp. 0</p>
+                                            </div>
+                                            <div id="dpNonPotongan">
+                                                <p class="d-inline" id="value_dp2">
+                                                    Rp.5.000.000</p>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -633,9 +639,15 @@
                                             <p>Pagar</p>
                                         </div>
                                         <div class="col-6 text-end">
-                                            <p class="text-decoration-line-through d-inline text-danger" id="value_pagar">
-                                                Rp.10.000.000</p>
-                                            <p class=" d-inline">Rp. 0</p>
+                                            <div id="pagarPotongan" class="d-none">
+                                                <p class="text-decoration-line-through d-inline text-danger"
+                                                    id="value_pagar">
+                                                    Rp.10.000.000</p>
+                                                <p class=" d-inline">Rp. 0</p>
+                                            </div>
+                                            <div id="pagarNonPotongan">
+                                                <p class=" d-inline" id="value_pagar2">Rp.10.000.000</p>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -643,9 +655,14 @@
                                             <p>Tembok Keliling</p>
                                         </div>
                                         <div class="col-6 text-end">
-                                            <p class="text-decoration-line-through d-inline text-danger "
-                                                id="value_tembok">Rp.2.000.000</p>
-                                            <p class="d-inline">Rp. 0</p>
+                                            <div id="tembokPotongan" class="d-none">
+                                                <p class="text-decoration-line-through d-inline text-danger "
+                                                    id="value_tembok">Rp.2.000.000</p>
+                                                <p class="d-inline">Rp. 0</p>
+                                            </div>
+                                            <div id="tembokNonPotongan">
+                                                <p class="d-inline" id="value_tembok2">Rp.2.000.000</p>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -653,9 +670,15 @@
                                             <p>Biaya IPL 2 Tahun</p>
                                         </div>
                                         <div class="col-6 text-end">
-                                            <p class="text-decoration-line-through d-inline text-danger" id="value_ipl">
-                                                Rp.2.400.000</p>
-                                            <p class=" d-inline">Rp. 0</p>
+                                            <div id="iplPotongan" class="d-none">
+                                                <p class="text-decoration-line-through d-inline text-danger"
+                                                    id="value_ipl">
+                                                    Rp.2.400.000</p>
+                                                <p class=" d-inline">Rp. 0</p>
+                                            </div>
+                                            <div id="iplNonPotongan">
+                                                <p class=" d-inline" id="value_ipl2">Rp.2.400.000</p>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -1039,7 +1062,14 @@
                 $('#value_total_awal').addClass('d-none');
                 $('#value_total').removeClass('d-none');
                 $('#agreementModal').modal('hide');
-
+                $('#dpPotongan').removeClass('d-none');
+                $('#dpNonPotongan').addClass('d-none');
+                $('#pagarPotongan').removeClass('d-none');
+                $('#pagarNonPotongan').addClass('d-none');
+                $('#tembokPotongan').removeClass('d-none');
+                $('#tembokNonPotongan').addClass('d-none');
+                $('#iplPotongan').removeClass('d-none');
+                $('#iplNonPotongan').addClass('d-none');
             });
 
             $('#map').find('a').remove();
@@ -1298,11 +1328,13 @@
                         if (value.status == 'Not Sale') {
                             stop1.setAttribute("stop-color", "#B8B8B8");
 
-                        } else if (value.status == 'Booking' || value.status == 'Akad' || value.status == 'Booking Cash' || value.status == 'SP3K' || value.status == 'Pindah Blok' || value.status == 'Bank') {
+                        } else if (value.status == 'Booking' || value.status == 'Akad' || value
+                            .status == 'Booking Cash' || value.status == 'SP3K' || value.status ==
+                            'Pindah Blok' || value.status == 'Bank') {
                             stop1.setAttribute("stop-color", "#FD8A8A");
                         } else if (value.status == 'Kosong') {
                             stop1.setAttribute("stop-color", "white");
-                        }else{
+                        } else {
                             stop1.setAttribute("stop-color", "#B8B8B8");
                         }
 
@@ -1442,10 +1474,13 @@
             $('#price').text(formatRupiah(nominal));
             $('#nominal_booking').val(nominal);
             $('#value_booking').val(nominal);
-            $('#value_dp').val(dp);
+            $('#value_dp').text(formatRupiah(dp));
+            $('#value_dp2').text(formatRupiah(dp));
             $('#value_hook').text(formatRupiah(hook));
             $('#value_ipl').text(formatRupiah(ipl));
+            $('#value_ipl2').text(formatRupiah(ipl));
             $('#value_pagar').text(formatRupiah(pagar));
+            $('#value_pagar2').text(formatRupiah(pagar));
             $('#value_kelta').text(formatRupiah(kelebihan_tanah));
             $('#value_bphtb').text(formatRupiah(bphtb));
             $('#value_subtotal').text(formatRupiah(total));
@@ -1743,8 +1778,7 @@
                 var statusRow = $('<div>').addClass('d-flex flex-wrap justify-content-center align-items-center');
                 var progresRow = $('<div>').addClass('d-flex flex-wrap justify-content-center align-items-center');
 
-                var statusItems = [
-                    {
+                var statusItems = [{
                         color: 'white',
                         border: '1px solid #ccc',
                         text: 'Kosong'
