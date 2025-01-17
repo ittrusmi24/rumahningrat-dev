@@ -47,7 +47,7 @@ Route::get('/test', function () {
 });
 Route::get('/test-event', function () {
     $data = [
-        'id_gci' => 'GCI2501080089',
+        'id_gci' => 'GCI2501160055',
     ];
     // Trigger event
     dd(event(new \App\Events\BookingCreated($data)));
