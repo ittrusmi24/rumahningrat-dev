@@ -19,7 +19,9 @@
                             <div class="row m-0 p-0">
                                 @foreach ($fasilitasSekitar as $item)
                                     <div class="col-6 mb-2">
-                                        <div class="item-tempat p-2">
+                                        <div class="item-tempat p-2"
+                                            onclick="getDekatDenganDetail('{{ $item->category_id }}')"
+                                            style="cursor: pointer">
                                             <div>
                                                 @if ($item->category == 'Transportation')
                                                     <i class="fas fa-bus"></i>
@@ -62,7 +64,7 @@
                         <div class="p-0 m-0 col-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                             <div class="ps-4 pe-4 pt-2">
                                 <div id="loader_table_dekat_dengan" class="placeholder-glow">
-                                    <div class="placeholder" style="height: 300px;width:100%;border-radius: 10px;">
+                                    <div class="placeholder" style="height: 150px;width:100%;border-radius: 10px;">
                                     </div>
                                 </div>
                                 <div class="table-responsive">
@@ -70,8 +72,8 @@
                                         class="table table-sm table-borderless small text-nowrap">
                                         <thead>
                                             <tr>
-                                                <th style="width: 50%">Nama</th>
-                                                <th style="width: 50%">Alamat</th>
+                                                <th style="width: 100%">Nama</th>
+                                                {{-- <th style="width: 50%">Alamat</th> --}}
                                             </tr>
                                         </thead>
                                         <tbody id="tbody_dekat_dengan">

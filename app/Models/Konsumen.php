@@ -17,6 +17,7 @@ class Konsumen extends Model
         'nama_konsumen',
         'ktp',
         'usia',
+        'tgl_lahir',
         'id_status',
         'id_pekerjaan',
         'id_sub_pekerjaan',
