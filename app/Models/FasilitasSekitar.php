@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class FasilitasSekitar extends Model
 {
     protected $table = 'm_poi';
-    public static function get_fasilitas_sekitar_by_id_project($id_project)
+    public static function get_fasilitas_sekitar_by_id_project($id_project, $category_id)
     {
 
         if ($id_project == '') {
@@ -16,6 +16,7 @@ class FasilitasSekitar extends Model
         }
 
         $query = "SELECT 
+            m_poi.category_id, 
             m_poi.category, 
             m_poi.subcategory, 
             m_poi.poi_name,
@@ -24,7 +25,7 @@ class FasilitasSekitar extends Model
         FROM 
             m_poi, 
             (select id_project, latitude, longitude FROM m_project WHERE id_project = $id_project) AS p
-        WHERE category != 'Kontrakan'
+        WHERE category != 'Kontrakan' AND category_id = $category_id
         HAVING jarak_km <= 4
         ORDER BY jarak_km ASC";
 
@@ -42,10 +43,12 @@ class FasilitasSekitar extends Model
         }
 
         $query = "SELECT
+                    m_poix.category_id,
                     m_poix.category,
                     COUNT(m_poix.subcategory) AS jml
                 FROM(
                     SELECT 
+                        m_poi.category_id, 
                         m_poi.category, 
                         m_poi.subcategory,
                         (6371 * ACOS(COS(RADIANS(p.latitude)) * COS(RADIANS(m_poi.latitude)) * COS(RADIANS(m_poi.longitude) - RADIANS(p.longitude)) + SIN(RADIANS(p.latitude)) * SIN(RADIANS(m_poi.latitude)))) AS jarak_km

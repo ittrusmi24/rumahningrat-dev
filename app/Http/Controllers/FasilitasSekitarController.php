@@ -10,6 +10,7 @@ class FasilitasSekitarController extends Controller
     public function index(Request $request)
     {
         $id_project = $request->id_project;
+        $category_id = $request->category_id;
         if ($id_project == '') {
             echo json_encode([
                 'status' => true,
@@ -19,7 +20,7 @@ class FasilitasSekitarController extends Controller
         }
         try {
             //code...
-            $fasilitas_sekitar = FasilitasSekitar::get_fasilitas_sekitar_by_id_project($id_project);
+            $fasilitas_sekitar = FasilitasSekitar::get_fasilitas_sekitar_by_id_project($id_project, $category_id);
             echo json_encode([
                 'status' => true,
                 'message' => 'success',

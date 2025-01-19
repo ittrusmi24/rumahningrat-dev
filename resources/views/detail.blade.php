@@ -404,7 +404,9 @@
                             <div class="col-12">
                                 <div class="tempat-container">
                                     @foreach ($fasilitasSekitar as $item)
-                                        <div class="item-tempat">
+                                        @php $category_id = $item->category_id @endphp
+                                        <div class="item-tempat" onclick="getDekatDengan('{{ $category_id }}')"
+                                            style="cursor: pointer">
                                             <div>
                                                 @if ($item->category == 'Transportation')
                                                     <i class="fas fa-bus"></i>
@@ -445,12 +447,14 @@
                                             </div>
                                         </div>
                                     @endforeach
+                                    @php $category_id = $category_id ?? 0 @endphp
                                 </div>
                             </div>
                         </div>
                         <div class="row mt-4">
                             <div class="col-12">
-                                <a href="#" role="button" id="getDekatDengan">Detail Tempat</a>
+                                <a href="#" role="button" onclick="getDekatDengan('{{ $category_id }}')">Detail
+                                    Tempat</a>
                             </div>
                         </div>
                     </div>
@@ -1416,7 +1420,7 @@
 
         function load_svg(bounds) {
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', `{{ url('/assets/siteplan') }}/bekasi_new.svg`, false); // false makes it synchronous
+            xhr.open('GET', `{{ url('/assets/siteplan') }}/bekasi.svg`, false); // false makes it synchronous
             xhr.send(null);
 
             if (xhr.status === 200) {
@@ -1825,11 +1829,11 @@
         }
         $('#map').on('click', function(e) {
             // Nonaktifkan pointer events untuk sementara agar bisa mendeteksi elemen di bawah #map
-            $('#map').css('pointer-events', 'none');
-            $('.leaflet-map-pane').css('pointer-events', 'none');
-            $('.leaflet-overlay-pane').css('pointer-events', 'none');
-            $('svg').css('pointer-events', 'none');
-            $('g').css('pointer-events', 'auto');
+            // $('#map').css('pointer-events', 'none');
+            // $('.leaflet-map-pane').css('pointer-events', 'none');
+            // $('.leaflet-overlay-pane').css('pointer-events', 'none');
+            // $('svg').css('pointer-events', 'none');
+            // $('g').css('pointer-events', 'auto');
 
             const x = e.clientX;
             const y = e.clientY;
