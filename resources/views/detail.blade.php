@@ -55,7 +55,7 @@
     <div class="stikcy-nav-container" id="sticky-header">
         <nav class="navbar p-0" style="background-color: #005991E5">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="https://rumahningrat.com/rn-jaya-sampurna">
                     <img src="{{ url('/assets/images/fav-icon/icon-ningrat.png') }}" alt="Logo" height="40px">
                 </a>
                 <button type="button" class="btn btn-primary btn-sm">Masuk <i class="bi bi-person"></i></button>
@@ -1530,7 +1530,7 @@
             $('#value_subtotal').text(formatRupiah(total));
             $('#value_potongan').text(formatRupiah(potongan));
             $('#value_total').text(formatRupiah(total_all));
-            $('#value_total_awal').text(formatRupiah(total_all));
+            $('#value_total_awal').text(formatRupiah(total));
             clearInterval(blinkInterval);
 
             // Clear all blue strokes pada semua blok
