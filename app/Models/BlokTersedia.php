@@ -92,6 +92,7 @@ class BlokTersedia extends Model
 
     public static function get_blok_status($id_project){
         $query = "SELECT
+
                     m_project_unit.blok,
                     m_project.project,
                     COALESCE(CASE

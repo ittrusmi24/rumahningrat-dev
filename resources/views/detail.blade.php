@@ -44,6 +44,11 @@
     <script src="https://cdn.maptiler.com/maptiler-sdk-js/v2.5.1/maptiler-sdk.umd.js"></script>
     <link href="https://cdn.maptiler.com/maptiler-sdk-js/v2.5.1/maptiler-sdk.css" rel="stylesheet" />
     <script src="https://cdn.maptiler.com/leaflet-maptilersdk/v2.0.0/leaflet-maptilersdk.js"></script>
+    <style>
+        .leaflet-gl-layer{
+            pointer-events: none;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -1248,12 +1253,12 @@
                     total_pindah_blok = 0;
 
                     // resume progres
-                    total_persen_0 = 0;
-                    total_persen_10 = 0;
-                    total_persen_30 = 0;
-                    total_persen_60 = 0;
-                    total_persen_85 = 0;
-                    total_persen_100 = 0;
+                    // total_persen_0 = 0;
+                    // total_persen_10 = 0;
+                    // total_persen_30 = 0;
+                    // total_persen_60 = 0;
+                    // total_persen_85 = 0;
+                    // total_persen_100 = 0;
 
                     // resume indicator
                     total_ontime = 0;
@@ -1262,8 +1267,42 @@
 
 
                     total_unit = 0;
+                    $('svg text').each(function () {
+                        const textContent = $(this).text().trim(); // Ambil teks dan hilangkan spasi di awal/akhir
+                        const cleanText = textContent.replace(/\s+/g, ''); // Hilangkan semua spasi
+
+                        if (cleanText.length <= 4 && !textContent.startsWith('ROW')) {
+                            // Sembunyikan elemen jika panjang teks <= 4 dan tidak diawali dengan "ROW"
+                            $(this).css('display', 'none');
+                        }
+                                        });
+                    $('svg [id$="-I"]').css('display', 'none');
 
                     response.forEach(value => {
+                        const blokText = value.blok; // Ambil nama blok dari response
+                        const status = value.status; // Ambil status dari response
+                        const textElement = $(`svg text:contains(${blokText})`);
+                        const indicatorElement = $(`svg #${blokText}-I`);
+                        textElement.css('display','none');
+                        if (textElement.length > 0) {
+                            if (status !== 'Not Sale') {
+                                textElement.css('display', 'block');
+                            } else {
+                                textElement.css('display', 'none');
+                            }
+                        } else {
+                            textElement.css('display', 'none');
+                        }
+                        indicatorElement.css('display','none');
+                        if (indicatorElement.length > 0) {
+                            if (status !== 'Not Sale') {
+                                indicatorElement.css('display', 'block');
+                            } else {
+                                indicatorElement.css('display', 'none');
+                            }
+                        } else {
+                            indicatorElement.css('display', 'none');
+                        }
                         $('#select_blok').append(
                             `<option value="${value.blok}">${value.blok}</option>`);
 
@@ -1372,6 +1411,7 @@
                         $(`svg`).append(defs);
                         // Mengatur atribut fill elemen path dengan URL gradient yang diinginkan
                         $(`#${value.blok} path`).css("fill", `url(#myGradient-${value.blok})`);
+                        $(`svg g[data-name="${value.blok}"] path`).css("fill", `url(#myGradient-${value.blok})`);
 
                         // Resume Progres
                         // $('#total_persen_0').html(total_persen_0);
@@ -1386,16 +1426,16 @@
                         // INDIKATOR
                         if (value.status_ontime == 'Ontime') {
                             $(`#${value.blok}-i`).css('fill', '#ADFF2F');
-                            total_ontime++;
+                            // total_ontime++;
 
                         } else if (value.status_ontime == 'Late') {
                             $(`#${value.blok}-i`).css('fill', 'red');
-                            total_late++;
+                            // total_late++;
 
                         } else { // -
 
                             $(`#${value.blok}-i`).css('fill', 'grey');
-                            total_no_spk++;
+                            // total_no_spk++;
 
                         }
 
@@ -1543,6 +1583,34 @@
                     }
                     isHighlighted = !isHighlighted;
                 }, 500); // Kedip setiap 0.5 detik
+            }else{
+                var bbox = $(`svg g[data-name="${blok}"]`)[0].getBBox();
+                var bounds = svgOverlay.getBounds();
+                var svgWidth = svgOverlay._image.viewBox.baseVal.width;
+                var svgHeight = svgOverlay._image.viewBox.baseVal.height;
+                var scaleX = (bounds.getEast() - bounds.getWest()) / svgWidth;
+                var scaleY = (bounds.getNorth() - bounds.getSouth()) / svgHeight;
+                var centerX = bbox.x + bbox.width / 2;
+                var centerY = bbox.y + bbox.height / 2;
+                var adjustmentFactor = 0; // Sesuaikan jika perlu
+                var adjustedCenterY = centerY + bbox.height * adjustmentFactor;
+
+                var lat = bounds.getSouth() + (svgHeight - adjustedCenterY) * scaleY;
+                var lng = bounds.getWest() + centerX * scaleX;
+
+                // Terbang ke blok yang dipilih
+                const zoomLevel = isMobile() ? 20 : 22;
+                map.flyTo([lat, lng], zoomLevel, {
+                    animate: true,
+                    duration: 1.5
+                });
+                $(`svg g[data-name="${blok}"]`).css({
+                            'stroke': 'blue',
+                            'stroke-width': '2',
+                            'stroke-opacity': 1 // Full opacity
+                        });
+
+                let isHighlighted = false;
             }
         });
 
@@ -1827,51 +1895,7 @@
             legend.addTo(map);
 
         }
-        $('#map').on('click', function(e) {
-            // Nonaktifkan pointer events untuk sementara agar bisa mendeteksi elemen di bawah #map
-            // $('#map').css('pointer-events', 'none');
-            // $('.leaflet-map-pane').css('pointer-events', 'none');
-            // $('.leaflet-overlay-pane').css('pointer-events', 'none');
-            // $('svg').css('pointer-events', 'none');
-            // $('g').css('pointer-events', 'auto');
 
-            const x = e.clientX;
-            const y = e.clientY;
-            const clickedElement = document.elementFromPoint(x, y);
-
-            // Aktifkan kembali pointer-events pada .leaflet-map-pane
-            // $('.leaflet-map-pane').css('pointer-events', 'auto');
-            console.log(clickedElement);
-
-            // if (clickedElement) {
-            //     if ($(clickedElement).is('.leaflet-overlay-pane') || $(clickedElement).closest('.leaflet-overlay-pane').length > 0) {
-            //         const targetElement = $(clickedElement).closest('.leaflet-overlay-pane');
-            //         console.log('Klik diarahkan ke elemen .leaflet-overlay-pane:', targetElement);
-
-            //         // Contoh: Tambahkan logika untuk menangani klik pada elemen .leaflet-overlay-pane
-            //         targetElement.trigger('click');
-            //     } else {
-            //         console.log('Tidak ada elemen .leaflet-overlay-pane yang diklik.');
-            //     }
-            // } else {
-            //     console.log('Tidak ada elemen di bawah titik klik.');
-            // }
-        });
-
-
-        // $(document).on('click', function(e) {
-
-        //         console.log(e.target);
-
-        // });
-        // $(document).on('click', '#svg', function(e) {
-        //     console.log($(this));
-        // });
-        // $(document).on('click', '.leaflet-overlay-pane svg g', function(e) {
-
-        //     console.log($(this));
-        //     // alert('Klik pada elemen SVG <g>');
-        // });
     </script>
     @include('modal.lokasi_detail_js')
     @include('modal.spesifikasi_detail_js')
