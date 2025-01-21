@@ -1204,30 +1204,88 @@
             var mapInitialized = false;
             var owl = $('.owl-carousel');
 
-            // owl.on('translate.owl.carousel', function() {
-            //     if (!mapInitialized) {
-            //         // console.log("Inisialisasi Map Pertama Kali");
-            //         // map = L.map('map').setView([51.505, -0.09], 13);  // Inisialisasi pertama kali
-            //         // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            //         //     maxZoom: 19,
-            //         // }).addTo(map);
-            //         map.invalidateSize(); // Paksa resize setelah inisialisasi
-            //         mapInitialized = true; // Update flag agar tidak inisialisasi berulang
-            //     }
-            // });
-            // owl.on('changed.owl.carousel', function(e) {
-            //     map.invalidateSize();
-            //     // console.log("current: ", e.relatedTarget.current())
-            //     // console.log("current: ",e.item.index) //same
-            //     // console.log("total: ",e.item.count)   //total
-            // })
+            $('svg').css('pointer-events', 'all');
+            // $('path').css('pointer-events', 'all');
+            // $('g').css('pointer-events', 'visiblePainted');
 
-            // owl.on('initialized.owl.carousel', function() {
-            //     setTimeout(function() {
-            //         map.invalidateSize();
-            //         // console.log("Map size invalidated on init");
-            //     }, 300); // Delay untuk memastikan semua rendering selesai
-            // });
+            // Tangkap klik pada elemen SVG
+            $('svg').on('click', function (event) {
+                    $('g').css({
+                    'stroke': '',
+                    'stroke-width': ''
+                });
+                const target = event.target;
+                console.log(target);
+
+
+                // Tangkap elemen SVG yang sesuai dengan klik
+                let selectedBlok;
+                let blokId;
+
+                if (target.tagName === 'path') {
+                    // Ambil elemen <g> di atas elemen <path>
+                    const parentG = $(target).closest('g');
+                    blokId = parentG.attr('id');
+                    selectedBlok = $(`#${blokId}`);
+                } else if (target.tagName === 'text') {
+                    // Ambil teks dalam elemen <text>
+                    const textContent = $(target).text();
+                    blokId = textContent; // Atur teks sebagai blokId
+                    selectedBlok = $(`g[id="${blokId}"]`);
+                } else  {
+
+                }
+
+                // Pastikan blok ditemukan
+                if (selectedBlok && selectedBlok.length && svgOverlay) {
+                    const bbox = selectedBlok[0].getBBox();
+                    const bounds = svgOverlay.getBounds();
+                    const svgWidth = svgOverlay._image.viewBox.baseVal.width;
+                    const svgHeight = svgOverlay._image.viewBox.baseVal.height;
+                    const scaleX = (bounds.getEast() - bounds.getWest()) / svgWidth;
+                    const scaleY = (bounds.getNorth() - bounds.getSouth()) / svgHeight;
+                    const centerX = bbox.x + bbox.width / 2;
+                    const centerY = bbox.y + bbox.height / 2;
+                    const adjustmentFactor = 0; // Sesuaikan jika perlu
+                    const adjustedCenterY = centerY + bbox.height * adjustmentFactor;
+
+                    const lat = bounds.getSouth() + (svgHeight - adjustedCenterY) * scaleY;
+                    const lng = bounds.getWest() + centerX * scaleX;
+
+                    // Terbang ke blok yang dipilih
+                    const zoomLevel = isMobile() ? 20 : 22;
+                    map.flyTo([lat, lng], zoomLevel, {
+                        animate: true,
+                        duration: 1.5,
+                    });
+
+                    // Highlight elemen dengan animasi kedip
+                    let isHighlighted = false;
+
+                    // Hapus interval sebelumnya jika ada
+                    if (typeof blinkInterval !== 'undefined') {
+                        clearInterval(blinkInterval);
+                    }
+
+                    blinkInterval = setInterval(function () {
+                        if (isHighlighted) {
+                            selectedBlok.css({
+                                stroke: 'blue',
+                                'stroke-width': '2',
+                                'stroke-opacity': 1, // Full opacity
+                            });
+                        } else {
+                            selectedBlok.css({
+                                stroke: 'blue',
+                                'stroke-width': '2',
+                                'stroke-opacity': 0.3, // Kedip dengan opacity rendah
+                            });
+                        }
+                        isHighlighted = !isHighlighted;
+                    }, 500); // Kedip setiap 0.5 detik
+                }
+            });
+
 
         });
 
@@ -1277,8 +1335,30 @@
                         }
                                         });
                     $('svg [id$="-I"]').css('display', 'none');
+                    $('svg g').css('pointer-events', 'none');
+                    $('svg g').css('cursor', 'pointer');
+                    $('svg text').css('cursor', 'pointer');
+                    $('svg text').css('pointer-events', 'none');
 
                     response.forEach(value => {
+                        $('svg g').each(function () {
+                            const gId = $(this).attr('id');
+                            if (gId == value.blok && value.status != 'Not Sale') {
+                                $(this).css('pointer-events', 'visiblePainted');
+                                $(this).find('path').css('pointer-events', 'all');
+                                $(this).find('path').addClass('clickable');
+                            }
+                        });
+
+                        // Tangani elemen <text> dengan nilai teks
+                            $('svg text').each(function () {
+                                const textContent = $(this).text().trim();
+                                if (textContent == value.blok && value.status != 'Not Sale') {
+                                    $(this).css('pointer-events', 'all');
+                                    $(this).addClass('clickable');
+                                    // $(`svg text`).text(`${value.blok}`).addClass('clickable');
+                            }
+                        });
                         const blokText = value.blok; // Ambil nama blok dari response
                         const status = value.status; // Ambil status dari response
                         const textElement = $(`svg text:contains(${blokText})`);
@@ -1303,8 +1383,8 @@
                         } else {
                             indicatorElement.css('display', 'none');
                         }
-                        $('#select_blok').append(
-                            `<option value="${value.blok}">${value.blok}</option>`);
+                        // $('svg g').find(`#${value.blok}`).addClass('clickable');
+                        // $('svg text').text(`${value.blok}`).addClass('clickable');
 
                         var defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
                         var gradient = document.createElementNS("http://www.w3.org/2000/svg",
@@ -1460,7 +1540,7 @@
 
         function load_svg(bounds) {
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', `{{ url('/assets/siteplan') }}/bekasi.svg`, false); // false makes it synchronous
+            xhr.open('GET', `{{ url('/assets/siteplan') }}/bekasi_with_jalan.svg`, false); // false makes it synchronous
             xhr.send(null);
 
             if (xhr.status === 200) {
@@ -1475,17 +1555,8 @@
                 console.error('Error loading SVG:', xhr.statusText);
             }
 
-            $('svg g').each(function() {
-                if ($(this).find('desc').length > 0 && $(this).find('desc').text().includes(',')) {
-                    $(this).addClass('clickable');
-                    // $(this).css('cursor', 'pointer');
-                    // $(this).css('pointer-events', 'auto');
-                } else {
-                    // $(this).css('cursor', 'default');
-                    // $(this).css('pointer-events', 'none');
-
-                }
-            });
+            $('svg #JU').css('fill', '#FFFF5A');
+            // $('svg #JK').css('fill', '#B8B8B8');
         }
 
         // format rupiah
@@ -1844,12 +1915,8 @@
 
             legend.onAdd = function() {
                 var div = L.DomUtil.create('div', 'legend card shadow-sm text-center leaflet-bottom-center');
-
                 var legendContent = $('<div>').addClass('legend-content d-flex flex-column p-2');
-
                 var statusRow = $('<div>').addClass('d-flex flex-wrap justify-content-center align-items-center');
-                var progresRow = $('<div>').addClass('d-flex flex-wrap justify-content-center align-items-center');
-
                 var statusItems = [{
                         color: 'white',
                         border: '1px solid #ccc',
@@ -1885,6 +1952,7 @@
                 appendItems(statusItems, statusRow);
                 // appendItems(progresItems, progresRow);
 
+                legendContent.append(`<small class="text-secondary mb-1"><i class="fa fa-info-circle"></i> Anda bisa Tap untuk memilih blok</small>`);
                 legendContent.append(statusRow);
 
                 $(div).append(legendContent);
