@@ -92,12 +92,11 @@
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-4">
                     <div id="video_tour">
                     </div>
-                    <iframe src="{{ url('/vt_view') }}" frameborder="0" width="100%" height="100%"
+                    <iframe src="{{ url('/vt_view') }}" frameborder="0" width="100" height="100"
                         class="vt_view"></iframe>
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-5">
                     <embed src="{{ url('/poi_view') }}" class="vt_view">
-                    {{-- <iframe src="{{ url('/poi_view') }}" frameborder="0" width="100%" height="100%"></iframe> --}}
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-6">
                     <div id="map">
@@ -390,7 +389,7 @@
                                 <a id="getSpesifikasiDetail" role="button" href="#">Detail
                                     Spesifikasi</a>
                             </div>
-                            <div class="col-6">
+                            <div class="col-6 text-end">
                                 <a href="{{ url('/vt_view') }}" target="_blank">Lihat 360 virtual view</a>
                             </div>
                         </div>
