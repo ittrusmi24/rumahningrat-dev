@@ -45,7 +45,7 @@
     <link href="https://cdn.maptiler.com/maptiler-sdk-js/v2.5.1/maptiler-sdk.css" rel="stylesheet" />
     <script src="https://cdn.maptiler.com/leaflet-maptilersdk/v2.0.0/leaflet-maptilersdk.js"></script>
     <style>
-        .leaflet-gl-layer{
+        .leaflet-gl-layer {
             pointer-events: none;
         }
     </style>
@@ -348,9 +348,9 @@
                     <div class="container mt-3">
                         <div class="row">
                             <div class="col text-center">
-                                {{-- <p>Kami memahami bahwa konsumen adalah prioritas, sehingga Kami berdedikasi meningkatkan
-                                    rasa nyaman dan aman bagi Konsumen untuk Hidup Lebih Baik.</p>
-                                <p>Dilengkapi dengan tembok dapur dengan kualitas bata habel terbaik</p> --}}
+                                <p>Program ini dirancang khusus untuk konsumen yang mengutamakan kualitas, menggunakan
+                                    material besi terbaik.</p>
+                                <p>Dengan bonus Free Pagar konsumen dapat menghemat biaya hingga Rp10 juta.</p>
                             </div>
                         </div>
                     </div>
@@ -972,7 +972,7 @@
             const container = document.getElementById('video_tour');
 
             const video = document.createElement('video');
-            video.src = `{{ url('/assets/video').'/'.$project_add->video }}`;
+            video.src = `{{ url('/assets/video') . '/' . $project_add->video }}`;
             video.autoplay = true;
             video.loop = true;
             video.muted = true;
@@ -1208,8 +1208,8 @@
             // $('g').css('pointer-events', 'visiblePainted');
 
             // Tangkap klik pada elemen SVG
-            $('svg').on('click', function (event) {
-                    $('g').css({
+            $('svg').on('click', function(event) {
+                $('g').css({
                     'stroke': '',
                     'stroke-width': ''
                 });
@@ -1231,7 +1231,7 @@
                     const textContent = $(target).text();
                     blokId = textContent; // Atur teks sebagai blokId
                     selectedBlok = $(`g[id="${blokId}"]`);
-                } else  {
+                } else {
 
                 }
 
@@ -1269,7 +1269,7 @@
                         clearInterval(blinkInterval);
                     }
 
-                    blinkInterval = setInterval(function () {
+                    blinkInterval = setInterval(function() {
                         if (isHighlighted) {
                             selectedBlok.css({
                                 stroke: 'blue',
@@ -1299,15 +1299,16 @@
                 method: 'GET',
                 dataType: 'json',
                 success: function(response) {
-                    $('svg text').each(function () {
-                        const textContent = $(this).text().trim(); // Ambil teks dan hilangkan spasi di awal/akhir
+                    $('svg text').each(function() {
+                        const textContent = $(this).text()
+                    .trim(); // Ambil teks dan hilangkan spasi di awal/akhir
                         const cleanText = textContent.replace(/\s+/g, ''); // Hilangkan semua spasi
 
                         if (cleanText.length <= 4 && !textContent.startsWith('ROW')) {
                             // Sembunyikan elemen jika panjang teks <= 4 dan tidak diawali dengan "ROW"
                             $(this).css('display', 'none');
                         }
-                                        });
+                    });
                     $('svg [id$="-I"]').css('display', 'none');
                     $('svg g').css('pointer-events', 'none');
                     $('svg g').css('cursor', 'pointer');
@@ -1315,7 +1316,7 @@
                     $('svg text').css('pointer-events', 'none');
 
                     response.forEach(value => {
-                        $('svg g').each(function () {
+                        $('svg g').each(function() {
                             const gId = $(this).attr('id');
                             if (gId == value.blok && value.status != 'Not Sale') {
                                 $(this).css('pointer-events', 'visiblePainted');
@@ -1325,19 +1326,19 @@
                         });
 
                         // Tangani elemen <text> dengan nilai teks
-                            $('svg text').each(function () {
-                                const textContent = $(this).text().trim();
-                                if (textContent == value.blok && value.status != 'Not Sale') {
-                                    $(this).css('pointer-events', 'all');
-                                    $(this).addClass('clickable');
-                                    // $(`svg text`).text(`${value.blok}`).addClass('clickable');
+                        $('svg text').each(function() {
+                            const textContent = $(this).text().trim();
+                            if (textContent == value.blok && value.status != 'Not Sale') {
+                                $(this).css('pointer-events', 'all');
+                                $(this).addClass('clickable');
+                                // $(`svg text`).text(`${value.blok}`).addClass('clickable');
                             }
                         });
                         const blokText = value.blok; // Ambil nama blok dari response
                         const status = value.status; // Ambil status dari response
                         const textElement = $(`svg text:contains(${blokText})`);
                         const indicatorElement = $(`svg #${blokText}-I`);
-                        textElement.css('display','none');
+                        textElement.css('display', 'none');
                         if (textElement.length > 0) {
                             if (status !== 'Not Sale') {
                                 textElement.css('display', 'block');
@@ -1347,7 +1348,7 @@
                         } else {
                             textElement.css('display', 'none');
                         }
-                        indicatorElement.css('display','none');
+                        indicatorElement.css('display', 'none');
                         if (indicatorElement.length > 0) {
                             if (status !== 'Not Sale') {
                                 indicatorElement.css('display', 'block');
@@ -1440,7 +1441,8 @@
                         $(`svg`).append(defs);
                         // Mengatur atribut fill elemen path dengan URL gradient yang diinginkan
                         $(`#${value.blok} path`).css("fill", `url(#myGradient-${value.blok})`);
-                        $(`svg g[data-name="${value.blok}"] path`).css("fill", `url(#myGradient-${value.blok})`);
+                        $(`svg g[data-name="${value.blok}"] path`).css("fill",
+                            `url(#myGradient-${value.blok})`);
 
                         // INDIKATOR
                         if (value.status_ontime == 'Ontime') {
@@ -1471,7 +1473,8 @@
 
         function load_svg(bounds) {
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', `{{ url('/assets/siteplan/').'/'.$project_add->siteplan }}`, false); // false makes it synchronous
+            xhr.open('GET', `{{ url('/assets/siteplan/') . '/' . $project_add->siteplan }}`,
+            false); // false makes it synchronous
             xhr.send(null);
 
             if (xhr.status === 200) {
@@ -1585,7 +1588,7 @@
                     }
                     isHighlighted = !isHighlighted;
                 }, 500); // Kedip setiap 0.5 detik
-            }else{
+            } else {
                 var bbox = $(`svg g[data-name="${blok}"]`)[0].getBBox();
                 var bounds = svgOverlay.getBounds();
                 var svgWidth = svgOverlay._image.viewBox.baseVal.width;
@@ -1607,10 +1610,10 @@
                     duration: 1.5
                 });
                 $(`svg g[data-name="${blok}"]`).css({
-                            'stroke': 'blue',
-                            'stroke-width': '2',
-                            'stroke-opacity': 1 // Full opacity
-                        });
+                    'stroke': 'blue',
+                    'stroke-width': '2',
+                    'stroke-opacity': 1 // Full opacity
+                });
 
                 let isHighlighted = false;
             }
@@ -1883,7 +1886,9 @@
                 appendItems(statusItems, statusRow);
                 // appendItems(progresItems, progresRow);
 
-                legendContent.append(`<small class="text-secondary mb-1"><i class="fa fa-info-circle"></i> Anda bisa Tap untuk memilih blok</small>`);
+                legendContent.append(
+                    `<small class="text-secondary mb-1"><i class="fa fa-info-circle"></i> Anda bisa Tap untuk memilih blok</small>`
+                    );
                 legendContent.append(statusRow);
 
                 $(div).append(legendContent);
@@ -1894,7 +1899,6 @@
             legend.addTo(map);
 
         }
-
     </script>
     @include('modal.lokasi_detail_js')
     @include('modal.spesifikasi_detail_js')
