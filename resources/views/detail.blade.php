@@ -972,7 +972,7 @@
             const container = document.getElementById('video_tour');
 
             const video = document.createElement('video');
-            video.src = `{{ url('/assets/video') }}/bekasi.mp4`;
+            video.src = `{{ url('/assets/video').'/'.$project_add->video }}`;
             video.autoplay = true;
             video.loop = true;
             video.muted = true;
@@ -1235,8 +1235,11 @@
 
                 }
 
+
+
                 // Pastikan blok ditemukan
                 if (selectedBlok && selectedBlok.length && svgOverlay) {
+                    blok_select.setSelected(selectedBlok.attr('id'));
                     const bbox = selectedBlok[0].getBBox();
                     const bounds = svgOverlay.getBounds();
                     const svgWidth = svgOverlay._image.viewBox.baseVal.width;
@@ -1296,34 +1299,6 @@
                 method: 'GET',
                 dataType: 'json',
                 success: function(response) {
-                    // console.log(value);
-                    // KASIH WARNA
-
-                    // resume status
-                    total_akad = 0;
-                    total_booking_cash = 0;
-                    total_booking = 0;
-                    total_bank = 0;
-                    total_sp3k = 0;
-                    total_kosong = 0;
-                    total_not_sale = 0;
-                    total_pindah_blok = 0;
-
-                    // resume progres
-                    // total_persen_0 = 0;
-                    // total_persen_10 = 0;
-                    // total_persen_30 = 0;
-                    // total_persen_60 = 0;
-                    // total_persen_85 = 0;
-                    // total_persen_100 = 0;
-
-                    // resume indicator
-                    total_ontime = 0;
-                    total_late = 0;
-                    total_no_spk = 0;
-
-
-                    total_unit = 0;
                     $('svg text').each(function () {
                         const textContent = $(this).text().trim(); // Ambil teks dan hilangkan spasi di awal/akhir
                         const cleanText = textContent.replace(/\s+/g, ''); // Hilangkan semua spasi
@@ -1382,8 +1357,6 @@
                         } else {
                             indicatorElement.css('display', 'none');
                         }
-                        // $('svg g').find(`#${value.blok}`).addClass('clickable');
-                        // $('svg text').text(`${value.blok}`).addClass('clickable');
 
                         var defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
                         var gradient = document.createElementNS("http://www.w3.org/2000/svg",
@@ -1425,7 +1398,6 @@
 
                         }
 
-
                         // Warna pertama (STATUS)
                         var stop1 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
                         stop1.setAttribute("offset", "50%");
@@ -1460,28 +1432,6 @@
                             stop1.setAttribute("stop-color", "#B8B8B8");
                         }
 
-                        // Warna kedua (PROGRES)
-                        // var stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
-                        // stop2.setAttribute("offset", "50%");
-                        // if (value.status == 'Not Sale') {
-                        //     stop2.setAttribute("stop-color", "#B8B8B8");
-                        // } else if (parseInt(value.progres) < 10) {
-                        //     stop2.setAttribute("stop-color", "#B9F3FC");
-                        // } else if (parseInt(value.progres) >= 10 && parseInt(value.progres) < 30) {
-                        //     stop2.setAttribute("stop-color", "#9F8772");
-                        // } else if (parseInt(value.progres) >= 30 && parseInt(value.progres) < 60) {
-                        //     stop2.setAttribute("stop-color", "#B7B7B7");
-                        // } else if (parseInt(value.progres) >= 60 && parseInt(value.progres) < 85) {
-                        //     stop2.setAttribute("stop-color", "#1572A1");
-                        // } else if (parseInt(value.progres) >= 85 && parseInt(value.progres) < 100) {
-                        //     stop2.setAttribute("stop-color", "#FAAB78");
-                        // } else if (parseInt(value.progres) > 99) {
-                        //     stop2.setAttribute("stop-color", "#FF8DC7");
-                        // } else {
-                        //     stop2.setAttribute("stop-color", "black");
-
-                        //     // console.info(`${value.blok} - ${parseInt(value.progres)}`)
-                        // }
 
                         gradient.append(stop1);
                         // gradient.append(stop2);
@@ -1491,16 +1441,6 @@
                         // Mengatur atribut fill elemen path dengan URL gradient yang diinginkan
                         $(`#${value.blok} path`).css("fill", `url(#myGradient-${value.blok})`);
                         $(`svg g[data-name="${value.blok}"] path`).css("fill", `url(#myGradient-${value.blok})`);
-
-                        // Resume Progres
-                        // $('#total_persen_0').html(total_persen_0);
-                        // $('#total_persen_10').html(total_persen_10);
-                        // $('#total_persen_30').html(total_persen_30);
-                        // $('#total_persen_60').html(total_persen_60);
-                        // $('#total_persen_85').html(total_persen_85);
-                        // $('#total_persen_100').html(total_persen_100);
-
-
 
                         // INDIKATOR
                         if (value.status_ontime == 'Ontime') {
@@ -1518,14 +1458,6 @@
 
                         }
 
-                        // Resume Progres
-                        // $('#total_ontime').html(total_ontime);
-                        // $('#total_late').html(total_late);
-                        // $('#total_no_spk').html(total_no_spk);
-
-
-                        // total_unit++;
-                        // $('#total_unit').html(total_unit);
                     });
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
@@ -1539,7 +1471,7 @@
 
         function load_svg(bounds) {
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', `{{ url('/assets/siteplan') }}/bekasi_with_jalan.svg`, false); // false makes it synchronous
+            xhr.open('GET', `{{ url('/assets/siteplan/').'/'.$project_add->siteplan }}`, false); // false makes it synchronous
             xhr.send(null);
 
             if (xhr.status === 200) {

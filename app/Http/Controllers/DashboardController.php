@@ -53,7 +53,6 @@ class DashboardController extends Controller
         // $content = file_get_contents($path);
         // $content = str_replace('../', url('/') . '/360_view/vt/' . $project_add->link_360.'/', $content);
         // return view('virtual_tour', ['project' => $project, 'content' => $content]);
-
         return view(
             'detail',
             [
@@ -63,7 +62,8 @@ class DashboardController extends Controller
                 'fasilitasSekitar' => $fasilitasSekitar,
                 'blokTersedia' => $groupBlok,
                 'bloks' => $blok,
-                'ulasan' => $ulasan
+                'ulasan' => $ulasan,
+                'project_add'=>$project_add
                 // 'content'=>$content
             ]
         );
