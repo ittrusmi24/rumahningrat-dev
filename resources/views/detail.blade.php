@@ -1003,13 +1003,20 @@
         }
 
         var bounds = [
-            [-6.397245, 107.068464],
-            [-6.397245, 107.073051],
-            [-6.400081, 107.073051],
-            [-6.400081, 107.068464]
+            @json(explode(',', $project_add->coord_1)),
+            @json(explode(',', $project_add->coord_2)),
+            @json(explode(',', $project_add->coord_3)),
+            @json(explode(',', $project_add->coord_4))
         ];
-        var center_point = [-6.398496, 107.071440];
-        var extendedBounds = L.latLngBounds(bounds).pad(1500 / 111320);
+        // Titik pusat
+    var center_point = @json(explode(',', $project_add->center));
+
+        // Nilai extend dari database
+        var extend = @json($project_add->extend);
+
+        // Membuat bounds dengan padding dari extend
+        var extendedBounds = L.latLngBounds(bounds).pad(extend);
+        // var extendedBounds = L.latLngBounds(bounds).pad(1);
         var map = L.map('map', {
             maxBounds: extendedBounds,
             maxBoundsViscosity: 1.0
@@ -1415,7 +1422,7 @@
                         //     stop1.setAttribute("stop-color", "#B983FF");
                         // }
                         if (value.status == 'Not Sale') {
-                            stop1.setAttribute("stop-color", "#B8B8B8");
+                            stop1.setAttribute("stop-color", "#458BC9");
 
                         } else if (value.status == 'Booking' || value.status == 'Akad' || value
                             .status == 'Booking Cash' || value.status == 'SP3K' || value.status ==
@@ -1424,7 +1431,7 @@
                         } else if (value.status == 'Kosong') {
                             stop1.setAttribute("stop-color", "white");
                         } else {
-                            stop1.setAttribute("stop-color", "#B8B8B8");
+                            stop1.setAttribute("stop-color", "#458BC9");
                         }
 
 
@@ -1851,7 +1858,7 @@
                         text: 'Kosong'
                     },
                     {
-                        color: '#B8B8B8',
+                        color: '#458BC9',
                         text: 'Not Sale'
                     },
                     {
