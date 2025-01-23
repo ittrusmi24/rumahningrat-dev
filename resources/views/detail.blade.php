@@ -654,7 +654,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-6">
-                                            <p>Pagar Dapur</p>
+                                            <p>Tembok Dapur</p>
                                         </div>
                                         <div class="col-6 text-end">
                                             <div id="tembokPotongan" class="d-none">

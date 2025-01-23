@@ -39,7 +39,7 @@
                                         <div>
                                             <img class="ms-4 img-fluid" src="{{ asset('assets/images/dulux.png') }}"
                                                 alt="" style="max-height: 70px;">
-                                            <p class="text-dark p-0 m-0 small">Top Brand Cat</p>
+                                            <p class="text-dark p-0 m-0 small text-center">Top Brand Cat</p>
                                         </div>
                                     </div>
                                 </div>
@@ -48,16 +48,17 @@
                                         <div>
                                             <img class="ms-4 img-fluid" src="{{ asset('assets/images/sakura.png') }}"
                                                 alt="" style="max-height: 70px;">
-                                            <p class="text-dark p-0 m-0 small">Top Brand Atap Multiroof</p>
+                                            <p class="text-dark p-0 m-0 small text-center">Top Brand Atap Multiroof</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-5 text-center">
-                                    <div class="d-flex justify-content-center">
-                                        <div>
-                                            <img class="ms-4 img-fluid" src="{{ asset('assets/images/tiga_roda.png') }}"
-                                                alt="" style="max-height: 70px;">
-                                            <p class="text-dark p-0 m-0 small">Top Brand Semen</p>
+                                    <div class="d-flex justify-content-center align-items-center h-100">
+                                        <div class="mt-4 text-center">
+                                            <img class="ms-4 img-fluid"
+                                                src="{{ asset('assets/images/indocement.png') }}" alt=""
+                                                style="max-height: 70px;">
+                                            <p class="text-dark p-0 m-0 small text-center">Top Brand Semen</p>
                                         </div>
                                     </div>
                                 </div>
