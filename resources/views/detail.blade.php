@@ -68,25 +68,19 @@
                 <div class="owl-carousel" id="gallery-carousel-1">
                     <div><img src="{{ url('/assets/images/carousel') }}/1.png" alt="">
                     </div>
-                    <div><img src="{{ url('/assets/images/carousel') }}/1.png" alt="">
-                    </div>
-                    <div><img src="{{ url('/assets/images/carousel') }}/1.png" alt="">
+                    <div><img src="{{ url('/assets/images/carousel') }}/1_2.png" alt="">
                     </div>
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-2">
                     <div><img src="{{ url('/assets/images/carousel') }}/2.png" alt="">
                     </div>
-                    <div><img src="{{ url('/assets/images/carousel') }}/2.png" alt="">
-                    </div>
-                    <div><img src="{{ url('/assets/images/carousel') }}/2.png" alt="">
+                    <div><img src="{{ url('/assets/images/carousel') }}/2_2.png" alt="">
                     </div>
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-3">
                     <div><img src="{{ url('/assets/images/carousel') }}/3.png" alt="">
                     </div>
-                    <div><img src="{{ url('/assets/images/carousel') }}/3.png" alt="">
-                    </div>
-                    <div><img src="{{ url('/assets/images/carousel') }}/3.png" alt="">
+                    <div><img src="{{ url('/assets/images/carousel') }}/3_2.png" alt="">
                     </div>
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-4">
@@ -105,7 +99,7 @@
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-7">
                     <div><img src="{{ url('/assets/images/carousel') }}/7.png" alt="">
                     </div>
-                    <div><img src="{{ url('/assets/images/carousel') }}/8.png" alt="">
+                    <div><img src="{{ url('/assets/images/carousel') }}/7_2.png" alt="">
                     </div>
                 </div>
             </div>
@@ -1301,7 +1295,7 @@
                 success: function(response) {
                     $('svg text').each(function() {
                         const textContent = $(this).text()
-                    .trim(); // Ambil teks dan hilangkan spasi di awal/akhir
+                            .trim(); // Ambil teks dan hilangkan spasi di awal/akhir
                         const cleanText = textContent.replace(/\s+/g, ''); // Hilangkan semua spasi
 
                         if (cleanText.length <= 4 && !textContent.startsWith('ROW')) {
@@ -1474,7 +1468,7 @@
         function load_svg(bounds) {
             var xhr = new XMLHttpRequest();
             xhr.open('GET', `{{ url('/assets/siteplan/') . '/' . $project_add->siteplan }}`,
-            false); // false makes it synchronous
+                false); // false makes it synchronous
             xhr.send(null);
 
             if (xhr.status === 200) {
@@ -1888,7 +1882,7 @@
 
                 legendContent.append(
                     `<small class="text-secondary mb-1"><i class="fa fa-info-circle"></i> Anda bisa Tap untuk memilih blok</small>`
-                    );
+                );
                 legendContent.append(statusRow);
 
                 $(div).append(legendContent);
