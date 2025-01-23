@@ -654,7 +654,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-6">
-                                            <p>Tembok Keliling</p>
+                                            <p>Pagar Dapur</p>
                                         </div>
                                         <div class="col-6 text-end">
                                             <div id="tembokPotongan" class="d-none">
@@ -1009,7 +1009,7 @@
             @json(explode(',', $project_add->coord_4))
         ];
         // Titik pusat
-    var center_point = @json(explode(',', $project_add->center));
+        var center_point = @json(explode(',', $project_add->center));
 
         // Nilai extend dari database
         var extend = @json($project_add->extend);
