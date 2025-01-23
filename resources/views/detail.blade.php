@@ -1114,7 +1114,7 @@
 
             // Menangani event apply untuk memperbarui nilai input
             $('input[name="tgl_lahir"]').on('apply.daterangepicker', function(ev, picker) {
-                $(this).val(picker.startDate.format('DD/MM/YYYY')); // Format menjadi DD/MM/YYYY
+                $(this).val(picker.startDate.format('YYYY-MM-DD')); // Format menjadi DD/MM/YYYY
             });
 
             $('.owl-carousel').owlCarousel({
