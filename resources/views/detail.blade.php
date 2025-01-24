@@ -256,9 +256,7 @@
                                             Keamanan
                                         </h5>
                                         <p class="card-text">Prioritas keamanan warga dengan CCTV
-                                            area,
-                                            tembok
-                                            keliling dan one gate system</p>
+                                            area, dan one gate system</p>
                                     </div>
                                 </div>
                                 <div class="card card-item-prioritas">
