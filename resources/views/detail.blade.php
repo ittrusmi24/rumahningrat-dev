@@ -256,9 +256,7 @@
                                             Keamanan
                                         </h5>
                                         <p class="card-text">Prioritas keamanan warga dengan CCTV
-                                            area,
-                                            tembok
-                                            keliling dan one gate system</p>
+                                            area, dan one gate system</p>
                                     </div>
                                 </div>
                                 <div class="card card-item-prioritas">
@@ -578,6 +576,14 @@
                                             autocomplete="off" oninput="validasiKtp(this)">
                                     </div>
                                     <div class="mb-2">
+                                        <label class="form-label">Kelurahan</label>
+                                        <select class="form-control" name="kelurahan" id="kelurahan">
+                                            <option value="" selected>-- Pilih Kelurahan --</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-2">
                                         <label class="form-label">Alamat</label>
                                         <input type="text" class="form-control" name="alamat" id="alamat_book"
                                             autocomplete="off">
@@ -716,16 +722,20 @@
                                             <p class="d-inline mb-1" id="value_subtotal">Rp. 28.650.000</p>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <p>Potongan</p>
-                                        </div>
-                                        <div class="col-6 text-end">
-                                            <p class="d-inline text-danger d-none" id="value_potongan">Rp. 19.400.000</p>
+                                    <div class="row py-2">
+                                        <div class="col-12" id="potonganAwal">
                                             <button type="button" id="btn-potongan" class="btn btn-primary btn-sm"
                                                 data-bs-toggle="modal" data-bs-target="#agreementModal">
-                                                Dapatkan Potongan
+                                                Dapatkan Potongan Senilai <span id="value_potonganBtn">Rp.
+                                                    19.400.000</span>
                                             </button>
+                                        </div>
+                                        <div class="col-6 d-none" id="potonganText">
+                                            <p>Potongan</p>
+                                        </div>
+                                        <div class="col-6 text-end d-none" id="potonganTextVal">
+                                            <p class="d-inline text-danger" id="value_potongan">Rp. 19.400.000
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -1067,9 +1077,11 @@
             });
             $('#okButton').on('click', function() {
                 $('#value_potongan').removeClass('d-none');
-                $('#btn-potongan').addClass('d-none');
+                $('#potonganAwal').addClass('d-none');
                 $('#value_total_awal').addClass('d-none');
                 $('#value_total').removeClass('d-none');
+                $('#potonganText').removeClass('d-none');
+                $('#potonganTextVal').removeClass('d-none');
                 $('#agreementModal').modal('hide');
                 $('#dpPotongan').removeClass('d-none');
                 $('#dpNonPotongan').addClass('d-none');
@@ -1101,6 +1113,11 @@
             const blok_select = new SlimSelect({
                 select: '#blok',
                 placeholder: 'Pilih Blok',
+                allowDeselect: true
+            })
+
+            const kelurahan_select = new SlimSelect({
+                select: '#kelurahan',
                 allowDeselect: true
             })
 
@@ -1535,6 +1552,7 @@
             $('#value_bphtb').text(formatRupiah(bphtb));
             $('#value_subtotal').text(formatRupiah(total));
             $('#value_potongan').text(formatRupiah(potongan));
+            $('#value_potonganBtn').text(formatRupiah(potongan));
             $('#value_total').text(formatRupiah(total_all));
             $('#value_total_awal').text(formatRupiah(total));
             clearInterval(blinkInterval);
