@@ -577,16 +577,13 @@
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">Kelurahan</label>
-                                        <select class="form-control" name="kelurahan" id="kelurahan">
-                                            <option value="" selected>-- Pilih Kelurahan --</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
+                                        <select class="form-select" name="kelurahan" id="kelurahan">
+                                            <option data-placeholder="true"></option>
                                         </select>
                                     </div>
                                     <div class="mb-2">
-                                        <label class="form-label">Alamat</label>
-                                        <input type="text" class="form-control" name="alamat" id="alamat_book"
-                                            autocomplete="off">
+                                        <label class="form-label">Alamat Lengkap</label>
+                                        <textarea name="alamat" class="form-control" id="alamat_book" cols="30" rows="3" autocomplete="off"></textarea>
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">Pendapatan</label>
@@ -1116,10 +1113,10 @@
                 allowDeselect: true
             })
 
-            const kelurahan_select = new SlimSelect({
-                select: '#kelurahan',
-                allowDeselect: true
-            })
+            // const kelurahan_select = new SlimSelect({
+            //     select: '#kelurahan',
+            //     allowDeselect: true
+            // })
 
             $('input[name="tgl_lahir"]').daterangepicker({
                 singleDatePicker: true,
@@ -1685,6 +1682,8 @@
                 payment = $("input[name='payment']:checked").val(),
                 bank = $("input[name='bank']:checked").val(),
                 blok = $('#blok').val()
+                kelurahan_val = kelurahanSelect.getSelected();
+                kelurahan = kelurahan_val.toString();
 
             if (blok == '') {
                 Swal.fire({
@@ -1739,6 +1738,14 @@
                     icon: "warning",
                     title: "Opps!",
                     text: "Alamat belum diisi!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            } else if (kelurahan == null || kelurahan == '') {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Opps!",
+                    text: "Kelurahan belum dipilih!",
                     showConfirmButton: false,
                     timer: 3000
                 });
@@ -1923,4 +1930,51 @@
     @include('modal.spesifikasi_detail_js')
     @include('modal.dekat_dengan_js')
     @include('chat.jsChat')
+
+    <script>
+        let kelurahanSelect = new SlimSelect({
+            select: '#kelurahan',
+            settings: {
+                placeholderText: 'Pencarian minimal harus 4 huruf',
+            },
+            events: {
+                search: (search, currentData) => {
+                    return new Promise((resolve, reject) => {
+                        if (search.length <= 4) {
+                            return reject('Pencarian minimal harus 4 karakter')
+                        }
+
+                        // Fetch random first and last name data
+                        fetch(`{{ url('/search-kelurahan') }}?q=${search}`, {
+                                method: 'GET',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                },
+                            })
+                            .then((response) => response.json())
+                            .then((data) => {
+                                // Take the data and create an array of options
+                                // excluding any that are already selected in currentData
+                                const options = data
+                                    .filter((kelurahan) => {
+                                        return !currentData.some((optionData) => {
+                                            return optionData.value ===
+                                                `${kelurahan.kelurahan} ${kelurahan.kecamatan} ${kelurahan.kota}`
+                                        })
+                                    })
+                                    .map((kelurahan) => {
+                                        return {
+                                            text: `Kel. ${kelurahan.kelurahan} Kec. ${kelurahan.kecamatan} ${kelurahan.kota}`,
+                                            value: `${kelurahan.id_kelurahan}`,
+                                        }
+                                    })
+
+                                resolve(options)
+                            })
+                    })
+                }
+            }
+        })
+    </script>
 @endsection
