@@ -48,8 +48,8 @@
                                     <div class="d-flex justify-content-center align-items-center h-100">
                                         <div class="mt-3 text-center">
                                             <img class="ms-4 img-fluid"
-                                                src="{{ asset('assets/images/indocement_top_brand.png') }}"
-                                                alt="" style="max-height: 70px;">
+                                                src="{{ asset('assets/images/indocement_2.png') }}" alt=""
+                                                style="max-height: 70px;">
                                             <p class="text-dark p-0 m-0 small text-center" style="font-size: 9pt;">Top
                                                 Brand Semen</p>
                                         </div>
