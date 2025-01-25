@@ -70,6 +70,8 @@
                     </div>
                     <div><img src="{{ url('/assets/images/carousel') }}/1_2.png" alt="">
                     </div>
+                    <div><img src="{{ url('/assets/images/carousel') }}/1_3.jpg" alt="">
+                    </div>
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-2">
                     <div><img src="{{ url('/assets/images/carousel') }}/2.png" alt="">
