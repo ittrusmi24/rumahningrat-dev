@@ -34,39 +34,24 @@
                                 <h6 class="small">Bekerja Sama Dengan Top Brand</h6>
                             </div>
                             <div class="row">
-                                <div class="col-5 text-center">
+                                <div class="col-lg-4 col-12 text-center m-0 p-0">
                                     <div class="d-flex justify-content-center">
                                         <div>
                                             <img class="ms-4 img-fluid" src="{{ asset('assets/images/dulux.png') }}"
                                                 alt="" style="max-height: 70px;">
-                                            <p class="text-dark p-0 m-0 small">Top Brand Cat</p>
+                                            <p class="text-dark p-0 m-0 small text-center" style="font-size: 9pt;">Top
+                                                Brand Cat</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-7 text-center">
-                                    <div class="d-flex justify-content-center">
-                                        <div>
-                                            <img class="ms-4 img-fluid" src="{{ asset('assets/images/sakura.png') }}"
-                                                alt="" style="max-height: 70px;">
-                                            <p class="text-dark p-0 m-0 small">Top Brand Atap Multiroof</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-5 text-center">
-                                    <div class="d-flex justify-content-center">
-                                        <div>
-                                            <img class="ms-4 img-fluid" src="{{ asset('assets/images/tiga_roda.png') }}"
-                                                alt="" style="max-height: 70px;">
-                                            <p class="text-dark p-0 m-0 small">Top Brand Semen</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-7 text-center">
-                                    <div class="d-flex justify-content-center">
-                                        <div>
-                                            <img class="ms-4 img-fluid" src="{{ asset('assets/images/kencana.png') }}"
-                                                alt="" style="max-height: 70px;">
-                                            <p class="text-dark p-0 m-0 small">Baja Ringan Berkualitas</p>
+                                <div class="col-lg-8 col-12 text-center">
+                                    <div class="d-flex justify-content-center align-items-center h-100">
+                                        <div class="mt-3 text-center">
+                                            <img class="ms-4 img-fluid"
+                                                src="{{ asset('assets/images/indocement_2.png') }}" alt=""
+                                                style="max-height: 70px;">
+                                            <p class="text-dark p-0 m-0 small text-center" style="font-size: 9pt;">Top
+                                                Brand Semen</p>
                                         </div>
                                     </div>
                                 </div>

@@ -256,9 +256,7 @@
                                             Keamanan
                                         </h5>
                                         <p class="card-text">Prioritas keamanan warga dengan CCTV
-                                            area,
-                                            tembok
-                                            keliling dan one gate system</p>
+                                            area, dan one gate system</p>
                                     </div>
                                 </div>
                                 <div class="card card-item-prioritas">
@@ -578,9 +576,14 @@
                                             autocomplete="off" oninput="validasiKtp(this)">
                                     </div>
                                     <div class="mb-2">
-                                        <label class="form-label">Alamat</label>
-                                        <input type="text" class="form-control" name="alamat" id="alamat_book"
-                                            autocomplete="off">
+                                        <label class="form-label">Kelurahan</label>
+                                        <select class="form-select" name="kelurahan" id="kelurahan">
+                                            <option data-placeholder="true"></option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Alamat Lengkap</label>
+                                        <textarea name="alamat" class="form-control" id="alamat_book" cols="30" rows="3" autocomplete="off"></textarea>
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">Pendapatan</label>
@@ -654,7 +657,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-6">
-                                            <p>Pagar Dapur</p>
+                                            <p>Tembok Dapur</p>
                                         </div>
                                         <div class="col-6 text-end">
                                             <div id="tembokPotongan" class="d-none">
@@ -716,16 +719,20 @@
                                             <p class="d-inline mb-1" id="value_subtotal">Rp. 28.650.000</p>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <p>Potongan</p>
-                                        </div>
-                                        <div class="col-6 text-end">
-                                            <p class="d-inline text-danger d-none" id="value_potongan">Rp. 19.400.000</p>
+                                    <div class="row py-2">
+                                        <div class="col-12" id="potonganAwal">
                                             <button type="button" id="btn-potongan" class="btn btn-primary btn-sm"
                                                 data-bs-toggle="modal" data-bs-target="#agreementModal">
-                                                Dapatkan Potongan
+                                                Dapatkan Potongan Senilai <span id="value_potonganBtn">Rp.
+                                                    19.400.000</span>
                                             </button>
+                                        </div>
+                                        <div class="col-6 d-none" id="potonganText">
+                                            <p>Potongan</p>
+                                        </div>
+                                        <div class="col-6 text-end d-none" id="potonganTextVal">
+                                            <p class="d-inline text-danger" id="value_potongan">Rp. 19.400.000
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -1067,9 +1074,11 @@
             });
             $('#okButton').on('click', function() {
                 $('#value_potongan').removeClass('d-none');
-                $('#btn-potongan').addClass('d-none');
+                $('#potonganAwal').addClass('d-none');
                 $('#value_total_awal').addClass('d-none');
                 $('#value_total').removeClass('d-none');
+                $('#potonganText').removeClass('d-none');
+                $('#potonganTextVal').removeClass('d-none');
                 $('#agreementModal').modal('hide');
                 $('#dpPotongan').removeClass('d-none');
                 $('#dpNonPotongan').addClass('d-none');
@@ -1104,6 +1113,11 @@
                 allowDeselect: true
             })
 
+            // const kelurahan_select = new SlimSelect({
+            //     select: '#kelurahan',
+            //     allowDeselect: true
+            // })
+
             $('input[name="tgl_lahir"]').daterangepicker({
                 singleDatePicker: true,
                 showDropdowns: true,
@@ -1114,7 +1128,7 @@
 
             // Menangani event apply untuk memperbarui nilai input
             $('input[name="tgl_lahir"]').on('apply.daterangepicker', function(ev, picker) {
-                $(this).val(picker.startDate.format('DD/MM/YYYY')); // Format menjadi DD/MM/YYYY
+                $(this).val(picker.startDate.format('YYYY-MM-DD')); // Format menjadi DD/MM/YYYY
             });
 
             $('.owl-carousel').owlCarousel({
@@ -1535,6 +1549,7 @@
             $('#value_bphtb').text(formatRupiah(bphtb));
             $('#value_subtotal').text(formatRupiah(total));
             $('#value_potongan').text(formatRupiah(potongan));
+            $('#value_potonganBtn').text(formatRupiah(potongan));
             $('#value_total').text(formatRupiah(total_all));
             $('#value_total_awal').text(formatRupiah(total));
             clearInterval(blinkInterval);
@@ -1667,6 +1682,8 @@
                 payment = $("input[name='payment']:checked").val(),
                 bank = $("input[name='bank']:checked").val(),
                 blok = $('#blok').val()
+                kelurahan_val = kelurahanSelect.getSelected();
+                kelurahan = kelurahan_val.toString();
 
             if (blok == '') {
                 Swal.fire({
@@ -1721,6 +1738,14 @@
                     icon: "warning",
                     title: "Opps!",
                     text: "Alamat belum diisi!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            } else if (kelurahan == null || kelurahan == '') {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Opps!",
+                    text: "Kelurahan belum dipilih!",
                     showConfirmButton: false,
                     timer: 3000
                 });
@@ -1905,4 +1930,51 @@
     @include('modal.spesifikasi_detail_js')
     @include('modal.dekat_dengan_js')
     @include('chat.jsChat')
+
+    <script>
+        let kelurahanSelect = new SlimSelect({
+            select: '#kelurahan',
+            settings: {
+                placeholderText: 'Pencarian minimal harus 4 huruf',
+            },
+            events: {
+                search: (search, currentData) => {
+                    return new Promise((resolve, reject) => {
+                        if (search.length <= 4) {
+                            return reject('Pencarian minimal harus 4 karakter')
+                        }
+
+                        // Fetch random first and last name data
+                        fetch(`{{ url('/search-kelurahan') }}?q=${search}`, {
+                                method: 'GET',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                },
+                            })
+                            .then((response) => response.json())
+                            .then((data) => {
+                                // Take the data and create an array of options
+                                // excluding any that are already selected in currentData
+                                const options = data
+                                    .filter((kelurahan) => {
+                                        return !currentData.some((optionData) => {
+                                            return optionData.value ===
+                                                `${kelurahan.kelurahan} ${kelurahan.kecamatan} ${kelurahan.kota}`
+                                        })
+                                    })
+                                    .map((kelurahan) => {
+                                        return {
+                                            text: `Kel. ${kelurahan.kelurahan} Kec. ${kelurahan.kecamatan} ${kelurahan.kota}`,
+                                            value: `${kelurahan.id_kelurahan}`,
+                                        }
+                                    })
+
+                                resolve(options)
+                            })
+                    })
+                }
+            }
+        })
+    </script>
 @endsection

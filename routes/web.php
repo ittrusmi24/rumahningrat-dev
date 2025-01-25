@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\FasilitasSekitarController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KelurahanController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\UlasanController;
 use Illuminate\Support\Facades\Route;
@@ -89,3 +90,4 @@ Route::get('/vt_view', [HomeController::class, 'vt_view'])->name('vt_view');
 Route::get('/poi_view', [HomeController::class, 'poi_view'])->name('poi_view');
 
 Route::get('/status_blok/{id_project}', [DashboardController::class, 'status_blok'])->name('status_blok');
+Route::get('/search-kelurahan', [KelurahanController::class, 'searchKelurahan']);
