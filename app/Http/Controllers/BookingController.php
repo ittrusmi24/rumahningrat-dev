@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Events\BookingCreated;
+use App\Models\BiChecking;
 use App\Models\Booking;
 use App\Models\BookingHistoryRsp;
 use App\Models\BookingStatus;
 use App\Models\Konsumen;
 use App\Models\KonsumenClik;
 use App\Models\KonsumenEces;
+use App\Models\KonsumenPasangan;
 use App\Models\Project;
 use App\Models\ProjectUnit;
 use App\Models\UserRumahNingrat;
@@ -46,10 +48,16 @@ class BookingController extends Controller
         }
         $jenis_kelamin = strip_tags(trim($request->jenis_kelamin));
         $status = strip_tags(trim($request->status));
-        $alamat = strip_tags(trim($request->alamat));
+        $id_kelurahan = strip_tags(trim($request->id_kelurahan));
+        $alamat = ucwords(strtolower(strip_tags(trim($request->alamat))));
+        $tempat_lahir = ucwords(strtolower(strip_tags(trim($request->tempat_lahir))));
         $no_ktp_p = '';
         if ($status == '2') {
             $no_ktp_p = strip_tags(trim($request->no_ktp_p));
+            $tgl_lahir_p = strip_tags(trim($request->tgl_lahir_p));
+            $tempat_lahir_p = strip_tags(trim($request->tempat_lahir_p));
+            $jenis_kelamin_p = strip_tags(trim($request->jenis_kelamin_p));
+            $alamat_p = ucwords(strtolower(strip_tags(trim($request->alamat_p))));
         }
 
         // TODO Check Blok Tersedia
@@ -64,6 +72,11 @@ class BookingController extends Controller
         DB::connection('rsp_connection')->beginTransaction();
         DB::connection('eces_connection')->beginTransaction();
         DB::connection('rumahningrat_connection')->beginTransaction();
+
+        $get_kelurahan = DB::connection('rsp_connection')->table('r_kelurahan_new')->where('id_kelurahan', $id_kelurahan)->first();
+        $get_kecamatan = DB::connection('rsp_connection')->table('r_kecamatan_new')->where('id_kecamatan', $get_kelurahan->id_kecamatan)->first();
+        $get_kota_clik = DB::connection('rsp_connection')->table('r_kota_dummy')->where('id_kota', $get_kecamatan->id_kota)->first();
+        $get_kode_pos = DB::connection('rsp_connection')->table('r_kelurahan_new')->where('id_kelurahan', $id_kelurahan)->first();
 
         try {
             // 1. TODO Insert Konsumen
@@ -81,16 +94,18 @@ class BookingController extends Controller
                 'id_sub_pekerjaan' => '',
                 'level_pekerjaan' => '',
                 'ket_pekerjaan' => '',
+                'tempat_lahir' => $tempat_lahir,
                 'tgl_lahir' => $tgl_lahir,
                 'pendapatan' => $pendapatan,
                 'no_hp' => $no_hp,
                 'no_hp_darurat' => '',
                 'email' => '',
+                'alamat' => $alamat,
                 'rtrw' => '',
-                'id_provinsi' => '',
-                'id_kota' => '',
-                'id_kecamatan' => '',
-                'id_kelurahan' => '',
+                'id_provinsi' => $get_kota_clik->id_provinsi,
+                'id_kota' => $get_kecamatan->id_kota,
+                'id_kecamatan' => $get_kelurahan->id_kecamatan,
+                'id_kelurahan' => $get_kelurahan->id_kelurahan,
                 'created_at' => date('Y-m-d H:i:s'),
                 'created_by' => 23139,
                 'domisili' => '',
@@ -107,16 +122,16 @@ class BookingController extends Controller
                     'id_konsumen' => $id_konsumen,
                     'nama_pasangan' => $nama_pasangan,
                     'ktp_p' => $no_ktp_p,
-                    'tempat_lahir' => '',
-                    'tgl_lahir' => '',
-                    'tempat_lahir_p' => '',
-                    'tgl_lahir_p' => '',
-                    'alamat_p' => '',
+                    'tempat_lahir' => $tempat_lahir,
+                    'tgl_lahir' => $tgl_lahir,
+                    'tempat_lahir_p' => $tempat_lahir_p,
+                    'tgl_lahir_p' => $tgl_lahir_p,
+                    'alamat_p' => $alamat_p,
                     'created_at' => date("Y-m-d H:i:s"),
                     'created_by' => 23139
                 );
                 $data_post_array[] = $data_post_konsumen_pasangan;
-                // M_konsumen_pasangan::create($data_post_konsumen_pasangan);
+                KonsumenPasangan::create($data_post_konsumen_pasangan);
             }
 
             // 3. TODO Insert Booking / GCI
@@ -142,7 +157,7 @@ class BookingController extends Controller
                 'created_by' => 23139, // Booking mandiri
                 'opsi_pagar' => '', // value Pakai Pagar atau Tanpa Pagar
             );
-            $booking = Booking::create($data_post_booking);
+            Booking::create($data_post_booking);
 
             $data_post_array['gci'] = $data_post_booking;
 
@@ -181,22 +196,37 @@ class BookingController extends Controller
             ProjectUnit::where('id_project', $id_project)->where('blok', $blok)->update($data_post_status_blok);
 
 
+            // 7. TODO Insert BIC
+            $id_bic = BiChecking::generate_id_bic();
+            $data_bic = array(
+                "id_bic"                    => $id_bic,
+                "id_gci"                    => $id_gci,
+                "created_at"                => date('Y-m-d H:i:s'),
+                "created_by"                => 23139,
+            );
+            BiChecking::create($data_bic);
 
-            // 7. TODO Insert Konsumen Clik
-            $get_status_clik = DB::connection('rsp_connection')->table('m_konsumen_status')->where('id_status', $request->id_status)->first();
+            // 8. TODO Insert Konsumen Clik
+            $get_status_clik = DB::connection('rsp_connection')->table('m_konsumen_status')->where('id_status', $request->status)->first();
             $data_post_konsumen_clik = array(
                 'id_gci' => $id_gci,
                 'id_konsumen' => $id_konsumen,
                 'nameAsId' => $nama_lengkap,
                 'fullName' => $nama_lengkap,
-                'birthDate' => $tgl_lahir ?? '',
+                'mothersName' => '',
+                'birthDate' => $tgl_lahir,
+                'birthPlace' => $tempat_lahir,
                 'address' => $alamat,
+                'subDistrict' => $get_kelurahan->kelurahan,
+                'district' => $get_kecamatan->kecamatan,
+                'city' => $get_kota_clik->id_kota_clik,
+                'postalCode' => $get_kode_pos->kode_pos,
                 'country' => 'ID',
                 'identityType' => '1',
                 'identityNumber' => $no_ktp,
                 'cellphoneNumber' => $no_hp,
                 'gender' => $jenis_kelamin,
-                'marriageStatus' => $get_status_clik->id_status_clik ?? '',
+                'marriageStatus' => $get_status_clik->id_status_clik,
                 'getPDF' => 'yes',
                 'purposeCode' => '20',
                 'created_at' => date('Y-m-d H:i:s')
@@ -204,7 +234,7 @@ class BookingController extends Controller
             $data_post_array[] = $data_post_konsumen_clik;
             KonsumenClik::create($data_post_konsumen_clik);
 
-            // 8. TODO Insert Konsumen Eces
+            // 9. TODO Insert Konsumen Eces
             $project_eces = Project::get_project_by_id_eces($id_project);
             $cusId = KonsumenEces::get_cus_id();
             $cusKd = KonsumenEces::get_cus_kd($project_eces->prj_eces);
@@ -227,7 +257,7 @@ class BookingController extends Controller
             $data_post_array[] = $data_post_konsumen_eces;
             KonsumenEces::create($data_post_konsumen_eces);
 
-            // 9. TODO Create User Rumah Ningrat
+            // 10. TODO Create User Rumah Ningrat
             $data_post_user_rumah_ningrat = [
                 'name' => $nama_lengkap,
                 'phone' => $no_hp,
@@ -251,7 +281,7 @@ class BookingController extends Controller
             UserRumahNingrat::create($data_post_user_rumah_ningrat);
 
             // Trigger event
-            // 1. Send Notifikasi Whatsapp
+            // 11. Send Notifikasi Whatsapp
             $data_for_event_booking = [
                 'id_gci' => $id_gci
             ];
@@ -271,7 +301,7 @@ class BookingController extends Controller
 
             return response()->json([
                 'status' => false,
-                'message' => 'Terjadi kesalahan: ' . $e->getMessage()
+                'message' => 'Terjadi kesalahan: ' . $e
             ], 500);
         }
 
@@ -412,6 +442,13 @@ class BookingController extends Controller
             return [
                 "status" => false,
                 "message" => "No KTP Tidak Boleh Kurang dari 16 digit"
+            ];
+        }
+        $id_kelurahan = $request->id_kelurahan ?? "";
+        if ($id_kelurahan == "") {
+            return [
+                "status" => false,
+                "message" => "Kelurahan Tidak Boleh kosong"
             ];
         }
         $alamat = $request->alamat ?? "";

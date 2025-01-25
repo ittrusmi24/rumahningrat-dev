@@ -563,11 +563,16 @@
                                         <input class="form-control" name="tgl_lahir" id="tgl_lahir" autocomplete="off">
                                     </div>
                                     <div class="mb-2">
+                                        <label class="form-label">Tempat Lahir</label>
+                                        <input class="form-control" name="tempat_lahir" id="tempat_lahir"
+                                            autocomplete="off">
+                                    </div>
+                                    <div class="mb-2">
                                         <label class="form-label">Jenis Kelamin</label>
                                         <select class="form-select" name="jenis_kelamin" id="jenis_kl">
                                             <option value="" selected>-- Pilih Jenis Kelamin --</option>
-                                            <option value="l">Laki - laki</option>
-                                            <option value="p">Perempuan</option>
+                                            <option value="L">Laki - laki</option>
+                                            <option value="P">Perempuan</option>
                                         </select>
                                     </div>
                                     <div class="mb-2">
@@ -577,7 +582,8 @@
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">Kelurahan</label>
-                                        <select class="form-select" name="kelurahan" id="kelurahan">
+                                        <select class="form-control" name="id_kelurahan" id="id_kelurahan"
+                                            style="min-height: 44px;">
                                             <option data-placeholder="true"></option>
                                         </select>
                                     </div>
@@ -609,6 +615,28 @@
                                             <label class="form-label">Nama Pasangan</label>
                                             <input type="text" class="form-control" name="nama_pasangan"
                                                 id="nama_pasangan">
+                                        </div>
+                                        <div class="mb-2">
+                                            <label class="form-label">Tgl Lahir Pasangan</label>
+                                            <input type="text" class="form-control" name="tgl_lahir_p"
+                                                id="tgl_lahir_p">
+                                        </div>
+                                        <div class="mb-2">
+                                            <label class="form-label">Tempat Lahir Pasangan</label>
+                                            <input type="text" class="form-control" name="tempat_lahir_p"
+                                                id="tempat_lahir_p">
+                                        </div>
+                                        <div class="mb-2">
+                                            <label class="form-label">Jenis Kelamain Pasangan</label>
+                                            <select class="form-select" name="jenis_kelamin_p" id="jenis_kelamin_p">
+                                                <option value="" selected>-- Pilih Jenis Kelamin --</option>
+                                                <option value="L">Laki - laki</option>
+                                                <option value="P">Perempuan</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-2">
+                                            <label class="form-label">Alamat Pasangan</label>
+                                            <textarea name="alamat_p" class="form-control" id="alamat_p" cols="30" rows="3" autocomplete="off"></textarea>
                                         </div>
                                     </div>
                                     <div class="mb-4 mt-5">
@@ -1667,14 +1695,28 @@
         //     ulasan.scrollLeft = scrollLeft - walk;
         // });
 
+        $('#jenis_kl').on('change', function() {
+            var selectedValue = $(this).val();
+            console.log(selectedValue);
+            if (selectedValue == 'l') {
+                $('#jenis_kelamin_p').val('p');
+            } else {
+                $('#jenis_kelamin_p').val('l');
+            }
+        });
+
         // validasi booking
         function validasiBook() {
             let nama = $('#nama').val(),
                 no_hp = $('#no_hp').val(),
                 tgl_lahir = $('#tgl_lahir').val(),
+                tempat_lahir = $('#tempat_lahir').val(),
+                tempat_lahir_p = $('#tempat_lahir_p').val(),
                 jenis_kl = $('#jenis_kl').find(":selected").val(),
+                jenis_kelamin_p = $('#jenis_kelamin_p').find(":selected").val(),
                 no_ktp = $('#no_ktp').val(),
                 alamat = $('#alamat_book').val(),
+                alamat_p = $('#alamat_p').val(),
                 pendapatan = $('#pendapatan').val(),
                 status = $('#status').find(":selected").val(),
                 no_ktp_psg = $('#no_ktp_psg').val(),
@@ -1682,8 +1724,8 @@
                 payment = $("input[name='payment']:checked").val(),
                 bank = $("input[name='bank']:checked").val(),
                 blok = $('#blok').val()
-                kelurahan_val = kelurahanSelect.getSelected();
-                kelurahan = kelurahan_val.toString();
+            kelurahan_val = kelurahanSelect.getSelected();
+            kelurahan = kelurahan_val.toString();
 
             if (blok == '') {
                 Swal.fire({
@@ -1714,6 +1756,14 @@
                     icon: "warning",
                     title: "Opps!",
                     text: "Tanggal lahir belum diisi!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            } else if (tempat_lahir == '') {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Opps!",
+                    text: "Tempat lahir belum diisi!",
                     showConfirmButton: false,
                     timer: 3000
                 });
@@ -1778,6 +1828,38 @@
                     icon: "warning",
                     title: "Opps!",
                     text: "Nama Pasangan belum diisi!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            } else if (status == 2 && tgl_lahir_p == '') {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Opps!",
+                    text: "Tanggal lahir Pasangan belum diisi!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            } else if (status == 2 && tempat_lahir_p == '') {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Opps!",
+                    text: "Tempat lahir Pasangan belum diisi!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            } else if (status == 2 && jenis_kelamin_p == '') {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Opps!",
+                    text: "Jenis kelamin Pasangan belum dipilih!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            } else if (status == 2 && alamat_p == '') {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Opps!",
+                    text: "Alamat Pasangan belum diisi!",
                     showConfirmButton: false,
                     timer: 3000
                 });
@@ -1933,7 +2015,7 @@
 
     <script>
         let kelurahanSelect = new SlimSelect({
-            select: '#kelurahan',
+            select: '#id_kelurahan',
             settings: {
                 placeholderText: 'Pencarian minimal harus 4 huruf',
             },
