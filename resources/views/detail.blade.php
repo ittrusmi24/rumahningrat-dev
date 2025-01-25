@@ -507,7 +507,8 @@
                                             data-biaya_bphtb="{{ $blok->biaya_bphtb }}" data-total="{{ $blok->total }}"
                                             data-potongan="{{ $blok->potongan }}"
                                             data-total_all="{{ $blok->total_all }}">Blok
-                                            {{ $blok->blok }}</option>
+                                            {{ $blok->blok }} {{ $blok->hook_klt }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -607,7 +608,7 @@
                                         <div class="mb-2">
                                             <label class="form-label">Tgl Lahir Pasangan</label>
                                             <input type="text" class="form-control" name="tgl_lahir_p"
-                                                id="tgl_lahir_p">
+                                                id="tgl_lahir_p" autocomplete="off">
                                         </div>
                                         <div class="mb-2">
                                             <label class="form-label">Tempat Lahir Pasangan</label>
@@ -983,6 +984,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r132/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -1134,6 +1136,10 @@
             //     allowDeselect: true
             // })
 
+            $('input[name="tgl_lahir"]').mask("9999-99-99", {
+                placeholder: 'YYYY-MM-DD'
+            });
+
             $('input[name="tgl_lahir"]').daterangepicker({
                 singleDatePicker: true,
                 showDropdowns: true,
@@ -1144,6 +1150,23 @@
 
             // Menangani event apply untuk memperbarui nilai input
             $('input[name="tgl_lahir"]').on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('YYYY-MM-DD')); // Format menjadi DD/MM/YYYY
+            });
+
+            $('input[name="tgl_lahir_p"]').mask("9999-99-99", {
+                placeholder: 'YYYY-MM-DD'
+            });
+
+            $('input[name="tgl_lahir_p"]').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                minYear: 1901,
+                maxYear: parseInt(moment().format('YYYY'), 10),
+                autoUpdateInput: false // Membuat input awal kosong
+            });
+
+            // Menangani event apply untuk memperbarui nilai input
+            $('input[name="tgl_lahir_p"]').on('apply.daterangepicker', function(ev, picker) {
                 $(this).val(picker.startDate.format('YYYY-MM-DD')); // Format menjadi DD/MM/YYYY
             });
 

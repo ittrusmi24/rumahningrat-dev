@@ -85,7 +85,9 @@
                     if (jsonResponseDetailRumah.data.poin_plus && jsonResponseDetailRumah
                         .data
                         .poin_plus != '') {
-                        $data_poin_plus = jsonResponseDetailRumah.data.poin_plus.split('>');
+                        $data_poin_plus = jsonResponseDetailRumah.data.poin_plus.split(
+                            />(?<!<br>)/);
+                        console.log($data_poin_plus);
                         $list_poin_plus = `<table class="table-borderless text-dark" style="width:100%;font-size:small;">
                     <tbody style="vertical-align:baseline;">`;
                         for (var i = 0; i < $data_poin_plus.length; i++) {

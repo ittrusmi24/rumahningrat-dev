@@ -18,6 +18,7 @@ class BlokTersedia extends Model
         $query = "SELECT
                 p.id_project,
                 mpu.blok,
+                CASE WHEN p.id_project_tipe = 2 THEN 2500000 WHEN p.id_project_tipe != 2 AND (LEFT(mpu.type_blok,4) = 'Hook' OR LEFT(mpu.type_blok,3) = 'KLT') THEN '(Ada Hook/KLT)' ELSE '' END as hook_klt,
                 MIN(mpu.terima_kunci) AS terima_kunci,
                 COUNT(DISTINCT mpu.blok) AS sisa_unit,
                 CASE WHEN p.id_project_tipe = 2 THEN 2500000 WHEN p.id_project_tipe != 2 AND (LEFT(mpu.type_blok,4) = 'Hook' OR LEFT(mpu.type_blok,3) = 'KLT') THEN 1000000 ELSE 500000 END as nominal_booking,
@@ -90,7 +91,8 @@ class BlokTersedia extends Model
         return $blok;
     }
 
-    public static function get_blok_status($id_project){
+    public static function get_blok_status($id_project)
+    {
         $query = "SELECT
 
                     m_project_unit.blok,
@@ -282,6 +284,5 @@ class BlokTersedia extends Model
             ORDER BY m_project_unit.blok ASC";
         return DB::connection('rsp_connection')
             ->select($query);
-
     }
 }
