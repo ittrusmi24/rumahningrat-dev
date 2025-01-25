@@ -233,10 +233,8 @@
                                         <h5 class="card-title"><i class="bi bi-heart-fill"></i>
                                             Kesehatan
                                         </h5>
-                                        <p class="card-text">Mendukung kesehatan dengan fasilitas
-                                            jogging
-                                            track,
-                                            lapangan olahraga dan lainnya</p>
+                                        <p class="card-text">Hidup Lebih Baik melalui penyediaan fasilitas Jogging Track,
+                                            Lapangan Olahraga Multifungsi serta Ruang Terbuka Hijau.</p>
                                     </div>
                                 </div>
                                 <div class="card card-item-prioritas">
@@ -244,10 +242,8 @@
                                         <h5 class="card-title"><i class="bi bi-people-fill"></i>
                                             Komunitas
                                         </h5>
-                                        <p class="card-text">Layanan marketplace, serviceplace
-                                            hingga
-                                            hobi
-                                            warga rumah ningrat</p>
+                                        <p class="card-text">Menyediakan ruang untuk membangun jejaring koneksi/relasi
+                                            antar warga melalui Komunitas Ekslusif Rumah Ningrat.</p>
                                     </div>
                                 </div>
                                 <div class="card card-item-prioritas">
@@ -255,8 +251,8 @@
                                         <h5 class="card-title"><i class="bi bi-shield-fill"></i>
                                             Keamanan
                                         </h5>
-                                        <p class="card-text">Prioritas keamanan warga dengan CCTV
-                                            area, dan one gate system</p>
+                                        <p class="card-text">Memberikan rasa nyaman dan aman dengan perlindungan berlapis
+                                            mulai dari One Gate System, Security 24 Jam, serta CCTV Area.</p>
                                     </div>
                                 </div>
                                 <div class="card card-item-prioritas">
@@ -264,10 +260,9 @@
                                         <h5 class="card-title"><i class="bi bi-credit-card-fill"></i>
                                             Ekonomi
                                         </h5>
-                                        <p class="card-text">Jual beli dan service dalam satu
-                                            aplikasi
-                                            khusus
-                                            warga rumah ningrat</p>
+                                        <p class="card-text">Memberikan peluang untuk mendapatkan pemasukan tambahan serta
+                                            menjadi Mitra Eksklusif Rumah Ningrat.
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -334,15 +329,6 @@
                                         </div>
                                     </div> --}}
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container mt-3">
-                        <div class="row">
-                            <div class="col text-center">
-                                <p>Program ini dirancang khusus untuk konsumen yang mengutamakan kualitas, menggunakan
-                                    material besi terbaik.</p>
-                                <p>Dengan bonus Free Pagar konsumen dapat menghemat biaya hingga Rp10 juta.</p>
                             </div>
                         </div>
                     </div>
@@ -1682,8 +1668,8 @@
                 payment = $("input[name='payment']:checked").val(),
                 bank = $("input[name='bank']:checked").val(),
                 blok = $('#blok').val()
-                kelurahan_val = kelurahanSelect.getSelected();
-                kelurahan = kelurahan_val.toString();
+            kelurahan_val = kelurahanSelect.getSelected();
+            kelurahan = kelurahan_val.toString();
 
             if (blok == '') {
                 Swal.fire({
