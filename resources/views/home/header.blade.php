@@ -10,7 +10,11 @@
                             alt="logo" style="height: 50px"></a>
                 </div>
             </div>
+            <!-- <div class="col-lg-2 text-end">
+                <a type="button" class="btn btn-primary btn-sm">Panduan</a>
+            </div> -->
             <div class="col-lg-2 text-end">
+                <!-- <a type="button" class="btn btn-primary btn-sm">Panduan</a> -->
                 <button type="button" class="btn btn-primary btn-sm">Masuk <i class="bi bi-person"></i></button>
             </div>
         </div>

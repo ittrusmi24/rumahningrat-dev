@@ -55,10 +55,17 @@
     <div class="stikcy-nav-container" id="sticky-header">
         <nav class="navbar p-0" style="background-color: #005991E5">
             <div class="container-fluid">
-                <a class="navbar-brand" href="https://rumahningrat.com/rn-jaya-sampurna">
+                <a class="navbar-brand" href="https://rumahningrat.com/">
                     <img src="{{ url('/assets/images/fav-icon/icon-ningrat.png') }}" alt="Logo" height="40px">
                 </a>
-                <button type="button" class="btn btn-primary btn-sm">Masuk <i class="bi bi-person"></i></button>
+
+                <!-- Tambah div wrapper untuk grouping tombol -->
+                <div class="d-flex gap-2 ms-auto"> <!-- ms-auto untuk push ke kanan -->
+                    <a href="{{asset('assets/Booking_Mandiri.pdf')}}" download="Booking_Mandiri" type="button" class="btn btn-primary btn-sm">Panduan</a>
+                    <button type="button" class="btn btn-primary btn-sm">
+                        Masuk <i class="bi bi-person"></i>
+                    </button>
+                </div>
             </div>
         </nav>
     </div>
