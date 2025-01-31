@@ -87,9 +87,9 @@ class SendWhatsappNotification
             . "🏗️ Progres Pelaksana : " . $wa_content['progres_pelaksana'] . "%\n"
             . "⏱️ Umur Bangunan : " . $wa_content['umur_bangunan'];
 
-        // $send_head_mkt = $this->sendWhatsApp($wa_no_spv, $msg_head_marketing);
-        // $send_head_mkt = $this->sendWhatsApp($wa_no_mm, $msg_head_marketing);
-        // $send_head_mkt = $this->sendWhatsApp($wa_no_gm, $msg_head_marketing);
+        $send_head_mkt = $this->sendWhatsApp($wa_no_spv, $msg_head_marketing);
+        $send_head_mkt = $this->sendWhatsApp($wa_no_mm, $msg_head_marketing);
+        $send_head_mkt = $this->sendWhatsApp($wa_no_gm, $msg_head_marketing);
         $send_head_mkt = $this->sendWhatsApp('6285324409384', $msg_head_marketing);
 
         \Log::info('BookingCreated was triggered', ['data' => $event->booking]);

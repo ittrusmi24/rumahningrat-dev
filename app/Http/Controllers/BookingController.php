@@ -107,7 +107,7 @@ class BookingController extends Controller
                 'id_kecamatan' => $get_kelurahan->id_kecamatan,
                 'id_kelurahan' => $get_kelurahan->id_kelurahan,
                 'created_at' => date('Y-m-d H:i:s'),
-                'created_by' => 23139,
+                'created_by' => 23381,
                 'domisili' => '',
                 'bpjs' => '',
                 'perusahaan' => '',
@@ -128,7 +128,7 @@ class BookingController extends Controller
                     'tgl_lahir_p' => $tgl_lahir_p,
                     'alamat_p' => $alamat_p,
                     'created_at' => date("Y-m-d H:i:s"),
-                    'created_by' => 23139
+                    'created_by' => 23381
                 );
                 $data_post_array[] = $data_post_konsumen_pasangan;
                 KonsumenPasangan::create($data_post_konsumen_pasangan);
@@ -149,12 +149,12 @@ class BookingController extends Controller
                 'id_gci_status' => 1,
                 'jenis_pembayaran' => 'Payment Gateway',
                 'kelurahan' => '',
-                'id_user' => 23139, // Booking mandiri
+                'id_user' => 23381, // Booking mandiri
                 'spv' => 170, // non spv
                 'manager' => 2029, // non bm
                 'id_gm' => '',
                 'created_at' => date('Y-m-d H:i:s'),
-                'created_by' => 23139, // Booking mandiri
+                'created_by' => 23381, // Booking mandiri
                 'opsi_pagar' => '', // value Pakai Pagar atau Tanpa Pagar
             );
             Booking::create($data_post_booking);
@@ -202,7 +202,7 @@ class BookingController extends Controller
                 "id_bic"                    => $id_bic,
                 "id_gci"                    => $id_gci,
                 "created_at"                => date('Y-m-d H:i:s'),
-                "created_by"                => 23139,
+                "created_by"                => 23381,
             );
             BiChecking::create($data_bic);
 
