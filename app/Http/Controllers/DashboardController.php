@@ -12,6 +12,7 @@ use App\Models\BlokTersedia;
 use App\Models\Lokasi;
 use App\Models\Ulasan;
 use App\Models\Visitor;
+use Stevebauman\Location\Facades\Location;
 
 use function PHPSTORM_META\map;
 
@@ -27,10 +28,37 @@ class DashboardController extends Controller
         $url = strip_tags(urldecode(request()->fullUrl()));
         $userAgent = request()->userAgent();
         $ip = request()->ip();
+
+        if ($position = Location::get($ip)) {
+            // Successfully retrieved position.
+            if(isset($position->countryName)){
+                $countryName = $position->countryName;
+            }else{
+                $countryName = 'Unknown';
+            }
+            if(isset($position->regionName)){
+                $regionName = $position->regionName;
+            }else{
+                $regionName = 'Unknown';
+            }
+            if(isset($position->cityName)){
+                $cityName = $position->cityName;
+            }else{
+                $cityName = 'Unknown';
+            }
+        } else {
+            $countryName = 'Unknown';
+            $regionName = 'Unknown';
+            $cityName = 'Unknown';
+            // Failed retrieving position.
+        }
         Visitor::create([
             'url' => urldecode($url),
             'user_agent' => $userAgent,
             'ip' => $ip,
+            'countryName' => $countryName,
+            'regionName' => $regionName,
+            'cityName' => $cityName,
             'created_at' => date("Y-m-d H:i:s"),
         ]);
         $id_project = $request->id_project;
