@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Visitor;
 use Illuminate\Http\Request;
+use Stevebauman\Location\Facades\Location;
 
 class HomeController extends Controller
 {
@@ -12,10 +13,19 @@ class HomeController extends Controller
         $url = strip_tags(urldecode(request()->fullUrl()));
         $userAgent = request()->userAgent();
         $ip = request()->ip();
+
+        if ($position = Location::get($ip)) {
+            // Successfully retrieved position.
+            $countryName = $position->countryName;
+        } else {
+            $countryName = 'Unknown';
+            // Failed retrieving position.
+        }
         Visitor::create([
             'url' => urldecode($url),
             'user_agent' => $userAgent,
             'ip' => $ip,
+            'countryName' => $countryName,
             'created_at' => date("Y-m-d H:i:s"),
         ]);
         return view('home');
