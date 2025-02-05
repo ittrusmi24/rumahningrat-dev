@@ -11,6 +11,7 @@ use App\Models\Project;
 use App\Models\BlokTersedia;
 use App\Models\Lokasi;
 use App\Models\Ulasan;
+use App\Models\Visitor;
 
 use function PHPSTORM_META\map;
 
@@ -23,6 +24,15 @@ class DashboardController extends Controller
 
     public function detail(Request $request)
     {
+        $url = strip_tags(urldecode(request()->fullUrl()));
+        $userAgent = request()->userAgent();
+        $ip = request()->ip();
+        Visitor::create([
+            'url' => urldecode($url),
+            'user_agent' => $userAgent,
+            'ip' => $ip,
+            'created_at' => date("Y-m-d H:i:s"),
+        ]);
         $id_project = $request->id_project;
         if (!$id_project) {
             return view('welcome');
