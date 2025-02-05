@@ -37,15 +37,17 @@ class HomeController extends Controller
             $cityName = 'Unknown';
             // Failed retrieving position.
         }
-        Visitor::create([
-            'url' => urldecode($url),
-            'user_agent' => $userAgent,
-            'ip' => $ip,
-            'countryName' => $countryName,
-            'regionName' => $regionName,
-            'cityName' => $cityName,
-            'created_at' => date("Y-m-d H:i:s"),
-        ]);
+        if($userAgent != 'Uptime-Kuma/1.23.16'){
+            Visitor::create([
+                'url' => urldecode($url),
+                'user_agent' => $userAgent,
+                'ip' => $ip,
+                'countryName' => $countryName,
+                'regionName' => $regionName,
+                'cityName' => $cityName,
+                'created_at' => date("Y-m-d H:i:s"),
+            ]);
+        }
         return view('home');
     }
 
@@ -78,15 +80,17 @@ class HomeController extends Controller
             $cityName = 'Unknown';
             // Failed retrieving position.
         }
-        Visitor::create([
-            'url' => urldecode($url),
-            'user_agent' => $userAgent,
-            'ip' => $ip,
-            'countryName' => $countryName,
-            'regionName' => $regionName,
-            'cityName' => $cityName,
-            'created_at' => date("Y-m-d H:i:s"),
-        ]);
+        if($userAgent != 'Uptime-Kuma/1.23.16'){
+            Visitor::create([
+                'url' => urldecode($url),
+                'user_agent' => $userAgent,
+                'ip' => $ip,
+                'countryName' => $countryName,
+                'regionName' => $regionName,
+                'cityName' => $cityName,
+                'created_at' => date("Y-m-d H:i:s"),
+            ]);
+        }
         return view('virtual_tour.rn_jayasampurna');
     }
     public function poi_view()
@@ -118,15 +122,17 @@ class HomeController extends Controller
             $cityName = 'Unknown';
             // Failed retrieving position.
         }
-        Visitor::create([
-            'url' => urldecode($url),
-            'user_agent' => $userAgent,
-            'ip' => $ip,
-            'countryName' => $countryName,
-            'regionName' => $regionName,
-            'cityName' => $cityName,
-            'created_at' => date("Y-m-d H:i:s"),
-        ]);
+        if($userAgent != 'Uptime-Kuma/1.23.16'){
+            Visitor::create([
+                'url' => urldecode($url),
+                'user_agent' => $userAgent,
+                'ip' => $ip,
+                'countryName' => $countryName,
+                'regionName' => $regionName,
+                'cityName' => $cityName,
+                'created_at' => date("Y-m-d H:i:s"),
+            ]);
+        }
         return view('virtual_tour.poi_rn_jayasampurna');
     }
 }
