@@ -17,46 +17,46 @@ use App\Models\Project;
 //     return view('welcome');
 // });
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/test', function () {
-    $date = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
+// Route::get('/test', function () {
+//     $date = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
 
-    // Tambahkan 3 jam
-    $date->modify('+3 hours');
+//     // Tambahkan 3 jam
+//     $date->modify('+3 hours');
 
-    // Format tanggal ke "6 Januari 14:30:00"
-    $months = [
-        'January' => 'Januari',
-        'February' => 'Februari',
-        'March' => 'Maret',
-        'April' => 'April',
-        'May' => 'Mei',
-        'June' => 'Juni',
-        'July' => 'Juli',
-        'August' => 'Agustus',
-        'September' => 'September',
-        'October' => 'Oktober',
-        'November' => 'November',
-        'December' => 'Desember'
-    ];
+//     // Format tanggal ke "6 Januari 14:30:00"
+//     $months = [
+//         'January' => 'Januari',
+//         'February' => 'Februari',
+//         'March' => 'Maret',
+//         'April' => 'April',
+//         'May' => 'Mei',
+//         'June' => 'Juni',
+//         'July' => 'Juli',
+//         'August' => 'Agustus',
+//         'September' => 'September',
+//         'October' => 'Oktober',
+//         'November' => 'November',
+//         'December' => 'Desember'
+//     ];
 
-    $formattedDate = $date->format('j F H:i:s');
-    foreach ($months as $en => $id) {
-        $formattedDate = str_replace($en, $id, $formattedDate);
-    }
+//     $formattedDate = $date->format('j F H:i:s');
+//     foreach ($months as $en => $id) {
+//         $formattedDate = str_replace($en, $id, $formattedDate);
+//     }
 
-    echo "Waktu setelah 3 jam: $formattedDate\n";
-});
-Route::get('/test-event', function () {
-    $data = [
-        'id_gci' => 'GCI2501160055',
-    ];
-    // Trigger event
-    dd(event(new \App\Events\BookingCreated($data)));
-    echo 'Event telah dijalankan';
-});
-Route::get('/test-whatsapp', function () {
-    dd("env : " . env('WHATSAPP_CHANNEL_ID'));
-});
+//     echo "Waktu setelah 3 jam: $formattedDate\n";
+// });
+// Route::get('/test-event', function () {
+//     $data = [
+//         'id_gci' => 'GCI2501160055',
+//     ];
+//     // Trigger event
+//     dd(event(new \App\Events\BookingCreated($data)));
+//     echo 'Event telah dijalankan';
+// });
+// Route::get('/test-whatsapp', function () {
+//     dd("env : " . env('WHATSAPP_CHANNEL_ID'));
+// });
 // Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/detail/{id_project}', [DashboardController::class, 'detail'])->name('detail');
 Route::get('project/get_all_project', [ProjectController::class, 'get_all_project'])->name('project.get_all_project');
