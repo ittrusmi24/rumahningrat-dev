@@ -3,8 +3,9 @@
 
 :root {
     --fontFamily: "Poppins", serif;
-    --fontSize: 12px;
+    --fontSize: 16px;
     --fontWeight: 500;
+    --fontColor: #000;
 }
 
 body {
@@ -37,8 +38,8 @@ h4,
 h5,
 h6,
 label {
-    font-family: "Poppins", serif;
-    color: #000;
+    font-family: var(--fontFamily);
+    color: var(--fontColor);
 }
 
 .container-group {
@@ -193,11 +194,12 @@ label {
     padding: 20px 16px;
 }
 
-.owl-carousel {
-    transition: all 0.8s ease-in-out;
+.owl-carousel:not(.d-none) {
+    animation: fadeIn;
 }
-.owl-carousel .owl-hidden {
-    transition: all 1s ease-in-out;
+
+.owl-carousel:has(.d-none) {
+    animation: fadeOut;
 }
 
 .owl-nav {
@@ -842,7 +844,7 @@ video {
     }
 
     * {
-        font-size: 10px;
+        font-size: var(--fontSize);
     }
 
     /* form section */
