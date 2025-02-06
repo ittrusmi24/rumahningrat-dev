@@ -194,12 +194,9 @@ label {
     padding: 20px 16px;
 }
 
-.owl-carousel:not(.d-none) {
-    animation: fadeIn;
-}
-
-.owl-carousel:has(.d-none) {
-    animation: fadeOut;
+.no-js .owl-carousel,
+.owl-carousel.owl-loaded {
+    transition: all 1.5s ease-in-out;
 }
 
 .owl-nav {
