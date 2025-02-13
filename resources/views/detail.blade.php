@@ -61,7 +61,8 @@
 
                 <!-- Tambah div wrapper untuk grouping tombol -->
                 <div class="d-flex gap-2 ms-auto"> <!-- ms-auto untuk push ke kanan -->
-                    <a href="{{asset('assets/Booking_Mandiri.pdf')}}" download="Booking_Mandiri" type="button" class="btn btn-primary btn-sm">Panduan</a>
+                    <a href="{{ asset('assets/Booking_Mandiri.pdf') }}" download="Booking_Mandiri" type="button"
+                        class="btn btn-primary btn-sm">Panduan</a>
                     <button type="button" class="btn btn-primary btn-sm">
                         Masuk <i class="bi bi-person"></i>
                     </button>
@@ -157,35 +158,6 @@
                                                     <p class="m-0">Cicilan 10 Tahun</p>
                                                 </div>
                                                 <div class="text-end">
-                                                    <strong class="m-0">Rp.1.730.400</strong>/bln
-                                                </div>
-                                            </div>
-                                            <div class="item-opsi px-3 py-2">
-                                                <div>
-                                                    <p class="m-0">Cicilan 15 Tahun</p>
-                                                </div>
-                                                <div class="text-end">
-                                                    <strong class="m-0">Rp.1.287.300</strong>/bln
-                                                </div>
-                                            </div>
-                                            <div class="item-opsi px-3 py-2">
-                                                <div>
-                                                    <p class="m-0">Cicilan 20 Tahun</p>
-                                                </div>
-                                                <div class="text-end">
-                                                    <strong class="m-0">Rp.1.072.200</strong>/bln
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="kprKormersil" role="tabpanel"
-                                        aria-labelledby="kprKormersil-tab" tabindex="0">
-                                        <div id="opsi-bayar-container">
-                                            <div class="item-opsi px-3 py-2">
-                                                <div>
-                                                    <p class="m-0">Cicilan 10 Tahun</p>
-                                                </div>
-                                                <div class="text-end">
                                                     <strong class="m-0">Rp.1.933.400</strong>/bln
                                                 </div>
                                             </div>
@@ -194,7 +166,7 @@
                                                     <p class="m-0">Cicilan 15 Tahun</p>
                                                 </div>
                                                 <div class="text-end">
-                                                    <strong class="m-0">Rp. 1.198.000</strong>/bln
+                                                    <strong class="m-0">Rp.1.438.400</strong>/bln
                                                 </div>
                                             </div>
                                             <div class="item-opsi px-3 py-2">
@@ -202,7 +174,44 @@
                                                     <p class="m-0">Cicilan 20 Tahun</p>
                                                 </div>
                                                 <div class="text-end">
-                                                    <strong class="m-0">Rp.1.072.200</strong>/bln
+                                                    <strong class="m-0">Rp.1.198.000</strong>/bln
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="kprKormersil" role="tabpanel"
+                                        aria-labelledby="kprKormersil-tab" tabindex="0">
+                                        <div id="opsi-bayar-container">
+                                            {{-- <div class="item-opsi px-3 py-2">
+                                                <div>
+                                                    <p class="m-0">Cicilan 10 Tahun</p>
+                                                </div>
+                                                <div class="text-end">
+                                                    <strong class="m-0">Rp. 1.933.400</strong>/bln
+                                                </div>
+                                            </div> --}}
+                                            <div class="item-opsi px-3 py-2">
+                                                <div>
+                                                    <p class="m-0">Cicilan 15 Tahun</p>
+                                                </div>
+                                                <div class="text-end">
+                                                    <strong class="m-0">Rp. 1.536.200</strong>/bln
+                                                </div>
+                                            </div>
+                                            <div class="item-opsi px-3 py-2">
+                                                <div>
+                                                    <p class="m-0">Cicilan 20 Tahun</p>
+                                                </div>
+                                                <div class="text-end">
+                                                    <strong class="m-0">Rp. 1.300.600</strong>/bln
+                                                </div>
+                                            </div>
+                                            <div class="item-opsi px-3 py-2">
+                                                <div>
+                                                    <p class="m-0">Cicilan 25 Tahun</p>
+                                                </div>
+                                                <div class="text-end">
+                                                    <strong class="m-0">Rp. 1.166.800</strong>/bln
                                                 </div>
                                             </div>
                                         </div>
@@ -210,13 +219,39 @@
                                     <div class="tab-pane fade" id="onlyCash" role="tabpanel"
                                         aria-labelledby="nav-contact-tab" tabindex="0">
                                         <div id="opsi-bayar-container">
-                                            <div class="item-opsi px-3 py-2">
+                                            {{-- <div class="item-opsi px-3 py-2">
                                                 <div>
                                                     <p class="m-0">Tanpa Cicilan</p>
                                                 </div>
                                                 <div class="text-end">
+                                                    <strong class="m-0">{{ str_replace(',00', '', Number::currency($project['harga_jual'] ?? 0, in: 'IDR', locale: 'id_ID')) }}</strong>
+                                                </div>
+                                            </div> --}}
+                                            <div class="item-opsi px-3 py-2">
+                                                <div>
+                                                    <p class="m-0">Cash</p>
+                                                </div>
+                                                <div class="text-end">
                                                     <strong
-                                                        class="m-0">{{ str_replace(',00', '', Number::currency($project['harga_jual'] ?? 0, in: 'IDR', locale: 'id_ID')) }}</strong>
+                                                        class="m-0">{{ str_replace(',00', '', Number::currency(194500000 ?? 0, in: 'IDR', locale: 'id_ID')) }}</strong>
+                                                </div>
+                                            </div>
+                                            <div class="item-opsi px-3 py-2">
+                                                <div>
+                                                    <p class="m-0">Cash Tahap 3 Bulan (5%)</p>
+                                                </div>
+                                                <div class="text-end">
+                                                    <strong
+                                                        class="m-0">{{ str_replace(',00', '', Number::currency(204225000 ?? 0, in: 'IDR', locale: 'id_ID')) }}</strong>
+                                                </div>
+                                            </div>
+                                            <div class="item-opsi px-3 py-2">
+                                                <div>
+                                                    <p class="m-0">Cash Tahap 6 Bulan (9%)</p>
+                                                </div>
+                                                <div class="text-end">
+                                                    <strong
+                                                        class="m-0">{{ str_replace(',00', '', Number::currency(212005000 ?? 0, in: 'IDR', locale: 'id_ID')) }}</strong>
                                                 </div>
                                             </div>
                                         </div>
@@ -634,6 +669,13 @@
                                             <label class="form-label">Alamat Pasangan</label>
                                             <textarea name="alamat_p" class="form-control" id="alamat_p" cols="30" rows="3" autocomplete="off"></textarea>
                                         </div>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Referral</label>
+                                        <select class="form-control" name="id_referral" id="id_referral"
+                                            style="min-height: 44px;">
+                                            <option data-placeholder="true"></option>
+                                        </select>
                                     </div>
                                     <div class="mb-4 mt-5">
                                         <h4 class="text-center">Biaya</h4>
@@ -1744,6 +1786,8 @@
                 blok = $('#blok').val()
             kelurahan_val = kelurahanSelect.getSelected();
             kelurahan = kelurahan_val.toString();
+            referral_val = referralSelect.getSelected();
+            referral = referral_val.toString();
 
             if (blok == '') {
                 Swal.fire({
@@ -2076,5 +2120,65 @@
                 }
             }
         })
+
+
+        function debouncePromise(func, wait) {
+            let timeout;
+            return function(...args) {
+                clearTimeout(timeout);
+                return new Promise((resolve, reject) => {
+                    timeout = setTimeout(() => {
+                        func(...args)
+                            .then(resolve)
+                            .catch(reject);
+                    }, wait);
+                });
+            };
+        }
+
+        let referralSelect = new SlimSelect({
+            select: "#id_referral",
+            settings: {
+                placeholderText: 'Pencarian minimal harus 2 huruf',
+            },
+            events: {
+                search: debouncePromise((search, currentData) => {
+                    return new Promise((resolve, reject) => {
+                        if (search.length < 2) {
+                            reject("Pencarian minimal harus 2 karakter");
+                            return;
+                        }
+
+                        fetch(`{{ url('/search-referral') }}?q=${search}`, {
+                                method: "GET",
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                },
+                            })
+                            .then((response) => response.json())
+                            .then((data) => {
+                                // Take the data and create an array of options
+                                // excluding any that are already selected in currentData
+                                const options = data
+                                    .filter((referral) => {
+                                        return !currentData.some((optionData) => {
+                                            return optionData.value ===
+                                                `${referral.username}`
+                                        })
+                                    })
+                                    .map((referral) => {
+                                        return {
+                                            text: `${referral.username}`,
+                                            value: `${referral.id_user}`,
+                                        }
+                                    })
+
+                                resolve(options)
+                            })
+                    });
+                }, 500) // Delay of 300 ms
+            }
+        });
     </script>
 @endsection

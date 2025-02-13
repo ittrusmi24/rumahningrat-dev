@@ -34,6 +34,12 @@ class BookingController extends Controller
         }
 
         // TODO Prepare Data Input
+        $id_referral = strip_tags(trim($request->id_referral));
+        if($id_referral == '' || $id_referral == null || empty($id_referral)) {
+            $created_by = $id_referral;
+        }else{
+            $created_by = 23381;
+        }
         $id_project = strip_tags(trim($request->id_project));
         $blok = strip_tags(trim($request->blok));
         $nama_lengkap = ucwords(strtolower(str_replace(['"', "'"], '', strip_tags(trim($request->nama_lengkap)))));
@@ -107,7 +113,7 @@ class BookingController extends Controller
                 'id_kecamatan' => $get_kelurahan->id_kecamatan,
                 'id_kelurahan' => $get_kelurahan->id_kelurahan,
                 'created_at' => date('Y-m-d H:i:s'),
-                'created_by' => 23381,
+                'created_by' => $created_by,
                 'domisili' => '',
                 'bpjs' => '',
                 'perusahaan' => '',
@@ -128,7 +134,7 @@ class BookingController extends Controller
                     'tgl_lahir_p' => $tgl_lahir_p,
                     'alamat_p' => $alamat_p,
                     'created_at' => date("Y-m-d H:i:s"),
-                    'created_by' => 23381
+                    'created_by' => $created_by
                 );
                 $data_post_array[] = $data_post_konsumen_pasangan;
                 KonsumenPasangan::create($data_post_konsumen_pasangan);
@@ -149,12 +155,12 @@ class BookingController extends Controller
                 'id_gci_status' => 1,
                 'jenis_pembayaran' => 'Payment Gateway',
                 'kelurahan' => '',
-                'id_user' => 23381, // Booking mandiri
+                'id_user' => $created_by, // Booking mandiri
                 'spv' => 170, // non spv
                 'manager' => 2029, // non bm
                 'id_gm' => '',
                 'created_at' => date('Y-m-d H:i:s'),
-                'created_by' => 23381, // Booking mandiri
+                'created_by' => $created_by, // Booking mandiri
                 'opsi_pagar' => '', // value Pakai Pagar atau Tanpa Pagar
             );
             Booking::create($data_post_booking);
@@ -202,7 +208,7 @@ class BookingController extends Controller
                 "id_bic"                    => $id_bic,
                 "id_gci"                    => $id_gci,
                 "created_at"                => date('Y-m-d H:i:s'),
-                "created_by"                => 23381,
+                "created_by"                => $created_by,
             );
             BiChecking::create($data_bic);
 

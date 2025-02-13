@@ -9,6 +9,7 @@ use App\Http\Controllers\FasilitasSekitarController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KelurahanController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ReferralController;
 use App\Http\Controllers\UlasanController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Project;
@@ -91,3 +92,4 @@ Route::get('/poi_view', [HomeController::class, 'poi_view'])->name('poi_view');
 
 Route::get('/status_blok/{id_project}', [DashboardController::class, 'status_blok'])->name('status_blok');
 Route::get('/search-kelurahan', [KelurahanController::class, 'searchKelurahan']);
+Route::get('/search-referral', [ReferralController::class, 'searchReferral']);
