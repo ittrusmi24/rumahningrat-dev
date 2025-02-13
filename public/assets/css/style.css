@@ -701,7 +701,7 @@ Tags: 	agency, Business Agency, Business Consultant, business optimization, comp
     top: -40%;
 }
 
-/* ================================================= 
+/* =================================================
 Gallery Area
 ====================================================*/
 /* .gallery-content img {
@@ -714,11 +714,11 @@ Gallery Area
 } */
 
 /* =================================================
- Project Rumah 
+ Project Rumah
 ====================================================*/
 .project-container {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 12px;
 }
 
@@ -748,7 +748,7 @@ Gallery Area
     left: 0;
 }
 
-.project-detail h3{
+.project-detail h3 {
     font-size: 22px !important;
 }
 /*==================================================
