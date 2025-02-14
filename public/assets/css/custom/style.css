@@ -939,15 +939,24 @@ video {
 
     .legend-box {
         display: inline-block;
-        width: 10px;
-        height: 10px;
+        width: 8px;
+        height: 8px;
         border-radius: 3px;
     }
     .legend.card {
         /* font-family: Arial, sans-serif; */
-        font-size: 8px;
+        font-size: 6px;
         width: 100%;
     }
+    .item_legends{
+
+        font-size: 10px;
+    }
+    .legend-content small{
+        font-size: 10px;
+
+    }
+
     /* nira ai */
 
     .dropup:has(.show) {
