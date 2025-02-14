@@ -1343,6 +1343,11 @@
                     const textContent = $(target).text();
                     blokId = textContent; // Atur teks sebagai blokId
                     selectedBlok = $(`g[id="${blokId}"]`);
+                } else if (target.tagName === 'tspan') {
+                    // Ambil teks dalam elemen <text>
+                    const textContent = $(target).text();
+                    blokId = textContent; // Atur teks sebagai blokId
+                    selectedBlok = $(`g[id="${blokId}"]`);
                 } else {
 
                 }
