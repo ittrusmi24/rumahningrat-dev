@@ -36,9 +36,9 @@ class BookingController extends Controller
         // TODO Prepare Data Input
         $id_referral = strip_tags(trim($request->id_referral));
         if($id_referral == '' || $id_referral == null || empty($id_referral)) {
-            $created_by = $id_referral;
-        }else{
             $created_by = 23381;
+        }else{
+            $created_by = $id_referral;
         }
         $id_project = strip_tags(trim($request->id_project));
         $blok = strip_tags(trim($request->blok));
