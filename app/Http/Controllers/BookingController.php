@@ -168,6 +168,7 @@ class BookingController extends Controller
                 'created_at' => date('Y-m-d H:i:s'),
                 'created_by' => $created_by, // Booking mandiri
                 'reveral' => $reveral,
+                'kode_referral' => $reveral,
                 'opsi_pagar' => '', // value Pakai Pagar atau Tanpa Pagar
             );
             Booking::create($data_post_booking);
