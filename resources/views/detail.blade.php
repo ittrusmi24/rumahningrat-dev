@@ -671,8 +671,15 @@
                                         </div>
                                     </div>
                                     <div class="mb-2">
+                                        <label class="form-label">Sales</label>
+                                        <select class="form-control" name="id_sales" id="id_sales"
+                                            style="min-height: 44px;">
+                                            <option data-placeholder="true"></option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-2">
                                         <label class="form-label">Referral</label>
-                                        <select class="form-control" name="id_referral" id="id_referral"
+                                        <select class="form-control" name="kode_referral" id="kode_referral"
                                             style="min-height: 44px;">
                                             <option data-placeholder="true"></option>
                                         </select>
@@ -1786,6 +1793,8 @@
                 blok = $('#blok').val()
             kelurahan_val = kelurahanSelect.getSelected();
             kelurahan = kelurahan_val.toString();
+            sales_val = salesSelect.getSelected();
+            sales = sales_val.toString();
             referral_val = referralSelect.getSelected();
             referral = referral_val.toString();
 
@@ -2136,8 +2145,54 @@
             };
         }
 
+        let salesSelect = new SlimSelect({
+            select: "#id_sales",
+            settings: {
+                placeholderText: 'Pencarian minimal harus 2 huruf',
+            },
+            events: {
+                search: debouncePromise((search, currentData) => {
+                    return new Promise((resolve, reject) => {
+                        if (search.length < 2) {
+                            reject("Pencarian minimal harus 2 karakter");
+                            return;
+                        }
+
+                        fetch(`{{ url('/search-sales') }}?q=${search}`, {
+                                method: "GET",
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                },
+                            })
+                            .then((response) => response.json())
+                            .then((data) => {
+                                // Take the data and create an array of options
+                                // excluding any that are already selected in currentData
+                                const options = data
+                                    .filter((sales) => {
+                                        return !currentData.some((optionData) => {
+                                            return optionData.value ===
+                                                `${sales.username}`
+                                        })
+                                    })
+                                    .map((sales) => {
+                                        return {
+                                            text: `${sales.username}`,
+                                            value: `${sales.id_user}`,
+                                        }
+                                    })
+
+                                resolve(options)
+                            })
+                    });
+                }, 500) // Delay of 300 ms
+            }
+        });
+
+
         let referralSelect = new SlimSelect({
-            select: "#id_referral",
+            select: "#kode_referral",
             settings: {
                 placeholderText: 'Pencarian minimal harus 2 huruf',
             },
@@ -2164,13 +2219,13 @@
                                     .filter((referral) => {
                                         return !currentData.some((optionData) => {
                                             return optionData.value ===
-                                                `${referral.username}`
+                                                `${referral.referral_name}`
                                         })
                                     })
                                     .map((referral) => {
                                         return {
-                                            text: `${referral.username}`,
-                                            value: `${referral.id_user}`,
+                                            text: `${referral.kode_referral} - ${referral.referral_name}`,
+                                            value: `${referral.kode_referral}`,
                                         }
                                     })
 

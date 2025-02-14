@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Referral;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ReferralController extends Controller
 {
@@ -13,8 +14,8 @@ class ReferralController extends Controller
         $referral = Referral::getListReferral($params); // Pilih kolom yang dibutuhkan
         $referral = collect($referral)->map(function ($reff) {
             return [
-                'id_user' => $reff->id_rsp,
-                'username' => ucwords(strtolower($reff->username)),
+                'kode_referral' => $reff->kode_referral,
+                'referral_name' => ucwords(strtolower($reff->referral_name)),
             ];
         })->toArray();
         return response()->json($referral);

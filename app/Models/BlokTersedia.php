@@ -162,7 +162,7 @@ class BlokTersedia extends Model
                             t_gci.id_project
                         FROM t_gci
                         LEFT JOIN m_konsumen k ON k.id_konsumen = t_gci.id_konsumen
-                        WHERE t_gci.id_project = 70 and id_kategori >2
+                        WHERE t_gci.id_project = $id_project and id_kategori > 2
                         GROUP BY blok, id_project
                     ) AS gci
                     JOIN m_konsumen ON gci.id_konsumen = m_konsumen.id_konsumen
@@ -205,7 +205,7 @@ class BlokTersedia extends Model
                         join t_project_bangun b on b.id_rencana=a.id_rencana
                         join m_vendor on m_vendor.id_vendor=b.vendor
                     WHERE
-                    id_project = 70
+                    id_project = $id_project
                 ) x
 
             ) spk ON m_project_unit.blok = spk.blok AND m_project_unit.id_project = spk.id_project
@@ -236,7 +236,7 @@ class BlokTersedia extends Model
                     SELECT
                             id_gci
                     FROM t_gci
-                    WHERE id_project = 70 and id_kategori >2
+                    WHERE id_project = $id_project and id_kategori >2
                     GROUP BY blok, id_project
                 )
 
@@ -276,7 +276,7 @@ class BlokTersedia extends Model
 
 
 
-            WHERE m_project_unit.id_project = 70
+            WHERE m_project_unit.id_project = $id_project
             -- AND m_project_unit.not_sale IS NULL
             -- and SUBSTR(m_project_unit.blok,1,1) in ('F','G','H')
 
