@@ -60,7 +60,7 @@
                 </a>
 
                 <!-- Tambah div wrapper untuk grouping tombol -->
-                <div class="d-flex gap-2 ms-auto"> <!-- ms-auto untuk push ke kanan -->
+                <div class="d-flex gap-2 ms-auto align-items-center"> <!-- ms-auto untuk push ke kanan -->
                     <a href="{{ asset('assets/Booking_Mandiri.pdf') }}" download="Booking_Mandiri" type="button"
                         class="btn btn-primary btn-sm">Panduan</a>
                     <button type="button" class="btn btn-primary btn-sm">
@@ -1324,6 +1324,8 @@
                 let selectedBlok;
                 let blokId;
 
+
+
                 if (target.tagName === 'path') {
                     // Ambil elemen <g> di atas elemen <path>
                     const parentG = $(target).closest('g');
@@ -1337,34 +1339,12 @@
                 } else {
 
                 }
+                if (selectedBlok.length) {
+                    // Ambil ID dari elemen <g> yang dipilih
+                    var blok_s = selectedBlok[0].id;
 
+                    console.log("Blok yang dipilih:", blok_s);
 
-
-                // Pastikan blok ditemukan
-                if (selectedBlok && selectedBlok.length && svgOverlay) {
-                    blok_select.setSelected(selectedBlok.attr('id'));
-                    const bbox = selectedBlok[0].getBBox();
-                    const bounds = svgOverlay.getBounds();
-                    const svgWidth = svgOverlay._image.viewBox.baseVal.width;
-                    const svgHeight = svgOverlay._image.viewBox.baseVal.height;
-                    const scaleX = (bounds.getEast() - bounds.getWest()) / svgWidth;
-                    const scaleY = (bounds.getNorth() - bounds.getSouth()) / svgHeight;
-                    const centerX = bbox.x + bbox.width / 2;
-                    const centerY = bbox.y + bbox.height / 2;
-                    const adjustmentFactor = 0; // Sesuaikan jika perlu
-                    const adjustedCenterY = centerY + bbox.height * adjustmentFactor;
-
-                    const lat = bounds.getSouth() + (svgHeight - adjustedCenterY) * scaleY;
-                    const lng = bounds.getWest() + centerX * scaleX;
-
-                    // Terbang ke blok yang dipilih
-                    const zoomLevel = isMobile() ? 20 : 22;
-                    map.flyTo([lat, lng], zoomLevel, {
-                        animate: true,
-                        duration: 1.5,
-                    });
-
-                    // Highlight elemen dengan animasi kedip
                     let isHighlighted = false;
 
                     // Hapus interval sebelumnya jika ada
@@ -1388,7 +1368,68 @@
                         }
                         isHighlighted = !isHighlighted;
                     }, 500); // Kedip setiap 0.5 detik
+                    // Pastikan ID dalam format yang sesuai dengan Slim Select
+                    if (blok_select) {
+                        blok_select.setSelected(blok_s.toUpperCase()); // Jika perlu uppercase, sesuaikan dengan opsi
+                    } else {
+                        console.warn("Slim Select tidak ditemukan.");
+                    }
                 }
+
+
+                // Highlight elemen dengan animasi kedip
+
+
+
+                // // Pastikan blok ditemukan
+                // if (selectedBlok && selectedBlok.length && svgOverlay) {
+                //     blok_select.setSelected(selectedBlok.attr('id'));
+                //     const bbox = selectedBlok[0].getBBox();
+                //     const bounds = svgOverlay.getBounds();
+                //     const svgWidth = svgOverlay._image.viewBox.baseVal.width;
+                //     const svgHeight = svgOverlay._image.viewBox.baseVal.height;
+                //     const scaleX = (bounds.getEast() - bounds.getWest()) / svgWidth;
+                //     const scaleY = (bounds.getNorth() - bounds.getSouth()) / svgHeight;
+                //     const centerX = bbox.x + bbox.width / 2;
+                //     const centerY = bbox.y + bbox.height / 2;
+                //     const adjustmentFactor = 0; // Sesuaikan jika perlu
+                //     const adjustedCenterY = centerY + bbox.height * adjustmentFactor;
+
+                //     const lat = bounds.getSouth() + (svgHeight - adjustedCenterY) * scaleY;
+                //     const lng = bounds.getWest() + centerX * scaleX;
+
+                //     // Terbang ke blok yang dipilih
+                //     const zoomLevel = isMobile() ? 20 : 22;
+                //     map.flyTo([lat, lng], zoomLevel, {
+                //         animate: true,
+                //         duration: 1.5,
+                //     });
+
+                //     // Highlight elemen dengan animasi kedip
+                //     let isHighlighted = false;
+
+                //     // Hapus interval sebelumnya jika ada
+                //     if (typeof blinkInterval !== 'undefined') {
+                //         clearInterval(blinkInterval);
+                //     }
+
+                //     blinkInterval = setInterval(function() {
+                //         if (isHighlighted) {
+                //             selectedBlok.css({
+                //                 stroke: 'blue',
+                //                 'stroke-width': '2',
+                //                 'stroke-opacity': 1, // Full opacity
+                //             });
+                //         } else {
+                //             selectedBlok.css({
+                //                 stroke: 'blue',
+                //                 'stroke-width': '2',
+                //                 'stroke-opacity': 0.3, // Kedip dengan opacity rendah
+                //             });
+                //         }
+                //         isHighlighted = !isHighlighted;
+                //     }, 500); // Kedip setiap 0.5 detik
+                // }
             });
 
 
@@ -1649,78 +1690,83 @@
             });
 
             var selectedBlok = $(`#${blok}`);
-            if (selectedBlok.length && svgOverlay) {
-                // console.log(svgOverlay);
 
-                var bbox = selectedBlok[0].getBBox();
-                var bounds = svgOverlay.getBounds();
-                var svgWidth = svgOverlay._image.viewBox.baseVal.width;
-                var svgHeight = svgOverlay._image.viewBox.baseVal.height;
-                var scaleX = (bounds.getEast() - bounds.getWest()) / svgWidth;
-                var scaleY = (bounds.getNorth() - bounds.getSouth()) / svgHeight;
-                var centerX = bbox.x + bbox.width / 2;
-                var centerY = bbox.y + bbox.height / 2;
-                var adjustmentFactor = 0; // Sesuaikan jika perlu
-                var adjustedCenterY = centerY + bbox.height * adjustmentFactor;
+            // var bbox = selectedBlok.getBoundingClientRect(); // Mendapatkan posisi elemen relatif ke viewport
+            // var svgContainer = svgOverlay._image.getBoundingClientRect(); // Mendapatkan posisi SVG di viewport
 
-                var lat = bounds.getSouth() + (svgHeight - adjustedCenterY) * scaleY;
-                var lng = bounds.getWest() + centerX * scaleX;
+            // // Hitung posisi relatif terhadap SVG container
+            // var relativeX = bbox.left + bbox.width / 2 - svgContainer.left;
+            // var relativeY = bbox.top + bbox.height / 2 - svgContainer.top;
 
-                // Terbang ke blok yang dipilih
-                const zoomLevel = isMobile() ? 20 : 22;
-                map.flyTo([lat, lng], zoomLevel, {
-                    animate: true,
-                    duration: 1.5
-                });
+            // var bounds = svgOverlay.getBounds();
+            // var svgWidth = svgContainer.width;
+            // var svgHeight = svgContainer.height;
 
-                let isHighlighted = false;
+            // var scaleX = (bounds.getEast() - bounds.getWest()) / svgWidth;
+            // var scaleY = (bounds.getSouth() - bounds.getNorth()) / svgHeight; // South - North karena koordinat peta terbalik
 
-                // Mulai animasi kedip
-                blinkInterval = setInterval(function() {
-                    if (isHighlighted) {
-                        selectedBlok.css({
-                            'stroke': 'blue',
-                            'stroke-width': '2',
-                            'stroke-opacity': 1 // Full opacity
-                        });
-                    } else {
-                        selectedBlok.css({
-                            'stroke': 'blue',
-                            'stroke-width': '2',
-                            'stroke-opacity': 0.3 // Kedip dengan opacity rendah
-                        });
-                    }
-                    isHighlighted = !isHighlighted;
-                }, 500); // Kedip setiap 0.5 detik
-            } else {
-                var bbox = $(`svg g[data-name="${blok}"]`)[0].getBBox();
-                var bounds = svgOverlay.getBounds();
-                var svgWidth = svgOverlay._image.viewBox.baseVal.width;
-                var svgHeight = svgOverlay._image.viewBox.baseVal.height;
-                var scaleX = (bounds.getEast() - bounds.getWest()) / svgWidth;
-                var scaleY = (bounds.getNorth() - bounds.getSouth()) / svgHeight;
-                var centerX = bbox.x + bbox.width / 2;
-                var centerY = bbox.y + bbox.height / 2;
-                var adjustmentFactor = 0; // Sesuaikan jika perlu
-                var adjustedCenterY = centerY + bbox.height * adjustmentFactor;
+            // var lat = bounds.getNorth() - relativeY * scaleY; // Perhatikan arah Y yang terbalik
+            // var lng = bounds.getWest() + relativeX * scaleX;
 
-                var lat = bounds.getSouth() + (svgHeight - adjustedCenterY) * scaleY;
-                var lng = bounds.getWest() + centerX * scaleX;
+            // console.log(`Terbang ke koordinat: lat ${lat}, lng ${lng}`);
 
-                // Terbang ke blok yang dipilih
-                const zoomLevel = isMobile() ? 20 : 22;
-                map.flyTo([lat, lng], zoomLevel, {
-                    animate: true,
-                    duration: 1.5
-                });
-                $(`svg g[data-name="${blok}"]`).css({
-                    'stroke': 'blue',
-                    'stroke-width': '2',
-                    'stroke-opacity': 1 // Full opacity
-                });
+            // // Terbang ke blok yang dipilih
+            // const zoomLevel = isMobile() ? 20 : 22;
+            // map.flyTo([lat, lng], zoomLevel, {
+            //     animate: true,
+            //     duration: 1.5
+            // });
+            let isHighlighted = false;
 
-                let isHighlighted = false;
-            }
+            // Mulai animasi kedip
+            blinkInterval = setInterval(function() {
+                if (isHighlighted) {
+                    selectedBlok.css({
+                        'stroke': 'blue',
+                        'stroke-width': '2',
+                        'stroke-opacity': 1 // Full opacity
+                    });
+                } else {
+                    selectedBlok.css({
+                        'stroke': 'blue',
+                        'stroke-width': '2',
+                        'stroke-opacity': 0.3 // Kedip dengan opacity rendah
+                    });
+                }
+                isHighlighted = !isHighlighted;
+            }, 500); // Kedip setiap 0.5 detik
+            // if (selectedBlok.length && svgOverlay) {
+            // } else {
+            //     console.log('di else');
+
+            //     // var bbox = $(`svg g[data-name="${blok}"]`)[0].getBBox();
+            //     // var bounds = svgOverlay.getBounds();
+            //     // var svgWidth = svgOverlay._image.viewBox.baseVal.width;
+            //     // var svgHeight = svgOverlay._image.viewBox.baseVal.height;
+            //     // var scaleX = (bounds.getEast() - bounds.getWest()) / svgWidth;
+            //     // var scaleY = (bounds.getNorth() - bounds.getSouth()) / svgHeight;
+            //     // var centerX = bbox.x + bbox.width / 2;
+            //     // var centerY = bbox.y + bbox.height / 2;
+            //     // var adjustmentFactor = 0; // Sesuaikan jika perlu
+            //     // var adjustedCenterY = centerY + bbox.height * adjustmentFactor;
+
+            //     // var lat = bounds.getSouth() + (svgHeight - adjustedCenterY) * scaleY;
+            //     // var lng = bounds.getWest() + centerX * scaleX;
+
+            //     // // Terbang ke blok yang dipilih
+            //     // const zoomLevel = isMobile() ? 20 : 22;
+            //     // map.flyTo([lat, lng], zoomLevel, {
+            //     //     animate: true,
+            //     //     duration: 1.5
+            //     // });
+            //     // $(`svg g[data-name="${blok}"]`).css({
+            //     //     'stroke': 'blue',
+            //     //     'stroke-width': '2',
+            //     //     'stroke-opacity': 1 // Full opacity
+            //     // });
+
+            //     // let isHighlighted = false;
+            // }
         });
 
         // ulasan js
@@ -2043,7 +2089,7 @@
 
                 function appendItems(items, container) {
                     items.forEach(function(item) {
-                        var legendItem = $('<div>').addClass('d-flex align-items-center me-3');
+                        var legendItem = $('<div>').addClass('d-flex align-items-center me-1 item_legends');
                         var box = $('<span>').addClass('legend-box me-1').css({
                             background: item.color,
                             border: item.border || 'none'
