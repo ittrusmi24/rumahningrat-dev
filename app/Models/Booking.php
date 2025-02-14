@@ -28,6 +28,7 @@ class Booking extends Model
         'id_gm',
         'created_at',
         'created_by',
+        'reveral',
         'opsi_pagar',
     ];
     public $timestamps = false;

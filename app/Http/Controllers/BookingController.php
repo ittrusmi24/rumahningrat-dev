@@ -34,11 +34,17 @@ class BookingController extends Controller
         }
 
         // TODO Prepare Data Input
-        $id_referral = strip_tags(trim($request->id_referral));
-        if($id_referral == '' || $id_referral == null || empty($id_referral)) {
+        $id_sales = strip_tags(trim($request->id_sales));
+        if($id_sales == '' || $id_sales == null || empty($id_sales)) {
             $created_by = 23381;
         }else{
-            $created_by = $id_referral;
+            $created_by = $id_sales;
+        }
+        $kode_referral = strip_tags(trim($request->kode_referral));
+        if($kode_referral == '' || $kode_referral == null || empty($kode_referral)) {
+            $reveral = "";
+        }else{
+            $reveral = $kode_referral;
         }
         $id_project = strip_tags(trim($request->id_project));
         $blok = strip_tags(trim($request->blok));
@@ -161,6 +167,7 @@ class BookingController extends Controller
                 'id_gm' => '',
                 'created_at' => date('Y-m-d H:i:s'),
                 'created_by' => $created_by, // Booking mandiri
+                'reveral' => $reveral,
                 'opsi_pagar' => '', // value Pakai Pagar atau Tanpa Pagar
             );
             Booking::create($data_post_booking);
