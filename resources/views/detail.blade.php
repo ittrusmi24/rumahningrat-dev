@@ -1584,7 +1584,7 @@
                             'Pindah Blok' || value.status == 'Bank') {
                             stop1.setAttribute("stop-color", "#FD8A8A");
                         } else if (value.status == 'Kosong') {
-                            stop1.setAttribute("stop-color", "yellow");
+                            stop1.setAttribute("stop-color", "white");
                         } else {
                             stop1.setAttribute("stop-color", "#458BC9");
                         }
