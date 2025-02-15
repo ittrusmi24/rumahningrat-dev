@@ -1460,7 +1460,7 @@
                             .trim(); // Ambil teks dan hilangkan spasi di awal/akhir
                         const cleanText = textContent.replace(/\s+/g, ''); // Hilangkan semua spasi
 
-                        if (cleanText.length <= 4 && !textContent.startsWith('ROW')) {
+                        if (cleanText.length <= 4 && !textContent.startsWith('ROW') && !textContent.startsWith('NS')) {
                             // Sembunyikan elemen jika panjang teks <= 4 dan tidak diawali dengan "ROW"
                             $(this).css('display', 'none');
                         }
