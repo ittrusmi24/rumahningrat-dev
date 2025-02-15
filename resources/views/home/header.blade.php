@@ -28,8 +28,9 @@
                         <i class="bi bi-list"></i>
                     </div>
                     <ul class="menu-dropdown" id="menuDropdown">
-                        <li><a href="https://trusmiverse.com/complaint/">Komplain</a></li>
                         <li><a href="#">Profile</a></li>
+                        <li><a href="https://trusmiverse.com/complaint/">Komplain</a></li>
+                        <li><a href="https://trusmicorp.com/customer/login">Cek Status Proses</a></li>
                     </ul>
                 </div>
 
@@ -53,6 +54,7 @@
     }
 
     .menu-dropdown {
+        width: 200px;
         z-index: 200;
         position: absolute;
         top: 100%;
