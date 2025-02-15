@@ -35,15 +35,24 @@ class BookingController extends Controller
 
         // TODO Prepare Data Input
         $id_sales = strip_tags(trim($request->id_sales));
-        if($id_sales == '' || $id_sales == null || empty($id_sales)) {
+        if ($id_sales == '' || $id_sales == null || empty($id_sales)) {
             $created_by = 23381;
-        }else{
+            $id_spv = 170;
+            $id_manager = 2029;
+            $id_gm = 0;
+        } else {
             $created_by = $id_sales;
+            $user_rsp = DB::connection('rsp_connection')->table('user')
+                ->select('id_user', 'spv', 'id_manager', 'id_gm')
+                ->where('id_user', '=', $id_sales)->first();
+            $id_spv = $user_rsp->spv;
+            $id_manager = $user_rsp->id_manager;
+            $id_gm = $user_rsp->id_gm;
         }
         $kode_referral = strip_tags(trim($request->kode_referral));
-        if($kode_referral == '' || $kode_referral == null || empty($kode_referral)) {
+        if ($kode_referral == '' || $kode_referral == null || empty($kode_referral)) {
             $reveral = "";
-        }else{
+        } else {
             $reveral = $kode_referral;
         }
         $id_project = strip_tags(trim($request->id_project));
@@ -162,9 +171,9 @@ class BookingController extends Controller
                 'jenis_pembayaran' => 'Payment Gateway',
                 'kelurahan' => '',
                 'id_user' => $created_by, // Booking mandiri
-                'spv' => 170, // non spv
-                'manager' => 2029, // non bm
-                'id_gm' => '',
+                'spv' => $id_spv, // non spv
+                'id_manager' => $id_manager, // non bm
+                'id_gm' => $id_gm,
                 'created_at' => date('Y-m-d H:i:s'),
                 'created_by' => $created_by, // Booking mandiri
                 'reveral' => $reveral,
