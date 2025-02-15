@@ -172,7 +172,7 @@ class BookingController extends Controller
                 'kelurahan' => '',
                 'id_user' => $created_by, // Booking mandiri
                 'spv' => $id_spv, // non spv
-                'id_manager' => $id_manager, // non bm
+                'manager' => $id_manager, // non bm
                 'id_gm' => $id_gm,
                 'created_at' => date('Y-m-d H:i:s'),
                 'created_by' => $created_by, // Booking mandiri

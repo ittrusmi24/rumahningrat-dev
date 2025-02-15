@@ -24,7 +24,7 @@ class Booking extends Model
         'kelurahan',
         'id_user',
         'spv',
-        'id_manager',
+        'manager',
         'id_gm',
         'created_at',
         'created_by',
