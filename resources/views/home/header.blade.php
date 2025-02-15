@@ -25,12 +25,11 @@
 
                 <div class="menu-container">
                     <div class="menu-icon" onclick="toggleMenu()">
-                        <i class="bi bi-list"></i>
+                        Layanan Konsumen
                     </div>
                     <ul class="menu-dropdown" id="menuDropdown">
-                        <li><a href="#">Profile</a></li>
                         <li><a href="https://trusmiverse.com/complaint/">Komplain</a></li>
-                        <li><a href="https://trusmicorp.com/customer/login">Cek Status Proses</a></li>
+                        <li><a href="https://trusmicorp.com/customer/login">After Sales</a></li>
                     </ul>
                 </div>
 
