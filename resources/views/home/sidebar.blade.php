@@ -53,6 +53,10 @@
                                 </li> --}}
                                 <li class="dropdown"><a href="contact.html" data-toggle="dropdown">Masuk</a>
                                 </li>
+                                <li class="dropdown"><a href="https://trusmiverse.com/complaint/" data-toggle="dropdown">Komplain</a>
+                                </li>
+                                <li class="dropdown"><a href="https://trusmicorp.com/customer/login" data-toggle="dropdown">After Sales</a>
+                                </li>
                             </ul>
                         </div>
                         <div class="contact-info">

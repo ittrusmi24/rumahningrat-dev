@@ -66,10 +66,69 @@
                     <button type="button" class="btn btn-primary btn-sm">
                         Masuk <i class="bi bi-person"></i>
                     </button>
+                    <div class="menu-container">
+                        <div class="menu-icon" onclick="toggleMenu()">
+                            <i class="bi bi-list"></i>
+                        </div>
+                        <ul class="menu-dropdown" id="menuDropdown">
+                            <li><a href="#">Profile</a></li>
+                            <li><a href="https://trusmiverse.com/complaint/">Komplain</a></li>
+                            <li><a href="https://trusmicorp.com/customer/login">Cek Status Proses</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
     </div>
+    <style>
+        .menu-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+            padding: 10px;
+            /* background-color: #007bff; */
+            color: white;
+            border-radius: 5px;
+        }
+
+        .menu-dropdown {
+            width: 200px;
+            z-index: 200;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            display: none; /* Default: hidden */
+        }
+
+        .menu-dropdown li {
+            padding: 10px 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .menu-dropdown li:last-child {
+            border-bottom: none;
+        }
+
+        .menu-dropdown li a {
+            text-decoration: none;
+            color: black;
+            display: block;
+        }
+
+        .menu-dropdown li:hover {
+            background: #f0f0f0;
+        }
+    </style>
     <section class="container-fluid" id="wrapper-detail">
         <div class="row">
             <div class="col-12 col-lg-8 p-0">
@@ -1043,6 +1102,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
 
     <script>
+        function toggleMenu() {
+        var menu = document.getElementById("menuDropdown");
+        menu.style.display = (menu.style.display === "block") ? "none" : "block";
+    }
+
+    // Menutup dropdown jika klik di luar area menu
+    document.addEventListener("click", function(event) {
+        var menu = document.getElementById("menuDropdown");
+        var icon = document.querySelector(".menu-icon");
+        if (!menu.contains(event.target) && !icon.contains(event.target)) {
+            menu.style.display = "none";
+        }
+    });
         document.addEventListener("DOMContentLoaded", function() {
             const container = document.getElementById('video_tour');
 
@@ -1460,7 +1532,7 @@
                             .trim(); // Ambil teks dan hilangkan spasi di awal/akhir
                         const cleanText = textContent.replace(/\s+/g, ''); // Hilangkan semua spasi
 
-                        if (cleanText.length <= 4 && !textContent.startsWith('ROW')) {
+                        if (cleanText.length <= 4 && !textContent.startsWith('ROW') && !textContent.startsWith('NS')) {
                             // Sembunyikan elemen jika panjang teks <= 4 dan tidak diawali dengan "ROW"
                             $(this).css('display', 'none');
                         }
@@ -1523,7 +1595,7 @@
                         var descText = $(`#${value.blok}`).find('desc').text().replace(/\s+/g, '');
                         var descArray = descText.split(',');
 
-                        $(`#path`).css("fill", `#B8B8B8`);
+                        // $(`#path`).css("fill", `#B8B8B8`);
 
                         if (descArray[1] == 'U') {
                             // UTARA
