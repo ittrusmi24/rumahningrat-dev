@@ -1523,7 +1523,7 @@
                         var descText = $(`#${value.blok}`).find('desc').text().replace(/\s+/g, '');
                         var descArray = descText.split(',');
 
-                        $(`#path`).css("fill", `#B8B8B8`);
+                        // $(`#path`).css("fill", `#B8B8B8`);
 
                         if (descArray[1] == 'U') {
                             // UTARA

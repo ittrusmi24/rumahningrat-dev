@@ -6,27 +6,91 @@
         <div class="row align-items-center">
             <div class="col-lg-10">
                 <div class="logo">
-                    <a href="{{ url('/') }}"><img src="{{ url('/assets/images/fav-icon') }}/icon-ningrat.png"
-                            alt="logo" style="height: 50px"></a>
+                    <a href="{{ url('/') }}">
+                        <img src="{{ url('/assets/images/fav-icon') }}/icon-ningrat.png" alt="logo" style="height: 50px">
+                    </a>
                 </div>
             </div>
-            <!-- <div class="col-lg-2 text-end">
-                <a type="button" class="btn btn-primary btn-sm">Panduan</a>
-            </div> -->
-            <div class="col-lg-2 text-end">
-                <!-- <a type="button" class="btn btn-primary btn-sm">Panduan</a> -->
-                <button type="button" class="btn btn-primary btn-sm">Masuk <i class="bi bi-person"></i></button>
+            <div class="col-lg-2 text-end d-flex align-items-center justify-content-end">
+                <button type="button" class="btn btn-primary btn-sm me-2">Masuk <i class="bi bi-person"></i></button>
+                <!-- <div class="dropdown">
+                    <a class="btn btn-secondary btn-sm dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-list"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="#">Complain</a></li>
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                    </ul>
+                </div> -->
+
+                <div class="menu-container">
+                    <div class="menu-icon" onclick="toggleMenu()">
+                        <i class="bi bi-list"></i>
+                    </div>
+                    <ul class="menu-dropdown" id="menuDropdown">
+                        <li><a href="https://trusmiverse.com/complaint/">Komplain</a></li>
+                        <li><a href="#">Profile</a></li>
+                    </ul>
+                </div>
+
             </div>
         </div>
     </div>
 </header>
+<style>
+    .menu-container {
+        position: relative;
+        display: inline-block;
+    }
+
+    .menu-icon {
+        font-size: 24px;
+        cursor: pointer;
+        padding: 10px;
+        /* background-color: #007bff; */
+        color: white;
+        border-radius: 5px;
+    }
+
+    .menu-dropdown {
+        z-index: 200;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: white;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        display: none; /* Default: hidden */
+    }
+
+    .menu-dropdown li {
+        padding: 10px 20px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .menu-dropdown li:last-child {
+        border-bottom: none;
+    }
+
+    .menu-dropdown li a {
+        text-decoration: none;
+        color: black;
+        display: block;
+    }
+
+    .menu-dropdown li:hover {
+        background: #f0f0f0;
+    }
+</style>
 
 <!-- Hamilton Mobile Menu Area -->
 <div class="mobile-menu-area sticky-menu" id="navbar">
     <div class="mobile-menu">
         <div class="mobile-logo">
-            <a href="{{ url('/') }}"><img src="{{ url('/assets/images/fav-icon') }}/icon-ningrat.png"
-                    alt="logo" style="height: 50px"></a>
+            <a href="{{ url('/') }}"><img src="{{ url('/assets/images/fav-icon') }}/icon-ningrat.png" alt="logo" style="height: 50px"></a>
         </div>
         <div class="side-menu-info">
             <div class="sidebar-menu">
