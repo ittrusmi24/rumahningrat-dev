@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="col-lg-2 text-end d-flex align-items-center justify-content-end">
-                <button type="button" class="btn btn-primary btn-sm me-2">Masuk <i class="bi bi-person"></i></button>
+                <button type="button" class="btn btn-primary btn-sm me-2"> <i class="bi bi-person"></i> Masuk</button>
                 <!-- <div class="dropdown">
                     <a class="btn btn-secondary btn-sm dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-list"></i>
@@ -25,7 +25,8 @@
 
                 <div class="menu-container">
                     <div class="menu-icon" onclick="toggleMenu()">
-                        Layanan Konsumen
+                    <!-- <button type="button" class="btn btn-primary btn-sm me-2">Masuk <i class="bi bi-person"></i></button> -->
+                        <a class="btn btn-primary btn-sm"><i class="bi bi-headset"></i> Konsumen</a>
                     </div>
                     <ul class="menu-dropdown" id="menuDropdown">
                         <li><a href="https://trusmiverse.com/complaint/">Komplain</a></li>
@@ -44,9 +45,10 @@
     }
 
     .menu-icon {
+        width: 100%;
         font-size: 24px;
         cursor: pointer;
-        padding: 10px;
+        /* padding: 10px; */
         /* background-color: #007bff; */
         color: white;
         border-radius: 5px;

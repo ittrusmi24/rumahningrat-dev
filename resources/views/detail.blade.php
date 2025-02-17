@@ -63,12 +63,12 @@
                 <div class="d-flex gap-2 ms-auto align-items-center"> <!-- ms-auto untuk push ke kanan -->
                     <a href="{{ asset('assets/Booking_Mandiri.pdf') }}" download="Booking_Mandiri" type="button"
                         class="btn btn-primary btn-sm">Panduan</a>
-                    <button type="button" class="btn btn-primary btn-sm">
-                        Masuk <i class="bi bi-person"></i>
+                    <button type="button" class="btn btn-primary btn-sm"> <i class="bi bi-person"></i>
+                        Masuk
                     </button>
                     <div class="menu-container">
                         <div class="menu-icon" onclick="toggleMenu()">
-                            <i class="bi bi-list"></i>
+                            <a class="btn btn-primary btn-sm"><i class="bi bi-headset"></i> Konsumen</a>
                         </div>
                         <ul class="menu-dropdown" id="menuDropdown">
                             <li><a href="#">Profile</a></li>
@@ -155,8 +155,8 @@
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-4">
                     <div id="video_tour">
                     </div>
-                    <iframe src="{{ url('/vt_view') }}" frameborder="0" width="100" height="100"
-                        class="vt_view"></iframe>
+                    <!-- <iframe src="{{ url('/vt_view') }}" frameborder="0" width="100" height="100"
+                        class="vt_view"></iframe> -->
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-5">
                     <embed src="{{ url('/poi_view') }}" class="vt_view">
