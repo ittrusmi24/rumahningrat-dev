@@ -60,20 +60,20 @@
                 </a>
 
                 <!-- Tambah div wrapper untuk grouping tombol -->
-                <div class="d-flex gap-2 ms-auto align-items-center"> <!-- ms-auto untuk push ke kanan -->
+                <div class="d-flex gap-1 ms-auto align-items-center"> <!-- ms-auto untuk push ke kanan -->
                     <a href="{{ asset('assets/Booking_Mandiri.pdf') }}" download="Booking_Mandiri" type="button"
                         class="btn btn-primary btn-sm">Panduan</a>
-                    <button type="button" class="btn btn-primary btn-sm"> <i class="bi bi-person"></i>
-                        Masuk
+                    <button type="button" class="btn btn-primary btn-sm">
+                        Tentang Kami
                     </button>
                     <div class="menu-container">
                         <div class="menu-icon" onclick="toggleMenu()">
                             <a class="btn btn-primary btn-sm"><i class="bi bi-headset"></i> Konsumen</a>
                         </div>
                         <ul class="menu-dropdown" id="menuDropdown">
-                            <li><a href="#">Profile</a></li>
-                            <li><a href="https://trusmiverse.com/complaint/">Komplain</a></li>
-                            <li><a href="https://trusmicorp.com/customer/login">Cek Status Proses</a></li>
+                            <li><a href="https://trusmicorp.com/customer/login">After Sales</a></li>
+                            <li><a href="https://trusmicorp.com/rspstatus/">Cek Status KPR</a></li>
+                            <li><a href="https://trusmiverse.com/complaint/">Pengajuan Komplain</a></li>
                         </ul>
                     </div>
                 </div>
@@ -1631,30 +1631,17 @@
                         var stop1 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
                         stop1.setAttribute("offset", "50%");
 
-                        // if (value.status == 'Not Sale') {
-                        //     stop1.setAttribute("stop-color", "#B8B8B8");
-                        // } else if (value.status == 'Akad') {
-                        //     stop1.setAttribute("stop-color", "#B3E5BE");
-                        // } else if (value.status == 'Booking Cash') {
-                        //     stop1.setAttribute("stop-color", "#45b6fe");
-                        // } else if (value.status == 'Booking') {
-                        //     stop1.setAttribute("stop-color", "#FD8A8A");
-                        // } else if (value.status == 'SP3K') {
-                        //     stop1.setAttribute("stop-color", "#FDFFAE");
-                        // } else if (value.status == 'Kosong') {
-                        //     stop1.setAttribute("stop-color", "white");
-                        // } else if (value.status == 'Pindah Blok') {
-                        //     stop1.setAttribute("stop-color", "#990066");
-                        // } else { // Bank
-                        //     stop1.setAttribute("stop-color", "#B983FF");
-                        // }
                         if (value.status == 'Not Sale') {
                             stop1.setAttribute("stop-color", "#458BC9");
 
-                        } else if (value.status == 'Booking' || value.status == 'Akad' || value
-                            .status == 'Booking Cash' || value.status == 'SP3K' || value.status ==
-                            'Pindah Blok' || value.status == 'Bank') {
+                        } else if (value.status == 'Terjual') {
                             stop1.setAttribute("stop-color", "#FD8A8A");
+                        } else if (value.status == 'Waiting List') {
+                            stop1.setAttribute("stop-color", "yellow");
+                        // } else if (value.status == 'Booking' || value.status == 'Akad' || value
+                        //     .status == 'Booking Cash' || value.status == 'SP3K' || value.status ==
+                        //     'Pindah Blok' || value.status == 'Bank') {
+                        //     stop1.setAttribute("stop-color", "#FD8A8A");
                         } else if (value.status == 'Kosong') {
                             stop1.setAttribute("stop-color", "white");
                         } else {
@@ -2145,62 +2132,50 @@
         }
 
         function addLegend(map) {
-            var legend = L.control({
-                position: 'bottomright'
-            }); // Gunakan bottomleft untuk dasar
+                var legend = L.control({ position: 'bottomright' });
 
-            legend.onAdd = function() {
-                var div = L.DomUtil.create('div', 'legend card shadow-sm text-center leaflet-bottom-center');
-                var legendContent = $('<div>').addClass('legend-content d-flex flex-column p-2');
-                var statusRow = $('<div>').addClass('d-flex flex-wrap justify-content-center align-items-center');
-                var statusItems = [{
-                        color: 'white',
-                        border: '1px solid #ccc',
-                        text: 'Kosong'
-                    },
-                    {
-                        color: '#458BC9',
-                        text: 'Not Sale'
-                    },
-                    {
-                        color: '#FD8A8A',
-                        text: 'Terjual'
-                    },
+                legend.onAdd = function() {
+                    var div = L.DomUtil.create('div', 'legend card shadow-sm text-center leaflet-bottom-center');
+                    var legendContent = $('<div>').addClass('legend-content d-flex flex-column p-1');
 
+                    // Ubah dari flex-wrap ke flex-column agar per item ke bawah
+                    var statusRow = $('<div>').addClass('d-flex flex-column align-items-start');
 
+                    var statusItems = [
+                        { color: 'white', border: '1px solid #ccc', text: 'Kosong' },
+                        { color: 'yellow', text: 'Waiting List' },
+                        { color: '#FD8A8A', text: 'Terjual' },
+                        { color: '#458BC9', text: 'Not Sale' }
+                    ];
 
-                ];
-
-
-
-                function appendItems(items, container) {
-                    items.forEach(function(item) {
-                        var legendItem = $('<div>').addClass('d-flex align-items-center me-1 item_legends');
-                        var box = $('<span>').addClass('legend-box me-1').css({
-                            background: item.color,
-                            border: item.border || 'none'
+                    function appendItems(items, container) {
+                        items.forEach(function(item) {
+                            var legendItem = $('<div>').addClass('d-flex align-items-center mb-1 item_legends');
+                            var box = $('<span>').addClass('legend-box me-2').css({
+                                display: 'inline-block',
+                                background: item.color,
+                                border: item.border || 'none'
+                            });
+                            legendItem.append(box).append(`<span class="small">${item.text}</span>`);
+                            container.append(legendItem);
                         });
-                        legendItem.append(box).append(item.text);
-                        container.append(legendItem);
-                    });
-                }
+                    }
 
-                appendItems(statusItems, statusRow);
-                // appendItems(progresItems, progresRow);
+                    appendItems(statusItems, statusRow);
 
-                legendContent.append(
-                    `<small class="text-secondary mb-1"><i class="fa fa-info-circle"></i> Anda bisa Tap untuk memilih blok</small>`
-                );
-                legendContent.append(statusRow);
+                    legendContent.append(
+                        `<small class="text-secondary mb-2"><i class="fa fa-info-circle small"></i>Tap untuk<br>memilih blok</small>`
+                    );
+                    legendContent.append(statusRow);
 
-                $(div).append(legendContent);
+                    $(div).append(legendContent);
 
-                return div;
-            };
+                    return div;
+                };
 
-            legend.addTo(map);
+                legend.addTo(map);
+            }
 
-        }
     </script>
     @include('modal.lokasi_detail_js')
     @include('modal.spesifikasi_detail_js')
