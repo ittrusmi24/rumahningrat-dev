@@ -84,10 +84,10 @@ class BlokTersedia extends Model
         $query = "SELECT
                     p.id_project,
                     mpu.blok,
-										CASE WHEN COUNT(DISTINCT g.id_gci) != 0 THEN 
-                    CONCAT('(JB : ',COUNT(DISTINCT g.id_gci),')') 
-										ELSE '' END AS jml_booking,
-                    SUM(CASE WHEN s.status_proses IN (43,443,45,47) THEN 1 ELSE 0 END) AS is_akad,
+					CASE WHEN COUNT(DISTINCT g.id_gci) != 0 THEN 
+                        CONCAT('(JB : ',COUNT(DISTINCT g.id_gci),')') 
+					ELSE '' END AS jml_booking,
+                        SUM(CASE WHEN COALESCE(s.status_proses,0) IN (43,443,45,47) THEN 1 ELSE 0 END) AS is_akad,
                     CASE WHEN p.id_project_tipe = 2 THEN 2500000 WHEN p.id_project_tipe != 2 AND (LEFT(mpu.type_blok,4) = 'Hook' OR LEFT(mpu.type_blok,3) = 'KLT') THEN '(Ada Hook/KLT)' ELSE '' END as hook_klt,
                     MIN(mpu.terima_kunci) AS terima_kunci,
                     COUNT(DISTINCT mpu.blok) AS sisa_unit,
@@ -119,7 +119,8 @@ class BlokTersedia extends Model
                     AND mpu.not_sale IS NULL
                     AND mpu.id_status <= 2
                     AND COALESCE(s.status_proses,0) NOT IN (43,443,45,47)
-                    GROUP BY p.id_project, mpu.blok";
+                    GROUP BY p.id_project, mpu.blok
+                    HAVING COUNT(DISTINCT g.id_gci) < 2";
 
         $blok = DB::connection('rsp_connection')
             ->select($query);
@@ -168,12 +169,12 @@ class BlokTersedia extends Model
 	m_project_unit.blok,
 	m_project.project,
 	COUNT( DISTINCT konsumen.id_gci ) AS jml_booking,
-	SUM( CASE WHEN status_proses.id_status_proses IN ( 43, 443, 45, 47 ) THEN 1 ELSE 0 END ) AS is_akad,
+	SUM( CASE WHEN COALESCE(status_proses.id_status_proses,0) IN ( 43, 443, 45, 47 ) THEN 1 ELSE 0 END ) AS is_akad,
 CASE
-
-		WHEN SUM( CASE WHEN status_proses.id_status_proses IN ( 43, 443, 45, 47 ) THEN 1 ELSE 0 END ) > 0 THEN
+        WHEN COUNT( DISTINCT konsumen.id_gci ) >= 2 THEN 'Terjual'
+		WHEN SUM( CASE WHEN COALESCE(status_proses.id_status_proses,0) IN ( 43, 443, 45, 47 ) THEN 1 ELSE 0 END ) > 0 THEN
 			'Terjual'
-			WHEN SUM( CASE WHEN status_proses.id_status_proses IN ( 43, 443, 45, 47 ) THEN 1 ELSE 0 END ) = 0
+			WHEN SUM( CASE WHEN COALESCE(status_proses.id_status_proses,0) IN ( 43, 443, 45, 47 ) THEN 1 ELSE 0 END ) = 0
 			AND COUNT( DISTINCT konsumen.id_gci ) > 0
 			AND COUNT( DISTINCT konsumen.id_gci ) < 3 THEN
 				'Waiting List'
@@ -208,6 +209,7 @@ CASE
 					t_gci.id_project = 70
 					and id_kategori > 2
 				GROUP BY
+                    t_gci.id_gci,
 					blok,
 					id_project
 				) AS gci
