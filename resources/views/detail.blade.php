@@ -608,7 +608,7 @@
                                             data-biaya_bphtb="{{ $blok->biaya_bphtb }}" data-total="{{ $blok->total }}"
                                             data-potongan="{{ $blok->potongan }}"
                                             data-total_all="{{ $blok->total_all }}">Blok
-                                            {{ $blok->blok }} {{ $blok->hook_klt }}
+                                            {{ $blok->blok }} {{ $blok->hook_klt }} {{ $blok->jml_booking }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -741,6 +741,16 @@
                                         <select class="form-control" name="kode_referral" id="kode_referral"
                                             style="min-height: 44px;">
                                             <option data-placeholder="true"></option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Skema Pembayaran</label>
+                                        <select class="form-select" name="jenis_pembayaran" id="jenis_pembayaran">
+                                            <option value="KPR FLPP" selected>KPR FLPP</option>
+                                            <option value="Cash">Cash</option>
+                                            <option value="Cash Tahap 3 Bulan">Cash Tahap 3 Bulan</option>
+                                            <option value="Cash Tahap 6 Bulan">Cash Tahap 6 Bulan</option>
+                                            <option value="Cicilan Komersil">KPR Komersil</option>
                                         </select>
                                     </div>
                                     <div class="mb-4 mt-5">

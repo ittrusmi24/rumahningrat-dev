@@ -31,6 +31,7 @@ class Booking extends Model
         'reveral',
         'kode_referral',
         'opsi_pagar',
+        'id_divisi'
     ];
     public $timestamps = false;
 
@@ -65,5 +66,30 @@ class Booking extends Model
             ->where('blok', '=', $blok)
             ->first();
         return $project_tipe->project_tipe;
+    }
+
+
+    public static function isAkad($id_project, $blok) {
+        $query = "SELECT
+                        mpu.id_project,
+                        mpu.blok,
+                        COUNT( g.id_gci ) AS jml_booking,
+                    CASE
+                            
+                            WHEN s.status_proses IN ( 43, 443, 45, 47 ) THEN
+                            1 ELSE 0 
+                        END AS is_akad 
+                    FROM
+                        m_project_unit mpu
+                        LEFT JOIN t_gci g ON mpu.id_project = g.id_project AND mpu.blok = g.blok AND g.id_kategori = 3 
+                        LEFT JOIN view_status_proses s ON s.id_gci = g.id_gci 
+                    WHERE mpu.id_project = $id_project 
+                    AND mpu.blok = '$blok'
+                    GROUP BY
+                        mpu.id_project,
+                        mpu.blok";
+
+        return DB::connection('rsp_connection')->select($query);
+
     }
 }

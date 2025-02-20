@@ -48,39 +48,76 @@ class BlokTersedia extends Model
         //         AND mpu.id_status <= 2
         //         AND NOT EXISTS (SELECT g.id_project, g.blok FROM t_gci g WHERE id_kategori >= 3 AND g.id_project = p.id_project AND g.blok = mpu.blok)
         //         GROUP BY p.id_project, mpu.blok";
+        // $query = "SELECT
+        //         p.id_project,
+        //         mpu.blok,
+        //         CASE WHEN p.id_project_tipe = 2 THEN 2500000 WHEN p.id_project_tipe != 2 AND (LEFT(mpu.type_blok,4) = 'Hook' OR LEFT(mpu.type_blok,3) = 'KLT') THEN '(Ada Hook/KLT)' ELSE '' END as hook_klt,
+        //         MIN(mpu.terima_kunci) AS terima_kunci,
+        //         COUNT(DISTINCT mpu.blok) AS sisa_unit,
+        //         CASE WHEN p.id_project_tipe = 2 THEN 2500000 WHEN p.id_project_tipe != 2 AND (LEFT(mpu.type_blok,4) = 'Hook' OR LEFT(mpu.type_blok,3) = 'KLT') THEN 1000000 ELSE 500000 END as nominal_booking,
+        //         p.harga_tanah,
+        //         COALESCE(mpu.terima_kunci,5000000) AS dp,
+        //         COALESCE(p.nominal_free_pagar,0) AS biaya_pagar,
+        //         COALESCE(p.nominal_free_tembok,0) AS biaya_tembok,
+        //         COALESCE(p.nominal_free_ipl,0) AS biaya_ipl,
+        //         COALESCE(mpu.nominal_hook,0) AS biaya_hook,
+        //         COALESCE(biaya_kelebihan_tanah,0) AS biaya_kelebihan_tanah,
+        //         COALESCE(mpu.tk_indent,0) - (CASE WHEN p.id_project_tipe = 2 THEN 2500000 WHEN p.id_project_tipe != 2 AND (LEFT(mpu.type_blok,4) = 'Hook' OR LEFT(mpu.type_blok,3) = 'KLT') THEN 1000000 ELSE 500000 END) AS biaya_bphtb,
+        //         mpu.tot_ar + COALESCE(mpu.terima_kunci,5000000) + COALESCE(p.nominal_free_pagar,0) + COALESCE(p.nominal_free_tembok,0) + COALESCE(p.nominal_free_ipl,0) AS total,
+        //         COALESCE(mpu.terima_kunci,5000000) + COALESCE(p.nominal_free_pagar,0) + COALESCE(p.nominal_free_tembok,0) + COALESCE(p.nominal_free_ipl,0) AS potongan,
+        //         mpu.tot_ar AS total_all
+        //     FROM
+        //         m_project p
+        //         LEFT JOIN m_project_unit mpu ON mpu.id_project = p.id_project
+        //         LEFT JOIN m_status_stok mss ON mss.`status` = mpu.id_status
+        //         LEFT JOIN m_project_tipe pt ON pt.id_project_tipe = p.id_project_tipe
+        //         LEFT JOIN m_project_detail pd ON p.id_project = pd.id_project
+        //     WHERE
+        //         pd.fasilitas IS NOT NULL
+        //         AND p.id_project = $id_project
+        //         AND p.id_project != 30
+        //         AND p.`status` IS NULL
+        //         AND mpu.not_sale IS NULL
+        //         AND mpu.id_status <= 2
+        //         AND NOT EXISTS (SELECT g.id_project, g.blok FROM t_gci g WHERE id_kategori >= 3 AND g.id_project = p.id_project AND g.blok = mpu.blok)
+        //         GROUP BY p.id_project, mpu.blok";
         $query = "SELECT
-                p.id_project,
-                mpu.blok,
-                CASE WHEN p.id_project_tipe = 2 THEN 2500000 WHEN p.id_project_tipe != 2 AND (LEFT(mpu.type_blok,4) = 'Hook' OR LEFT(mpu.type_blok,3) = 'KLT') THEN '(Ada Hook/KLT)' ELSE '' END as hook_klt,
-                MIN(mpu.terima_kunci) AS terima_kunci,
-                COUNT(DISTINCT mpu.blok) AS sisa_unit,
-                CASE WHEN p.id_project_tipe = 2 THEN 2500000 WHEN p.id_project_tipe != 2 AND (LEFT(mpu.type_blok,4) = 'Hook' OR LEFT(mpu.type_blok,3) = 'KLT') THEN 1000000 ELSE 500000 END as nominal_booking,
-                p.harga_tanah,
-                COALESCE(mpu.terima_kunci,5000000) AS dp,
-                COALESCE(p.nominal_free_pagar,0) AS biaya_pagar,
-                COALESCE(p.nominal_free_tembok,0) AS biaya_tembok,
-                COALESCE(p.nominal_free_ipl,0) AS biaya_ipl,
-                COALESCE(mpu.nominal_hook,0) AS biaya_hook,
-                COALESCE(biaya_kelebihan_tanah,0) AS biaya_kelebihan_tanah,
-                COALESCE(mpu.tk_indent,0) - (CASE WHEN p.id_project_tipe = 2 THEN 2500000 WHEN p.id_project_tipe != 2 AND (LEFT(mpu.type_blok,4) = 'Hook' OR LEFT(mpu.type_blok,3) = 'KLT') THEN 1000000 ELSE 500000 END) AS biaya_bphtb,
-                mpu.tot_ar + COALESCE(mpu.terima_kunci,5000000) + COALESCE(p.nominal_free_pagar,0) + COALESCE(p.nominal_free_tembok,0) + COALESCE(p.nominal_free_ipl,0) AS total,
-                COALESCE(mpu.terima_kunci,5000000) + COALESCE(p.nominal_free_pagar,0) + COALESCE(p.nominal_free_tembok,0) + COALESCE(p.nominal_free_ipl,0) AS potongan,
-                mpu.tot_ar AS total_all
-            FROM
-                m_project p
-                LEFT JOIN m_project_unit mpu ON mpu.id_project = p.id_project
-                LEFT JOIN m_status_stok mss ON mss.`status` = mpu.id_status
-                LEFT JOIN m_project_tipe pt ON pt.id_project_tipe = p.id_project_tipe
-                LEFT JOIN m_project_detail pd ON p.id_project = pd.id_project
-            WHERE
-                pd.fasilitas IS NOT NULL
-                AND p.id_project = $id_project
-                AND p.id_project != 30
-                AND p.`status` IS NULL
-                AND mpu.not_sale IS NULL
-                AND mpu.id_status <= 2
-                AND NOT EXISTS (SELECT g.id_project, g.blok FROM t_gci g WHERE id_kategori >= 3 AND g.id_project = p.id_project AND g.blok = mpu.blok)
-                GROUP BY p.id_project, mpu.blok";
+                    p.id_project,
+                    mpu.blok,
+                    COUNT(DISTINCT g.id_gci) AS jml_booking,
+                    SUM(CASE WHEN s.status_proses IN (43,443,45,47) THEN 1 ELSE 0 END) AS is_akad,
+                    CASE WHEN p.id_project_tipe = 2 THEN 2500000 WHEN p.id_project_tipe != 2 AND (LEFT(mpu.type_blok,4) = 'Hook' OR LEFT(mpu.type_blok,3) = 'KLT') THEN '(Ada Hook/KLT)' ELSE '' END as hook_klt,
+                    MIN(mpu.terima_kunci) AS terima_kunci,
+                    COUNT(DISTINCT mpu.blok) AS sisa_unit,
+                    CASE WHEN p.id_project_tipe = 2 THEN 2500000 WHEN p.id_project_tipe != 2 AND (LEFT(mpu.type_blok,4) = 'Hook' OR LEFT(mpu.type_blok,3) = 'KLT') THEN 1000000 ELSE 500000 END as nominal_booking,
+                    p.harga_tanah,
+                    COALESCE(mpu.terima_kunci,5000000) AS dp,
+                    COALESCE(p.nominal_free_pagar,0) AS biaya_pagar,
+                    COALESCE(p.nominal_free_tembok,0) AS biaya_tembok,
+                    COALESCE(p.nominal_free_ipl,0) AS biaya_ipl,
+                    COALESCE(mpu.nominal_hook,0) AS biaya_hook,
+                    COALESCE(biaya_kelebihan_tanah,0) AS biaya_kelebihan_tanah,
+                    COALESCE(mpu.tk_indent,0) - (CASE WHEN p.id_project_tipe = 2 THEN 2500000 WHEN p.id_project_tipe != 2 AND (LEFT(mpu.type_blok,4) = 'Hook' OR LEFT(mpu.type_blok,3) = 'KLT') THEN 1000000 ELSE 500000 END) AS biaya_bphtb,
+                    mpu.tot_ar + COALESCE(mpu.terima_kunci,5000000) + COALESCE(p.nominal_free_pagar,0) + COALESCE(p.nominal_free_tembok,0) + COALESCE(p.nominal_free_ipl,0) AS total,
+                    COALESCE(mpu.terima_kunci,5000000) + COALESCE(p.nominal_free_pagar,0) + COALESCE(p.nominal_free_tembok,0) + COALESCE(p.nominal_free_ipl,0) AS potongan,
+                    mpu.tot_ar AS total_all
+                FROM
+                    m_project p
+                    LEFT JOIN m_project_unit mpu ON mpu.id_project = p.id_project
+                    LEFT JOIN t_gci g ON g.id_project = mpu.id_project AND g.blok = mpu.blok AND id_kategori = 3
+                    LEFT JOIN view_status_proses s ON s.id_gci = g.id_gci
+                    LEFT JOIN m_status_stok mss ON mss.`status` = mpu.id_status
+                    LEFT JOIN m_project_tipe pt ON pt.id_project_tipe = p.id_project_tipe
+                    LEFT JOIN m_project_detail pd ON p.id_project = pd.id_project
+                WHERE
+                    pd.fasilitas IS NOT NULL
+                    AND p.id_project = $id_project
+                    AND p.id_project != 30
+                    AND p.`status` IS NULL
+                    AND mpu.not_sale IS NULL
+                    AND mpu.id_status <= 2
+                    AND s.status_proses NOT IN (43,443,45,47)
+                    GROUP BY p.id_project, mpu.blok";
 
         $blok = DB::connection('rsp_connection')
             ->select($query);

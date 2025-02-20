@@ -40,14 +40,16 @@ class BookingController extends Controller
             $id_spv = 170;
             $id_manager = 2029;
             $id_gm = 0;
+            $id_divisi = 2;
         } else {
             $created_by = $id_sales;
             $user_rsp = DB::connection('rsp_connection')->table('user')
-                ->select('id_user', 'spv', 'id_manager', 'id_gm')
+                ->select('id_user', 'spv', 'id_manager', 'id_gm', 'id_divisi')
                 ->where('id_user', '=', $id_sales)->first();
             $id_spv = $user_rsp->spv;
             $id_manager = $user_rsp->id_manager;
             $id_gm = $user_rsp->id_gm;
+            $id_divisi = $user_rsp->id_divisi;
         }
         $kode_referral = strip_tags(trim($request->kode_referral));
         if ($kode_referral == '' || $kode_referral == null || empty($kode_referral)) {
@@ -68,6 +70,7 @@ class BookingController extends Controller
             $no_hp = '62' . substr($no_hp, 1);
         }
         $jenis_kelamin = strip_tags(trim($request->jenis_kelamin));
+        $jenis_pembayaran = strip_tags(trim($request->jenis_pembayaran));
         $status = strip_tags(trim($request->status));
         $id_kelurahan = strip_tags(trim($request->id_kelurahan));
         $alamat = ucwords(strtolower(strip_tags(trim($request->alamat))));
@@ -82,17 +85,55 @@ class BookingController extends Controller
         }
 
         // TODO Check Blok Tersedia
-        $countBlokAlreadyBooked = Booking::where('id_kategori', 3)->where('id_project', $id_project)->where('blok', $blok)->count();
-        if ($countBlokAlreadyBooked > 0) {
-            return [
-                "status" => false,
-                "message" => "Blok " . $blok . " Sudah Dibooking oleh orang lain, Silahkan Pilih Blok Lain"
-            ];
+        // Skema Project Double Booking
+        $list_project_double_booking = ['70'];
+        if (in_array($id_project, $list_project_double_booking) == 1) {
+            $booking = Booking::isAkad($id_project, $blok);
+
+            if (empty($booking)) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Blok Tidak Tersedia'
+                ]);
+            }
+
+            if (!isset($booking[0]->is_akad)) {
+                return response()->json([
+                    'status' => false,
+                    'message' => "Blok Tidak Tersedia"
+                ]);
+            }
+
+            if (isset($booking[0]->is_akad)) {
+                if ($booking[0]->is_akad >= 1) {
+                    return response()->json([
+                        'status' => false,
+                        'message' => "Blok " . $blok . " Sudah Dibooking oleh orang lain dan sudah proses SP3K, Silahkan Pilih Blok Lain"
+                    ]);
+                }
+            }
+
+            if (isset($booking[0]->jml_booking)) {
+                if ($booking[0]->jml_booking >= 2) {
+                    return response()->json([
+                        'status' => false,
+                        'message' => "Blok " . $blok . " Sudah Dibooking oleh lebih dari 2 Orang, Silahkan Pilih Blok Lain Atau Tunggu Proses Reject"
+                    ]);
+                }
+            }
+        } else {
+            $countBlokAlreadyBooked = Booking::where('id_kategori', 3)->where('id_project', $id_project)->where('blok', $blok)->count();
+            if ($countBlokAlreadyBooked > 0) {
+                return response()->json([
+                    "status" => false,
+                    "message" => "Blok " . $blok . " Sudah Dibooking oleh orang lain, Silahkan Pilih Blok Lain"
+                ]);
+            }
         }
 
-        DB::connection('rsp_connection')->beginTransaction();
-        DB::connection('eces_connection')->beginTransaction();
-        DB::connection('rumahningrat_connection')->beginTransaction();
+        // DB::connection('rsp_connection')->beginTransaction();
+        // DB::connection('eces_connection')->beginTransaction();
+        // DB::connection('rumahningrat_connection')->beginTransaction();
 
         $get_kelurahan = DB::connection('rsp_connection')->table('r_kelurahan_new')->where('id_kelurahan', $id_kelurahan)->first();
         $get_kecamatan = DB::connection('rsp_connection')->table('r_kecamatan_new')->where('id_kecamatan', $get_kelurahan->id_kecamatan)->first();
@@ -168,7 +209,7 @@ class BookingController extends Controller
                 'nominal' => $nominal_booking,
                 'id_project_tipe' => $id_project_tipe,
                 'id_gci_status' => 1,
-                'jenis_pembayaran' => 'Payment Gateway',
+                'jenis_pembayaran' => $jenis_pembayaran,
                 'kelurahan' => '',
                 'id_user' => $created_by, // Booking mandiri
                 'spv' => $id_spv, // non spv
@@ -178,7 +219,8 @@ class BookingController extends Controller
                 'created_by' => $created_by, // Booking mandiri
                 'reveral' => $reveral,
                 'kode_referral' => $reveral,
-                'opsi_pagar' => '', // value Pakai Pagar atau Tanpa Pagar
+                'opsi_pagar' => 'Pakai Pagar', // value Pakai Pagar atau Tanpa Pagar
+                'id_divisi' => $id_divisi
             );
             Booking::create($data_post_booking);
 
@@ -309,18 +351,18 @@ class BookingController extends Controller
                 'id_gci' => $id_gci
             ];
 
-            // Trigger event
-            event(new BookingCreated($data_for_event_booking));
-
             // // Jika semua berhasil, commit perubahan
-            DB::connection('rsp_connection')->commit();
-            DB::connection('eces_connection')->commit();
-            DB::connection('rumahningrat_connection')->commit();
+            // DB::connection('rsp_connection')->commit();
+            // DB::connection('eces_connection')->commit();
+            // DB::connection('rumahningrat_connection')->commit();
+
+             // Trigger event
+             event(new BookingCreated($data_for_event_booking));
         } catch (\Exception $e) {
             // // Jika terjadi error, batalkan perubahan
-            DB::connection('rsp_connection')->rollBack();
-            DB::connection('eces_connection')->rollBack();
-            DB::connection('rumahningrat_connection')->rollBack();
+            // DB::connection('rsp_connection')->rollBack();
+            // DB::connection('eces_connection')->rollBack();
+            // DB::connection('rumahningrat_connection')->rollBack();
 
             return response()->json([
                 'status' => false,

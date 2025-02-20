@@ -12,6 +12,8 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ReferralController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\UlasanController;
+use App\Models\Booking;
+use App\Models\Konsumen;
 use Illuminate\Support\Facades\Route;
 use App\Models\Project;
 
@@ -95,3 +97,23 @@ Route::get('/status_blok/{id_project}', [DashboardController::class, 'status_blo
 Route::get('/search-kelurahan', [KelurahanController::class, 'searchKelurahan']);
 Route::get('/search-sales', [SalesController::class, 'searchSales']);
 Route::get('/search-referral', [ReferralController::class, 'searchReferral']);
+
+
+Route::get('/test', function () {
+    $booking = Booking::isAkad(70,'D22');
+    if(empty($booking)){
+        return response()->json([
+            'status' => false,
+            'message' => 'Blok Tidak Tersedia'
+        ]);
+    }
+
+    if(!isset($booking[0]->is_akad)){
+        return response()->json([
+            'status' => true,
+            'message' => 'Blok Tidak Tersedia'
+        ]); 
+    }
+    
+    // dd($bookingk[0]->is_akad);
+});
