@@ -51,11 +51,13 @@
                                         <li><a href="blog-details.html">Blog Details</a></li>
                                     </ul>
                                 </li> --}}
-                                <li class="dropdown"><a href="contact.html" data-toggle="dropdown">Masuk</a>
-                                </li>
-                                <li class="dropdown"><a href="https://trusmiverse.com/complaint/" data-toggle="dropdown">Komplain</a>
+                                <li class="dropdown"><a href="#" data-toggle="dropdown">Tentang Kami</a>
                                 </li>
                                 <li class="dropdown"><a href="https://trusmicorp.com/customer/login" data-toggle="dropdown">After Sales</a>
+                                </li>
+                                <li class="dropdown"><a href="https://trusmicorp.com/rspstatus/" data-toggle="dropdown">Cek Status KPR</a>
+                                </li>
+                                <li class="dropdown"><a href="https://trusmiverse.com/complaint/" data-toggle="dropdown">Pengajuan Komplain</a>
                                 </li>
                             </ul>
                         </div>

@@ -12,26 +12,7 @@
                 </div>
             </div>
             <div class="col-lg-2 text-end d-flex align-items-center justify-content-end">
-                <button type="button" class="btn btn-primary btn-sm me-2">Masuk <i class="bi bi-person"></i></button>
-                <!-- <div class="dropdown">
-                    <a class="btn btn-secondary btn-sm dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-list"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#">Complain</a></li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                    </ul>
-                </div> -->
-
-                <div class="menu-container">
-                    <div class="menu-icon" onclick="toggleMenu()">
-                        Layanan Konsumen
-                    </div>
-                    <ul class="menu-dropdown" id="menuDropdown">
-                        <li><a href="https://trusmiverse.com/complaint/">Komplain</a></li>
-                        <li><a href="https://trusmicorp.com/customer/login">After Sales</a></li>
-                    </ul>
-                </div>
+                @include('menu')
 
             </div>
         </div>
@@ -44,9 +25,10 @@
     }
 
     .menu-icon {
+        width: 100%;
         font-size: 24px;
         cursor: pointer;
-        padding: 10px;
+        /* padding: 10px; */
         /* background-color: #007bff; */
         color: white;
         border-radius: 5px;
