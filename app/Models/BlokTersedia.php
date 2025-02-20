@@ -171,6 +171,8 @@ class BlokTersedia extends Model
 	COUNT( DISTINCT konsumen.id_gci ) AS jml_booking,
 	SUM( CASE WHEN COALESCE(status_proses.id_status_proses,0) IN ( 43, 443, 45, 47 ) THEN 1 ELSE 0 END ) AS is_akad,
 CASE
+        WHEN m_project_unit.not_sale = 1 THEN
+			'Not Sale'
         WHEN COUNT( DISTINCT konsumen.id_gci ) >= 2 THEN 'Terjual'
 		WHEN SUM( CASE WHEN COALESCE(status_proses.id_status_proses,0) IN ( 43, 443, 45, 47 ) THEN 1 ELSE 0 END ) > 0 THEN
 			'Terjual'
@@ -178,8 +180,7 @@ CASE
 			AND COUNT( DISTINCT konsumen.id_gci ) > 0
 			AND COUNT( DISTINCT konsumen.id_gci ) < 3 THEN
 				'Waiting List'
-				WHEN m_project_unit.not_sale = 1 THEN
-				'Not Sale' ELSE 'Kosong'
+				 ELSE 'Kosong'
 		END AS status
 		FROM
 			m_project_unit
