@@ -18,7 +18,7 @@ class Sales extends Model
                     `user` AS mkt
                     LEFT JOIN hris.xin_employees AS e ON e.user_id = mkt.join_hr 
                 WHERE
-                    mkt.id_divisi IN ( 2, 20 ) 
+                    mkt.id_divisi IN ( 2, 20, 7 ) 
                     AND e.is_active = 1 
                 AND	
                 (
