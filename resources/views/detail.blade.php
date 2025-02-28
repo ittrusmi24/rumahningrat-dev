@@ -407,7 +407,7 @@
                                     ini!</p>
                             </div>
                         </div>
-                        {{-- <div class="card card-bonus text-center">
+                        <div class="card card-bonus text-center">
                                         <div class="card-bonus-body">
                                             <img src="{{ url('/assets') }}/images/icon/wall.png" alt=""
                         width="45px" height="45px">
@@ -415,7 +415,7 @@
                         <p><s>Rp. 2.000.000</s></p>
                         <p class="text-danger">Rp. 0</p>
                     </div>
-                </div> --}}
+                </div>
             </div>
         </div>
     </div>
