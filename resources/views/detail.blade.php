@@ -1390,7 +1390,14 @@ s.parentNode.insertBefore(mychat, s);
                 if (typeof blok_select !== 'undefined' && blok_select) {
                     blok_select.setSelected(blok_s.toUpperCase());
                 } else {
-                    console.warn("Slim Select tidak ditemukan.");
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Opps!",
+                        text: "Blok tersebut sudah terjual!",
+                        showConfirmButton: true,
+                        timer: 3000
+                    });
+                    // console.warn("Slim Select tidak ditemukan.");
                 }
             }
         });
@@ -1572,7 +1579,20 @@ s.parentNode.insertBefore(mychat, s);
 
     $('#blok').change(function(e) {
         e.preventDefault();
-        var blok = $(this).val();
+        var blok = $(this).val().trim();
+        if (!blok) {
+
+        // console.warn("Blok value is empty. No block selected.");
+        Swal.fire({
+                        icon: "warning",
+                        title: "Opps!",
+                        text: "Blok tersebut sudah terjual!",
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+        } else {
+        var selectedBlok = $(`#${$.escapeSelector(blok)}`);
+        // console.log("Selected blok element:", selectedBlok);
         let harga = $(this).find(':selected').data('harga'),
             nominal = $(this).find(':selected').data('nominal'),
             dp = $(this).find(':selected').data('dp'),
@@ -1613,12 +1633,12 @@ s.parentNode.insertBefore(mychat, s);
         var selectedBlok = $(`#${blok}`);
 
         if (currentOverlay) {
-                currentOverlay.css({
-                    fill: '',
-                    'fill-opacity': ''
-                });
-                currentOverlay = null;
-            }
+            currentOverlay.css({
+                fill: '',
+                'fill-opacity': ''
+            });
+            currentOverlay = null;
+        }
 
         // var bbox = selectedBlok.getBoundingClientRect(); // Mendapatkan posisi elemen relatif ke viewport
         // var svgContainer = svgOverlay._image.getBoundingClientRect(); // Mendapatkan posisi SVG di viewport
@@ -1699,6 +1719,7 @@ s.parentNode.insertBefore(mychat, s);
 
         //     // let isHighlighted = false;
         // }
+    }
     });
 
     // ulasan js
