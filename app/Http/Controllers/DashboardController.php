@@ -116,7 +116,8 @@ class DashboardController extends Controller
     }
     public function status_blok($id_project)
     {
-        $blok = BlokTersedia::get_blok_status_jayasampurna();
+
+        $blok = BlokTersedia::get_blok_status_double_book($id_project);
         // $blok = BlokTersedia::get_blok_status($id_project);
         return response()->json($blok);
     }

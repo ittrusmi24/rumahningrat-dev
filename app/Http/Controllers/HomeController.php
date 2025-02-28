@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use App\Models\Visitor;
 use Illuminate\Http\Request;
 use Stevebauman\Location\Facades\Location;
@@ -97,8 +98,9 @@ class HomeController extends Controller
         }
         return view('virtual_tour.rn_jayasampurna');
     }
-    public function poi_view()
+    public function poi_view($id_project)
     {
+        $project = Project::get_project_additional($id_project);
         $url = strip_tags(urldecode(request()->fullUrl()));
         $userAgent = request()->userAgent();
         $ip = request()->ip();
@@ -137,6 +139,6 @@ class HomeController extends Controller
                 'created_at' => date("Y-m-d H:i:s"),
             ]);
         }
-        return view('virtual_tour.poi_rn_jayasampurna');
+        return view('virtual_tour.'.$project->poi);
     }
 }
