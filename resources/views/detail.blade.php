@@ -1612,6 +1612,14 @@ s.parentNode.insertBefore(mychat, s);
 
         var selectedBlok = $(`#${blok}`);
 
+        if (currentOverlay) {
+                currentOverlay.css({
+                    fill: '',
+                    'fill-opacity': ''
+                });
+                currentOverlay = null;
+            }
+
         // var bbox = selectedBlok.getBoundingClientRect(); // Mendapatkan posisi elemen relatif ke viewport
         // var svgContainer = svgOverlay._image.getBoundingClientRect(); // Mendapatkan posisi SVG di viewport
 
@@ -1658,6 +1666,7 @@ s.parentNode.insertBefore(mychat, s);
             }
             isHighlighted = !isHighlighted;
         }, 500); // Kedip setiap 0.5 detik
+        currentOverlay = selectedBlok;
         // if (selectedBlok.length && svgOverlay) {
         // } else {
         //     console.log('di else');
