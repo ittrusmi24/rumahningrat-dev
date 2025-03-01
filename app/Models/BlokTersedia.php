@@ -15,6 +15,14 @@ class BlokTersedia extends Model
             return $blok = [];
         }
 
+        $project_double_booking = [70, 40];
+
+        if (in_array($id_project, $project_double_booking) == 1) {
+            $condition = "";
+        } else {
+            $condition = " AND NOT EXISTS (SELECT g.id_project, g.blok FROM t_gci g WHERE id_kategori >= 3 AND g.id_project = p.id_project AND g.blok = mpu.blok)";
+        }
+
         // $backup_query = "SELECT
         //         p.id_project,
         //         mpu.blok,
@@ -119,6 +127,7 @@ class BlokTersedia extends Model
                     AND mpu.not_sale IS NULL
                     AND mpu.id_status <= 2
                     AND COALESCE(s.status_proses,0) NOT IN (43,443,45,47)
+                    $condition
                     GROUP BY p.id_project, mpu.blok
                     HAVING COUNT(DISTINCT g.id_gci) < 2";
 
@@ -164,7 +173,8 @@ class BlokTersedia extends Model
         return $blok;
     }
 
-    public static function get_blok_status_jayasampurna(){
+    public static function get_blok_status_jayasampurna()
+    {
         $query = "SELECT
 	m_project_unit.blok,
 	m_project.project,
@@ -239,7 +249,7 @@ CASE
 	ORDER BY
 	m_project_unit.blok ASC";
         return DB::connection('rsp_connection')
-        ->select($query);
+            ->select($query);
     }
 
     public static function get_blok_status($id_project)
@@ -306,7 +316,7 @@ CASE
                     SELECT
                             id_gci
                     FROM t_gci
-                    WHERE id_project = $id_project and id_kategori >2
+                    WHERE id_project = $id_project and id_kategori > 2
                     GROUP BY blok, id_project
                 )
 
