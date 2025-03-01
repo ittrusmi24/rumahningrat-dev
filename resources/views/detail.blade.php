@@ -67,13 +67,6 @@
                         <li class="nav-item">
                             <a class="nav-link text-white" aria-current="page" href="{{ url('/') }}">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="{{ asset('assets/Booking_Mandiri.pdf') }}"
-                                download="Booking_Mandiri" type="button">Panduan</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Tentang Kami</a>
-                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link text-white dropdown-toggle" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -87,6 +80,13 @@
                                 <li><a class="dropdown-item" href="https://trusmiverse.com/complaint/">Pengajuan
                                         Komplain</a></li>
                             </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ asset('assets/Booking_Mandiri.pdf') }}"
+                                download="Booking_Mandiri" type="button">Panduan</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ url('/about') }}">Tentang Kami</a>
                         </li>
                     </ul>
                 </div>
@@ -170,7 +170,7 @@
                     <div id="video_tour">
                     </div>
                     <!-- <iframe src="{{ url('/vt_view') }}" frameborder="0" width="100" height="100"
-                                                class="vt_view"></iframe> -->
+                                                            class="vt_view"></iframe> -->
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-5">
                     <embed src="{{ url('/poi_view/') . '/' . $project_add->id_project }}" class="vt_view">
