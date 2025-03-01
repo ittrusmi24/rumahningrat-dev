@@ -302,8 +302,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                @elseif($id_project == 40)
-
+                                @else
                                     <div class="tab-content  mt-4" id="nav-tabContent">
                                         <div class="tab-pane fade show active" id="kprSubsidi" role="tabpanel"
                                             aria-labelledby="kprSubsidi-tab" tabindex="0">

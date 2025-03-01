@@ -71,6 +71,11 @@ class DashboardController extends Controller
         $project = Project::get_project_by_id($id_project);
 
         $project_add = Project::get_project_additional($id_project);
+
+        // kalau tidak ada project additional maka pakai yang jayasampurna dulu biar tidak error
+        if(empty($project_add)){
+            $project_add = Project::get_project_additional(70);
+        }
         $fasilitas = Fasilitas::get_fasilitas_by_id_project($id_project);
         $fasilitasSekitar = FasilitasSekitar::get_fasilitas_sekitar_by_id_project_grouped($id_project);
         $blok = BlokTersedia::get_blok_by_id_project($id_project);
