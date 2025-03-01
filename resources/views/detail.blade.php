@@ -505,35 +505,37 @@
                                     <div class="card card-bonus text-center">
                                         <div class="card-bonus-body">
                                             <img src="{{ url('/assets') }}/images/icon/wall.png" alt=""
-                                                width="45px" height="45px">
-                                            <h5>Tembok Dapur</h5>
-                                            <p><s>Rp. 2.000.000</s></p>
-                                            <p class="text-danger">Rp. 0</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        width="45px" height="45px">
+                        <h5>Tembok Dapur</h5>
+                        <p><s>Rp. 2.000.000</s></p>
+                        <p class="text-danger">Rp. 0</p>
+                        <p class="text-detail-card-bonus">Spesial hanya berlaku untuk booking di bulan
+                            ini!</p>
                     </div>
                 </div>
-                <div class="aside-section" id="aside-section-4">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="header-detail text-center mb-5">
-                                    <h4>Fasilitas</h4>
-                                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <div class="aside-section" id="aside-section-4">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="header-detail text-center mb-5">
+                        <h4>Fasilitas</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="container-fasilitas">
+                        @foreach ($fasilitas as $item)
+                        <div class="item-fasilitas">
+                            <div>
+                                {!! $item->icon !!}
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="container-fasilitas">
-                                    @foreach ($fasilitas as $item)
-                                        <div class="item-fasilitas">
-                                            <div>
-                                                {!! $item->icon !!}
-                                            </div>
-                                            {{-- <div>
+                            {{-- <div>
                                             <img src="{{ url('/assets/images/icon') }}/bed.png" alt=""
                             width="16px" height="16px">
                         </div> --}}
