@@ -1754,7 +1754,7 @@ s.parentNode.insertBefore(mychat, s);
                 $('#harga_blok').text(formatRupiah(harga));
                 $('#price').text(formatRupiah(nominal));
                 $('#nominal_booking').val(nominal);
-                $('#value_booking').val(nominal);
+                $('#value_booking').text(formatRupiah(nominal));
                 $('#value_dp').text(formatRupiah(dp));
                 $('#value_dp2').text(formatRupiah(dp));
                 $('#value_hook').text(formatRupiah(hook));
