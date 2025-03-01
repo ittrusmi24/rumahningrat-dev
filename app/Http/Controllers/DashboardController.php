@@ -66,8 +66,13 @@ class DashboardController extends Controller
         }
         $id_project = $request->id_project;
         if (!$id_project) {
-            return view('welcome');
+            return redirect()->route('home');
         }
+        if(!in_array($id_project, [70,40])){
+            return redirect()->route('home');
+        }
+
+
         $project = Project::get_project_by_id($id_project);
 
         $project_add = Project::get_project_additional($id_project);
