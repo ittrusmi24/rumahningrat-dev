@@ -157,7 +157,7 @@
                     <div id="video_tour">
                     </div>
                     <!-- <iframe src="{{ url('/vt_view') }}" frameborder="0" width="100" height="100"
-                                class="vt_view"></iframe> -->
+                                    class="vt_view"></iframe> -->
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-5">
                     <embed src="{{ url('/poi_view/') . '/' . $project_add->id_project }}" class="vt_view">
@@ -509,6 +509,8 @@
                                             <h5>Tembok Dapur</h5>
                                             <p><s>Rp. 2.000.000</s></p>
                                             <p class="text-danger">Rp. 0</p>
+                                            <p class="text-detail-card-bonus">Spesial hanya berlaku untuk booking di bulan
+                                                ini!</p>
                                         </div>
                                     </div>
                                 </div>

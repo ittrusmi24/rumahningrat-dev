@@ -123,7 +123,7 @@ label {
 /* bonus section */
 .bonus-container {
     display: grid;
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
     justify-content: center;
 }
@@ -948,13 +948,11 @@ video {
         font-size: 6px;
         width: 100%;
     }
-    .item_legends{
-
+    .item_legends {
         font-size: 10px;
     }
-    .legend-content small{
+    .legend-content small {
         font-size: 10px;
-
     }
 
     /* nira ai */
