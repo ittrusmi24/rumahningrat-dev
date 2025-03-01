@@ -53,29 +53,42 @@
 
 @section('content')
     <div class="stikcy-nav-container" id="sticky-header">
-        <nav class="navbar p-0" style="background-color: #005991E5">
+        <nav class="navbar navbar-expand-lg p-0" style="background-color: #005991E5;">
             <div class="container-fluid">
                 <a class="navbar-brand" href="https://rumahningrat.com/">
                     <img src="{{ url('/assets/images/fav-icon/icon-ningrat.png') }}" alt="Logo" height="40px">
                 </a>
-
-                <!-- Tambah div wrapper untuk grouping tombol -->
-                <div class="d-flex gap-1 ms-auto align-items-center"> <!-- ms-auto untuk push ke kanan -->
-                    <a href="{{ asset('assets/Booking_Mandiri.pdf') }}" download="Booking_Mandiri" type="button"
-                        class="btn btn-primary btn-sm">Panduan</a>
-                    <button type="button" class="btn btn-primary btn-sm">
-                        Tentang Kami
-                    </button>
-                    <div class="menu-container">
-                        <div class="menu-icon" onclick="toggleMenu()">
-                            <a class="btn btn-primary btn-sm"><i class="bi bi-headset"></i> Konsumen</a>
-                        </div>
-                        <ul class="menu-dropdown" id="menuDropdown">
-                            <li><a href="https://trusmicorp.com/customer/login">After Sales</a></li>
-                            <li><a href="https://trusmicorp.com/rspstatus/">Cek Status KPR</a></li>
-                            <li><a href="https://trusmiverse.com/complaint/">Pengajuan Komplain</a></li>
-                        </ul>
-                    </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end text-end" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" aria-current="page" href="{{ url('/') }}">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-white dropdown-toggle" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-headset"></i> Konsumen
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="https://trusmicorp.com/customer/login">After Sales</a>
+                                </li>
+                                <li><a class="dropdown-item" href="https://trusmicorp.com/rspstatus/">Cek Status KPR</a>
+                                </li>
+                                <li><a class="dropdown-item" href="https://trusmiverse.com/complaint/">Pengajuan
+                                        Komplain</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ asset('assets/Booking_Mandiri.pdf') }}"
+                                download="Booking_Mandiri" type="button">Panduan</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ url('/about') }}">Tentang Kami</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>
@@ -157,7 +170,7 @@
                     <div id="video_tour">
                     </div>
                     <!-- <iframe src="{{ url('/vt_view') }}" frameborder="0" width="100" height="100"
-                                    class="vt_view"></iframe> -->
+                                                                class="vt_view"></iframe> -->
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-5">
                     <embed src="{{ url('/poi_view/') . '/' . $project_add->id_project }}" class="vt_view">

@@ -778,7 +778,10 @@
                 menu.style.display = "none";
             }
         });
-        AOS.init();
+        AOS.init({
+            disable: false,
+            once: true
+        });
 
         function changeToggle() {
             let toggle = document.getElementById("toggle");
