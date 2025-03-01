@@ -414,6 +414,8 @@
                         <h5>Tembok Dapur</h5>
                         <p><s>Rp. 2.000.000</s></p>
                         <p class="text-danger">Rp. 0</p>
+                        <p class="text-detail-card-bonus">Spesial hanya berlaku untuk booking di bulan
+                            ini!</p>
                     </div>
                 </div>
             </div>
