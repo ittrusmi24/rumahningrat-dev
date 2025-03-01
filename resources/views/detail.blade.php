@@ -53,7 +53,7 @@
 
 @section('content')
     <div class="stikcy-nav-container" id="sticky-header">
-        <nav class="navbar navbar-expand-lg p-0" style="background-color: #005991E5">
+        <nav class="navbar navbar-expand-lg p-0" style="background-color: #005991E5; z-index: 999999;">
             <div class="container-fluid">
                 <a class="navbar-brand" href="https://rumahningrat.com/">
                     <img src="{{ url('/assets/images/fav-icon/icon-ningrat.png') }}" alt="Logo" height="40px">
@@ -170,7 +170,7 @@
                     <div id="video_tour">
                     </div>
                     <!-- <iframe src="{{ url('/vt_view') }}" frameborder="0" width="100" height="100"
-                                        class="vt_view"></iframe> -->
+                                                class="vt_view"></iframe> -->
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-5">
                     <embed src="{{ url('/poi_view/') . '/' . $project_add->id_project }}" class="vt_view">
