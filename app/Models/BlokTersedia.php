@@ -92,8 +92,8 @@ class BlokTersedia extends Model
         $query = "SELECT
                     p.id_project,
                     mpu.blok,
-					CASE WHEN COUNT(DISTINCT g.id_gci) != 0 THEN 
-                        CONCAT('(JB : ',COUNT(DISTINCT g.id_gci),')') 
+					CASE WHEN COUNT(DISTINCT g.id_gci) != 0 THEN
+                        CONCAT('(JB : ',COUNT(DISTINCT g.id_gci),')')
 					ELSE '' END AS jml_booking,
                         SUM(CASE WHEN COALESCE(s.status_proses,0) IN (43,443,45,47) THEN 1 ELSE 0 END) AS is_akad,
                     CASE WHEN p.id_project_tipe = 2 THEN 2500000 WHEN p.id_project_tipe != 2 AND (LEFT(mpu.type_blok,4) = 'Hook' OR LEFT(mpu.type_blok,3) = 'KLT') THEN '(Ada Hook/KLT)' ELSE '' END as hook_klt,
@@ -173,81 +173,80 @@ class BlokTersedia extends Model
         return $blok;
     }
 
-    public static function get_blok_status_jayasampurna()
-    {
+    public static function get_blok_status_double_book($id_project){
         $query = "SELECT
-	m_project_unit.blok,
-	m_project.project,
-	COUNT( DISTINCT konsumen.id_gci ) AS jml_booking,
-	SUM( CASE WHEN COALESCE(status_proses.id_status_proses,0) IN ( 43, 443, 45, 47 ) THEN 1 ELSE 0 END ) AS is_akad,
-CASE
-        WHEN m_project_unit.not_sale = 1 THEN
-			'Not Sale'
-        WHEN COUNT( DISTINCT konsumen.id_gci ) >= 2 THEN 'Terjual'
-		WHEN SUM( CASE WHEN COALESCE(status_proses.id_status_proses,0) IN ( 43, 443, 45, 47 ) THEN 1 ELSE 0 END ) > 0 THEN
-			'Terjual'
-			WHEN SUM( CASE WHEN COALESCE(status_proses.id_status_proses,0) IN ( 43, 443, 45, 47 ) THEN 1 ELSE 0 END ) = 0
-			AND COUNT( DISTINCT konsumen.id_gci ) > 0
-			AND COUNT( DISTINCT konsumen.id_gci ) < 3 THEN
-				'Waiting List'
-				 ELSE 'Kosong'
-		END AS status
-		FROM
-			m_project_unit
-			LEFT JOIN m_project ON m_project.id_project = m_project_unit.id_project
-			LEFT JOIN (
-			SELECT
-				gci.id_gci,
-				gci.nama_konsumen,
-				gci.blok,
-				gci.id_project,
-				t_interview.hasil_int,
-				t_spr.jenis,
-				view_spr.income,
-				view_spr.sisa_ar
-			FROM
-				(
-				SELECT
-					t_gci.id_gci,
-					t_gci.id_konsumen,
-					GROUP_CONCAT( DISTINCT k.nama_konsumen ) AS nama_konsumen,
-					t_gci.blok,
-					t_gci.id_project
-				FROM
-					t_gci
-					LEFT JOIN m_konsumen k ON k.id_konsumen = t_gci.id_konsumen
-				WHERE
-					t_gci.id_project = 70
-					and id_kategori > 2
-				GROUP BY
-                    t_gci.id_gci,
-					blok,
-					id_project
-				) AS gci
-				JOIN m_konsumen ON gci.id_konsumen = m_konsumen.id_konsumen
-				LEFT JOIN t_interview ON t_interview.id_gci = gci.id_gci
-				LEFT JOIN t_spr ON t_spr.id_gci = gci.id_gci
-				LEFT JOIN view_spr ON view_spr.id_gci = gci.id_gci
-			) AS konsumen ON m_project_unit.blok = konsumen.blok
-			AND m_project_unit.id_project = konsumen.id_project
-			LEFT JOIN (
-			SELECT
-				view_status_proses.id_gci,
-				view_status_proses.status_proses AS id_status_proses,
-				view_status_proses.status_name AS status_proses
-			FROM
-				view_status_proses
-			WHERE
-				view_status_proses.id_gci IN ( SELECT id_gci FROM t_gci WHERE id_project = 70 and id_kategori > 2 GROUP BY blok, id_project )
-			) status_proses ON status_proses.id_gci = konsumen.id_gci
-		WHERE
-			m_project_unit.id_project = 70 -- AND m_project_unit.not_sale IS NULL
--- and SUBSTR(m_project_unit.blok,1,1) in ('F','G','H')
+                m_project_unit.blok,
+                m_project.project,
+                COUNT( DISTINCT konsumen.id_gci ) AS jml_booking,
+                SUM( CASE WHEN COALESCE(status_proses.id_status_proses,0) IN ( 43, 443, 45, 47 ) THEN 1 ELSE 0 END ) AS is_akad,
+            CASE
+                    WHEN m_project_unit.not_sale = 1 THEN
+                        'Not Sale'
+                    WHEN COUNT( DISTINCT konsumen.id_gci ) >= 2 THEN 'Terjual'
+                    WHEN SUM( CASE WHEN COALESCE(status_proses.id_status_proses,0) IN ( 43, 443, 45, 47 ) THEN 1 ELSE 0 END ) > 0 THEN
+                        'Terjual'
+                        WHEN SUM( CASE WHEN COALESCE(status_proses.id_status_proses,0) IN ( 43, 443, 45, 47 ) THEN 1 ELSE 0 END ) = 0
+                        AND COUNT( DISTINCT konsumen.id_gci ) > 0
+                        AND COUNT( DISTINCT konsumen.id_gci ) < 3 THEN
+                            'Waiting List'
+                            ELSE 'Kosong'
+                    END AS status
+                    FROM
+                        m_project_unit
+                        LEFT JOIN m_project ON m_project.id_project = m_project_unit.id_project
+                        LEFT JOIN (
+                        SELECT
+                            gci.id_gci,
+                            gci.nama_konsumen,
+                            gci.blok,
+                            gci.id_project,
+                            t_interview.hasil_int,
+                            t_spr.jenis,
+                            view_spr.income,
+                            view_spr.sisa_ar
+                        FROM
+                            (
+                            SELECT
+                                t_gci.id_gci,
+                                t_gci.id_konsumen,
+                                GROUP_CONCAT( DISTINCT k.nama_konsumen ) AS nama_konsumen,
+                                t_gci.blok,
+                                t_gci.id_project
+                            FROM
+                                t_gci
+                                LEFT JOIN m_konsumen k ON k.id_konsumen = t_gci.id_konsumen
+                            WHERE
+                                t_gci.id_project = '$id_project'
+                                and id_kategori > 2
+                            GROUP BY
+                                t_gci.id_gci,
+                                blok,
+                                id_project
+                            ) AS gci
+                            JOIN m_konsumen ON gci.id_konsumen = m_konsumen.id_konsumen
+                            LEFT JOIN t_interview ON t_interview.id_gci = gci.id_gci
+                            LEFT JOIN t_spr ON t_spr.id_gci = gci.id_gci
+                            LEFT JOIN view_spr ON view_spr.id_gci = gci.id_gci
+                        ) AS konsumen ON m_project_unit.blok = konsumen.blok
+                        AND m_project_unit.id_project = konsumen.id_project
+                        LEFT JOIN (
+                        SELECT
+                            view_status_proses.id_gci,
+                            view_status_proses.status_proses AS id_status_proses,
+                            view_status_proses.status_name AS status_proses
+                        FROM
+                            view_status_proses
+                        WHERE
+                            view_status_proses.id_gci IN ( SELECT id_gci FROM t_gci WHERE id_project = '$id_project' and id_kategori > 2 GROUP BY blok, id_project )
+                        ) status_proses ON status_proses.id_gci = konsumen.id_gci
+                    WHERE
+                        m_project_unit.id_project = '$id_project' -- AND m_project_unit.not_sale IS NULL
+            -- and SUBSTR(m_project_unit.blok,1,1) in ('F','G','H')
 
-		GROUP BY
-			m_project_unit.blok
-	ORDER BY
-	m_project_unit.blok ASC";
+                    GROUP BY
+                        m_project_unit.blok
+                ORDER BY
+                m_project_unit.blok ASC";
         return DB::connection('rsp_connection')
             ->select($query);
     }

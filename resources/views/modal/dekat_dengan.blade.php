@@ -8,7 +8,7 @@
                     <div class="row p-0 m-0">
                         <div class="p-0 m-0 col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6">
                             <div class="vt_view_detail">
-                                <iframe src="{{ url('/poi_view') }}" frameborder="0" width="100%"
+                                <iframe src="{{ url('/poi_view/').'/'.$project_add->id_project }}" frameborder="0" width="100%"
                                     height="320px"></iframe>
                             </div>
                         </div>

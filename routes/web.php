@@ -79,19 +79,9 @@ Route::get('get_csrf', function () {
 });
 Route::post('simpan_booking', [BookingController::class, 'simpan_booking'])->name('simpan_booking');
 
-Route::get('/vt/{id_project}', function ($id_project) {
-    $project = Project::get_project_additional($id_project);
-    $path = public_path('360_view/vt/' . $project->link_360 . '/index.htm');  // Ambil path dari link_360
-    if (!file_exists($path)) {
-        abort(404, 'Virtual tour not found');  // Tampilkan error jika file tidak ada
-    }
-    $content = file_get_contents($path);
-    $content = str_replace('../', url('/') . '/360_view/vt/' . $project->link_360 . '/', $content);
-    return view('virtual_tour', ['project' => $project, 'content' => $content]);
-});
 
 Route::get('/vt_view', [HomeController::class, 'vt_view'])->name('vt_view');
-Route::get('/poi_view', [HomeController::class, 'poi_view'])->name('poi_view');
+Route::get('/poi_view/{id_project}', [HomeController::class, 'poi_view']);
 Route::get('/about', [HomeController::class, 'about']);
 
 Route::get('/status_blok/{id_project}', [DashboardController::class, 'status_blok'])->name('status_blok');
