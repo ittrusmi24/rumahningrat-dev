@@ -170,7 +170,7 @@
                     <div id="video_tour">
                     </div>
                     <!-- <iframe src="{{ url('/vt_view') }}" frameborder="0" width="100" height="100"
-                                                                    class="vt_view"></iframe> -->
+                                                                        class="vt_view"></iframe> -->
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-5">
                     <embed src="{{ url('/poi_view/') . '/' . $project_add->id_project }}" class="vt_view">
@@ -718,389 +718,423 @@
                             </div>
                             <div class="col"></div>
                         </div> --}}
-        </div>
-    </div>
-    <div class="aside-section" id="aside-section-7">
-        <div class="container-fluid section-form">
-            <div class="row mt-4">
-                <div class="col-12 text-center">
-                    <h4>Data Diri Pembeli</h4>
+                    </div>
+                </div>
+                <div class="aside-section" id="aside-section-7">
+                    <div class="container-fluid section-form">
+                        <div class="row mt-4">
+                            <div class="col-12 text-center">
+                                <h4>Data Diri Pembeli</h4>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-12">
+                                <form class="form-booking" id="formBooking">
+                                    @csrf
+                                    <input type="hidden" class="form-control" name="id_project" id="id_project"
+                                        value="{{ $project['id_project'] }}">
+                                    <input type="hidden" name="nominal_booking" id="nominal_booking">
+                                    <div class="mb-2">
+                                        <label class="form-label">Nama Lengkap</label>
+                                        <input type="text" class="form-control" name="nama_lengkap" id="nama"
+                                            autocomplete="off">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">No Handphone</label>
+                                        <input type="tel" class="form-control" name="no_hp" id="no_hp"
+                                            autocomplete="off" oninput="validasiNoHp(this)">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Tanggal Lahir</label>
+                                        <input class="form-control" name="tgl_lahir" id="tgl_lahir" autocomplete="off">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Tempat Lahir</label>
+                                        <input class="form-control" name="tempat_lahir" id="tempat_lahir"
+                                            autocomplete="off">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Jenis Kelamin</label>
+                                        <select class="form-select" name="jenis_kelamin" id="jenis_kl">
+                                            <option value="" selected>-- Pilih Jenis Kelamin --</option>
+                                            <option value="L">Laki - laki</option>
+                                            <option value="P">Perempuan</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">No KTP</label>
+                                        <input type="number" class="form-control" name="no_ktp" id="no_ktp"
+                                            autocomplete="off" oninput="validasiKtp(this)">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Kelurahan</label>
+                                        <select class="form-control" name="id_kelurahan" id="id_kelurahan"
+                                            style="min-height: 44px;">
+                                            <option data-placeholder="true"></option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Alamat Lengkap</label>
+                                        <textarea name="alamat" class="form-control" id="alamat_book" cols="30" rows="3" autocomplete="off"></textarea>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Pendapatan</label>
+                                        <input type="text" class="form-control" name="pendapatan" id="pendapatan"
+                                            oninput="validasiPendapatan(this)" autocomplete="off">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Status</label>
+                                        <select class="form-select" name="status" id="status">
+                                            <option value="" selected>-- Pilih Status --</option>
+                                            <option value="1">Lajang</option>
+                                            <option value="2">Menikah</option>
+                                            <option value="3">Cerai</option>
+                                        </select>
+                                    </div>
+                                    <div class="d-none animate__animated animate__fadeIn" id="row_ktp_pg">
+                                        <div class="mb-2">
+                                            <label class="form-label">No KTP Pasangan</label>
+                                            <input type="number" class="form-control" name="no_ktp_p" id="no_ktp_psg"
+                                                autocomplete="off" oninput="validasiKtp(this)">
+                                        </div>
+                                        <div class="mb-2">
+                                            <label class="form-label">Nama Pasangan</label>
+                                            <input type="text" class="form-control" name="nama_pasangan"
+                                                id="nama_pasangan">
+                                        </div>
+                                        <div class="mb-2">
+                                            <label class="form-label">Tgl Lahir Pasangan</label>
+                                            <input type="text" class="form-control" name="tgl_lahir_p"
+                                                id="tgl_lahir_p" autocomplete="off">
+                                        </div>
+                                        <div class="mb-2">
+                                            <label class="form-label">Tempat Lahir Pasangan</label>
+                                            <input type="text" class="form-control" name="tempat_lahir_p"
+                                                id="tempat_lahir_p">
+                                        </div>
+                                        <div class="mb-2">
+                                            <label class="form-label">Jenis Kelamain Pasangan</label>
+                                            <select class="form-select" name="jenis_kelamin_p" id="jenis_kelamin_p">
+                                                <option value="" selected>-- Pilih Jenis Kelamin --</option>
+                                                <option value="L">Laki - laki</option>
+                                                <option value="P">Perempuan</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-2">
+                                            <label class="form-label">Alamat Pasangan</label>
+                                            <textarea name="alamat_p" class="form-control" id="alamat_p" cols="30" rows="3" autocomplete="off"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Sales</label>
+                                        <select class="form-control" name="id_sales" id="id_sales"
+                                            style="min-height: 44px;">
+                                            <option data-placeholder="true"></option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Referral</label>
+                                        <select class="form-control" name="kode_referral" id="kode_referral"
+                                            style="min-height: 44px;">
+                                            <option data-placeholder="true"></option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Skema Pembayaran</label>
+                                        <select class="form-select" name="jenis_pembayaran" id="jenis_pembayaran">
+                                            <option value="KPR FLPP" selected>KPR FLPP</option>
+                                            <option value="Cash">Cash</option>
+                                            <option value="Cash Tahap 3 Bulan">Cash Tahap 3 Bulan</option>
+                                            <option value="Cash Tahap 6 Bulan">Cash Tahap 6 Bulan</option>
+                                            <option value="Cicilan Komersil">KPR Komersil</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-4 mt-5">
+                                        <h4 class="text-center">Biaya</h4>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p>Booking</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="text-end" id="value_booking">Rp.500.000</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p>Uang Muka DP</p>
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <div id="dpPotongan" class="d-none">
+                                                <p class="text-decoration-line-through d-inline text-danger"
+                                                    id="value_dp">
+                                                    Rp.5.000.000</p>
+                                                <p class=" d-inline">Rp. 0</p>
+                                            </div>
+                                            <div id="dpNonPotongan">
+                                                <p class="d-inline" id="value_dp2">
+                                                    Rp.5.000.000</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p>Pagar</p>
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <div id="pagarPotongan" class="d-none">
+                                                <p class="text-decoration-line-through d-inline text-danger"
+                                                    id="value_pagar">
+                                                    Rp.10.000.000</p>
+                                                <p class=" d-inline">Rp. 0</p>
+                                            </div>
+                                            <div id="pagarNonPotongan">
+                                                <p class=" d-inline" id="value_pagar2">Rp.10.000.000</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p>Tembok Dapur</p>
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <div id="tembokPotongan" class="d-none">
+                                                <p class="text-decoration-line-through d-inline text-danger "
+                                                    id="value_tembok">Rp.2.000.000</p>
+                                                <p class="d-inline">Rp. 0</p>
+                                            </div>
+                                            <div id="tembokNonPotongan">
+                                                <p class="d-inline" id="value_tembok2">Rp.2.000.000</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p>Biaya IPL 2 Tahun</p>
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <div id="iplPotongan" class="d-none">
+                                                <p class="text-decoration-line-through d-inline text-danger"
+                                                    id="value_ipl">
+                                                    Rp.2.400.000</p>
+                                                <p class=" d-inline">Rp. 0</p>
+                                            </div>
+                                            <div id="iplNonPotongan">
+                                                <p class=" d-inline" id="value_ipl2">Rp.2.400.000</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p>Hook</p>
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <p class="d-inline" id="value_hook">-</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p class="">Kelebihan Tanah</p>
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <p class="d-inline" id="value_kelta">-</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p>Biaya Lain-lain</p>
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <p class="d-inline" id="value_bphtb">Rp.8.750.000</p>
+                                        </div>
+                                    </div>
+                                    <hr style="border: 1.5px solid black;" class="mb-2 mt-0">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p class="mb-1">Total</p>
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <p class="d-inline mb-1" id="value_subtotal">Rp. 28.650.000</p>
+                                        </div>
+                                    </div>
+                                    <div class="row py-2">
+                                        <div class="col-12" id="potonganAwal">
+                                            <button type="button" id="btn-potongan" class="btn btn-danger btn-sm"
+                                                data-bs-toggle="modal" data-bs-target="#agreementModal">
+                                                Dapatkan Potongan Senilai <span id="value_potonganBtn">Rp.
+                                                    19.400.000</span>
+                                            </button>
+                                        </div>
+                                        <div class="col-6 d-none" id="potonganText">
+                                            <p>Potongan</p>
+                                        </div>
+                                        <div class="col-6 text-end d-none" id="potonganTextVal">
+                                            <p class="d-inline text-danger" id="value_potongan">Rp. 19.400.000
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p>Total Biaya</p>
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <p class="d-inline fw-bold" id="value_total_awal">Rp. 28.650.000</p>
+                                            <p class="d-inline fw-bold d-none" id="value_total">Rp. 9.250.000</p>
+                                        </div>
+                                    </div>
+                                    <div class="bank-section mt-5">
+                                        <h4 class="text-center">Bank Tersedia</h4>
+                                        <div class="row mt-3">
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/bca.png" alt=""
+                                                    width="75px" height="24px">
+                                            </div>
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/bjb.png" alt=""
+                                                    width="75px" height="24px">
+                                            </div>
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/bri.png" alt=""
+                                                    width="75px" height="24px">
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/mandiri.png" alt=""
+                                                    width="75px" height="24px">
+                                            </div>
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/bni.png" alt=""
+                                                    width="75px" height="24px">
+                                            </div>
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/btn.png" alt=""
+                                                    width="75px" height="24px">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4 mt-5">
+                                        <h4 class="text-center">Pembayaran</h4>
+                                    </div>
+                                    <div class="mb-3">
+                                        <p>Jenis Pembayaran</p>
+                                    </div>
+                                    <div id="form-section">
+                                        <div class="mb-4">
+                                            <div class="d-flex flex-wrap gap-3">
+                                                <div class="payment-method">
+                                                    <input type="radio" id="alfamart" name="payment" class="payment"
+                                                        value="1" checked>
+                                                    <label for="alfamart">
+                                                        <img src="{{ url('/assets/images/icon/') }}/alfamart.png" />
+                                                    </label>
+                                                </div>
+                                                <div class="payment-method">
+                                                    <input type="radio" id="indomaret" name="payment" class="payment"
+                                                        value="2">
+                                                    <label for="indomaret">
+                                                        <img src="{{ url('/assets/images/icon/') }}/indomaret.png" />
+                                                    </label>
+                                                </div>
+                                                <div class="payment-method">
+                                                    <input type="radio" id="virtual-account" name="payment"
+                                                        class="payment" value="3">
+                                                    <label for="virtual-account">
+                                                        <img src="{{ url('/assets/images/icon/') }}/va.png" />
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="bank_group" class="d-none animate__animated animate__fadeIn">
+                                            <div class="radio-button-group">
+                                                <label class="radio-card">
+                                                    <input type="radio" name="bank" value="bca" checked>
+                                                    <div class="card-body">
+                                                        <div class="check-box">
+                                                            <div class="check-icon">✔</div>
+                                                        </div>
+                                                        <img src="{{ url('/assets/images/icon') }}/bca.png"
+                                                            alt="BCA">
+                                                    </div>
+                                                </label>
+                                                <label class="radio-card">
+                                                    <input type="radio" name="bank" value="mandiri">
+                                                    <div class="card-body">
+                                                        <div class="check-box">
+                                                            <div class="check-icon">✔</div>
+                                                        </div>
+                                                        <img src="{{ url('/assets/images/icon') }}/mandiri.png"
+                                                            alt="Mandiri">
+                                                    </div>
+                                                </label>
+                                                <label class="radio-card">
+                                                    <input type="radio" name="bank" value="bri">
+                                                    <div class="card-body">
+                                                        <div class="check-box">
+                                                            <div class="check-icon">✔</div>
+                                                        </div>
+                                                        <img src="{{ url('/assets/images/icon') }}/bri.png"
+                                                            alt="BRI">
+                                                    </div>
+                                                </label>
+                                                <label class="radio-card">
+                                                    <input type="radio" name="bank" value="bni">
+                                                    <div class="card-body">
+                                                        <div class="check-box">
+                                                            <div class="check-icon">✔</div>
+                                                        </div>
+                                                        <img src="{{ url('/assets/images/icon') }}/bni.png"
+                                                            alt="BNI">
+                                                    </div>
+                                                </label>
+                                                <label class="radio-card">
+                                                    <input type="radio" name="bank" value="cimb">
+                                                    <div class="card-body">
+                                                        <div class="check-box">
+                                                            <div class="check-icon">✔</div>
+                                                        </div>
+                                                        <img src="{{ url('/assets/images/icon') }}/cimb.png"
+                                                            alt="cimb">
+                                                    </div>
+                                                </label>
+                                                <label class="radio-card">
+                                                    <input type="radio" name="bank" value="permata">
+                                                    <div class="card-body">
+                                                        <div class="check-box">
+                                                            <div class="check-icon">✔</div>
+                                                        </div>
+                                                        <img src="{{ url('/assets/images/icon') }}/permata.png"
+                                                            alt="permata">
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sticky-container">
+                    <div class="sticky-content d-flex justify-content-between align-items-center">
+                        <div>
+                            <div class="price text-dark" id="price">Rp.500.000</div>
+                            <div class="note">*biaya booking + BI checking</div>
+                        </div>
+                        <button class="btn btn-primary" id="btn-booking" onclick="validasiBook()"
+                            style="border-radius: 10px">Booking
+                            Sekarang</button>
+                    </div>
                 </div>
             </div>
-            <div class="row mt-5">
-                <div class="col-12">
-                    <form class="form-booking" id="formBooking">
-                        @csrf
-                        <input type="hidden" class="form-control" name="id_project" id="id_project" value="{{ $project['id_project'] }}">
-                        <input type="hidden" name="nominal_booking" id="nominal_booking">
-                        <div class="mb-2">
-                            <label class="form-label">Nama Lengkap</label>
-                            <input type="text" class="form-control" name="nama_lengkap" id="nama" autocomplete="off">
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-label">No Handphone</label>
-                            <input type="tel" class="form-control" name="no_hp" id="no_hp" autocomplete="off" oninput="validasiNoHp(this)">
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-label">Tanggal Lahir</label>
-                            <input class="form-control" name="tgl_lahir" id="tgl_lahir" autocomplete="off">
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-label">Tempat Lahir</label>
-                            <input class="form-control" name="tempat_lahir" id="tempat_lahir" autocomplete="off">
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-label">Jenis Kelamin</label>
-                            <select class="form-select" name="jenis_kelamin" id="jenis_kl">
-                                <option value="" selected>-- Pilih Jenis Kelamin --</option>
-                                <option value="L">Laki - laki</option>
-                                <option value="P">Perempuan</option>
-                            </select>
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-label">No KTP</label>
-                            <input type="number" class="form-control" name="no_ktp" id="no_ktp" autocomplete="off" oninput="validasiKtp(this)">
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-label">Kelurahan</label>
-                            <select class="form-control" name="id_kelurahan" id="id_kelurahan" style="min-height: 44px;">
-                                <option data-placeholder="true"></option>
-                            </select>
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-label">Alamat Lengkap</label>
-                            <textarea name="alamat" class="form-control" id="alamat_book" cols="30" rows="3" autocomplete="off"></textarea>
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-label">Pendapatan</label>
-                            <input type="text" class="form-control" name="pendapatan" id="pendapatan" oninput="validasiPendapatan(this)" autocomplete="off">
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-label">Status</label>
-                            <select class="form-select" name="status" id="status">
-                                <option value="" selected>-- Pilih Status --</option>
-                                <option value="1">Lajang</option>
-                                <option value="2">Menikah</option>
-                                <option value="3">Cerai</option>
-                            </select>
-                        </div>
-                        <div class="d-none animate__animated animate__fadeIn" id="row_ktp_pg">
-                            <div class="mb-2">
-                                <label class="form-label">No KTP Pasangan</label>
-                                <input type="number" class="form-control" name="no_ktp_p" id="no_ktp_psg" autocomplete="off" oninput="validasiKtp(this)">
-                            </div>
-                            <div class="mb-2">
-                                <label class="form-label">Nama Pasangan</label>
-                                <input type="text" class="form-control" name="nama_pasangan" id="nama_pasangan">
-                            </div>
-                            <div class="mb-2">
-                                <label class="form-label">Tgl Lahir Pasangan</label>
-                                <input type="text" class="form-control" name="tgl_lahir_p" id="tgl_lahir_p" autocomplete="off">
-                            </div>
-                            <div class="mb-2">
-                                <label class="form-label">Tempat Lahir Pasangan</label>
-                                <input type="text" class="form-control" name="tempat_lahir_p" id="tempat_lahir_p">
-                            </div>
-                            <div class="mb-2">
-                                <label class="form-label">Jenis Kelamain Pasangan</label>
-                                <select class="form-select" name="jenis_kelamin_p" id="jenis_kelamin_p">
-                                    <option value="" selected>-- Pilih Jenis Kelamin --</option>
-                                    <option value="L">Laki - laki</option>
-                                    <option value="P">Perempuan</option>
-                                </select>
-                            </div>
-                            <div class="mb-2">
-                                <label class="form-label">Alamat Pasangan</label>
-                                <textarea name="alamat_p" class="form-control" id="alamat_p" cols="30" rows="3" autocomplete="off"></textarea>
-                            </div>
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-label">Sales</label>
-                            <select class="form-control" name="id_sales" id="id_sales" style="min-height: 44px;">
-                                <option data-placeholder="true"></option>
-                            </select>
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-label">Referral</label>
-                            <select class="form-control" name="kode_referral" id="kode_referral" style="min-height: 44px;">
-                                <option data-placeholder="true"></option>
-                            </select>
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-label">Skema Pembayaran</label>
-                            <select class="form-select" name="jenis_pembayaran" id="jenis_pembayaran">
-                                <option value="KPR FLPP" selected>KPR FLPP</option>
-                                <option value="Cash">Cash</option>
-                                <option value="Cash Tahap 3 Bulan">Cash Tahap 3 Bulan</option>
-                                <option value="Cash Tahap 6 Bulan">Cash Tahap 6 Bulan</option>
-                                <option value="Cicilan Komersil">KPR Komersil</option>
-                            </select>
-                        </div>
-                        <div class="mb-4 mt-5">
-                            <h4 class="text-center">Biaya</h4>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <p>Booking</p>
-                            </div>
-                            <div class="col-6">
-                                <p class="text-end" id="value_booking">Rp.500.000</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <p>Uang Muka DP</p>
-                            </div>
-                            <div class="col-6 text-end">
-                                <div id="dpPotongan" class="d-none">
-                                    <p class="text-decoration-line-through d-inline text-danger" id="value_dp">
-                                        Rp.5.000.000</p>
-                                    <p class=" d-inline">Rp. 0</p>
-                                </div>
-                                <div id="dpNonPotongan">
-                                    <p class="d-inline" id="value_dp2">
-                                        Rp.5.000.000</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <p>Pagar</p>
-                            </div>
-                            <div class="col-6 text-end">
-                                <div id="pagarPotongan" class="d-none">
-                                    <p class="text-decoration-line-through d-inline text-danger" id="value_pagar">
-                                        Rp.10.000.000</p>
-                                    <p class=" d-inline">Rp. 0</p>
-                                </div>
-                                <div id="pagarNonPotongan">
-                                    <p class=" d-inline" id="value_pagar2">Rp.10.000.000</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <p>Tembok Dapur</p>
-                            </div>
-                            <div class="col-6 text-end">
-                                <div id="tembokPotongan" class="d-none">
-                                    <p class="text-decoration-line-through d-inline text-danger " id="value_tembok">Rp.2.000.000</p>
-                                    <p class="d-inline">Rp. 0</p>
-                                </div>
-                                <div id="tembokNonPotongan">
-                                    <p class="d-inline" id="value_tembok2">Rp.2.000.000</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <p>Biaya IPL 2 Tahun</p>
-                            </div>
-                            <div class="col-6 text-end">
-                                <div id="iplPotongan" class="d-none">
-                                    <p class="text-decoration-line-through d-inline text-danger" id="value_ipl">
-                                        Rp.2.400.000</p>
-                                    <p class=" d-inline">Rp. 0</p>
-                                </div>
-                                <div id="iplNonPotongan">
-                                    <p class=" d-inline" id="value_ipl2">Rp.2.400.000</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <p>Hook</p>
-                            </div>
-                            <div class="col-6 text-end">
-                                <p class="d-inline" id="value_hook">-</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <p class="">Kelebihan Tanah</p>
-                            </div>
-                            <div class="col-6 text-end">
-                                <p class="d-inline" id="value_kelta">-</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <p>Biaya Lain-lain</p>
-                            </div>
-                            <div class="col-6 text-end">
-                                <p class="d-inline" id="value_bphtb">Rp.8.750.000</p>
-                            </div>
-                        </div>
-                        <hr style="border: 1.5px solid black;" class="mb-2 mt-0">
-                        <div class="row">
-                            <div class="col-6">
-                                <p class="mb-1">Total</p>
-                            </div>
-                            <div class="col-6 text-end">
-                                <p class="d-inline mb-1" id="value_subtotal">Rp. 28.650.000</p>
-                            </div>
-                        </div>
-                        <div class="row py-2">
-                            <div class="col-12" id="potonganAwal">
-                                <button type="button" id="btn-potongan" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#agreementModal">
-                                    Dapatkan Potongan Senilai <span id="value_potonganBtn">Rp.
-                                        19.400.000</span>
-                                </button>
-                            </div>
-                            <div class="col-6 d-none" id="potonganText">
-                                <p>Potongan</p>
-                            </div>
-                            <div class="col-6 text-end d-none" id="potonganTextVal">
-                                <p class="d-inline text-danger" id="value_potongan">Rp. 19.400.000
-                                </p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <p>Total Biaya</p>
-                            </div>
-                            <div class="col-6 text-end">
-                                <p class="d-inline fw-bold" id="value_total_awal">Rp. 28.650.000</p>
-                                <p class="d-inline fw-bold d-none" id="value_total">Rp. 9.250.000</p>
-                            </div>
-                        </div>
-                        <div class="bank-section mt-5">
-                            <h4 class="text-center">Bank Tersedia</h4>
-                            <div class="row mt-3">
-                                <div class="col-4">
-                                    <img src="{{ url('/assets/images/icon') }}/bca.png" alt="" width="75px" height="24px">
-                                </div>
-                                <div class="col-4">
-                                    <img src="{{ url('/assets/images/icon') }}/bjb.png" alt="" width="75px" height="24px">
-                                </div>
-                                <div class="col-4">
-                                    <img src="{{ url('/assets/images/icon') }}/bri.png" alt="" width="75px" height="24px">
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-4">
-                                    <img src="{{ url('/assets/images/icon') }}/mandiri.png" alt="" width="75px" height="24px">
-                                </div>
-                                <div class="col-4">
-                                    <img src="{{ url('/assets/images/icon') }}/bni.png" alt="" width="75px" height="24px">
-                                </div>
-                                <div class="col-4">
-                                    <img src="{{ url('/assets/images/icon') }}/btn.png" alt="" width="75px" height="24px">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-4 mt-5">
-                            <h4 class="text-center">Pembayaran</h4>
-                        </div>
-                        <div class="mb-3">
-                            <p>Jenis Pembayaran</p>
-                        </div>
-                        <div id="form-section">
-                            <div class="mb-4">
-                                <div class="d-flex flex-wrap gap-3">
-                                    <div class="payment-method">
-                                        <input type="radio" id="alfamart" name="payment" class="payment" value="1" checked>
-                                        <label for="alfamart">
-                                            <img src="{{ url('/assets/images/icon/') }}/alfamart.png" />
-                                        </label>
-                                    </div>
-                                    <div class="payment-method">
-                                        <input type="radio" id="indomaret" name="payment" class="payment" value="2">
-                                        <label for="indomaret">
-                                            <img src="{{ url('/assets/images/icon/') }}/indomaret.png" />
-                                        </label>
-                                    </div>
-                                    <div class="payment-method">
-                                        <input type="radio" id="virtual-account" name="payment" class="payment" value="3">
-                                        <label for="virtual-account">
-                                            <img src="{{ url('/assets/images/icon/') }}/va.png" />
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="bank_group" class="d-none animate__animated animate__fadeIn">
-                                <div class="radio-button-group">
-                                    <label class="radio-card">
-                                        <input type="radio" name="bank" value="bca" checked>
-                                        <div class="card-body">
-                                            <div class="check-box">
-                                                <div class="check-icon">✔</div>
-                                            </div>
-                                            <img src="{{ url('/assets/images/icon') }}/bca.png" alt="BCA">
-                                        </div>
-                                    </label>
-                                    <label class="radio-card">
-                                        <input type="radio" name="bank" value="mandiri">
-                                        <div class="card-body">
-                                            <div class="check-box">
-                                                <div class="check-icon">✔</div>
-                                            </div>
-                                            <img src="{{ url('/assets/images/icon') }}/mandiri.png" alt="Mandiri">
-                                        </div>
-                                    </label>
-                                    <label class="radio-card">
-                                        <input type="radio" name="bank" value="bri">
-                                        <div class="card-body">
-                                            <div class="check-box">
-                                                <div class="check-icon">✔</div>
-                                            </div>
-                                            <img src="{{ url('/assets/images/icon') }}/bri.png" alt="BRI">
-                                        </div>
-                                    </label>
-                                    <label class="radio-card">
-                                        <input type="radio" name="bank" value="bni">
-                                        <div class="card-body">
-                                            <div class="check-box">
-                                                <div class="check-icon">✔</div>
-                                            </div>
-                                            <img src="{{ url('/assets/images/icon') }}/bni.png" alt="BNI">
-                                        </div>
-                                    </label>
-                                    <label class="radio-card">
-                                        <input type="radio" name="bank" value="cimb">
-                                        <div class="card-body">
-                                            <div class="check-box">
-                                                <div class="check-icon">✔</div>
-                                            </div>
-                                            <img src="{{ url('/assets/images/icon') }}/cimb.png" alt="cimb">
-                                        </div>
-                                    </label>
-                                    <label class="radio-card">
-                                        <input type="radio" name="bank" value="permata">
-                                        <div class="card-body">
-                                            <div class="check-box">
-                                                <div class="check-icon">✔</div>
-                                            </div>
-                                            <img src="{{ url('/assets/images/icon') }}/permata.png" alt="permata">
-                                        </div>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
         </div>
-    </div>
-    <div class="sticky-container">
-        <div class="sticky-content d-flex justify-content-between align-items-center">
-            <div>
-                <div class="price text-dark" id="price">Rp.500.000</div>
-                <div class="note">*biaya booking + BI checking</div>
-            </div>
-            <button class="btn btn-primary" id="btn-booking" onclick="validasiBook()" style="border-radius: 10px">Booking
-                Sekarang</button>
-        </div>
-    </div>
-    </div>
-    </div>
-</section>
-@include('chat.app')
-@include('modal.lokasi_detail')
-@include('modal.spesifikasi_detail')
-@include('modal.sukses')
-@include('modal.dekat_dengan')
-@include('modal.potongan')
+    </section>
+    @include('chat.app')
+    @include('modal.lokasi_detail')
+    @include('modal.spesifikasi_detail')
+    @include('modal.sukses')
+    @include('modal.dekat_dengan')
+    @include('modal.potongan')
 
     {{-- <div class="chat-ai d-flex flex-column shadow-sm">
     <div><i class="bi bi-chat-dots"></i></div>
@@ -1286,1008 +1320,916 @@ s.parentNode.insertBefore(mychat, s);
         }
 
         $(document).ready(function() {
-                    // potongan harga js
-                    $('#agreeCheckbox').on('change', function() {
-                        $('#okButton').prop('disabled', !this.checked);
+            // potongan harga js
+            $('#agreeCheckbox').on('change', function() {
+                $('#okButton').prop('disabled', !this.checked);
+            });
+            $('#okButton').on('click', function() {
+                $('#value_potongan').removeClass('d-none');
+                $('#potonganAwal').addClass('d-none');
+                $('#value_total_awal').addClass('d-none');
+                $('#value_total').removeClass('d-none');
+                $('#potonganText').removeClass('d-none');
+                $('#potonganTextVal').removeClass('d-none');
+                $('#agreementModal').modal('hide');
+                $('#dpPotongan').removeClass('d-none');
+                $('#dpNonPotongan').addClass('d-none');
+                $('#pagarPotongan').removeClass('d-none');
+                $('#pagarNonPotongan').addClass('d-none');
+                $('#tembokPotongan').removeClass('d-none');
+                $('#tembokNonPotongan').addClass('d-none');
+                $('#iplPotongan').removeClass('d-none');
+                $('#iplNonPotongan').addClass('d-none');
+            });
+
+            $('#map').find('a').remove();
+            addLegend(map);
+            const mobile = isMobile();
+            var wind = $('.container-group');
+            var sticky = $('#sticky-header');
+
+            wind.on('scroll', function() {
+                var scroll = wind.scrollTop();
+
+                if (scroll > 0) {
+                    mobile ? '' : sticky.addClass('d-none')
+                } else {
+                    sticky.removeClass('d-none');
+                }
+            });
+
+
+            const blok_select = new SlimSelect({
+                select: '#blok',
+                placeholder: 'Pilih Blok',
+                allowDeselect: true
+            })
+
+            // const kelurahan_select = new SlimSelect({
+            //     select: '#kelurahan',
+            //     allowDeselect: true
+            // })
+
+            $('input[name="tgl_lahir"]').mask("9999-99-99", {
+                placeholder: 'YYYY-MM-DD'
+            });
+
+            $('input[name="tgl_lahir"]').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                minYear: 1901,
+                maxYear: parseInt(moment().format('YYYY'), 10),
+                autoUpdateInput: false // Membuat input awal kosong
+            });
+
+            // Menangani event apply untuk memperbarui nilai input
+            $('input[name="tgl_lahir"]').on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('YYYY-MM-DD')); // Format menjadi DD/MM/YYYY
+            });
+
+            $('input[name="tgl_lahir_p"]').mask("9999-99-99", {
+                placeholder: 'YYYY-MM-DD'
+            });
+
+            $('input[name="tgl_lahir_p"]').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                minYear: 1901,
+                maxYear: parseInt(moment().format('YYYY'), 10),
+                autoUpdateInput: false // Membuat input awal kosong
+            });
+
+            // Menangani event apply untuk memperbarui nilai input
+            $('input[name="tgl_lahir_p"]').on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('YYYY-MM-DD')); // Format menjadi DD/MM/YYYY
+            });
+
+            $('.owl-carousel').owlCarousel({
+                loop: false,
+                nav: true,
+                dots: false,
+                items: 1,
+                navText: ["<i class='bi bi-caret-left-fill border-0'></i>",
+                    "<i class='bi bi-caret-right-fill border-0'></i>"
+                ],
+            })
+
+            // scroll carousel active check
+            let currentActiveCarousel = null;
+            $('.container-group').on('scroll', function() {
+                const carousels = [{
+                        section: '#aside-section-1',
+                        carousel: '#gallery-carousel-1'
+                    },
+                    {
+                        section: '#aside-section-2',
+                        carousel: '#gallery-carousel-2'
+                    },
+                    {
+                        section: '#aside-section-3',
+                        carousel: '#gallery-carousel-3'
+                    },
+                    {
+                        section: '#aside-section-4',
+                        carousel: '#gallery-carousel-4'
+                    },
+                    {
+                        section: '#aside-section-5',
+                        carousel: '#gallery-carousel-5'
+                    },
+                    {
+                        section: '#aside-section-6',
+                        carousel: '#gallery-carousel-6'
+                    },
+                    {
+                        section: '#aside-section-7',
+                        carousel: '#gallery-carousel-7'
+                    },
+                    // { section: '#aside-section-8', carousel: '#gallery-carousel-8' },
+                ];
+
+                for (const {
+                        section,
+                        carousel
+                    }
+                    of carousels) {
+                    if (activateCarousel(section, carousel)) {
+                        if (currentActiveCarousel !== carousel) {
+                            currentActiveCarousel = carousel;
+                        }
+                        break;
+                    }
+                }
+            });
+
+            //cek status user
+            $('#status').change(function(e) {
+                e.preventDefault();
+                const status = $(this).val()
+                if (status == 2) {
+                    $('#row_ktp_pg').removeClass('d-none');
+                    $('#row_ktp_pg').removeClass('animate__fadeOut');
+                    $('#row_ktp_pg').addClass('animate__fadeIn');
+                } else {
+                    $('#row_ktp_pg').addClass('d-none');
+                    $('#row_ktp_pg').removeClass('animate__fadeIn');
+                    $('#row_ktp_pg').addClass('animate__fadeOut');
+                }
+            });
+
+            // cek pembayaran
+            $('[name="payment"]').change(function(e) {
+                e.preventDefault();
+                const payment = $("input[name='payment']:checked").val()
+                payment == 3 ? $('#bank_group').removeClass('d-none') : $('#bank_group')
+                    .addClass('d-none');
+            });
+
+            load_data_blok();
+            load_svg(bounds);
+            map.invalidateSize();
+            var mapInitialized = false;
+            var owl = $('.owl-carousel');
+
+            $('svg').css('pointer-events', 'all');
+            // $('path').css('pointer-events', 'all');
+            // $('g').css('pointer-events', 'visiblePainted');
+
+            // Tangkap klik pada elemen SVG
+            $('svg').on('click', function(event) {
+                // Hapus overlay dari elemen yang sebelumnya dipilih (jika ada)
+                if (currentOverlay) {
+                    currentOverlay.css({
+                        fill: '',
+                        'fill-opacity': ''
                     });
-                    $('#okButton').on('click', function() {
-                        $('#value_potongan').removeClass('d-none');
-                        $('#potonganAwal').addClass('d-none');
-                        $('#value_total_awal').addClass('d-none');
-                        $('#value_total').removeClass('d-none');
-                        $('#potonganText').removeClass('d-none');
-                        $('#potonganTextVal').removeClass('d-none');
-                        $('#agreementModal').modal('hide');
-                        $('#dpPotongan').removeClass('d-none');
-                        $('#dpNonPotongan').addClass('d-none');
-                        $('#pagarPotongan').removeClass('d-none');
-                        $('#pagarNonPotongan').addClass('d-none');
-                        $('#tembokPotongan').removeClass('d-none');
-                        $('#tembokNonPotongan').addClass('d-none');
-                        $('#iplPotongan').removeClass('d-none');
-                        $('#iplNonPotongan').addClass('d-none');
+                    currentOverlay = null;
+                }
+
+                // Reset styling pada semua elemen <g>
+                $('g').css({
+                    stroke: '',
+                    'stroke-width': ''
+                });
+
+                const target = event.target;
+                console.log(target);
+
+                let selectedBlok;
+                let blokId;
+
+                if (target.tagName === 'path') {
+                    // Jika klik pada elemen path, ambil parent <g>
+                    const parentG = $(target).closest('g');
+                    blokId = parentG.attr('id');
+                    selectedBlok = $(`#${blokId}`);
+                } else if (target.tagName === 'text' || target.tagName === 'tspan') {
+                    // Jika klik pada elemen text atau tspan, gunakan teks sebagai id
+                    const textContent = $(target).text().trim();
+                    blokId = textContent;
+                    selectedBlok = $(`g[id="${blokId}"]`);
+                }
+
+                if (selectedBlok && selectedBlok.length) {
+                    const blok_s = selectedBlok[0].id;
+                    console.log("Blok yang dipilih:", blok_s);
+
+                    // Terapkan overlay hitam di atas elemen yang dipilih
+                    selectedBlok.css({
+                        fill: 'black',
+                        'fill-opacity': 0.5,
+                        stroke: 'blue',
+                        'stroke-width': '2'
                     });
 
-                    $('#map').find('a').remove();
-                    addLegend(map);
-                    const mobile = isMobile();
-                    var wind = $('.container-group');
-                    var sticky = $('#sticky-header');
+                    // Simpan elemen yang sedang memiliki overlay agar bisa direset saat klik berikutnya
+                    currentOverlay = selectedBlok;
 
-                    wind.on('scroll', function() {
-                        var scroll = wind.scrollTop();
+                    // Jika objek blok_select tersedia (misalnya dari Slim Select), set nilai yang sesuai
+                    if (typeof blok_select !== 'undefined' && blok_select) {
+                        blok_select.setSelected(blok_s.toUpperCase());
+                    } else {
+                        Swal.fire({
+                            icon: "warning",
+                            title: "Opps!",
+                            text: "Blok tersebut sudah terjual!",
+                            showConfirmButton: true,
+                            timer: 3000
+                        });
+                        // console.warn("Slim Select tidak ditemukan.");
+                    }
+                }
+            });
 
-                        if (scroll > 0) {
-                            mobile ? '' : sticky.addClass('d-none')
+
+        });
+
+        let currentOverlay = null;
+
+
+        function load_data_blok() {
+            var id_project = $('#id_project').val();
+            $.ajax({
+                url: `{{ url('/status_blok/') }}/` + id_project,
+                method: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    $('svg text').each(function() {
+                        const textContent = $(this).text()
+                            .trim(); // Ambil teks dan hilangkan spasi di awal/akhir
+                        const cleanText = textContent.replace(/\s+/g, ''); // Hilangkan semua spasi
+
+                        if (cleanText.length <= 4 && !textContent.startsWith('ROW') && !textContent
+                            .startsWith('NS')) {
+                            // Sembunyikan elemen jika panjang teks <= 4 dan tidak diawali dengan "ROW"
+                            $(this).css('display', 'none');
+                        }
+                    });
+                    $('svg [id$="-I"]').css('display', 'none');
+                    $('svg g').css('pointer-events', 'none');
+                    $('svg g').css('cursor', 'pointer');
+                    $('svg text').css('cursor', 'pointer');
+                    $('svg text').css('pointer-events', 'none');
+
+                    response.forEach(value => {
+                        $('svg g').each(function() {
+                            const gId = $(this).attr('id');
+                            if (gId == value.blok && value.status != 'Not Sale') {
+                                $(this).css('pointer-events', 'visiblePainted');
+                                $(this).find('path').css('pointer-events', 'all');
+                                $(this).find('path').addClass('clickable');
+                            }
+                        });
+
+                        // Tangani elemen <text> dengan nilai teks
+                        $('svg text').each(function() {
+                            const textContent = $(this).text().trim();
+                            if (textContent == value.blok && value.status != 'Not Sale') {
+                                $(this).css('pointer-events', 'all');
+                                $(this).addClass('clickable');
+                                // $(`svg text`).text(`${value.blok}`).addClass('clickable');
+                            }
+                        });
+                        const blokText = value.blok; // Ambil nama blok dari response
+                        const status = value.status; // Ambil status dari response
+                        const textElement = $(`svg text:contains(${blokText})`);
+                        const indicatorElement = $(`svg #${blokText}-I`);
+                        textElement.css('display', 'none');
+                        if (textElement.length > 0) {
+                            if (status !== 'Not Sale') {
+                                textElement.css('display', 'block');
+                            } else {
+                                textElement.css('display', 'none');
+                            }
                         } else {
                             sticky.removeClass('d-none');
                         }
+                        indicatorElement.css('display', 'none');
+                        if (indicatorElement.length > 0) {
+                            if (status !== 'Not Sale') {
+                                indicatorElement.css('display', 'block');
+                            } else {
+                                indicatorElement.css('display', 'none');
+                            }
+                        } else {
+                            indicatorElement.css('display', 'none');
+                        }
+
+                        var defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+                        var gradient = document.createElementNS("http://www.w3.org/2000/svg",
+                            "linearGradient");
+                        gradient.setAttribute("id", `myGradient-${value.blok}`);
+
+
+
+                        // $(`#path`).css("fill", `#B8B8B8`);
+
+                        // Warna pertama (STATUS)
+                        var stop1 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+                        stop1.setAttribute("offset", "50%");
+
+                        if (value.status == 'Not Sale') {
+                            stop1.setAttribute("stop-color", "#458BC9");
+
+                        } else if (value.status == 'Terjual') {
+                            stop1.setAttribute("stop-color", "#FD8A8A");
+                        } else if (value.status == 'Waiting List') {
+                            stop1.setAttribute("stop-color", "yellow");
+                            // } else if (value.status == 'Booking' || value.status == 'Akad' || value
+                            //     .status == 'Booking Cash' || value.status == 'SP3K' || value.status ==
+                            //     'Pindah Blok' || value.status == 'Bank') {
+                            //     stop1.setAttribute("stop-color", "#FD8A8A");
+                        } else if (value.status == 'Kosong') {
+                            stop1.setAttribute("stop-color", "white");
+                        } else {
+                            stop1.setAttribute("stop-color", "#458BC9");
+                        }
+
+
+                        gradient.append(stop1);
+                        // gradient.append(stop2);
+                        defs.append(gradient);
+                        // Menambahkan elemen gradient ke dalam SVG
+                        $(`svg`).append(defs);
+                        // Mengatur atribut fill elemen path dengan URL gradient yang diinginkan
+                        $(`#${value.blok} path`).css("fill", `url(#myGradient-${value.blok})`);
+                        $(`svg g[data-name="${value.blok}"] path`).css("fill",
+                            `url(#myGradient-${value.blok})`);
+
+                        // INDIKATOR
+                        if (value.status_ontime == 'Ontime') {
+                            $(`#${value.blok}-i`).css('fill', '#ADFF2F');
+                            // total_ontime++;
+
+                        } else if (value.status_ontime == 'Late') {
+                            $(`#${value.blok}-i`).css('fill', 'red');
+                            // total_late++;
+
+                        } else { // -
+
+                            $(`#${value.blok}-i`).css('fill', 'grey');
+                            // total_no_spk++;
+
+                        }
+
                     });
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('Error loading JSON:', textStatus, errorThrown);
+                }
+            });
 
+        }
 
-                    const blok_select = new SlimSelect({
-                        select: '#blok',
-                        placeholder: 'Pilih Blok',
-                        allowDeselect: true
-                    })
+        var svgOverlay;
 
-                    // const kelurahan_select = new SlimSelect({
-                    //     select: '#kelurahan',
-                    //     allowDeselect: true
-                    // })
+        function load_svg(bounds) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', `{{ url('/assets/siteplan/') . '/' . $project_add->siteplan }}`,
+                false); // false makes it synchronous
+            xhr.send(null);
 
-                    $('input[name="tgl_lahir"]').mask("9999-99-99", {
-                        placeholder: 'YYYY-MM-DD'
+            if (xhr.status === 200) {
+                var svgElement = document.createElement('div');
+                svgElement.innerHTML = xhr.responseText;
+                // Pastikan menggunakan bounds yang dikirim sebagai parameter
+                svgOverlay = L.svgOverlay(svgElement.firstElementChild, bounds).addTo(map);
+
+                var svgDocument = $(svgElement.firstElementChild);
+            } else {
+                console.error('Error loading SVG:', xhr.statusText);
+            }
+
+            $('svg #JU').css('fill', '#FFFF5A');
+            // $('svg #JK').css('fill', '#B8B8B8');
+        }
+
+        // format rupiah
+        function formatRupiah(angka) {
+            let currency = new Intl.NumberFormat('id', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0
+            }).format(angka);
+
+            return currency
+        }
+        var blinkInterval;
+
+        $('#blok').change(function(e) {
+            e.preventDefault();
+            var blok = $(this).val().trim();
+            if (!blok) {
+
+                // console.warn("Blok value is empty. No block selected.");
+                Swal.fire({
+                    icon: "warning",
+                    title: "Opps!",
+                    text: "Blok tersebut sudah terjual!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            } else {
+                var selectedBlok = $(`#${$.escapeSelector(blok)}`);
+                // console.log("Selected blok element:", selectedBlok);
+                let harga = $(this).find(':selected').data('harga'),
+                    nominal = $(this).find(':selected').data('nominal'),
+                    dp = $(this).find(':selected').data('dp'),
+                    hook = $(this).find(':selected').data('biaya_hook'),
+                    ipl = $(this).find(':selected').data('biaya_ipl'),
+                    pagar = $(this).find(':selected').data('biaya_pagar'),
+                    kelebihan_tanah = $(this).find(':selected').data('biaya_kelebihan_tanah'),
+                    bphtb = $(this).find(':selected').data('biaya_bphtb'),
+                    total = $(this).find(':selected').data('total'),
+                    potongan = $(this).find(':selected').data('potongan'),
+                    total_all = $(this).find(':selected').data('total_all')
+                $('#harga_blok').text(formatRupiah(harga));
+                $('#price').text(formatRupiah(nominal));
+                $('#nominal_booking').val(nominal);
+                $('#value_booking').text(formatRupiah(nominal));
+                $('#value_dp').text(formatRupiah(dp));
+                $('#value_dp2').text(formatRupiah(dp));
+                $('#value_hook').text(formatRupiah(hook));
+                $('#value_ipl').text(formatRupiah(ipl));
+                $('#value_ipl2').text(formatRupiah(ipl));
+                $('#value_pagar').text(formatRupiah(pagar));
+                $('#value_pagar2').text(formatRupiah(pagar));
+                $('#value_kelta').text(formatRupiah(kelebihan_tanah));
+                $('#value_bphtb').text(formatRupiah(bphtb));
+                $('#value_subtotal').text(formatRupiah(total));
+                $('#value_potongan').text(formatRupiah(potongan));
+                $('#value_potonganBtn').text(formatRupiah(potongan));
+                $('#value_total').text(formatRupiah(total_all));
+                $('#value_total_awal').text(formatRupiah(total));
+                clearInterval(blinkInterval);
+
+                // Clear all blue strokes pada semua blok
+                $('g').css({
+                    'stroke': '',
+                    'stroke-width': ''
+                });
+
+                var selectedBlok = $(`#${blok}`);
+
+                if (currentOverlay) {
+                    currentOverlay.css({
+                        fill: '',
+                        'fill-opacity': ''
                     });
+                    currentOverlay = null;
+                }
 
-                    $('input[name="tgl_lahir"]').daterangepicker({
-                        singleDatePicker: true,
-                        showDropdowns: true,
-                        minYear: 1901,
-                        maxYear: parseInt(moment().format('YYYY'), 10),
-                        autoUpdateInput: false // Membuat input awal kosong
-                    });
+                // var bbox = selectedBlok.getBoundingClientRect(); // Mendapatkan posisi elemen relatif ke viewport
+                // var svgContainer = svgOverlay._image.getBoundingClientRect(); // Mendapatkan posisi SVG di viewport
 
-                    // Menangani event apply untuk memperbarui nilai input
-                    $('input[name="tgl_lahir"]').on('apply.daterangepicker', function(ev, picker) {
-                        $(this).val(picker.startDate.format('YYYY-MM-DD')); // Format menjadi DD/MM/YYYY
-                    });
+                // // Hitung posisi relatif terhadap SVG container
+                // var relativeX = bbox.left + bbox.width / 2 - svgContainer.left;
+                // var relativeY = bbox.top + bbox.height / 2 - svgContainer.top;
 
-                    $('input[name="tgl_lahir_p"]').mask("9999-99-99", {
-                        placeholder: 'YYYY-MM-DD'
-                    });
+                // var bounds = svgOverlay.getBounds();
+                // var svgWidth = svgContainer.width;
+                // var svgHeight = svgContainer.height;
 
-                    $('input[name="tgl_lahir_p"]').daterangepicker({
-                        singleDatePicker: true,
-                        showDropdowns: true,
-                        minYear: 1901,
-                        maxYear: parseInt(moment().format('YYYY'), 10),
-                        autoUpdateInput: false // Membuat input awal kosong
-                    });
+                // var scaleX = (bounds.getEast() - bounds.getWest()) / svgWidth;
+                // var scaleY = (bounds.getSouth() - bounds.getNorth()) / svgHeight; // South - North karena koordinat peta terbalik
 
-                    // Menangani event apply untuk memperbarui nilai input
-                    $('input[name="tgl_lahir_p"]').on('apply.daterangepicker', function(ev, picker) {
-                        $(this).val(picker.startDate.format('YYYY-MM-DD')); // Format menjadi DD/MM/YYYY
-                    });
+                // var lat = bounds.getNorth() - relativeY * scaleY; // Perhatikan arah Y yang terbalik
+                // var lng = bounds.getWest() + relativeX * scaleX;
 
-                    $('.owl-carousel').owlCarousel({
-                        loop: false,
-                        nav: true,
-                        dots: false,
-                        items: 1,
-                        navText: ["<i class='bi bi-caret-left-fill border-0'></i>",
-                            "<i class='bi bi-caret-right-fill border-0'></i>"
-                        ],
-                    })
+                // console.log(`Terbang ke koordinat: lat ${lat}, lng ${lng}`);
 
-                    // scroll carousel active check
-                    let currentActiveCarousel = null;
-                    $('.container-group').on('scroll', function() {
-                                const carousels = [{
-                                        section: '#aside-section-1',
-                                        carousel: '#gallery-carousel-1'
-                                    },
-                                    {
-                                        section: '#aside-section-2',
-                                        carousel: '#gallery-carousel-2'
-                                    },
-                                    {
-                                        section: '#aside-section-3',
-                                        carousel: '#gallery-carousel-3'
-                                    },
-                                    {
-                                        section: '#aside-section-4',
-                                        carousel: '#gallery-carousel-4'
-                                    },
-                                    {
-                                        section: '#aside-section-5',
-                                        carousel: '#gallery-carousel-5'
-                                    },
-                                    {
-                                        section: '#aside-section-6',
-                                        carousel: '#gallery-carousel-6'
-                                    },
-                                    {
-                                        section: '#aside-section-7',
-                                        carousel: '#gallery-carousel-7'
-                                    },
-                                    // { section: '#aside-section-8', carousel: '#gallery-carousel-8' },
-                                ];
+                // // Terbang ke blok yang dipilih
+                // const zoomLevel = isMobile() ? 20 : 22;
+                // map.flyTo([lat, lng], zoomLevel, {
+                //     animate: true,
+                //     duration: 1.5
+                // });
+                let isHighlighted = false;
 
-                                <<
-                                << << < HEAD
+                // Mulai animasi kedip
+                blinkInterval = setInterval(function() {
+                    if (isHighlighted) {
+                        selectedBlok.css({
+                            stroke: 'blue',
+                            'stroke-width': '2',
+                            'stroke-opacity': 1, // Full opacity
+                            fill: 'black',
+                            'fill-opacity': 0.5
+                        });
+                    } else {
+                        selectedBlok.css({
+                            'stroke': 'blue',
+                            'stroke-width': '2',
+                            'stroke-opacity': 0.3 // Kedip dengan opacity rendah
+                        });
+                    }
+                    isHighlighted = !isHighlighted;
+                }, 500); // Kedip setiap 0.5 detik
+                currentOverlay = selectedBlok;
+                // if (selectedBlok.length && svgOverlay) {
+                // } else {
+                //     console.log('di else');
 
-                                function validasiNoHp(input) {
-                                    let value = input.value.replace(/[^0-9]/g, '');
-                                    input.value = value.replace(/-/g, '').replace(/_/g, '').replace(/\s/g, '');
-                                    if (value.startsWith('0')) {
-                                        input.value = '62' + value.slice(1);
-                                    }
+                //     // var bbox = $(`svg g[data-name="${blok}"]`)[0].getBBox();
+                //     // var bounds = svgOverlay.getBounds();
+                //     // var svgWidth = svgOverlay._image.viewBox.baseVal.width;
+                //     // var svgHeight = svgOverlay._image.viewBox.baseVal.height;
+                //     // var scaleX = (bounds.getEast() - bounds.getWest()) / svgWidth;
+                //     // var scaleY = (bounds.getNorth() - bounds.getSouth()) / svgHeight;
+                //     // var centerX = bbox.x + bbox.width / 2;
+                //     // var centerY = bbox.y + bbox.height / 2;
+                //     // var adjustmentFactor = 0; // Sesuaikan jika perlu
+                //     // var adjustedCenterY = centerY + bbox.height * adjustmentFactor;
+
+                //     // var lat = bounds.getSouth() + (svgHeight - adjustedCenterY) * scaleY;
+                //     // var lng = bounds.getWest() + centerX * scaleX;
+
+                //     // // Terbang ke blok yang dipilih
+                //     // const zoomLevel = isMobile() ? 20 : 22;
+                //     // map.flyTo([lat, lng], zoomLevel, {
+                //     //     animate: true,
+                //     //     duration: 1.5
+                //     // });
+                //     // $(`svg g[data-name="${blok}"]`).css({
+                //     //     'stroke': 'blue',
+                //     //     'stroke-width': '2',
+                //     //     'stroke-opacity': 1 // Full opacity
+                //     // });
+
+                //     // let isHighlighted = false;
+                // }
+            }
+        });
+
+        // ulasan js
+        // const ulasan = document.getElementById('ulasan-container');
+
+        // let isDragging = false;
+        // let startX;
+        // let scrollLeft;
+
+        // ulasan.addEventListener('mousedown', (e) => {
+        //     isDragging = true;
+        //     ulasan.classList.add('dragging');
+        //     startX = e.pageX - ulasan.offsetLeft;
+        //     scrollLeft = ulasan.scrollLeft;
+        // });
+
+        // ulasan.addEventListener('mouseleave', () => {
+        //     isDragging = false;
+        //     ulasan.classList.remove('dragging');
+        // });
+
+        // ulasan.addEventListener('mouseup', () => {
+        //     isDragging = false;
+        //     ulasan.classList.remove('dragging');
+        // });
+
+        // ulasan.addEventListener('mousemove', (e) => {
+        //     if (!isDragging) return;
+        //     e.preventDefault();
+        //     const x = e.pageX - ulasan.offsetLeft;
+        //     const walk = (x - startX) * 2;
+        //     ulasan.scrollLeft = scrollLeft - walk;
+        // });
+
+        $('#jenis_kl').on('change', function() {
+            var selectedValue = $(this).val();
+            console.log(selectedValue);
+            if (selectedValue == 'l') {
+                $('#jenis_kelamin_p').val('p');
+            } else {
+                $('#jenis_kelamin_p').val('l');
+            }
+        });
+
+        // validasi booking
+        function validasiBook() {
+            let nama = $('#nama').val(),
+                no_hp = $('#no_hp').val(),
+                tgl_lahir = $('#tgl_lahir').val(),
+                tempat_lahir = $('#tempat_lahir').val(),
+                tempat_lahir_p = $('#tempat_lahir_p').val(),
+                jenis_kl = $('#jenis_kl').find(":selected").val(),
+                jenis_kelamin_p = $('#jenis_kelamin_p').find(":selected").val(),
+                no_ktp = $('#no_ktp').val(),
+                alamat = $('#alamat_book').val(),
+                alamat_p = $('#alamat_p').val(),
+                pendapatan = $('#pendapatan').val(),
+                status = $('#status').find(":selected").val(),
+                no_ktp_psg = $('#no_ktp_psg').val(),
+                nama_pasangan = $('#nama_pasangan').val(),
+                payment = $("input[name='payment']:checked").val(),
+                bank = $("input[name='bank']:checked").val(),
+                blok = $('#blok').val()
+            kelurahan_val = kelurahanSelect.getSelected();
+            kelurahan = kelurahan_val.toString();
+            sales_val = salesSelect.getSelected();
+            sales = sales_val.toString();
+            referral_val = referralSelect.getSelected();
+            referral = referral_val.toString();
+
+            if (blok == '') {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Opps!",
+                    text: "Blok belum dipilih!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            } else if (nama == '') {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Opps!",
+                    text: "Nama belum diisi!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            } else if (no_hp == '') {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Opps!",
+                    text: "No HP belum diisi!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            } else if (tgl_lahir == '') {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Opps!",
+                    text: "Tanggal lahir belum diisi!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            } else if (tempat_lahir == '') {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Opps!",
+                    text: "Tempat lahir belum diisi!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            } else if (jenis_kl == '') {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Opps!",
+                    text: "Jenis kelamin belum dipilih!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            } else if (no_ktp == '') {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Opps!",
+                    text: "No KTP belum diisi!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            } else if (alamat == '' || alamat == null) {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Opps!",
+                    text: "Alamat belum diisi!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            } else if (kelurahan == null || kelurahan == '') {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Opps!",
+                    text: "Kelurahan belum dipilih!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            } else if (pendapatan == '' || pendapatan == null || pendapatan == 0) {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Opps!",
+                    text: "Pendapatan belum diisi!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            } else if (status == '') {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Opps!",
+                    text: "Status belum dipilih!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            } else if (status == 2 && no_ktp_psg == '') {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Opps!",
+                    text: "No KTP Pasangan belum diisi!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            } else if (status == 2 && nama_pasangan == '') {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Opps!",
+                    text: "Nama Pasangan belum diisi!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            } else if (status == 2 && tgl_lahir_p == '') {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Opps!",
+                    text: "Tanggal lahir Pasangan belum diisi!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            } else if (status == 2 && tempat_lahir_p == '') {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Opps!",
+                    text: "Tempat lahir Pasangan belum diisi!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            } else if (status == 2 && jenis_kelamin_p == '') {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Opps!",
+                    text: "Jenis kelamin Pasangan belum dipilih!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            } else if (status == 2 && alamat_p == '') {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Opps!",
+                    text: "Alamat Pasangan belum diisi!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            } else if (payment == '') {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Opps!",
+                    text: "Payment belum dipilih!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            } else if (payment == 3 && bank == '') {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Opps!",
+                    text: "Bank belum dipilih!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            } else {
+                Swal.fire({
+                    title: 'Submit!',
+                    text: 'Data pada form sudah benar?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes',
+                    cancelButtonText: 'No'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        var form = $('#formBooking')[0]; // Ambil elemen DOM dari jQuery
+                        var formData = new FormData(form); // Buat objek FormData
+
+                        formData.append('blok', blok);
+
+                        // set pendapatan to form
+                        var pendapatanValue = $('#pendapatan').val().replace(/\./g, '');
+                        formData.set('pendapatan', pendapatanValue);
+                        $.ajax({
+                            url: `${baseURL}/simpan_booking`, // Sesuaikan endpoint API
+                            type: 'POST',
+                            dataType: 'json',
+                            data: formData,
+                            processData: false, // Jangan proses data
+                            contentType: false, // Jangan tetapkan content-type secara otomatis
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+                                    'content') // Jika diperlukan CSRF
+                            },
+                            beforeSend: function() {
+                                $('#btn-booking').attr('disabled', true);
+                            },
+                            success: function(response) {
+                                if (response.status) {
+                                    $('#bayarGci').attr('href',
+                                        `https://trusmicorp.com/rspproject/paygate/q/${response.id_gci}`
+                                    );
+                                    $('#expired_time').text(response.expired_time);
+                                    $("#modalSukses").modal('show');
+
+                                    $('#formBooking')[0].reset();
+                                } else {
+                                    Swal.fire({
+                                        icon: "warning",
+                                        title: "Reject!",
+                                        text: response.message,
+                                        showConfirmButton: false,
+                                        timer: 3000
+                                    });
                                 }
-
-                                function validasiPendapatan(input) {
-                                    let value = input.value.replace(/\D/g, '');
-                                    value = new Intl.NumberFormat('id-ID', {
-                                        minimumFractionDigits: 0
-                                    }).format(value);
-                                    input.value = value;
-                                }
-
-                                $(document).ready(function() {
-                                            // potongan harga js
-                                            $('#agreeCheckbox').on('change', function() {
-                                                $('#okButton').prop('disabled', !this.checked);
-                                            });
-                                            $('#okButton').on('click', function() {
-                                                $('#value_potongan').removeClass('d-none');
-                                                $('#potonganAwal').addClass('d-none');
-                                                $('#value_total_awal').addClass('d-none');
-                                                $('#value_total').removeClass('d-none');
-                                                $('#potonganText').removeClass('d-none');
-                                                $('#potonganTextVal').removeClass('d-none');
-                                                $('#agreementModal').modal('hide');
-                                                $('#dpPotongan').removeClass('d-none');
-                                                $('#dpNonPotongan').addClass('d-none');
-                                                $('#pagarPotongan').removeClass('d-none');
-                                                $('#pagarNonPotongan').addClass('d-none');
-                                                $('#tembokPotongan').removeClass('d-none');
-                                                $('#tembokNonPotongan').addClass('d-none');
-                                                $('#iplPotongan').removeClass('d-none');
-                                                $('#iplNonPotongan').addClass('d-none');
-                                            });
-
-                                            $('#map').find('a').remove();
-                                            addLegend(map);
-                                            const mobile = isMobile();
-                                            var wind = $('.container-group');
-                                            var sticky = $('#sticky-header');
-
-                                            wind.on('scroll', function() {
-                                                    var scroll = wind.scrollTop();
-
-                                                    if (scroll > 0) {
-                                                        mobile ? '' : sticky.addClass('d-none')
-                                                    } else {
-                                                        sticky.removeClass('d-none'); ===
-                                                        === =
-                                                        for (const {
-                                                                section,
-                                                                carousel >>>
-                                                                >>> > 506 efa6ce375f3951ddcb02acbfe5b21011cb3b2
-                                                            }
-                                                            of carousels) {
-                                                            if (activateCarousel(section, carousel)) {
-                                                                if (currentActiveCarousel !== carousel) {
-                                                                    currentActiveCarousel = carousel;
-                                                                }
-                                                                break;
-                                                            }
-                                                        }
-                                                    });
-
-                                                //cek status user
-                                                $('#status').change(function(e) {
-                                                    e.preventDefault();
-                                                    const status = $(this).val()
-                                                    if (status == 2) {
-                                                        $('#row_ktp_pg').removeClass('d-none');
-                                                        $('#row_ktp_pg').removeClass('animate__fadeOut');
-                                                        $('#row_ktp_pg').addClass('animate__fadeIn');
-                                                    } else {
-                                                        $('#row_ktp_pg').addClass('d-none');
-                                                        $('#row_ktp_pg').removeClass('animate__fadeIn');
-                                                        $('#row_ktp_pg').addClass('animate__fadeOut');
-                                                    }
-                                                });
-
-                                                // cek pembayaran
-                                                $('[name="payment"]').change(function(e) {
-                                                    e.preventDefault();
-                                                    const payment = $("input[name='payment']:checked").val()
-                                                    payment == 3 ? $('#bank_group').removeClass('d-none') : $(
-                                                            '#bank_group')
-                                                        .addClass('d-none');
-                                                });
-
-                                                load_data_blok(); load_svg(bounds); map.invalidateSize();
-                                                var mapInitialized = false;
-                                                var owl = $('.owl-carousel');
-
-                                                $('svg').css('pointer-events', 'all');
-                                                // $('path').css('pointer-events', 'all');
-                                                // $('g').css('pointer-events', 'visiblePainted');
-
-                                                // Tangkap klik pada elemen SVG
-                                                $('svg').on('click', function(event) {
-                                                    // Hapus overlay dari elemen yang sebelumnya dipilih (jika ada)
-                                                    if (currentOverlay) {
-                                                        currentOverlay.css({
-                                                            fill: '',
-                                                            'fill-opacity': ''
-                                                        });
-                                                        currentOverlay = null;
-                                                    }
-
-                                                    // Reset styling pada semua elemen <g>
-                                                    $('g').css({
-                                                        stroke: '',
-                                                        'stroke-width': ''
-                                                    });
-
-                                                    const target = event.target;
-                                                    console.log(target);
-
-                                                    let selectedBlok;
-                                                    let blokId;
-
-                                                    if (target.tagName === 'path') {
-                                                        // Jika klik pada elemen path, ambil parent <g>
-                                                        const parentG = $(target).closest('g');
-                                                        blokId = parentG.attr('id');
-                                                        selectedBlok = $(`#${blokId}`);
-                                                    } else if (target.tagName === 'text' || target.tagName ===
-                                                        'tspan') {
-                                                        // Jika klik pada elemen text atau tspan, gunakan teks sebagai id
-                                                        const textContent = $(target).text().trim();
-                                                        blokId = textContent;
-                                                        selectedBlok = $(`g[id="${blokId}"]`);
-                                                    }
-
-                                                    if (selectedBlok && selectedBlok.length) {
-                                                        const blok_s = selectedBlok[0].id;
-                                                        console.log("Blok yang dipilih:", blok_s);
-
-                                                        // Terapkan overlay hitam di atas elemen yang dipilih
-                                                        selectedBlok.css({
-                                                            fill: 'black',
-                                                            'fill-opacity': 0.5,
-                                                            stroke: 'blue',
-                                                            'stroke-width': '2'
-                                                        });
-
-                                                        // Simpan elemen yang sedang memiliki overlay agar bisa direset saat klik berikutnya
-                                                        currentOverlay = selectedBlok;
-
-                                                        // Jika objek blok_select tersedia (misalnya dari Slim Select), set nilai yang sesuai
-                                                        if (typeof blok_select !== 'undefined' && blok_select) {
-                                                            blok_select.setSelected(blok_s.toUpperCase());
-                                                        } else {
-                                                            Swal.fire({
-                                                                icon: "warning",
-                                                                title: "Opps!",
-                                                                text: "Blok tersebut sudah terjual!",
-                                                                showConfirmButton: true,
-                                                                timer: 3000
-                                                            });
-                                                            // console.warn("Slim Select tidak ditemukan.");
-                                                        }
-                                                    }
-                                                });
-
-
-                                            });
-
-                                        let currentOverlay = null;
-
-
-                                        function load_data_blok() {
-                                            var id_project = $('#id_project').val();
-                                            $.ajax({
-                                                url: `{{ url('/status_blok/') }}/` + id_project,
-                                                method: 'GET',
-                                                dataType: 'json',
-                                                success: function(response) {
-                                                    $('svg text').each(function() {
-                                                        const textContent = $(this).text()
-                                                            .trim(); // Ambil teks dan hilangkan spasi di awal/akhir
-                                                        const cleanText = textContent.replace(/\s+/g,
-                                                            ''); // Hilangkan semua spasi
-
-                                                        if (cleanText.length <= 4 && !textContent
-                                                            .startsWith('ROW') && !textContent
-                                                            .startsWith('NS')) {
-                                                            // Sembunyikan elemen jika panjang teks <= 4 dan tidak diawali dengan "ROW"
-                                                            $(this).css('display', 'none');
-                                                        }
-                                                    });
-                                                    $('svg [id$="-I"]').css('display', 'none');
-                                                    $('svg g').css('pointer-events', 'none');
-                                                    $('svg g').css('cursor', 'pointer');
-                                                    $('svg text').css('cursor', 'pointer');
-                                                    $('svg text').css('pointer-events', 'none');
-
-                                                    response.forEach(value => {
-                                                        $('svg g').each(function() {
-                                                            const gId = $(this).attr('id');
-                                                            if (gId == value.blok && value
-                                                                .status != 'Not Sale') {
-                                                                $(this).css('pointer-events',
-                                                                    'visiblePainted');
-                                                                $(this).find('path').css(
-                                                                    'pointer-events', 'all');
-                                                                $(this).find('path').addClass(
-                                                                    'clickable');
-                                                            }
-                                                        });
-
-                                                        // Tangani elemen <text> dengan nilai teks
-                                                        $('svg text').each(function() {
-                                                            const textContent = $(this).text()
-                                                                .trim();
-                                                            if (textContent == value.blok &&
-                                                                value.status != 'Not Sale') {
-                                                                $(this).css('pointer-events',
-                                                                    'all');
-                                                                $(this).addClass('clickable');
-                                                                // $(`svg text`).text(`${value.blok}`).addClass('clickable');
-                                                            }
-                                                        });
-                                                        const blokText = value
-                                                        .blok; // Ambil nama blok dari response
-                                                        const status = value
-                                                        .status; // Ambil status dari response
-                                                        const textElement = $(
-                                                            `svg text:contains(${blokText})`);
-                                                        const indicatorElement = $(
-                                                        `svg #${blokText}-I`);
-                                                        textElement.css('display', 'none');
-                                                        if (textElement.length > 0) {
-                                                            if (status !== 'Not Sale') {
-                                                                textElement.css('display', 'block');
-                                                            } else {
-                                                                textElement.css('display', 'none');
-                                                            }
-                                                        } else {
-                                                            textElement.css('display', 'none');
-                                                        }
-                                                        indicatorElement.css('display', 'none');
-                                                        if (indicatorElement.length > 0) {
-                                                            if (status !== 'Not Sale') {
-                                                                indicatorElement.css('display',
-                                                                'block');
-                                                            } else {
-                                                                indicatorElement.css('display', 'none');
-                                                            }
-                                                        } else {
-                                                            indicatorElement.css('display', 'none');
-                                                        }
-
-                                                        var defs = document.createElementNS(
-                                                            "http://www.w3.org/2000/svg", "defs");
-                                                        var gradient = document.createElementNS(
-                                                            "http://www.w3.org/2000/svg",
-                                                            "linearGradient");
-                                                        gradient.setAttribute("id",
-                                                            `myGradient-${value.blok}`);
-
-
-
-                                                        // $(`#path`).css("fill", `#B8B8B8`);
-
-                                                        // Warna pertama (STATUS)
-                                                        var stop1 = document.createElementNS(
-                                                            "http://www.w3.org/2000/svg", "stop");
-                                                        stop1.setAttribute("offset", "50%");
-
-                                                        if (value.status == 'Not Sale') {
-                                                            stop1.setAttribute("stop-color", "#458BC9");
-
-                                                        } else if (value.status == 'Terjual') {
-                                                            stop1.setAttribute("stop-color", "#FD8A8A");
-                                                        } else if (value.status == 'Waiting List') {
-                                                            stop1.setAttribute("stop-color", "yellow");
-                                                            // } else if (value.status == 'Booking' || value.status == 'Akad' || value
-                                                            //     .status == 'Booking Cash' || value.status == 'SP3K' || value.status ==
-                                                            //     'Pindah Blok' || value.status == 'Bank') {
-                                                            //     stop1.setAttribute("stop-color", "#FD8A8A");
-                                                        } else if (value.status == 'Kosong') {
-                                                            stop1.setAttribute("stop-color", "white");
-                                                        } else {
-                                                            stop1.setAttribute("stop-color", "#458BC9");
-                                                        }
-
-
-                                                        gradient.append(stop1);
-                                                        // gradient.append(stop2);
-                                                        defs.append(gradient);
-                                                        // Menambahkan elemen gradient ke dalam SVG
-                                                        $(`svg`).append(defs);
-                                                        // Mengatur atribut fill elemen path dengan URL gradient yang diinginkan
-                                                        $(`#${value.blok} path`).css("fill",
-                                                            `url(#myGradient-${value.blok})`);
-                                                        $(`svg g[data-name="${value.blok}"] path`).css(
-                                                            "fill",
-                                                            `url(#myGradient-${value.blok})`);
-
-                                                        // INDIKATOR
-                                                        if (value.status_ontime == 'Ontime') {
-                                                            $(`#${value.blok}-i`).css('fill',
-                                                            '#ADFF2F');
-                                                            // total_ontime++;
-
-                                                        } else if (value.status_ontime == 'Late') {
-                                                            $(`#${value.blok}-i`).css('fill', 'red');
-                                                            // total_late++;
-
-                                                        } else { // -
-
-                                                            $(`#${value.blok}-i`).css('fill', 'grey');
-                                                            // total_no_spk++;
-
-                                                        }
-
-                                                    });
-                                                },
-                                                error: function(jqXHR, textStatus, errorThrown) {
-                                                    console.error('Error loading JSON:', textStatus,
-                                                        errorThrown);
-                                                }
-                                            });
-
-                                        }
-
-                                        var svgOverlay;
-
-                                        function load_svg(bounds) {
-                                            var xhr = new XMLHttpRequest();
-                                            xhr.open('GET',
-                                                `{{ url('/assets/siteplan/') . '/' . $project_add->siteplan }}`,
-                                                false); // false makes it synchronous
-                                            xhr.send(null);
-
-                                            if (xhr.status === 200) {
-                                                var svgElement = document.createElement('div');
-                                                svgElement.innerHTML = xhr.responseText;
-                                                // Pastikan menggunakan bounds yang dikirim sebagai parameter
-                                                svgOverlay = L.svgOverlay(svgElement.firstElementChild, bounds).addTo(map);
-
-                                                var svgDocument = $(svgElement.firstElementChild);
-                                            } else {
-                                                console.error('Error loading SVG:', xhr.statusText);
-                                            }
-
-                                            $('svg #JU').css('fill', '#FFFF5A');
-                                            // $('svg #JK').css('fill', '#B8B8B8');
-                                        }
-
-                                        // format rupiah
-                                        function formatRupiah(angka) {
-                                            let currency = new Intl.NumberFormat('id', {
-                                                style: 'currency',
-                                                currency: 'IDR',
-                                                minimumFractionDigits: 0
-                                            }).format(angka);
-
-                                            return currency
-                                        }
-                                        var blinkInterval;
-
-                                        $('#blok').change(function(e) {
-                                            e.preventDefault();
-                                            var blok = $(this).val().trim();
-                                            if (!blok) {
-
-                                                // console.warn("Blok value is empty. No block selected.");
-                                                Swal.fire({
-                                                    icon: "warning",
-                                                    title: "Opps!",
-                                                    text: "Blok tersebut sudah terjual!",
-                                                    showConfirmButton: false,
-                                                    timer: 3000
-                                                });
-                                            } else {
-                                                var selectedBlok = $(`#${$.escapeSelector(blok)}`);
-                                                // console.log("Selected blok element:", selectedBlok);
-                                                let harga = $(this).find(':selected').data('harga'),
-                                                    nominal = $(this).find(':selected').data('nominal'),
-                                                    dp = $(this).find(':selected').data('dp'),
-                                                    hook = $(this).find(':selected').data('biaya_hook'),
-                                                    ipl = $(this).find(':selected').data('biaya_ipl'),
-                                                    pagar = $(this).find(':selected').data('biaya_pagar'),
-                                                    kelebihan_tanah = $(this).find(':selected').data(
-                                                        'biaya_kelebihan_tanah'),
-                                                    bphtb = $(this).find(':selected').data('biaya_bphtb'),
-                                                    total = $(this).find(':selected').data('total'),
-                                                    potongan = $(this).find(':selected').data('potongan'),
-                                                    total_all = $(this).find(':selected').data('total_all')
-                                                $('#harga_blok').text(formatRupiah(harga));
-                                                $('#price').text(formatRupiah(nominal));
-                                                $('#nominal_booking').val(nominal);
-                                                $('#value_booking').text(formatRupiah(nominal));
-                                                $('#value_dp').text(formatRupiah(dp));
-                                                $('#value_dp2').text(formatRupiah(dp));
-                                                $('#value_hook').text(formatRupiah(hook));
-                                                $('#value_ipl').text(formatRupiah(ipl));
-                                                $('#value_ipl2').text(formatRupiah(ipl));
-                                                $('#value_pagar').text(formatRupiah(pagar));
-                                                $('#value_pagar2').text(formatRupiah(pagar));
-                                                $('#value_kelta').text(formatRupiah(kelebihan_tanah));
-                                                $('#value_bphtb').text(formatRupiah(bphtb));
-                                                $('#value_subtotal').text(formatRupiah(total));
-                                                $('#value_potongan').text(formatRupiah(potongan));
-                                                $('#value_potonganBtn').text(formatRupiah(potongan));
-                                                $('#value_total').text(formatRupiah(total_all));
-                                                $('#value_total_awal').text(formatRupiah(total));
-                                                clearInterval(blinkInterval);
-
-                                                // Clear all blue strokes pada semua blok
-                                                $('g').css({
-                                                    'stroke': '',
-                                                    'stroke-width': ''
-                                                });
-
-                                                var selectedBlok = $(`#${blok}`);
-
-                                                if (currentOverlay) {
-                                                    currentOverlay.css({
-                                                        fill: '',
-                                                        'fill-opacity': ''
-                                                    });
-                                                    currentOverlay = null;
-                                                }
-
-                                                // var bbox = selectedBlok.getBoundingClientRect(); // Mendapatkan posisi elemen relatif ke viewport
-                                                // var svgContainer = svgOverlay._image.getBoundingClientRect(); // Mendapatkan posisi SVG di viewport
-
-                                                // // Hitung posisi relatif terhadap SVG container
-                                                // var relativeX = bbox.left + bbox.width / 2 - svgContainer.left;
-                                                // var relativeY = bbox.top + bbox.height / 2 - svgContainer.top;
-
-                                                // var bounds = svgOverlay.getBounds();
-                                                // var svgWidth = svgContainer.width;
-                                                // var svgHeight = svgContainer.height;
-
-                                                // var scaleX = (bounds.getEast() - bounds.getWest()) / svgWidth;
-                                                // var scaleY = (bounds.getSouth() - bounds.getNorth()) / svgHeight; // South - North karena koordinat peta terbalik
-
-                                                // var lat = bounds.getNorth() - relativeY * scaleY; // Perhatikan arah Y yang terbalik
-                                                // var lng = bounds.getWest() + relativeX * scaleX;
-
-                                                // console.log(`Terbang ke koordinat: lat ${lat}, lng ${lng}`);
-
-                                                // // Terbang ke blok yang dipilih
-                                                // const zoomLevel = isMobile() ? 20 : 22;
-                                                // map.flyTo([lat, lng], zoomLevel, {
-                                                //     animate: true,
-                                                //     duration: 1.5
-                                                // });
-                                                let isHighlighted = false;
-
-                                                // Mulai animasi kedip
-                                                blinkInterval = setInterval(function() {
-                                                    if (isHighlighted) {
-                                                        selectedBlok.css({
-                                                            stroke: 'blue',
-                                                            'stroke-width': '2',
-                                                            'stroke-opacity': 1, // Full opacity
-                                                            fill: 'black',
-                                                            'fill-opacity': 0.5
-                                                        });
-                                                    } else {
-                                                        selectedBlok.css({
-                                                            'stroke': 'blue',
-                                                            'stroke-width': '2',
-                                                            'stroke-opacity': 0.3 // Kedip dengan opacity rendah
-                                                        });
-                                                    }
-                                                    isHighlighted = !isHighlighted;
-                                                }, 500); // Kedip setiap 0.5 detik
-                                                currentOverlay = selectedBlok;
-                                                // if (selectedBlok.length && svgOverlay) {
-                                                // } else {
-                                                //     console.log('di else');
-
-                                                //     // var bbox = $(`svg g[data-name="${blok}"]`)[0].getBBox();
-                                                //     // var bounds = svgOverlay.getBounds();
-                                                //     // var svgWidth = svgOverlay._image.viewBox.baseVal.width;
-                                                //     // var svgHeight = svgOverlay._image.viewBox.baseVal.height;
-                                                //     // var scaleX = (bounds.getEast() - bounds.getWest()) / svgWidth;
-                                                //     // var scaleY = (bounds.getNorth() - bounds.getSouth()) / svgHeight;
-                                                //     // var centerX = bbox.x + bbox.width / 2;
-                                                //     // var centerY = bbox.y + bbox.height / 2;
-                                                //     // var adjustmentFactor = 0; // Sesuaikan jika perlu
-                                                //     // var adjustedCenterY = centerY + bbox.height * adjustmentFactor;
-
-                                                //     // var lat = bounds.getSouth() + (svgHeight - adjustedCenterY) * scaleY;
-                                                //     // var lng = bounds.getWest() + centerX * scaleX;
-
-                                                //     // // Terbang ke blok yang dipilih
-                                                //     // const zoomLevel = isMobile() ? 20 : 22;
-                                                //     // map.flyTo([lat, lng], zoomLevel, {
-                                                //     //     animate: true,
-                                                //     //     duration: 1.5
-                                                //     // });
-                                                //     // $(`svg g[data-name="${blok}"]`).css({
-                                                //     //     'stroke': 'blue',
-                                                //     //     'stroke-width': '2',
-                                                //     //     'stroke-opacity': 1 // Full opacity
-                                                //     // });
-
-                                                //     // let isHighlighted = false;
-                                                // }
-                                            }
-                                        });
-
-                                        // ulasan js
-                                        // const ulasan = document.getElementById('ulasan-container');
-
-                                        // let isDragging = false;
-                                        // let startX;
-                                        // let scrollLeft;
-
-                                        // ulasan.addEventListener('mousedown', (e) => {
-                                        //     isDragging = true;
-                                        //     ulasan.classList.add('dragging');
-                                        //     startX = e.pageX - ulasan.offsetLeft;
-                                        //     scrollLeft = ulasan.scrollLeft;
-                                        // });
-
-                                        // ulasan.addEventListener('mouseleave', () => {
-                                        //     isDragging = false;
-                                        //     ulasan.classList.remove('dragging');
-                                        // });
-
-                                        // ulasan.addEventListener('mouseup', () => {
-                                        //     isDragging = false;
-                                        //     ulasan.classList.remove('dragging');
-                                        // });
-
-                                        // ulasan.addEventListener('mousemove', (e) => {
-                                        //     if (!isDragging) return;
-                                        //     e.preventDefault();
-                                        //     const x = e.pageX - ulasan.offsetLeft;
-                                        //     const walk = (x - startX) * 2;
-                                        //     ulasan.scrollLeft = scrollLeft - walk;
-                                        // });
-
-                                        $('#jenis_kl').on('change', function() {
-                                            var selectedValue = $(this).val();
-                                            console.log(selectedValue);
-                                            if (selectedValue == 'l') {
-                                                $('#jenis_kelamin_p').val('p');
-                                            } else {
-                                                $('#jenis_kelamin_p').val('l');
-                                            }
-                                        });
-
-                                        // validasi booking
-                                        function validasiBook() {
-                                            let nama = $('#nama').val(),
-                                                no_hp = $('#no_hp').val(),
-                                                tgl_lahir = $('#tgl_lahir').val(),
-                                                tempat_lahir = $('#tempat_lahir').val(),
-                                                tempat_lahir_p = $('#tempat_lahir_p').val(),
-                                                jenis_kl = $('#jenis_kl').find(":selected").val(),
-                                                jenis_kelamin_p = $('#jenis_kelamin_p').find(":selected").val(),
-                                                no_ktp = $('#no_ktp').val(),
-                                                alamat = $('#alamat_book').val(),
-                                                alamat_p = $('#alamat_p').val(),
-                                                pendapatan = $('#pendapatan').val(),
-                                                status = $('#status').find(":selected").val(),
-                                                no_ktp_psg = $('#no_ktp_psg').val(),
-                                                nama_pasangan = $('#nama_pasangan').val(),
-                                                payment = $("input[name='payment']:checked").val(),
-                                                bank = $("input[name='bank']:checked").val(),
-                                                blok = $('#blok').val()
-                                            kelurahan_val = kelurahanSelect.getSelected();
-                                            kelurahan = kelurahan_val.toString();
-                                            sales_val = salesSelect.getSelected();
-                                            sales = sales_val.toString();
-                                            referral_val = referralSelect.getSelected();
-                                            referral = referral_val.toString();
-
-                                            if (blok == '') {
-                                                Swal.fire({
-                                                    icon: "warning",
-                                                    title: "Opps!",
-                                                    text: "Blok belum dipilih!",
-                                                    showConfirmButton: false,
-                                                    timer: 3000
-                                                });
-                                            } else if (nama == '') {
-                                                Swal.fire({
-                                                    icon: "warning",
-                                                    title: "Opps!",
-                                                    text: "Nama belum diisi!",
-                                                    showConfirmButton: false,
-                                                    timer: 3000
-                                                });
-                                            } else if (no_hp == '') {
-                                                Swal.fire({
-                                                    icon: "warning",
-                                                    title: "Opps!",
-                                                    text: "No HP belum diisi!",
-                                                    showConfirmButton: false,
-                                                    timer: 3000
-                                                });
-                                            } else if (tgl_lahir == '') {
-                                                Swal.fire({
-                                                    icon: "warning",
-                                                    title: "Opps!",
-                                                    text: "Tanggal lahir belum diisi!",
-                                                    showConfirmButton: false,
-                                                    timer: 3000
-                                                });
-                                            } else if (tempat_lahir == '') {
-                                                Swal.fire({
-                                                    icon: "warning",
-                                                    title: "Opps!",
-                                                    text: "Tempat lahir belum diisi!",
-                                                    showConfirmButton: false,
-                                                    timer: 3000
-                                                });
-                                            } else if (jenis_kl == '') {
-                                                Swal.fire({
-                                                    icon: "warning",
-                                                    title: "Opps!",
-                                                    text: "Jenis kelamin belum dipilih!",
-                                                    showConfirmButton: false,
-                                                    timer: 3000
-                                                });
-                                            } else if (no_ktp == '') {
-                                                Swal.fire({
-                                                    icon: "warning",
-                                                    title: "Opps!",
-                                                    text: "No KTP belum diisi!",
-                                                    showConfirmButton: false,
-                                                    timer: 3000
-                                                });
-                                            } else if (alamat == '' || alamat == null) {
-                                                Swal.fire({
-                                                    icon: "warning",
-                                                    title: "Opps!",
-                                                    text: "Alamat belum diisi!",
-                                                    showConfirmButton: false,
-                                                    timer: 3000
-                                                });
-                                            } else if (kelurahan == null || kelurahan == '') {
-                                                Swal.fire({
-                                                    icon: "warning",
-                                                    title: "Opps!",
-                                                    text: "Kelurahan belum dipilih!",
-                                                    showConfirmButton: false,
-                                                    timer: 3000
-                                                });
-                                            } else if (pendapatan == '' || pendapatan == null || pendapatan == 0) {
-                                                Swal.fire({
-                                                    icon: "warning",
-                                                    title: "Opps!",
-                                                    text: "Pendapatan belum diisi!",
-                                                    showConfirmButton: false,
-                                                    timer: 3000
-                                                });
-                                            } else if (status == '') {
-                                                Swal.fire({
-                                                    icon: "warning",
-                                                    title: "Opps!",
-                                                    text: "Status belum dipilih!",
-                                                    showConfirmButton: false,
-                                                    timer: 3000
-                                                });
-                                            } else if (status == 2 && no_ktp_psg == '') {
-                                                Swal.fire({
-                                                    icon: "warning",
-                                                    title: "Opps!",
-                                                    text: "No KTP Pasangan belum diisi!",
-                                                    showConfirmButton: false,
-                                                    timer: 3000
-                                                });
-                                            } else if (status == 2 && nama_pasangan == '') {
-                                                Swal.fire({
-                                                    icon: "warning",
-                                                    title: "Opps!",
-                                                    text: "Nama Pasangan belum diisi!",
-                                                    showConfirmButton: false,
-                                                    timer: 3000
-                                                });
-                                            } else if (status == 2 && tgl_lahir_p == '') {
-                                                Swal.fire({
-                                                    icon: "warning",
-                                                    title: "Opps!",
-                                                    text: "Tanggal lahir Pasangan belum diisi!",
-                                                    showConfirmButton: false,
-                                                    timer: 3000
-                                                });
-                                            } else if (status == 2 && tempat_lahir_p == '') {
-                                                Swal.fire({
-                                                    icon: "warning",
-                                                    title: "Opps!",
-                                                    text: "Tempat lahir Pasangan belum diisi!",
-                                                    showConfirmButton: false,
-                                                    timer: 3000
-                                                });
-                                            } else if (status == 2 && jenis_kelamin_p == '') {
-                                                Swal.fire({
-                                                    icon: "warning",
-                                                    title: "Opps!",
-                                                    text: "Jenis kelamin Pasangan belum dipilih!",
-                                                    showConfirmButton: false,
-                                                    timer: 3000
-                                                });
-                                            } else if (status == 2 && alamat_p == '') {
-                                                Swal.fire({
-                                                    icon: "warning",
-                                                    title: "Opps!",
-                                                    text: "Alamat Pasangan belum diisi!",
-                                                    showConfirmButton: false,
-                                                    timer: 3000
-                                                });
-                                            } else if (payment == '') {
-                                                Swal.fire({
-                                                    icon: "warning",
-                                                    title: "Opps!",
-                                                    text: "Payment belum dipilih!",
-                                                    showConfirmButton: false,
-                                                    timer: 3000
-                                                });
-                                            } else if (payment == 3 && bank == '') {
-                                                Swal.fire({
-                                                    icon: "warning",
-                                                    title: "Opps!",
-                                                    text: "Bank belum dipilih!",
-                                                    showConfirmButton: false,
-                                                    timer: 3000
-                                                });
-                                            } else {
-                                                Swal.fire({
-                                                    title: 'Submit!',
-                                                    text: 'Data pada form sudah benar?',
-                                                    icon: 'question',
-                                                    showCancelButton: true,
-                                                    confirmButtonText: 'Yes',
-                                                    cancelButtonText: 'No'
-                                                }).then((result) => {
-                                                    if (result.isConfirmed) {
-                                                        var form = $('#formBooking')[
-                                                        0]; // Ambil elemen DOM dari jQuery
-                                                        var formData = new FormData(form); // Buat objek FormData
-
-                                                        formData.append('blok', blok);
-
-                                                        // set pendapatan to form
-                                                        var pendapatanValue = $('#pendapatan').val().replace(/\./g,
-                                                            '');
-                                                        formData.set('pendapatan', pendapatanValue);
-                                                        $.ajax({
-                                                            url: `${baseURL}/simpan_booking`, // Sesuaikan endpoint API
-                                                            type: 'POST',
-                                                            dataType: 'json',
-                                                            data: formData,
-                                                            processData: false, // Jangan proses data
-                                                            contentType: false, // Jangan tetapkan content-type secara otomatis
-                                                            headers: {
-                                                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]')
-                                                                    .attr(
-                                                                        'content') // Jika diperlukan CSRF
-                                                            },
-                                                            beforeSend: function() {
-                                                                $('#btn-booking').attr('disabled',
-                                                                true);
-                                                            },
-                                                            success: function(response) {
-                                                                if (response.status) {
-                                                                    $('#bayarGci').attr('href',
-                                                                        `https://trusmicorp.com/rspproject/paygate/q/${response.id_gci}`
-                                                                    );
-                                                                    $('#expired_time').text(response
-                                                                        .expired_time);
-                                                                    $("#modalSukses").modal('show');
-
-                                                                    $('#formBooking')[0].reset();
-                                                                } else {
-                                                                    Swal.fire({
-                                                                        icon: "warning",
-                                                                        title: "Reject!",
-                                                                        text: response.message,
-                                                                        showConfirmButton: false,
-                                                                        timer: 3000
-                                                                    });
-                                                                }
-                                                            },
-                                                            error: function(xhr, status, error) {
-                                                                // console.error(`Error: ${error}`);
-                                                                Swal.fire({
-                                                                    icon: "error",
-                                                                    title: status,
-                                                                    text: error,
-                                                                    showConfirmButton: false,
-                                                                    timer: 3000
-                                                                });
-                                                            },
-                                                            complete: function() {
-                                                                $('#btn-booking').attr('disabled',
-                                                                    false);
-                                                            }
-                                                        });
-                                                    }
-                                                });
-                                            }
-
-                                        }
-
-                                        function addLegend(map) {
-                                            var legend = L.control({
-                                                position: 'bottomright'
-                                            });
-
-                                            legend.onAdd = function() {
-                                                var div = L.DomUtil.create('div',
-                                                    'legend card shadow-sm text-center leaflet-bottom-center');
-                                                var legendContent = $('<div>').addClass(
-                                                    'legend-content d-flex flex-column p-1');
-
-                                                // Ubah dari flex-wrap ke flex-column agar per item ke bawah
-                                                var statusRow = $('<div>').addClass(
-                                                    'd-flex flex-column align-items-start');
-
-                                                var statusItems = [{
-                                                        color: 'white',
-                                                        border: '1px solid #ccc',
-                                                        text: 'Kosong'
-                                                    },
-                                                    {
-                                                        color: 'yellow',
-                                                        text: 'Waiting List'
-                                                    },
-                                                    {
-                                                        color: '#FD8A8A',
-                                                        text: 'Terjual'
-                                                    },
-                                                    {
-                                                        color: '#458BC9',
-                                                        text: 'Not Sale'
-                                                    }
-                                                ];
-
-                                                function appendItems(items, container) {
-                                                    items.forEach(function(item) {
-                                                        var legendItem = $('<div>').addClass(
-                                                            'd-flex align-items-center mb-1 item_legends');
-                                                        var box = $('<span>').addClass('legend-box me-2').css({
-                                                            display: 'inline-block',
-                                                            background: item.color,
-                                                            border: item.border || 'none'
-                                                        });
-                                                        legendItem.append(box).append(
-                                                            `<span class="small">${item.text}</span>`);
-                                                        container.append(legendItem);
-                                                    });
-                                                }
-
-                                                appendItems(statusItems, statusRow);
-
-                                                legendContent.append(
-                                                    `<small class="text-secondary mb-2"><i class="fa fa-info-circle small"></i>Tap untuk<br>memilih blok</small>`
-                                                );
-                                                legendContent.append(statusRow);
-
-                                                $(div).append(legendContent);
-
-                                                return div;
-                                            };
-
-                                            legend.addTo(map);
-                                        }
+                            },
+                            error: function(xhr, status, error) {
+                                // console.error(`Error: ${error}`);
+                                Swal.fire({
+                                    icon: "error",
+                                    title: status,
+                                    text: error,
+                                    showConfirmButton: false,
+                                    timer: 3000
+                                });
+                            },
+                            complete: function() {
+                                $('#btn-booking').attr('disabled', false);
+                            }
+                        });
+                    }
+                });
+            }
+
+        }
+
+        function addLegend(map) {
+            var legend = L.control({
+                position: 'bottomright'
+            });
+
+            legend.onAdd = function() {
+                var div = L.DomUtil.create('div', 'legend card shadow-sm text-center leaflet-bottom-center');
+                var legendContent = $('<div>').addClass('legend-content d-flex flex-column p-1');
+
+                // Ubah dari flex-wrap ke flex-column agar per item ke bawah
+                var statusRow = $('<div>').addClass('d-flex flex-column align-items-start');
+
+                var statusItems = [{
+                        color: 'white',
+                        border: '1px solid #ccc',
+                        text: 'Kosong'
+                    },
+                    {
+                        color: 'yellow',
+                        text: 'Waiting List'
+                    },
+                    {
+                        color: '#FD8A8A',
+                        text: 'Terjual'
+                    },
+                    {
+                        color: '#458BC9',
+                        text: 'Not Sale'
+                    }
+                ];
+
+                function appendItems(items, container) {
+                    items.forEach(function(item) {
+                        var legendItem = $('<div>').addClass('d-flex align-items-center mb-1 item_legends');
+                        var box = $('<span>').addClass('legend-box me-2').css({
+                            display: 'inline-block',
+                            background: item.color,
+                            border: item.border || 'none'
+                        });
+                        legendItem.append(box).append(`<span class="small">${item.text}</span>`);
+                        container.append(legendItem);
+                    });
+                }
+
+                appendItems(statusItems, statusRow);
+
+                legendContent.append(
+                    `<small class="text-secondary mb-2"><i class="fa fa-info-circle small"></i>Tap untuk<br>memilih blok</small>`
+                );
+                legendContent.append(statusRow);
+
+                $(div).append(legendContent);
+
+                return div;
+            };
+
+            legend.addTo(map);
+        }
     </script>
     @include('modal.lokasi_detail_js')
     @include('modal.spesifikasi_detail_js')
