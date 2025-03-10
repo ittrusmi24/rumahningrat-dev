@@ -959,7 +959,7 @@
                                     </div>
                                     <div class="row py-2">
                                         <div class="col-12" id="potonganAwal">
-                                            <button type="button" id="btn-potongan" class="btn btn-primary btn-sm"
+                                            <button type="button" id="btn-potongan" class="btn btn-danger btn-sm"
                                                 data-bs-toggle="modal" data-bs-target="#agreementModal">
                                                 Dapatkan Potongan Senilai <span id="value_potonganBtn">Rp.
                                                     19.400.000</span>
@@ -1305,7 +1305,8 @@ s.parentNode.insertBefore(mychat, s);
         }
 
         function validasiNoHp(input) {
-            let value = input.value;
+            let value = input.value.replace(/[^0-9]/g, '');
+            input.value = value.replace(/-/g, '').replace(/_/g, '').replace(/\s/g, '');
             if (value.startsWith('0')) {
                 input.value = '62' + value.slice(1);
             }
