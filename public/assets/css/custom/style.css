@@ -840,7 +840,7 @@ video {
         height: 30vh;
     }
 
-    * {
+    *:not(svg):not(svg *) {
         font-size: var(--fontSize);
     }
 
