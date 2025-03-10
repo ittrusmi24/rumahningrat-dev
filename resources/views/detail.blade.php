@@ -1305,10 +1305,11 @@ s.parentNode.insertBefore(mychat, s);
         }
 
         function validasiNoHp(input) {
-            let value = input.value;
+            let value = input.value.replace(/[^0-9]/g, '');
             if (value.startsWith('0')) {
                 input.value = '62' + value.slice(1);
             }
+            input.value = value;
         }
 
         function validasiPendapatan(input) {
