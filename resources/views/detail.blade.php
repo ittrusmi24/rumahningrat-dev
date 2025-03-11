@@ -1835,7 +1835,7 @@ s.parentNode.insertBefore(mychat, s);
                             'stroke-width': '2',
                             'stroke-opacity': 1, // Full opacity
                             fill: 'black',
-                            'fill-opacity': 0.5
+                            'fill-opacity': 0.85
                         });
                     } else {
                         selectedBlok.css({
