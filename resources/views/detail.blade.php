@@ -1623,7 +1623,7 @@ s.parentNode.insertBefore(mychat, s);
                                 textElement.css('display', 'none');
                             }
                         } else {
-                            sticky.removeClass('d-none');
+                            // sticky.removeClass('d-none');
                         }
                         indicatorElement.css('display', 'none');
                         if (indicatorElement.length > 0) {
