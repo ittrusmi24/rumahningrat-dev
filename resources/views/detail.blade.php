@@ -1192,8 +1192,8 @@ s.parentNode.insertBefore(mychat, s);
     <script src="{{ url('/assets/js') }}/jquery.scrollUp.js"></script>
 
     <!-- slim select -->
-    <script src="https://unpkg.com/slim-select@latest/dist/slimselect.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/slim-select@latest/dist/slimselect.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/2.10.0/slimselect.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/2.10.0/slimselect.css" />
 
     <!-- sweetalert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.15.9/dist/sweetalert2.all.min.js"
