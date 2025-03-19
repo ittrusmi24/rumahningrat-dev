@@ -31,19 +31,19 @@ class DashboardController extends Controller
 
         if ($position = Location::get($ip)) {
             // Successfully retrieved position.
-            if(isset($position->countryName)){
+            if (isset($position->countryName)) {
                 $countryName = $position->countryName;
-            }else{
+            } else {
                 $countryName = 'Unknown';
             }
-            if(isset($position->regionName)){
+            if (isset($position->regionName)) {
                 $regionName = $position->regionName;
-            }else{
+            } else {
                 $regionName = 'Unknown';
             }
-            if(isset($position->cityName)){
+            if (isset($position->cityName)) {
                 $cityName = $position->cityName;
-            }else{
+            } else {
                 $cityName = 'Unknown';
             }
         } else {
@@ -53,7 +53,7 @@ class DashboardController extends Controller
             // Failed retrieving position.
         }
 
-        if($userAgent != 'Uptime-Kuma/1.23.16'){
+        if ($userAgent != 'Uptime-Kuma/1.23.16') {
             Visitor::create([
                 'url' => urldecode($url),
                 'user_agent' => $userAgent,
@@ -68,7 +68,7 @@ class DashboardController extends Controller
         if (!$id_project) {
             return redirect()->route('home');
         }
-        if(!in_array($id_project, [70,40])){
+        if (!in_array($id_project, [70, 40, 68])) {
             return redirect()->route('home');
         }
 
@@ -78,7 +78,7 @@ class DashboardController extends Controller
         $project_add = Project::get_project_additional($id_project);
 
         // kalau tidak ada project additional maka pakai yang jayasampurna dulu biar tidak error
-        if(empty($project_add)){
+        if (empty($project_add)) {
             $project_add = Project::get_project_additional(70);
         }
         $fasilitas = Fasilitas::get_fasilitas_by_id_project($id_project);
