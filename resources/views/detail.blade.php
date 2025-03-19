@@ -1192,8 +1192,8 @@ s.parentNode.insertBefore(mychat, s);
     <script src="{{ url('/assets/js') }}/jquery.scrollUp.js"></script>
 
     <!-- slim select -->
-    <script src="https://unpkg.com/slim-select@latest/dist/slimselect.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/slim-select@latest/dist/slimselect.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/2.10.0/slimselect.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/2.10.0/slimselect.css" />
 
     <!-- sweetalert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.15.9/dist/sweetalert2.all.min.js"
@@ -1623,7 +1623,7 @@ s.parentNode.insertBefore(mychat, s);
                                 textElement.css('display', 'none');
                             }
                         } else {
-                            sticky.removeClass('d-none');
+                            // sticky.removeClass('d-none');
                         }
                         indicatorElement.css('display', 'none');
                         if (indicatorElement.length > 0) {
@@ -1835,7 +1835,7 @@ s.parentNode.insertBefore(mychat, s);
                             'stroke-width': '2',
                             'stroke-opacity': 1, // Full opacity
                             fill: 'black',
-                            'fill-opacity': 0.5
+                            'fill-opacity': 0.85
                         });
                     } else {
                         selectedBlok.css({

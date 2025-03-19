@@ -120,7 +120,7 @@
             </div>
         </div>
     </div>
-
+    
     <div class="slider-gallery-container mt-3" data-aos="fade-down">
         <div class="container-fluid">
             <div class="row">
