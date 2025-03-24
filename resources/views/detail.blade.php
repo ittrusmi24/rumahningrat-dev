@@ -44,6 +44,7 @@
     <script src="https://cdn.maptiler.com/maptiler-sdk-js/v2.5.1/maptiler-sdk.umd.js"></script>
     <link href="https://cdn.maptiler.com/maptiler-sdk-js/v2.5.1/maptiler-sdk.css" rel="stylesheet" />
     <script src="https://cdn.maptiler.com/leaflet-maptilersdk/v2.0.0/leaflet-maptilersdk.js"></script>
+    <meta name="facebook-domain-verification" content="aq48a74aqsz3jzch1v4rsce1r5trkx" />
     <style>
         .leaflet-gl-layer {
             pointer-events: none;

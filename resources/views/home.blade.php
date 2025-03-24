@@ -44,6 +44,7 @@
     <script src="assets/js/vendor/modernizr-3.5.0.min.js"></script>
     <!-- AOS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <meta name="facebook-domain-verification" content="aq48a74aqsz3jzch1v4rsce1r5trkx" />
 @endsection
 
 @section('content')
