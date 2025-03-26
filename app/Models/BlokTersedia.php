@@ -104,6 +104,7 @@ class BlokTersedia extends Model
                     COALESCE(mpu.terima_kunci,5000000) AS dp,
                     COALESCE(p.nominal_free_pagar,0) AS biaya_pagar,
                     COALESCE(p.nominal_free_tembok,0) AS biaya_tembok,
+                    COALESCE(p.nominal_free_dapur,0) AS biaya_dapur,
                     COALESCE(p.nominal_free_ipl,0) AS biaya_ipl,
                     COALESCE(mpu.nominal_hook,0) AS biaya_hook,
                     COALESCE(biaya_kelebihan_tanah,0) AS biaya_kelebihan_tanah,

@@ -86,7 +86,7 @@ class BookingController extends Controller
 
         // TODO Check Blok Tersedia
         // Skema Project Double Booking
-        $list_project_double_booking = ['70'];
+        $list_project_double_booking = ['70', '40'];
         if (in_array($id_project, $list_project_double_booking) == 1) {
             $booking = Booking::isAkad($id_project, $blok);
 

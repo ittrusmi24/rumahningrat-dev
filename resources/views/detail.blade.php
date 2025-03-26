@@ -170,7 +170,7 @@
                     <div id="video_tour">
                     </div>
                     <!-- <iframe src="{{ url('/vt_view') }}" frameborder="0" width="100" height="100"
-                                                                        class="vt_view"></iframe> -->
+                                                                                                                                class="vt_view"></iframe> -->
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-5">
                     <embed src="{{ url('/poi_view/') . '/' . $project_add->id_project }}" class="vt_view">
@@ -734,6 +734,9 @@
                                     <input type="hidden" class="form-control" name="id_project" id="id_project"
                                         value="{{ $project['id_project'] }}">
                                     <input type="hidden" name="nominal_booking" id="nominal_booking">
+                                    <input type="hidden" name="id_voucher" id="id_voucher">
+                                    <input type="hidden" name="diskon_spr" id="diskon_spr">
+                                    <input type="hidden" name="up_spek" id="up_spek">
                                     <div class="mb-2">
                                         <label class="form-label">Nama Lengkap</label>
                                         <input type="text" class="form-control" name="nama_lengkap" id="nama"
@@ -948,6 +951,32 @@
                                             <p class="d-inline" id="value_bphtb">Rp.8.750.000</p>
                                         </div>
                                     </div>
+                                    <div id="divPromo6" class="row">
+                                        <div class="col-6">
+                                            <p>Voucher Dapur</p>
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <p class="text-decoration-line-through d-inline text-danger "
+                                                id="value_promo_dapur_coret">Rp.10.000.000</p>
+                                            <p class="d-inline" id="value_promo_dapur">Rp.0</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <p>Jaminan Voucher</p>
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <p class="d-inline" id="value_jaminan_dapur">Rp.5.000.000</p>
+                                        </div>
+                                    </div>
+                                    <div id="divPromo7" class="row">
+                                        <div class="col-6">
+                                            <p>Promo 50%</p>
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <p class="text-decoration-line-through d-inline text-danger "
+                                                id="value_promo_developer_coret">Rp.0</p>
+                                            <p class="d-inline" id="value_promo_developer">Rp.0</p>
+                                        </div>
+                                    </div>
                                     <hr style="border: 1.5px solid black;" class="mb-2 mt-0">
                                     <div class="row">
                                         <div class="col-6">
@@ -970,6 +999,21 @@
                                         </div>
                                         <div class="col-6 text-end d-none" id="potonganTextVal">
                                             <p class="d-inline text-danger" id="value_potongan">Rp. 19.400.000
+                                            </p>
+                                        </div>
+
+                                        {{-- Promo --}}
+                                        <div class="col-12 d-none" id="promoVoucher">
+                                            <button type="button" id="btn-promo" class="btn btn-warning btn-sm"
+                                                data-bs-toggle="modal" data-bs-target="#promoModal">
+                                                Dapatkan Voucher Tambahan<span id="value_promoBtn"></span>
+                                            </button>
+                                        </div>
+                                        <div class="col-6 d-none" id="promoText">
+                                            <p>Potongan Voucher</p>
+                                        </div>
+                                        <div class="col-6 text-end d-none" id="promoTextVal">
+                                            <p class="d-inline text-danger" id="value_promo">Rp. 0
                                             </p>
                                         </div>
                                     </div>
@@ -1135,6 +1179,7 @@
     @include('modal.sukses')
     @include('modal.dekat_dengan')
     @include('modal.potongan')
+    @include('modal.promo')
 
     {{-- <div class="chat-ai d-flex flex-column shadow-sm">
     <div><i class="bi bi-chat-dots"></i></div>
@@ -1217,7 +1262,7 @@ s.parentNode.insertBefore(mychat, s);
         document.addEventListener("click", function(event) {
             var menu = document.getElementById("menuDropdown");
             var icon = document.querySelector(".menu-icon");
-            if (!menu.contains(event.target) && !icon.contains(event.target)) {
+            if (menu && icon && (!menu.contains(event.target) && !icon.contains(event.target))) {
                 menu.style.display = "none";
             }
         });
@@ -1328,6 +1373,7 @@ s.parentNode.insertBefore(mychat, s);
             $('#okButton').on('click', function() {
                 $('#value_potongan').removeClass('d-none');
                 $('#potonganAwal').addClass('d-none');
+                $('#promoAwal').removeClass('d-none');
                 $('#value_total_awal').addClass('d-none');
                 $('#value_total').removeClass('d-none');
                 $('#potonganText').removeClass('d-none');
@@ -1341,6 +1387,7 @@ s.parentNode.insertBefore(mychat, s);
                 $('#tembokNonPotongan').addClass('d-none');
                 $('#iplPotongan').removeClass('d-none');
                 $('#iplNonPotongan').addClass('d-none');
+                $('#promoVoucher').removeClass('d-none');
             });
 
             $('#map').find('a').remove();
@@ -1783,6 +1830,31 @@ s.parentNode.insertBefore(mychat, s);
                 $('#value_total').text(formatRupiah(total_all));
                 $('#value_total_awal').text(formatRupiah(total));
                 clearInterval(blinkInterval);
+
+                $('#value_potongan').addClass('d-none');
+                $('#potonganAwal').removeClass('d-none');
+                $('#promoAwal').addClass('d-none');
+                $('#value_total_awal').removeClass('d-none');
+                $('#value_total').addClass('d-none');
+                $('#potonganText').addClass('d-none');
+                $('#potonganTextVal').addClass('d-none');
+                $('#agreementModal').modal('hide');
+                $('#dpPotongan').addClass('d-none');
+                $('#dpNonPotongan').removeClass('d-none');
+                $('#pagarPotongan').addClass('d-none');
+                $('#pagarNonPotongan').removeClass('d-none');
+                $('#tembokPotongan').addClass('d-none');
+                $('#tembokNonPotongan').removeClass('d-none');
+                $('#iplPotongan').addClass('d-none');
+                $('#iplNonPotongan').removeClass('d-none');
+                $('#promoVoucher').addClass('d-none');
+                $('#divPromo6').addClass('d-none');
+                $('#divPromo7').addClass('d-none');
+                $('#promoText').addClass('d-none');
+                $('#promoTextVal').addClass('d-none');
+                $('#id_voucher').val('');
+                $('#diskon_spr').val('');
+                $('#up_spek').val('');
 
                 // Clear all blue strokes pada semua blok
                 $('g').css({
@@ -2387,6 +2459,149 @@ s.parentNode.insertBefore(mychat, s);
                     });
                 }, 500) // Delay of 300 ms
             }
+        });
+    </script>
+
+    <script>
+        function selectVoucher(element) {
+            document.querySelectorAll('.voucher-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            element.querySelector('input[name="voucher"]').checked = true;
+            const radioChecked = document.querySelector('input[name="voucher"]:checked');
+            if (radioChecked && radioChecked.value === "6") {
+                $('#syaratPromo6').removeClass('d-none').hide().slideDown(500);
+                $('#syaratPromo7').slideUp(500, function() {
+                    $('input[name="voucher"]').addClass('d-none');
+                });
+                $('#okButtonPromo').prop('disabled', false);
+            } else if (radioChecked && radioChecked.value === "7") {
+                $('#syaratPromo7').removeClass('d-none').hide().slideDown(500);
+                $('#syaratPromo6').slideUp(500, function() {
+                    $('input[name="voucher"]').addClass('d-none');
+                });
+                $('#okButtonPromo').prop('disabled', false);
+            } else {
+                $('#syaratPromo6').addClass('d-none');
+                $('#syaratPromo7').addClass('d-none');
+                $('#okButtonPromo').prop('disabled', true);
+            }
+        }
+
+        $(document).ready(function() {
+            $('input[name="promo"]').change(function() {
+
+            });
+
+            // if ($(this).val == "") {
+            //     $('#okButtonPromo').prop('disabled', false);
+            // } else {
+            //     $('#okButtonPromo').prop('disabled', true);
+            // }
+
+            $('#okButtonPromo').click(function() {
+                $('#promoModal').modal('hide');
+                let promo = $('input[name="voucher"]:checked').val();
+                let subtotalValue = $('#blok').find(':selected').data('total');
+                let potonganValue = $('#blok').find(':selected').data('potongan');
+                let totalValue = $('#blok').find(':selected').data('total_all');
+
+
+                console.log(promo, subtotalValue, potonganValue, totalValue);
+
+
+                let newSubtotalValue;
+                let newPotonganVoucherValue;
+                let newTotalValue;
+
+                $('#value_subtotal').text('');
+                $('#value_promo').text('');
+                $('#value_total').text('');
+
+                $('#divPromo6').addClass('d-none');
+                $('#divPromo7').addClass('d-none');
+
+                if (promo == "6") {
+                    newSubtotalValue = subtotalValue + 15000000;
+                    formattedNewSubtotalValue = newSubtotalValue.toLocaleString('id-ID', {
+                        style: 'currency',
+                        currency: 'IDR',
+                        minimumFractionDigits: 0
+                    });
+                    $('#value_subtotal').text(formattedNewSubtotalValue);
+
+                    newPotonganVoucherValue = 5000000;
+                    formattedNewPotonganVoucherValue = newPotonganVoucherValue.toLocaleString('id-ID', {
+                        style: 'currency',
+                        currency: 'IDR',
+                        minimumFractionDigits: 0
+                    });
+                    $('#value_text').removeClass('d-none');
+                    $('#promoText').removeClass('d-none');
+                    $('#promoTextVal').removeClass('d-none');
+                    $('#value_promo').text(formattedNewPotonganVoucherValue);
+
+                    newTotalValue = totalValue + 5000000;
+                    console.log(newTotalValue);
+                    formattedNewTotalValue = newTotalValue.toLocaleString('id-ID', {
+                        style: 'currency',
+                        currency: 'IDR',
+                        minimumFractionDigits: 0
+                    });
+                    $('#value_total').text(formattedNewTotalValue);
+                    $('#divPromo6').removeClass('d-none');
+                    $('#divPromo7').addClass('d-none');
+
+                    $('#id_voucher').val(6);
+                    $('#diskon_spr').val(0);
+                    $('#up_spek').val(5000000);
+                } else if (promo == "7") {
+                    bphtb = $('#blok').find(':selected').data('biaya_bphtb')
+                    newSubtotalValue = subtotalValue;
+                    formattedNewSubtotalValue = newSubtotalValue.toLocaleString('id-ID', {
+                        style: 'currency',
+                        currency: 'IDR',
+                        minimumFractionDigits: 0
+                    });
+                    $('#value_subtotal').text(formattedNewSubtotalValue);
+
+                    diskon_spr = (bphtb * 50 / 100);
+                    if (diskon_spr > 6000000) {
+                        diskon_spr = 6000000;
+                    }
+                    newTotalValue = totalValue - diskon_spr;
+                    formattedNewTotalValue = newTotalValue.toLocaleString('id-ID', {
+                        style: 'currency',
+                        currency: 'IDR',
+                        minimumFractionDigits: 0
+                    });
+                    $('#value_total').text(formattedNewTotalValue);
+
+                    newPotonganVoucherValue = diskon_spr;
+                    formattedNewPotonganVoucherValue = newPotonganVoucherValue.toLocaleString('id-ID', {
+                        style: 'currency',
+                        currency: 'IDR',
+                        minimumFractionDigits: 0
+                    });
+                    $('#value_text').removeClass('d-none');
+                    $('#promoText').removeClass('d-none');
+                    $('#promoTextVal').removeClass('d-none');
+                    $('#value_promo').text(formattedNewPotonganVoucherValue);
+
+                    $('#divPromo7').addClass('d-none');
+                    $('#divPromo6').addClass('d-none');
+
+                    $('#id_voucher').val(7);
+                    $('#diskon_spr').val(diskon_spr);
+                    $('#up_spek').val(0);
+                } else {
+                    $('#divPromo6').addClass('d-none');
+                    $('#divPromo7').addClass('d-none');
+                }
+
+                $('#promoVoucher').addClass('d-none');
+            });
         });
     </script>
 @endsection
