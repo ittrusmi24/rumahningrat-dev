@@ -84,7 +84,7 @@
                             </div>
                         </label>
                     </div>
-                    <div class="col-md-6">
+                    <div id="voucherDeveloper" class="col-md-6">
                         <label class="card voucher-card" onclick="selectVoucher(this)">
                             <input type="radio" name="voucher" value="7">
                             <div class="checkmark">✔</div>
