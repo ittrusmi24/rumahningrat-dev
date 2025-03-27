@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\BookingCreated;
 use App\Models\BiChecking;
+use App\Models\BicVoucher;
 use App\Models\Booking;
 use App\Models\BookingHistoryRsp;
 use App\Models\BookingStatus;
@@ -226,6 +227,30 @@ class BookingController extends Controller
 
             $data_post_array['gci'] = $data_post_booking;
 
+            // Kebutuhan Voucher Promo Booster
+            if ($request->id_voucher != "") {
+                $id_voucher = strip_tags(trim($request->id_voucher));
+                $diskon_spr = strip_tags(trim($request->diskon_spr));
+                $up_spek = strip_tags(trim($request->up_spek));
+                if ($id_voucher == 6) {
+                    // GRATIS DAPUR
+                    BicVoucher::create([
+                        'id_gci' => $id_gci,
+                        'id_voucher' => $id_voucher,
+                        'gratis_dapur' => 1,
+                        'nominal_gratis_dapur' => $up_spek,
+                    ]);
+                }else if($id_voucher == 7){
+                    // DISKON SPR 50%
+                    BicVoucher::create([
+                        'id_gci' => $id_gci,
+                        'id_voucher' => $id_voucher,
+                        'dev_terbaik' => 1,
+                        'nominal_dev_terbaik' => $diskon_spr,
+                    ]);
+                }
+            }
+
             // 4. TODO Insert Booking Status
             $data_post_booking_status = array(
                 'id_gci' => $id_gci,
@@ -356,8 +381,8 @@ class BookingController extends Controller
             // DB::connection('eces_connection')->commit();
             // DB::connection('rumahningrat_connection')->commit();
 
-             // Trigger event
-             event(new BookingCreated($data_for_event_booking));
+            // Trigger event
+            event(new BookingCreated($data_for_event_booking));
         } catch (\Exception $e) {
             // // Jika terjadi error, batalkan perubahan
             // DB::connection('rsp_connection')->rollBack();

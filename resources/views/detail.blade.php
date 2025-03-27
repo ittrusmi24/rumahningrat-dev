@@ -44,6 +44,7 @@
     <script src="https://cdn.maptiler.com/maptiler-sdk-js/v2.5.1/maptiler-sdk.umd.js"></script>
     <link href="https://cdn.maptiler.com/maptiler-sdk-js/v2.5.1/maptiler-sdk.css" rel="stylesheet" />
     <script src="https://cdn.maptiler.com/leaflet-maptilersdk/v2.0.0/leaflet-maptilersdk.js"></script>
+    <meta name="facebook-domain-verification" content="aq48a74aqsz3jzch1v4rsce1r5trkx"  />
     <style>
         .leaflet-gl-layer {
             pointer-events: none;
@@ -170,7 +171,7 @@
                     <div id="video_tour">
                     </div>
                     <!-- <iframe src="{{ url('/vt_view') }}" frameborder="0" width="100" height="100"
-                                                                                                                                class="vt_view"></iframe> -->
+                                                                                                                                        class="vt_view"></iframe> -->
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-5">
                     <embed src="{{ url('/poi_view/') . '/' . $project_add->id_project }}" class="vt_view">
@@ -729,6 +730,8 @@
                         </div>
                         <div class="row mt-5">
                             <div class="col-12">
+                                <input type="hidden" name="max_quota" id="max_quota" value="{{ $max_quota }}">
+                                <input type="hidden" name="jml_klaim" id="jml_klaim" value="{{ $jml_klaim }}">
                                 <form class="form-booking" id="formBooking">
                                     @csrf
                                     <input type="hidden" class="form-control" name="id_project" id="id_project"
@@ -1371,6 +1374,11 @@ s.parentNode.insertBefore(mychat, s);
                 $('#okButton').prop('disabled', !this.checked);
             });
             $('#okButton').on('click', function() {
+                p_blok = $('#blok').val();
+                if (p_blok == '') {
+                    alert('Slihakna Pilih blok terlebih dahulu');
+                    return;
+                }
                 $('#value_potongan').removeClass('d-none');
                 $('#potonganAwal').addClass('d-none');
                 $('#promoAwal').removeClass('d-none');
@@ -1387,7 +1395,18 @@ s.parentNode.insertBefore(mychat, s);
                 $('#tembokNonPotongan').addClass('d-none');
                 $('#iplPotongan').removeClass('d-none');
                 $('#iplNonPotongan').addClass('d-none');
-                $('#promoVoucher').removeClass('d-none');
+                let max_quota = $('#max_quota').val();
+                let jml_klaim = $('#jml_klaim').val();
+                biaya_bphtb = $('#blok').find(':selected').data('biaya_bphtb');
+                jenis_pembayaran = $('#jenis_pembayaran').val();
+                if (max_quota > 0 && max_quota > jml_klaim && biaya_bphtb >= 4000000 && jenis_pembayaran ==
+                    "KPR FLPP") {
+                    $('#promoVoucher').removeClass('d-none');
+                } else if (max_quota == 0 && biaya_bphtb >= 4000000 && jenis_pembayaran == "KPR FLPP") {
+                    $('#promoVoucher').removeClass('d-none');
+                } else {
+                    $('#promoVoucher').addClass('d-none');
+                }
             });
 
             $('#map').find('a').remove();
@@ -1784,6 +1803,33 @@ s.parentNode.insertBefore(mychat, s);
         }
         var blinkInterval;
 
+        $('#jenis_pembayaran').change(function(e) {
+            e.preventDefault();
+            $('#value_potongan').addClass('d-none');
+            $('#potonganAwal').removeClass('d-none');
+            $('#promoAwal').addClass('d-none');
+            $('#value_total_awal').removeClass('d-none');
+            $('#value_total').addClass('d-none');
+            $('#potonganText').addClass('d-none');
+            $('#potonganTextVal').addClass('d-none');
+            $('#agreementModal').modal('hide');
+            $('#dpPotongan').addClass('d-none');
+            $('#dpNonPotongan').removeClass('d-none');
+            $('#pagarPotongan').addClass('d-none');
+            $('#pagarNonPotongan').removeClass('d-none');
+            $('#tembokPotongan').addClass('d-none');
+            $('#tembokNonPotongan').removeClass('d-none');
+            $('#iplPotongan').addClass('d-none');
+            $('#iplNonPotongan').removeClass('d-none');
+            $('#promoVoucher').addClass('d-none');
+            $('#divPromo6').addClass('d-none');
+            $('#divPromo7').addClass('d-none');
+            $('#promoText').addClass('d-none');
+            $('#promoTextVal').addClass('d-none');
+            $('#id_voucher').val('');
+            $('#diskon_spr').val('');
+            $('#up_spek').val('');
+        });
         $('#blok').change(function(e) {
             e.preventDefault();
             var blok = $(this).val().trim();

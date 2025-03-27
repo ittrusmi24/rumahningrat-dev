@@ -44,6 +44,7 @@
     <script src="assets/js/vendor/modernizr-3.5.0.min.js"></script>
     <!-- AOS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <meta name="facebook-domain-verification" content="aq48a74aqsz3jzch1v4rsce1r5trkx" />
 @endsection
 
 @section('content')
@@ -258,7 +259,7 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <h3 class="text-white">RN AWN Bypass</h3>
-                                            <p style="margin: 0px !important;">Bekasi, Jawa Barat</p>
+                                            <p style="margin: 0px !important;">Cirebon, Jawa Barat</p>
                                             <p style="margin: 0px !important;">Rp. 174.000.000 -,</p>
                                             <div class="mt-1 mb-4 d-flex" style="gap: 8px">
                                                 <div class="d-flex" style="height: 20px; gap: 12px">

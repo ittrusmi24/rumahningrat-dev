@@ -1,18 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Models;
 
-use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class Voucher extends Controller
+class Voucher extends Model
 {
     protected $table = 't_bic_voucher';
     protected $guarded = '';
 
-    public static function checkQuota($periode)
+    public static function checkQuota($periode, $id_project)
     {
-        return DB::connection('rsp_connection')->table('m_gci_voucher as gv')
+
+        return DB::connection('rsp_connection')
+            ->table('m_gci_voucher as gv')
             ->selectRaw('gv.periode, gv.id_voucher, bv.deskripsi, gv.max_quota, COUNT(g.id_gci) as jml_klaim')
             ->leftJoin('m_bic_voucher as bv', 'bv.id', '=', 'gv.id_voucher')
             ->leftJoin('t_bic_voucher as tbv', function ($join) {
@@ -23,8 +25,11 @@ class Voucher extends Controller
                     ->where('g.id_kategori', '=', 3)
                     ->whereRaw("LEFT(g.blok, 2) != 'RD'");
             })
+            ->where('gv.id_project', '=', $id_project)
             ->where('gv.periode', '=', $periode)
-            ->groupBy('gv.id_voucher', 'tbv.id_gci')
-            ->get();
+            ->groupBy('gv.id_voucher', 'gv.id_project')
+            ->first();
+
+        $result = DB::connection('rsp_connection')->select($query, [$periode]);
     }
 }
