@@ -516,7 +516,7 @@
                                                 ini!</p>
                                         </div>
                                     </div>
-                                    <div class="card card-bonus text-center">
+                                    {{-- <div class="card card-bonus text-center">
                                         <div class="card-bonus-body">
                                             <img src="{{ url('/assets') }}/images/icon/wall.png" alt=""
                                                 width="45px" height="45px">
@@ -526,7 +526,7 @@
                                             <p class="text-detail-card-bonus">Spesial hanya berlaku untuk booking di bulan
                                                 ini!</p>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -899,7 +899,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row d-none">
                                         <div class="col-6">
                                             <p>Tembok Dapur</p>
                                         </div>
