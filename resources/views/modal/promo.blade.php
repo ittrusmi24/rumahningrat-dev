@@ -74,7 +74,7 @@
             </div>
             <div class="modal-body">
                 <div class="row py-3">
-                    <div class="col-md-6 mb-4 mb-lg-0">
+                    <div id="voucherDapur" class="col-md-6 mb-4 mb-lg-0">
                         <label class="card voucher-card" onclick="selectVoucher(this)">
                             <input type="radio" name="voucher" value="6">
                             <div class="checkmark">✔</div>

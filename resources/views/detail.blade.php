@@ -171,7 +171,7 @@
                     <div id="video_tour">
                     </div>
                     <!-- <iframe src="{{ url('/vt_view') }}" frameborder="0" width="100" height="100"
-                                                                                                                                            class="vt_view"></iframe> -->
+                                                                                                                                                class="vt_view"></iframe> -->
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-5">
                     <embed src="{{ url('/poi_view/') . '/' . $project_add->id_project }}" class="vt_view">
@@ -1406,9 +1406,13 @@ s.parentNode.insertBefore(mychat, s);
                 let jml_klaim = $('#jml_klaim').val();
                 biaya_bphtb = $('#blok').find(':selected').data('biaya_bphtb');
                 jenis_pembayaran = $('#jenis_pembayaran').val();
-                if (max_quota > 0 && max_quota > jml_klaim && biaya_bphtb >= 4000000 && jenis_pembayaran ==
-                    "KPR FLPP") {
+                if (max_quota > 0 && biaya_bphtb >= 4000000 && jenis_pembayaran == "KPR FLPP") {
                     $('#promoVoucher').removeClass('d-none');
+                    if (max_quota >= jml_klaim) {
+                        $('#voucherDapur').addClass('d-none');
+                    } else {
+                        $('#voucherDapur').removeClass('d-none');
+                    }
                 } else if (max_quota == 0 && biaya_bphtb >= 4000000 && jenis_pembayaran == "KPR FLPP") {
                     $('#promoVoucher').removeClass('d-none');
                 } else {
@@ -2561,7 +2565,7 @@ s.parentNode.insertBefore(mychat, s);
                 let totalValue = $('#blok').find(':selected').data('total_all');
 
 
-                console.log(promo, subtotalValue, potonganValue, totalValue);
+                // console.log(promo, subtotalValue, potonganValue, totalValue);
 
 
                 let newSubtotalValue;
