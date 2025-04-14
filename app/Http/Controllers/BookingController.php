@@ -45,9 +45,27 @@ class BookingController extends Controller
         } else {
             $created_by = $id_sales;
             $id_project = strip_tags(trim($request->id_project));
-            $user_rsp = DB::connection('rsp_connection')->table('user')
-                ->select('id_user', 'spv', 'id_manager', 'id_gm', 'id_divisi')
-                ->where('id_user', '=', $id_sales)->first();
+
+            // $user_rsp = DB::connection('rsp_connection')->table('user')
+            //     ->select('id_user', 'spv', 'id_manager', 'id_gm', 'id_divisi')
+            //     ->where('id_user', '=', $id_sales)->first();
+
+            $user_rsp = DB::connection('rsp_connection')
+                ->table('user')
+                ->select(
+                    'user.id_user',
+                    'user.spv',
+                    DB::raw("IF(hris.xin_employees.designation_id = 1690, COALESCE(p.id_bm, 2029), user.id_manager) AS id_manager"),
+                    'user.id_gm',
+                    'user.id_divisi'
+                )
+                ->leftJoin('hris.xin_employees', 'user.join_hr', '=', 'hris.xin_employees.user_id')
+                ->leftJoin('m_project as p', function ($join) use ($id_project) {
+                    $join->on('p.id_project', '=', DB::raw("'{$id_project}'"));
+                })
+                ->where('user.id_user', $id_sales)
+                ->first();
+                
             $id_spv = $user_rsp->spv;
             $id_manager = $user_rsp->id_manager;
             $id_gm = $user_rsp->id_gm;
@@ -241,7 +259,7 @@ class BookingController extends Controller
                         'gratis_dapur' => 1,
                         'nominal_gratis_dapur' => $up_spek,
                     ]);
-                }else if($id_voucher == 7){
+                } else if ($id_voucher == 7) {
                     // DISKON SPR 50%
                     BicVoucher::create([
                         'id_gci' => $id_gci,
