@@ -16,6 +16,7 @@ use App\Models\Booking;
 use App\Models\Konsumen;
 use Illuminate\Support\Facades\Route;
 use App\Models\Project;
+use Illuminate\Support\Facades\DB;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -91,13 +92,31 @@ Route::get('/search-referral', [ReferralController::class, 'searchReferral']);
 
 
 // Route::get('/test', function () {
-//     $booking = Booking::isAkad(70,'D22');
-//     if(empty($booking)){
-//         return response()->json([
-//             'status' => false,
-//             'message' => 'Blok Tidak Tersedia'
-//         ]);
-//     }
+//     $id_project = 20;
+//     $data_user = [
+//         'sales_code' => 'nina6056'
+//     ];
+//     $user_mkt = DB::connection('rsp_connection')
+//     ->table('user')
+//     ->select(
+//         'user.id_user',
+//         'user.spv',
+//         DB::raw("IF(hris.xin_employees.designation_id = 1690, COALESCE(p.id_bm, 2029), user.id_manager) AS id_manager"),
+//         'user.id_gm',
+//         'user.id_divisi'
+//     )
+//     ->leftJoin('hris.xin_employees', 'user.join_hr', '=', 'hris.xin_employees.user_id')
+//     ->leftJoin('m_project as p', function ($join) use ($id_project) {
+//         $join->on('p.id_project', '=', DB::raw("'{$id_project}'"));
+//     })
+//     ->where('hris.xin_employees.username', $data_user['sales_code'])
+//     ->first();
+
+//     return response()->json([
+//         'status' => true,
+//         'data' => $user_mkt
+//     ]);
+// });
 
 //     if(!isset($booking[0]->is_akad)){
 //         return response()->json([

@@ -44,6 +44,7 @@ class BookingController extends Controller
             $id_divisi = 2;
         } else {
             $created_by = $id_sales;
+            $id_project = strip_tags(trim($request->id_project));
             $user_rsp = DB::connection('rsp_connection')->table('user')
                 ->select('id_user', 'spv', 'id_manager', 'id_gm', 'id_divisi')
                 ->where('id_user', '=', $id_sales)->first();
