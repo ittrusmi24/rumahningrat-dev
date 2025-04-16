@@ -31,7 +31,8 @@ class Booking extends Model
         'reveral',
         'kode_referral',
         'opsi_pagar',
-        'id_divisi'
+        'id_divisi',
+        'booking_from'
     ];
     public $timestamps = false;
 

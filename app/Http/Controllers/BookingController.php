@@ -240,7 +240,8 @@ class BookingController extends Controller
                 'reveral' => $reveral,
                 'kode_referral' => $reveral,
                 'opsi_pagar' => 'Pakai Pagar', // value Pakai Pagar atau Tanpa Pagar
-                'id_divisi' => $id_divisi
+                'id_divisi' => $id_divisi,
+                'booking_from' => 'Rumah Ningrat',
             );
             Booking::create($data_post_booking);
 
