@@ -20,10 +20,11 @@ class Voucher extends Model
             ->leftJoin('t_bic_voucher as tbv', function ($join) {
                 $join->on('gv.id_voucher', '=', DB::raw("FIND_IN_SET(gv.id_voucher, tbv.id_voucher)"));
             })
-            ->leftJoin('t_gci as g', function ($join) {
+            ->leftJoin('t_gci as g', function ($join) use ($periode) {
                 $join->on('g.id_gci', '=', 'tbv.id_gci')
                     ->where('g.id_kategori', '=', 3)
-                    ->whereRaw("LEFT(g.blok, 2) != 'RD'");
+                    ->whereRaw("LEFT(g.blok, 2) != 'RD'")
+                    ->whereRaw("SUBSTRING(g.created_at,1,7) = '$periode'");
             })
             ->where('gv.id_project', '=', $id_project)
             ->where('gv.periode', '=', $periode)

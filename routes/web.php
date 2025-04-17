@@ -16,6 +16,7 @@ use App\Models\Booking;
 use App\Models\Konsumen;
 use Illuminate\Support\Facades\Route;
 use App\Models\Project;
+use App\Models\Voucher;
 use Illuminate\Support\Facades\DB;
 
 // Route::get('/', function () {
@@ -91,7 +92,12 @@ Route::get('/search-sales', [SalesController::class, 'searchSales']);
 Route::get('/search-referral', [ReferralController::class, 'searchReferral']);
 
 
-// Route::get('/test', function () {
+Route::get('/test', function () {
+    $quota = Voucher::checkQuota(date('Y-m'), 70);
+    return response()->json([
+        'status' => true,
+        'data' => $quota
+    ]);
 //     $id_project = 20;
 //     $data_user = [
 //         'sales_code' => 'nina6056'
@@ -116,7 +122,7 @@ Route::get('/search-referral', [ReferralController::class, 'searchReferral']);
 //         'status' => true,
 //         'data' => $user_mkt
 //     ]);
-// });
+});
 
 //     if(!isset($booking[0]->is_akad)){
 //         return response()->json([
