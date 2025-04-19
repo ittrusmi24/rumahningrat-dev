@@ -31,6 +31,6 @@ class Voucher extends Model
             ->groupBy('gv.id_voucher', 'gv.id_project')
             ->first();
 
-        $result = DB::connection('rsp_connection')->select($query, [$periode]);
+        // $result = DB::connection('rsp_connection')->select($query, [$periode]);
     }
 }

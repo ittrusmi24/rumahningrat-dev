@@ -98,30 +98,30 @@ Route::get('/test', function () {
         'status' => true,
         'data' => $quota
     ]);
-//     $id_project = 20;
-//     $data_user = [
-//         'sales_code' => 'nina6056'
-//     ];
-//     $user_mkt = DB::connection('rsp_connection')
-//     ->table('user')
-//     ->select(
-//         'user.id_user',
-//         'user.spv',
-//         DB::raw("IF(hris.xin_employees.designation_id = 1690, COALESCE(p.id_bm, 2029), user.id_manager) AS id_manager"),
-//         'user.id_gm',
-//         'user.id_divisi'
-//     )
-//     ->leftJoin('hris.xin_employees', 'user.join_hr', '=', 'hris.xin_employees.user_id')
-//     ->leftJoin('m_project as p', function ($join) use ($id_project) {
-//         $join->on('p.id_project', '=', DB::raw("'{$id_project}'"));
-//     })
-//     ->where('hris.xin_employees.username', $data_user['sales_code'])
-//     ->first();
+    //     $id_project = 20;
+    //     $data_user = [
+    //         'sales_code' => 'nina6056'
+    //     ];
+    //     $user_mkt = DB::connection('rsp_connection')
+    //     ->table('user')
+    //     ->select(
+    //         'user.id_user',
+    //         'user.spv',
+    //         DB::raw("IF(hris.xin_employees.designation_id = 1690, COALESCE(p.id_bm, 2029), user.id_manager) AS id_manager"),
+    //         'user.id_gm',
+    //         'user.id_divisi's
+    //     )
+    //     ->leftJoin('hris.xin_employees', 'user.join_hr', '=', 'hris.xin_employees.user_id')
+    //     ->leftJoin('m_project as p', function ($join) use ($id_project) {
+    //         $join->on('p.id_project', '=', DB::raw("'{$id_project}'"));
+    //     })
+    //     ->where('hris.xin_employees.username', $data_user['sales_code'])
+    //     ->first();
 
-//     return response()->json([
-//         'status' => true,
-//         'data' => $user_mkt
-//     ]);
+    //     return response()->json([
+    //         'status' => true,
+    //         'data' => $user_mkt
+    //     ]);
 });
 
 //     if(!isset($booking[0]->is_akad)){

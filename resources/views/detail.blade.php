@@ -1406,12 +1406,15 @@ s.parentNode.insertBefore(mychat, s);
                 let jml_klaim = $('#jml_klaim').val();
                 biaya_bphtb = $('#blok').find(':selected').data('biaya_bphtb');
                 jenis_pembayaran = $('#jenis_pembayaran').val();
+                console.log(max_quota);
+                console.log(jml_klaim);
+                
                 if (max_quota > 0 && jenis_pembayaran == "KPR FLPP") {
                     $('#promoVoucher').removeClass('d-none');
                     if (max_quota >= jml_klaim) {
-                        $('#voucherDapur').addClass('d-none');
-                    } else {
                         $('#voucherDapur').removeClass('d-none');
+                    } else {
+                        $('#voucherDapur').addClass('d-none');
                     }
 
                     if (biaya_bphtb >= 4000000) {
