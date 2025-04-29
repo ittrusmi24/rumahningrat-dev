@@ -58,7 +58,7 @@
                 </p>
             </div>
             <div class="col-md-6 text-center">
-                <img src="rumah-ningrat.jpg" alt="Rumah Ningrat" class="img-fluid rounded shadow">
+                <img src="{{url('/assets/images/diamond.webp')}}" alt="Rumah Ningrat" class="img-fluid rounded shadow">
             </div>
         </div>
     </div>
