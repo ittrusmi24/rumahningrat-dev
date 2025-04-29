@@ -48,7 +48,7 @@
          <div class="row line mt-90">
              <div class="col-lg-9 col-12">
                  <div class="copyright-text text-start">
-                     <p class="text-dark">Copyright © <b>IT Trusmi Group</b> All Rights Reserved.</p>
+                     <p class="text-dark">© Copyright 2025 <b>PT Raja Sukses Propertindo</b> All Rights Reserved.</p>
                  </div>
              </div>
              <div class="col-lg-3 col-12">
