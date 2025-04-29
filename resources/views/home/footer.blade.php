@@ -17,7 +17,7 @@
                      </div>
                  </div>
              </div>
-             <div class="col-lg-3 col-md-6">
+             <!-- <div class="col-lg-3 col-md-6">
                  <div class="footer-wiget">
                      <div class="footer-wiget-title">
                          <h4>Peraturan</h4>
@@ -43,7 +43,7 @@
                          </ul>
                      </div>
                  </div>
-             </div>
+             </div> -->
          </div>
          <div class="row line mt-90">
              <div class="col-lg-9 col-12">
@@ -54,10 +54,10 @@
              <div class="col-lg-3 col-12">
                  <div class="footer-social">
                      <ul>
-                         <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                         <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                         <li><a href="#"><i class="fab fa-vimeo-v"></i></a></li>
-                         <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                         <li><a href="https://www.facebook.com/rumahningratid/"><i class="fab fa-facebook-f"></i></a></li>
+                         <!-- <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                         <li><a href="#"><i class="fab fa-vimeo-v"></i></a></li> -->
+                         <li><a href="https://www.instagram.com/rumahningrat_official/"><i class="fab fa-instagram"></i></a></li>
                      </ul>
                  </div>
              </div>
