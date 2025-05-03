@@ -183,6 +183,8 @@ class BlokTersedia extends Model
             CASE
                     WHEN m_project_unit.not_sale = 1 THEN
                         'Not Sale'
+                    WHEN m_project_unit.is_keep = 1 THEN
+                        'Terboking'
                     WHEN COUNT( DISTINCT konsumen.id_gci ) >= 2 THEN 'Terjual'
                     WHEN SUM( CASE WHEN COALESCE(status_proses.id_status_proses,0) IN ( 43, 443, 45, 47 ) THEN 1 ELSE 0 END ) > 0 THEN
                         'Terjual'

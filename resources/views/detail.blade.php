@@ -1743,6 +1743,8 @@ s.parentNode.insertBefore(mychat, s);
                         if (value.status == 'Not Sale') {
                             stop1.setAttribute("stop-color", "#458BC9");
 
+                        } else if (value.status == 'Terboking') {
+                            stop1.setAttribute("stop-color", "#39ff14");
                         } else if (value.status == 'Terjual') {
                             stop1.setAttribute("stop-color", "#FD8A8A");
                         } else if (value.status == 'Waiting List') {
@@ -2336,6 +2338,10 @@ s.parentNode.insertBefore(mychat, s);
                     {
                         color: 'yellow',
                         text: 'Waiting List'
+                    },
+                    {
+                        color: '#39ff14',
+                        text: 'Terboking'
                     },
                     {
                         color: '#FD8A8A',
