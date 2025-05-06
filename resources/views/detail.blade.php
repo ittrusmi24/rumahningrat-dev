@@ -1798,7 +1798,7 @@ s.parentNode.insertBefore(mychat, s);
         function load_svg(bounds) {
             var xhr = new XMLHttpRequest();
             xhr.open('GET', `{{ url('/assets/siteplan/') . '/' . $project_add->siteplan }}`,
-                true); // false makes it synchronous
+                false); // false makes it synchronous
             xhr.send(null);
 
             if (xhr.status === 200) {
