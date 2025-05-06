@@ -1183,6 +1183,7 @@
     @include('modal.dekat_dengan')
     @include('modal.potongan')
     @include('modal.promo')
+    @include('modal.countdown')
 
     {{-- <div class="chat-ai d-flex flex-column shadow-sm">
     <div><i class="bi bi-chat-dots"></i></div>
@@ -1323,16 +1324,10 @@ s.parentNode.insertBefore(mychat, s);
 
         // Membuat bounds dengan padding dari extend
         var extendedBounds = L.latLngBounds(bounds).pad(extend);
-        // var extendedBounds = L.latLngBounds(bounds).pad(1);
         var map = L.map('map', {
             maxBounds: extendedBounds,
             maxBoundsViscosity: 1.0
         }).setView(center_point, 18);
-        // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        //     maxZoom: 19,
-        // }).addTo(map);
-        // const key = 'Q0RluLdskTtpcHzsahrp'; //khusus
-        // const key = 'hP3RiELhMtFKqQl5dB60';//umum
         const key = 'hP3RiELhMtFKqQl5dB60'; // local
         const mtLayer = L.maptilerLayer({
             apiKey: key,
@@ -1370,6 +1365,9 @@ s.parentNode.insertBefore(mychat, s);
 
         $(document).ready(function() {
             // potongan harga js
+            setTimeout(function() {
+                modal_countdown();
+            }, 2000);
             $('#agreeCheckbox').on('change', function() {
                 $('#okButton').prop('disabled', !this.checked);
             });
@@ -1800,7 +1798,7 @@ s.parentNode.insertBefore(mychat, s);
         function load_svg(bounds) {
             var xhr = new XMLHttpRequest();
             xhr.open('GET', `{{ url('/assets/siteplan/') . '/' . $project_add->siteplan }}`,
-                false); // false makes it synchronous
+                true); // false makes it synchronous
             xhr.send(null);
 
             if (xhr.status === 200) {
@@ -1813,6 +1811,25 @@ s.parentNode.insertBefore(mychat, s);
             } else {
                 console.error('Error loading SVG:', xhr.statusText);
             }
+            // $.ajax({
+            //     type: "GET",
+            //     url: `{{ url('/assets/siteplan/') . '/' . $project_add->siteplan }}`,
+            //     // data: "data",
+            //     dataType: "html",
+            //     async: false,
+            //     success: function (response) {
+            //         if (response.status == 200) {
+            //             var svgElement = document.createElement('div');
+            //             svgElement.innerHTML = response.responseText;
+            //             // Pastikan menggunakan bounds yang dikirim sebagai parameter
+            //             svgOverlay = L.svgOverlay(svgElement.firstElementChild, bounds).addTo(map);
+
+            //             var svgDocument = $(svgElement.firstElementChild);
+            //         }else{
+            //             console.error('Error loading SVG:', xhr.statusText);
+            //         }
+            //     }
+            // });
 
             $('svg #JU').css('fill', '#FFFF5A');
             // $('svg #JK').css('fill', '#B8B8B8');
@@ -2061,7 +2078,6 @@ s.parentNode.insertBefore(mychat, s);
 
         $('#jenis_kl').on('change', function() {
             var selectedValue = $(this).val();
-            console.log(selectedValue);
             if (selectedValue == 'l') {
                 $('#jenis_kelamin_p').val('p');
             } else {
@@ -2384,6 +2400,7 @@ s.parentNode.insertBefore(mychat, s);
     @include('modal.lokasi_detail_js')
     @include('modal.spesifikasi_detail_js')
     @include('modal.dekat_dengan_js')
+    @include('modal.countdown_js')
     @include('chat.jsChat')
 
     <script>
