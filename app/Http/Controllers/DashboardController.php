@@ -10,6 +10,7 @@ use App\Models\FasilitasSekitar;
 use App\Models\Project;
 use App\Models\BlokTersedia;
 use App\Models\Lokasi;
+use App\Models\Pekerjaan;
 use App\Models\Ulasan;
 use App\Models\Visitor;
 use App\Models\Voucher;
@@ -110,6 +111,7 @@ class DashboardController extends Controller
         // $content = str_replace('../', url('/') . '/360_view/vt/' . $project_add->link_360.'/', $content);
         // return view('virtual_tour', ['project' => $project, 'content' => $content]);
         $quota = Voucher::checkQuota(date('Y-m'), $id_project);
+        $pekerjaan = Pekerjaan::all();
         return view(
             'detail',
             [
@@ -124,7 +126,8 @@ class DashboardController extends Controller
                 'kotas' => $kota,
                 'max_quota' => isset($quota) ? $quota->max_quota : 0,
                 'jml_klaim' => isset($quota) ? $quota->jml_klaim : 0,
-                'lokasis' => []
+                'lokasis' => [],
+                'pekerjaan' => $pekerjaan
                 // 'content'=>$content
             ]
         );

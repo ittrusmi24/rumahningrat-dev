@@ -96,12 +96,19 @@ class BookingController extends Controller
         $alamat = ucwords(strtolower(strip_tags(trim($request->alamat))));
         $tempat_lahir = ucwords(strtolower(strip_tags(trim($request->tempat_lahir))));
         $no_ktp_p = '';
+
+        $pekerjaan = strip_tags(trim($request->pekerjaan));
+        $tenor = strip_tags(trim($request->tenor));
+        $biaya_hidup = str_replace(".", "", strip_tags(trim($request->biaya_hidup)));
+        
         if ($status == '2') {
             $no_ktp_p = strip_tags(trim($request->no_ktp_p));
             $tgl_lahir_p = strip_tags(trim($request->tgl_lahir_p));
             $tempat_lahir_p = strip_tags(trim($request->tempat_lahir_p));
             $jenis_kelamin_p = strip_tags(trim($request->jenis_kelamin_p));
             $alamat_p = ucwords(strtolower(strip_tags(trim($request->alamat_p))));
+            $pekerjaan_p = strip_tags(trim($request->pekerjaan_p));
+            $pendapatan_p = str_replace(".", "", strip_tags(trim($request->pendapatan_p)));
         }
 
         // TODO Check Blok Tersedia
@@ -172,13 +179,15 @@ class BookingController extends Controller
                 'ktp' => $no_ktp,
                 'usia' => $usia,
                 'id_status' => $status,
-                'id_pekerjaan' => '',
+                'id_pekerjaan' => $pekerjaan,
+                'tenor' => $tenor,
                 'id_sub_pekerjaan' => '',
                 'level_pekerjaan' => '',
                 'ket_pekerjaan' => '',
                 'tempat_lahir' => $tempat_lahir,
                 'tgl_lahir' => $tgl_lahir,
                 'pendapatan' => $pendapatan,
+                'biaya_hidup' => $biaya_hidup,
                 'no_hp' => $no_hp,
                 'no_hp_darurat' => '',
                 'email' => '',
@@ -209,6 +218,8 @@ class BookingController extends Controller
                     'tempat_lahir_p' => $tempat_lahir_p,
                     'tgl_lahir_p' => $tgl_lahir_p,
                     'alamat_p' => $alamat_p,
+                    'pekerjaan_p' => $pekerjaan_p,
+                    'pendapatan_p' => $pendapatan_p,
                     'created_at' => date("Y-m-d H:i:s"),
                     'created_by' => $created_by
                 );

@@ -171,7 +171,7 @@
                     <div id="video_tour">
                     </div>
                     <!-- <iframe src="{{ url('/vt_view') }}" frameborder="0" width="100" height="100"
-                                                                                                                                                    class="vt_view"></iframe> -->
+                                                                                                                                                        class="vt_view"></iframe> -->
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-5">
                     <embed src="{{ url('/poi_view/') . '/' . $project_add->id_project }}" class="vt_view">
@@ -784,9 +784,24 @@
                                         <textarea name="alamat" class="form-control" id="alamat_book" cols="30" rows="3" autocomplete="off"></textarea>
                                     </div>
                                     <div class="mb-2">
+                                        <label class="form-label">Pekerjaan</label>
+                                        <select class="form-select" name="pekerjaan" id="pekerjaan"
+                                            style="min-height: 44px;">
+                                            <option value="" selected>-- Pilih Pekerjaan --</option>
+                                            @foreach ($pekerjaan as $item_perkerjaan)
+                                                <option value="{{ $item_perkerjaan['id_pekerjaan'] }}">{{ $item_perkerjaan['pekerjaan'] }}</option>    
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="mb-2">
                                         <label class="form-label">Pendapatan</label>
                                         <input type="text" class="form-control" name="pendapatan" id="pendapatan"
                                             oninput="validasiPendapatan(this)" autocomplete="off">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">Biaya Hidup</label>
+                                        <input type="text" class="form-control" name="biaya_hidup" id="biaya_hidup"
+                                            oninput="validasiBiayaHidup(this)" autocomplete="off">
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">Status</label>
@@ -830,8 +845,23 @@
                                             <label class="form-label">Alamat Pasangan</label>
                                             <textarea name="alamat_p" class="form-control" id="alamat_p" cols="30" rows="3" autocomplete="off"></textarea>
                                         </div>
+                                        <div class="mb-2">
+                                            <label class="form-label">Pekerjaan Pasangan</label>
+                                            <select class="form-select" name="pekerjaan_p" id="pekerjaan_p"
+                                                style="min-height: 44px;">
+                                                <option value="" selected>-- Pilih Pekerjaan Pasangan --</option>
+                                                @foreach ($pekerjaan as $item_perkerjaan_p)
+                                                    <option value="{{ $item_perkerjaan_p['id_pekerjaan'] }}">{{ $item_perkerjaan_p['pekerjaan'] }}</option>    
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="mb-2">
+                                            <label class="form-label">Pendapatan Pasangan</label>
+                                            <input type="text" class="form-control" name="pendapatan_p" id="pendapatan_p"
+                                                oninput="validasiPendapatanPasangan(this)" autocomplete="off">
+                                        </div>
                                     </div>
-                                    <div class="mb-2">
+                                    <div class="mb-2 mt-2">
                                         <label class="form-label">Sales</label>
                                         <select class="form-control" name="id_sales" id="id_sales"
                                             style="min-height: 44px;">
@@ -853,6 +883,15 @@
                                             <option value="Cash Tahap 3 Bulan">Cash Tahap 3 Bulan</option>
                                             <option value="Cash Tahap 6 Bulan">Cash Tahap 6 Bulan</option>
                                             <option value="Cicilan Komersil">KPR Komersil</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-2" id="div_tenor">
+                                        <label class="form-label">Pilih Tenor</label>
+                                        <select class="form-select" name="tenor" id="tenor">
+                                            <option value="" selected>Pilih Tenor</option>
+                                            <option value="10" data-value="10">10 Tahun</option>
+                                            <option value="15" data-value="15">15 Tahun</option>
+                                            <option value="20" data-value="20">20 Tahun</option>
                                         </select>
                                     </div>
                                     <div class="mb-4 mt-5">
@@ -1270,6 +1309,7 @@ s.parentNode.insertBefore(mychat, s);
                 menu.style.display = "none";
             }
         });
+
         document.addEventListener("DOMContentLoaded", function() {
             const container = document.getElementById('video_tour');
 
@@ -1363,6 +1403,22 @@ s.parentNode.insertBefore(mychat, s);
             input.value = value;
         }
 
+        function validasiPendapatanPasangan(input) {
+            let value = input.value.replace(/\D/g, '');
+            value = new Intl.NumberFormat('id-ID', {
+                minimumFractionDigits: 0
+            }).format(value);
+            input.value = value;
+        }
+
+        function validasiBiayaHidup(input) {
+            let value = input.value.replace(/\D/g, '');
+            value = new Intl.NumberFormat('id-ID', {
+                minimumFractionDigits: 0
+            }).format(value);
+            input.value = value;
+        }
+
         $(document).ready(function() {
             // potongan harga js
             setTimeout(function() {
@@ -1406,7 +1462,7 @@ s.parentNode.insertBefore(mychat, s);
                 jenis_pembayaran = $('#jenis_pembayaran').val();
                 console.log(max_quota);
                 console.log(jml_klaim);
-                
+
                 if (max_quota > 0 && jenis_pembayaran == "KPR FLPP") {
                     $('#promoVoucher').removeClass('d-none');
                     if (max_quota >= jml_klaim) {
@@ -1873,6 +1929,11 @@ s.parentNode.insertBefore(mychat, s);
             $('#id_voucher').val('');
             $('#diskon_spr').val('');
             $('#up_spek').val('');
+            if($(this).val() == "KPR FLPP"){
+                $('#div_tenor').removeClass('d-none');
+            }else{
+                $('#div_tenor').addClass('d-none');
+            }
         });
         $('#blok').change(function(e) {
             e.preventDefault();
@@ -2098,6 +2159,12 @@ s.parentNode.insertBefore(mychat, s);
                 alamat = $('#alamat_book').val(),
                 alamat_p = $('#alamat_p').val(),
                 pendapatan = $('#pendapatan').val(),
+                pekerjaan = $('#pekerjaan').find(":selected").val(),
+                jenis_pembayaran = $('#jenis_pembayaran').find(":selected").val(),
+                tenor = $('#tenor').find(":selected").val(),
+                biaya_hidup = $('#biaya_hidup').val(),
+                pekerjaan_p = $('#pekerjaan_p').find(":selected").val(),
+                pendapatan_p = $('#pendapatan_p').val(),
                 status = $('#status').find(":selected").val(),
                 no_ktp_psg = $('#no_ktp_psg').val(),
                 nama_pasangan = $('#nama_pasangan').val(),
@@ -2183,11 +2250,27 @@ s.parentNode.insertBefore(mychat, s);
                     showConfirmButton: false,
                     timer: 3000
                 });
+            } else if (pekerjaan == '' || pekerjaan == null) {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Opps!",
+                    text: "Pekerjaan belum diisi!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
             } else if (pendapatan == '' || pendapatan == null || pendapatan == 0) {
                 Swal.fire({
                     icon: "warning",
                     title: "Opps!",
                     text: "Pendapatan belum diisi!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            } else if (biaya_hidup == '' || biaya_hidup == null || biaya_hidup == 0) {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Opps!",
+                    text: "Biaya hidup belum diisi!",
                     showConfirmButton: false,
                     timer: 3000
                 });
@@ -2244,6 +2327,30 @@ s.parentNode.insertBefore(mychat, s);
                     icon: "warning",
                     title: "Opps!",
                     text: "Alamat Pasangan belum diisi!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            } else if (status == 2 && (pekerjaan_p == '' || pekerjaan_p == null)) {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Opps!",
+                    text: "Pekerjaan Pasangan belum diisi!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            } else if (status == 2 && (pendapatan_p == '' || pendapatan_p == null)) {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Opps!",
+                    text: "Pendapatan Pasangan belum diisi!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            } else if (jenis_pembayaran == 'KPR FLPP' && tenor == '') {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Opps!",
+                    text: "Tenor belum dipilih!",
                     showConfirmButton: false,
                     timer: 3000
                 });
