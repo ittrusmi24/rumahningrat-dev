@@ -2298,7 +2298,7 @@ s.parentNode.insertBefore(mychat, s);
                             success: function(response) {
                                 if (response.status) {
                                     $('#bayarGci').attr('href',
-                                        `https://trusmicorp.com/rspproject/paygate/q/${response.id_gci}`
+                                        `https://pay.rumahningrat.com/paygate/${response.id_gci}`
                                     );
                                     $('#expired_time').text(response.expired_time);
                                     $("#modalSukses").modal('show');
