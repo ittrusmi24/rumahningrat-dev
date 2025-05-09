@@ -7,6 +7,7 @@ use GuzzleHttp\Client;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class SendWhatsappNotification
 {
@@ -92,9 +93,9 @@ class SendWhatsappNotification
         $send_head_mkt = $this->sendWhatsApp($wa_no_gm, $msg_head_marketing);
         $send_head_mkt = $this->sendWhatsApp('6285324409384', $msg_head_marketing);
 
-        \Log::info('BookingCreated was triggered', ['data' => $event->booking]);
-        \Log::info('BookingCreated send_head_mkt', ['send_head_mkt' => $send_head_mkt]);
-        \Log::info('BookingCreated send_customer', ['send_customer' => $send_customer]);
+        Log::info('BookingCreated was triggered', ['data' => $event->booking]);
+        Log::info('BookingCreated send_head_mkt', ['send_head_mkt' => $send_head_mkt]);
+        Log::info('BookingCreated send_customer', ['send_customer' => $send_customer]);
     }
 
     private function get_content_wa($id_gci)
