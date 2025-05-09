@@ -54,7 +54,7 @@ class SendWhatsappNotification
         $msg_customer .= "https://trusmicorp.com/rspproject/spr_digital_new?id={$md_gci}\n\n";
         $msg_customer .= "Berikutnya Anda dapat melakukan pembayaran untuk booking rumah Anda melalui link berikut:\n\n";
         // $msg_customer .= "{$link_flip}\n\n";
-        $msg_customer .= "https://trusmicorp.com/rspproject/paygate/q/{$md_gci}\n\n";
+        $msg_customer .= "https://pay.rumahningrat.com/paygate/{$md_gci}\n\n";
         $msg_customer .= "Link tersebut akan mengarahkan Anda ke halaman pembayaran yang aman dan terjamin. Kami ingin memastikan bahwa proses pembayaran Anda berjalan dengan lancar dan nyaman.\n\n";
         // $msg_customer .= "Untuk pembayaran selanjutnya anda dapat membuat link pembayaran / virtual akun yang aman dan terjamin melalui link berikut :\nhttps://trusmicorp.com/rspproject/paygate/q/{$md_gci}\n\n";
         $msg_customer .= "Kami informasikan juga untuk pengecekan status proses pengajuan KPR bapak/ibu dapat di akses melalui link berikut dengan login menggunakan nomor hp yang terdaftar.\n\n";
