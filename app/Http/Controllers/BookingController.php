@@ -218,7 +218,7 @@ class BookingController extends Controller
                     'tempat_lahir_p' => $tempat_lahir_p,
                     'tgl_lahir_p' => $tgl_lahir_p,
                     'alamat_p' => $alamat_p,
-                    'pekerjaan_p' => $pekerjaan_p,
+                    'id_pekerjaan_p' => $pekerjaan_p,
                     'pendapatan_p' => $pendapatan_p,
                     'created_at' => date("Y-m-d H:i:s"),
                     'created_by' => $created_by
