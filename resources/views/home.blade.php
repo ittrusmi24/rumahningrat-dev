@@ -99,21 +99,15 @@
                             </div>
                             <div
                                 class="col-12 col-lg-3 d-flex flex-column justify-content-center align-items-center gap-3">
-                                <h5 class="text-white">Komunitas</h5>
-                                <i class="bi bi-people-fill" style="font-size: 5em"></i>
-                                <p class="text-center">Memberikan peluang bagi warga yang memiliki usaha untuk mendapatkan
-                                    pemasukan lebih dengan bantuan pemasaran melalui aplikasi Rumah Ningrat serta
-                                    berkesempatan untuk menjadi Mitra Eksklusif Rumah Ningrat yang dibayar meski hanya di
-                                    rumah</p>
+                                <h5 class="text-white">Ekonomi</h5>
+                                <i class="bi bi-credit-card-fill" style="font-size: 5em"></i>
+                                <p class="text-center">Memberikan peluang bagi warga yang memiliki usaha untuk mendapatkan pemasukan lebih dengan bantuan pemasaran melalui aplikasi Rumah Ningrat serta berkesempatan untuk menjadi Mitra Eksklusif Rumah Ningrat yang dibayar meski hanya di rumah</p>
                             </div>
                             <div
                                 class="col-12 col-lg-3 d-flex flex-column justify-content-center align-items-center gap-3">
-                                <h5 class="text-white">Ekonomi</h5>
-                                <i class="bi bi-credit-card-fill" style="font-size: 5em"></i>
-                                <p class="text-center">Mendorong warga untuk memiliki hidup lebih baik dari segi Kesehatan
-                                    dengan penyediaan
-                                    fasilitas olahraga seperti Jogging Track dan Lapangan Olahraga Multifungsi serta Ruang
-                                    Terbuka Hijau untuk menjaga kualitas Udara tetap sehat</p>
+                                <h5 class="text-white">Komunitas</h5>
+                                <i class="bi bi-people-fill" style="font-size: 5em"></i>
+                                <p class="text-center">Menyediakan ruang untuk membangun jejaring koneksi/relasi antar warga yang memiliki kesamaan Hobi/Pekerjaan/dll melalaui Komunitas Ekslusif Rumah Ningrat hanya dengan menggunakan satu Aplikasi Terintegrasi</p>
                             </div>
                         </div>
                     </div>
