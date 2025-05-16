@@ -78,7 +78,7 @@ class SendWhatsappNotification
             . "🏠 Blok : " . $wa_blok . "\n"
             . "⛩️ Opsi Pagar: " . $wa_content['opsi_pagar'] . "\n\n"
             . "😎 Sales : " . $wa_content['mkt'] . "\n"
-            . "😎 Asstn. BM : " . $wa_content['spv'] . "\n"
+            . "😎 SPV : " . $wa_content['spv'] . "\n"
             . "😎 BM : " . $wa_content['mm'] . "\n"
             . "😎 GM : " . $wa_content['rm'] . "\n"
             . "🕐 Tgl Booking : " . $wa_content['tgl_booking'] . "\n"
