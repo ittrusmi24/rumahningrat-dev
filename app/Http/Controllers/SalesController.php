@@ -15,6 +15,7 @@ class SalesController extends Controller
             return [
                 'id_user' => $reff->id_rsp,
                 'username' => ucwords(strtolower($reff->username)),
+                'designation_id' => $reff->designation_id,
             ];
         })->toArray();
         return response()->json($referral);

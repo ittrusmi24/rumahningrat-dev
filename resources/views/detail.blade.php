@@ -171,7 +171,7 @@
                     <div id="video_tour">
                     </div>
                     <!-- <iframe src="{{ url('/vt_view') }}" frameborder="0" width="100" height="100"
-                                                                                                                                                        class="vt_view"></iframe> -->
+                                                                                                                                                            class="vt_view"></iframe> -->
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-5">
                     <embed src="{{ url('/poi_view/') . '/' . $project_add->id_project }}" class="vt_view">
@@ -789,7 +789,8 @@
                                             style="min-height: 44px;">
                                             <option value="" selected>-- Pilih Pekerjaan --</option>
                                             @foreach ($pekerjaan as $item_perkerjaan)
-                                                <option value="{{ $item_perkerjaan['id_pekerjaan'] }}">{{ $item_perkerjaan['pekerjaan'] }}</option>    
+                                                <option value="{{ $item_perkerjaan['id_pekerjaan'] }}">
+                                                    {{ $item_perkerjaan['pekerjaan'] }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -851,14 +852,16 @@
                                                 style="min-height: 44px;">
                                                 <option value="" selected>-- Pilih Pekerjaan Pasangan --</option>
                                                 @foreach ($pekerjaan as $item_perkerjaan_p)
-                                                    <option value="{{ $item_perkerjaan_p['id_pekerjaan'] }}">{{ $item_perkerjaan_p['pekerjaan'] }}</option>    
+                                                    <option value="{{ $item_perkerjaan_p['id_pekerjaan'] }}">
+                                                        {{ $item_perkerjaan_p['pekerjaan'] }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="mb-2">
                                             <label class="form-label">Pendapatan Pasangan</label>
-                                            <input type="text" class="form-control" name="pendapatan_p" id="pendapatan_p"
-                                                oninput="validasiPendapatanPasangan(this)" autocomplete="off">
+                                            <input type="text" class="form-control" name="pendapatan_p"
+                                                id="pendapatan_p" oninput="validasiPendapatanPasangan(this)"
+                                                autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="mb-2 mt-2">
@@ -868,7 +871,7 @@
                                             <option data-placeholder="true"></option>
                                         </select>
                                     </div>
-                                    <div class="mb-2">
+                                    <div class="mb-2 d-none" id="div_referral">
                                         <label class="form-label">Referral</label>
                                         <select class="form-control" name="kode_referral" id="kode_referral"
                                             style="min-height: 44px;">
@@ -1929,9 +1932,9 @@ s.parentNode.insertBefore(mychat, s);
             $('#id_voucher').val('');
             $('#diskon_spr').val('');
             $('#up_spek').val('');
-            if($(this).val() == "KPR FLPP"){
+            if ($(this).val() == "KPR FLPP") {
                 $('#div_tenor').removeClass('d-none');
-            }else{
+            } else {
                 $('#div_tenor').addClass('d-none');
             }
         });
@@ -2606,13 +2609,25 @@ s.parentNode.insertBefore(mychat, s);
                                         return {
                                             text: `${sales.username}`,
                                             value: `${sales.id_user}`,
+                                            data: {
+                                                designation_id: `${sales.designation_id}`,
+                                            }
                                         }
                                     })
 
                                 resolve(options)
                             })
                     });
-                }, 500) // Delay of 300 ms
+                }, 500), // Delay of 300 ms
+                afterChange: (newVal) => {
+                    console.log(newVal[0].data.designation_id)
+                    designation_id = newVal[0].data.designation_id;
+                    if (designation_id != '731') {
+                        $('#div_referral').removeClass('d-none');
+                    } else {
+                        $('#div_referral').addClass('d-none');
+                    }
+                }
             }
         });
 

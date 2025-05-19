@@ -13,7 +13,8 @@ class Sales extends Model
                     e.user_id AS id_hr,
                     mkt.id_user AS id_rsp,
                     e.username,
-                    mkt.employee_name AS sales_name 
+                    mkt.employee_name AS sales_name,
+                    e.designation_id 
                 FROM
                     `user` AS mkt
                     LEFT JOIN hris.xin_employees AS e ON e.user_id = mkt.join_hr 
