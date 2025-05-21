@@ -37,7 +37,7 @@ class SendWhatsappNotification
         $wa_blok = $wa_content['blok']; // Blok rumah
         $wa_id_gci = $wa_content['id_gci']; // ID untuk SPR Digital
         $md_gci = md5($wa_content['id_gci']); // Enkrip id_gci untuk SPR Digital
-        $link_flip = 'https://payment.rumahningrat.com/' . $id_gci; // Link pembayaran
+        $link_flip = 'https://pay.rumahningrat.com/paygate/' . $id_gci; // Link pembayaran
 
         $id_project = $wa_content['id_project'];
 

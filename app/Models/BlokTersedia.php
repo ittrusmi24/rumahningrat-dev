@@ -15,7 +15,7 @@ class BlokTersedia extends Model
             return $blok = [];
         }
 
-        $project_double_booking = [70, 40];
+        $project_double_booking = [70, 40, 53];
 
         if (in_array($id_project, $project_double_booking) == 1) {
             $condition = "";
