@@ -115,7 +115,7 @@ class BlokTersedia extends Model
                 FROM
                     m_project p
                     LEFT JOIN m_project_unit mpu ON mpu.id_project = p.id_project
-                    LEFT JOIN t_gci g ON g.id_project = mpu.id_project AND g.blok = mpu.blok AND id_kategori = 3
+                    LEFT JOIN t_gci g ON g.id_project = mpu.id_project AND g.blok = mpu.blok AND id_kategori >= 3
                     LEFT JOIN view_status_proses s ON s.id_gci = g.id_gci
                     LEFT JOIN m_status_stok mss ON mss.`status` = mpu.id_status
                     LEFT JOIN m_project_tipe pt ON pt.id_project_tipe = p.id_project_tipe
