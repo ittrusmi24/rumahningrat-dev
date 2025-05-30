@@ -882,9 +882,9 @@
                                         <label class="form-label">Skema Pembayaran</label>
                                         <select class="form-select" name="jenis_pembayaran" id="jenis_pembayaran">
                                             <option value="KPR FLPP" selected>KPR FLPP</option>
-                                            <option value="Cash">Cash</option>
-                                            <option value="Cash Tahap 3 Bulan">Cash Tahap 3 Bulan</option>
-                                            <option value="Cash Tahap 6 Bulan">Cash Tahap 6 Bulan</option>
+                                            <option value="CASH Keras">Cash Keras</option>
+                                            <option value="CASH Tahap 3 Bulan">Cash Tahap 3 Bulan</option>
+                                            <option value="CASH Tahap 6 Bulan">Cash Tahap 6 Bulan</option>
                                             <option value="Cicilan Komersil">KPR Komersil</option>
                                         </select>
                                     </div>
