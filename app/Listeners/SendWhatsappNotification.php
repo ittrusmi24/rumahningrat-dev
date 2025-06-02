@@ -71,30 +71,30 @@ class SendWhatsappNotification
 
         // Kirim notifikasi ke marketing
         // Template pesan WhatsApp ke Head Marketing
-        $msg_head_marketing = "🔥🔥 *Notifikasi Booking* 🔥🔥\n\n"
-            . "📝 Id GCI : " . $id_gci . "\n"
-            . "👫 Nama Cust. : " . $wa_nama_konsumen . "\n"
-            . "🏠 Project : " . $wa_project . "\n"
-            . "🏠 Blok : " . $wa_blok . "\n"
-            . "⛩️ Opsi Pagar: " . $wa_content['opsi_pagar'] . "\n\n"
-            . "😎 Sales : " . $wa_content['mkt'] . "\n"
-            . "😎 SPV : " . $wa_content['spv'] . "\n"
-            . "😎 BM : " . $wa_content['mm'] . "\n"
-            . "😎 GM : " . $wa_content['rm'] . "\n"
-            . "🕐 Tgl Booking : " . $wa_content['tgl_booking'] . "\n"
-            . "💸 Bayar : " . $wa_content['tipe_pembayaran'] . "\n"
-            . "🧾 Type Bayar : " . $wa_content['jenis_pembayaran'] . "\n"
-            . "⏳ Progres Vendor : " . $wa_content['progres'] . "%\n"
-            . "🏗️ Progres Pelaksana : " . $wa_content['progres_pelaksana'] . "%\n"
-            . "⏱️ Umur Bangunan : " . $wa_content['umur_bangunan'];
+        // $msg_head_marketing = "🔥🔥 *Notifikasi Booking* 🔥🔥\n\n"
+        //     . "📝 Id GCI : " . $id_gci . "\n"
+        //     . "👫 Nama Cust. : " . $wa_nama_konsumen . "\n"
+        //     . "🏠 Project : " . $wa_project . "\n"
+        //     . "🏠 Blok : " . $wa_blok . "\n"
+        //     . "⛩️ Opsi Pagar: " . $wa_content['opsi_pagar'] . "\n\n"
+        //     . "😎 Sales : " . $wa_content['mkt'] . "\n"
+        //     . "😎 SPV : " . $wa_content['spv'] . "\n"
+        //     . "😎 BM : " . $wa_content['mm'] . "\n"
+        //     . "😎 GM : " . $wa_content['rm'] . "\n"
+        //     . "🕐 Tgl Booking : " . $wa_content['tgl_booking'] . "\n"
+        //     . "💸 Bayar : " . $wa_content['tipe_pembayaran'] . "\n"
+        //     . "🧾 Type Bayar : " . $wa_content['jenis_pembayaran'] . "\n"
+        //     . "⏳ Progres Vendor : " . $wa_content['progres'] . "%\n"
+        //     . "🏗️ Progres Pelaksana : " . $wa_content['progres_pelaksana'] . "%\n"
+        //     . "⏱️ Umur Bangunan : " . $wa_content['umur_bangunan'];
 
-        $send_head_mkt = $this->sendWhatsApp($wa_no_spv, $msg_head_marketing);
-        $send_head_mkt = $this->sendWhatsApp($wa_no_mm, $msg_head_marketing);
-        $send_head_mkt = $this->sendWhatsApp($wa_no_gm, $msg_head_marketing);
-        $send_head_mkt = $this->sendWhatsApp('6285324409384', $msg_head_marketing);
+        // $send_head_mkt = $this->sendWhatsApp($wa_no_spv, $msg_head_marketing);
+        // $send_head_mkt = $this->sendWhatsApp($wa_no_mm, $msg_head_marketing);
+        // $send_head_mkt = $this->sendWhatsApp($wa_no_gm, $msg_head_marketing);
+        // $send_head_mkt = $this->sendWhatsApp('6285324409384', $msg_head_marketing);
 
         Log::info('BookingCreated was triggered', ['data' => $event->booking]);
-        Log::info('BookingCreated send_head_mkt', ['send_head_mkt' => $send_head_mkt]);
+        // Log::info('BookingCreated send_head_mkt', ['send_head_mkt' => $send_head_mkt]);
         Log::info('BookingCreated send_customer', ['send_customer' => $send_customer]);
     }
 
