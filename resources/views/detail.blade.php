@@ -171,7 +171,7 @@
                     <div id="video_tour">
                     </div>
                     <!-- <iframe src="{{ url('/vt_view') }}" frameborder="0" width="100" height="100"
-                                                                                                                                                            class="vt_view"></iframe> -->
+                                                                                                                                                                class="vt_view"></iframe> -->
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-5">
                     <embed src="{{ url('/poi_view/') . '/' . $project_add->id_project }}" class="vt_view">
@@ -1073,7 +1073,7 @@
                                     </div>
                                     <div class="bank-section mt-5">
                                         <h4 class="text-center">Bank Tersedia</h4>
-                                        <div class="row mt-3">
+                                        <div class="row mt-4">
                                             <div class="col-4">
                                                 <img src="{{ url('/assets/images/icon') }}/bca.png" alt=""
                                                     width="75px" height="24px">
@@ -1087,7 +1087,7 @@
                                                     width="75px" height="24px">
                                             </div>
                                         </div>
-                                        <div class="row mt-3">
+                                        <div class="row mt-4">
                                             <div class="col-4">
                                                 <img src="{{ url('/assets/images/icon') }}/mandiri.png" alt=""
                                                     width="75px" height="24px">
@@ -1098,6 +1098,35 @@
                                             </div>
                                             <div class="col-4">
                                                 <img src="{{ url('/assets/images/icon') }}/btn.png" alt=""
+                                                    width="75px" height="24px">
+                                            </div>
+                                        </div>
+                                        <div class="row mt-4">
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/cimb.svg" alt=""
+                                                    width="75px" height="24px">
+                                            </div>
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/danamon.svg" alt=""
+                                                    width="75px" height="24px">
+                                            </div>
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/bca.svg" alt=""
+                                                    width="75px" height="24px">
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-4">
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/bnc.svg" alt=""
+                                                    width="75px" height="24px">
+                                            </div>
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/permata.svg" alt=""
+                                                    width="75px" height="24px">
+                                            </div>
+                                            <div class="col-4">
+                                                <img src="{{ url('/assets/images/icon') }}/bss.svg" alt=""
                                                     width="75px" height="24px">
                                             </div>
                                         </div>
@@ -1123,6 +1152,13 @@
                                                         value="2">
                                                     <label for="indomaret">
                                                         <img src="{{ url('/assets/images/icon/') }}/indomaret.png" />
+                                                    </label>
+                                                </div>
+                                                <div class="payment-method">
+                                                    <input type="radio" id="qris" name="payment" class="payment"
+                                                        value="2">
+                                                    <label for="qris">
+                                                        <img src="{{ url('/assets/images/icon/') }}/qris.png" />
                                                     </label>
                                                 </div>
                                                 <div class="payment-method">
@@ -1206,13 +1242,20 @@
                 </div>
                 <div class="sticky-container">
                     <div class="sticky-content d-flex justify-content-between align-items-center">
+                        <?php if(date("Y-m-d") >= '2025-06-09' || $id_project == 30){ ?>
+                        <div>
+                            <div class="price text-dark">Rp.100.000</div>
+                            <div class="note">*Biaya Tanda Jadi + BI checking</div>
+                            <div class="price text-dark d-none" id="price"></div>
+                        </div>
+                        <?php }else{ ?>
                         <div>
                             <div class="price text-dark" id="price">Rp.500.000</div>
-                            <div class="note">*biaya booking + BI checking</div>
+                            <div class="note">*Booking + BI checking</div>
                         </div>
+                        <?php } ?>
                         <button class="btn btn-primary" id="btn-booking" onclick="validasiBook()"
-                            style="border-radius: 10px">Booking
-                            Sekarang</button>
+                            style="border-radius: 10px">Booking Sekarang</button>
                     </div>
                 </div>
             </div>

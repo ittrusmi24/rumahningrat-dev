@@ -113,6 +113,13 @@ class BookingController extends Controller
 
         // TODO Check Blok Tersedia
         // Skema Project Double Booking
+        
+        if(date('Y-m-d') >= '2025-06-09' || $id_project == 30){
+            $id_kategori = 2.1;
+        }else{
+            $id_kategori = 3;
+        }
+
         $list_project_double_booking = ['70', '40', '53'];
         if (in_array($id_project, $list_project_double_booking) == 1) {
             $booking = Booking::isAkad($id_project, $blok);
@@ -149,7 +156,7 @@ class BookingController extends Controller
                 }
             }
         } else {
-            $countBlokAlreadyBooked = Booking::where('id_kategori', 3)->where('id_project', $id_project)->where('blok', $blok)->count();
+            $countBlokAlreadyBooked = Booking::where('id_kategori', $id_kategori)->where('id_project', $id_project)->where('blok', $blok)->count();
             if ($countBlokAlreadyBooked > 0) {
                 return response()->json([
                     "status" => false,
@@ -235,7 +242,7 @@ class BookingController extends Controller
                 'id_project' => $id_project,
                 'blok' => $blok,
                 'id_event' => 708,
-                'id_kategori' => 3,
+                'id_kategori' => $id_kategori,
                 'id_konsumen' => $id_konsumen,
                 'nominal' => $nominal_booking,
                 'id_project_tipe' => $id_project_tipe,
@@ -297,7 +304,7 @@ class BookingController extends Controller
             // 5. TODO Insert Booking History RSP Project
             $data_post_booking_history = array(
                 'id_gci' => $id_gci,
-                'id_kategori' => $request->id_project,
+                'id_kategori' => $id_kategori,
                 'blok' => $request->blok,
                 'nominal' => str_replace('.', '', $request->nominal),
                 'created_at' => date('Y-m-d H:i:s'),

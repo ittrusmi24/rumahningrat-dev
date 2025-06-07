@@ -37,7 +37,7 @@ class Lokasi extends Model
                     JOIN r_kota_dummy kot ON kot.id_kota = kec.id_kota
                 WHERE kel.kelurahan LIKE '%" . $params . "%' OR kec.kecamatan LIKE '%" . $params . "%' OR kot.kota LIKE '%" . $params . "%' OR kel.kelurahan LIKE '%" . $params . "%'
                 ORDER BY kec.kecamatan
-                LIMIT 20";
+                LIMIT 50";
         return DB::connection('rsp_connection')->select($query);
     }
 }

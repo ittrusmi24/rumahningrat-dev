@@ -28,6 +28,7 @@ class SendWhatsappNotification
         $booking = $event->booking;
         $id_gci = $booking['id_gci'];
         $wa_content = $this->get_content_wa($id_gci);
+        $wa_id_kategori = trim($wa_content['id_kategori']); // ID Kategori
         $wa_no_spv = trim($wa_content['no_spv']); // Nama konsumen
         $wa_no_mm = trim($wa_content['no_mm']); // Nama konsumen
         $wa_no_gm = trim($wa_content['no_gm']); // Nama konsumen
@@ -42,32 +43,57 @@ class SendWhatsappNotification
         $id_project = $wa_content['id_project'];
 
         if ($id_project == 64 || $id_project == 77 || $id_project == 53 || $id_project == 90 || $id_project == 49 || $id_project == 30) {
-            $project_promo = "Bapak/Ibu dapat melakukan upload bukti proses *Booking* pada aplikasi Rumah Ningrat di alamat berikut: https://punyarumah.rumahningrat.com/claim \n\n";
+            $project_promo = "Bapak/Ibu dapat melakukan upload bukti proses *Uang Tanda Jadi* pada aplikasi Rumah Ningrat di alamat berikut: https://punyarumah.rumahningrat.com/claim \n\n";
         } else {
             $project_promo = "";
         }
 
-        // Kirim notifikasi ke konsumen
-        // Template pesan WhatsApp ke Customer
-        $msg_customer = "Kepada Yth. Customer Rumah Ningrat tercinta\n\n";
-        $msg_customer .= "Kami ucapkan terima kasih yang sebesar-besarnya kepada bapak/ibu *{$wa_nama_konsumen}* atas kepercayaan anda memilih perumahan *{$wa_project}* Blok *{$wa_blok}*. Kami sangat senang dan terhormat bisa menjadi bagian dari proses memiliki rumah impian anda.\n\n";
-        $msg_customer .= "Dengan ini kami mengirimkan surat kesepakatan bersama (SPR) pembelian rumah agar bisa ditandatangani secara digital dengan melakukan Swafoto dan Tanda tangan digital pada link berikut:\n\n";
-        $msg_customer .= "https://trusmicorp.com/rspproject/spr_digital_new?id={$md_gci}\n\n";
-        $msg_customer .= "Berikutnya Anda dapat melakukan pembayaran untuk booking rumah Anda melalui link berikut:\n\n";
-        // $msg_customer .= "{$link_flip}\n\n";
-        $msg_customer .= "https://pay.rumahningrat.com/paygate/{$md_gci}\n\n";
-        $msg_customer .= "Link tersebut akan mengarahkan Anda ke halaman pembayaran yang aman dan terjamin. Kami ingin memastikan bahwa proses pembayaran Anda berjalan dengan lancar dan nyaman.\n\n";
-        // $msg_customer .= "Untuk pembayaran selanjutnya anda dapat membuat link pembayaran / virtual akun yang aman dan terjamin melalui link berikut :\nhttps://trusmicorp.com/rspproject/paygate/q/{$md_gci}\n\n";
-        $msg_customer .= "Kami informasikan juga untuk pengecekan status proses pengajuan KPR bapak/ibu dapat di akses melalui link berikut dengan login menggunakan nomor hp yang terdaftar.\n\n";
-        $msg_customer .= "https://punyarumah.rumahningrat.com/login \n\n";
-        $msg_customer .= "Nomor hp yang terdaftar : {$wa_no_konsumen}\n";
-        $msg_customer .= "Password : ningrat123\n";
-        $msg_customer .= "{$project_promo}_Jika link tidak bisa di klik, balas \"OK\" pada pesan ini_\n\n";
-        $msg_customer .= "Hormat kami,\n\n";
-        $msg_customer .= "*Rumah Ningrat*\n";
-        $msg_customer .= "#SemuaBisaPunyaRumah";
-        $send_customer = $this->sendWhatsApp($wa_no_konsumen, $msg_customer);
-        $send_customer = $this->sendWhatsApp('6285324409384', $msg_customer);
+        if ($wa_id_kategori == '2.1') {
+              // Kirim notifikasi ke konsumen
+            // Template pesan WhatsApp ke Customer
+            $msg_customer = "Kepada Yth. Customer Rumah Ningrat tercinta\n\n";
+            $msg_customer .= "Kami ucapkan terima kasih yang sebesar-besarnya kepada bapak/ibu *{$wa_nama_konsumen}* atas kepercayaan anda memilih perumahan *{$wa_project}* Blok *{$wa_blok}*. Kami sangat senang dan terhormat bisa menjadi bagian dari proses memiliki rumah impian anda.\n\n";
+            $msg_customer .= "Dengan ini kami memohon Anda untuk mengunggah dokumen pendukung melalui tautan berikut, guna keperluan proses pengecekan BI Checking sebagai bagian dari prosedur pembelian rumah :\n\n";
+            $msg_customer .= "https://trusmicorp.com/rspproject/berkas_bic/index/{$md_gci}\n\n";
+            $msg_customer .= "Berikutnya Anda dapat melakukan pembayaran untuk *Uang Tanda Jadi* rumah Anda melalui link berikut:\n\n";
+            // $msg_customer .= "{$link_flip}\n\n";
+            $msg_customer .= "https://pay.rumahningrat.com/paygate/{$md_gci}\n\n";
+            $msg_customer .= "Link tersebut akan mengarahkan Anda ke halaman pembayaran yang aman dan terjamin. Kami ingin memastikan bahwa proses pembayaran Anda berjalan dengan lancar dan nyaman.\n\n";
+            // $msg_customer .= "Untuk pembayaran selanjutnya anda dapat membuat link pembayaran / virtual akun yang aman dan terjamin melalui link berikut :\nhttps://trusmicorp.com/rspproject/paygate/q/{$md_gci}\n\n";
+            $msg_customer .= "Kami informasikan juga untuk pengecekan status proses pengajuan KPR bapak/ibu dapat di akses melalui link berikut dengan login menggunakan nomor hp yang terdaftar.\n\n";
+            $msg_customer .= "https://punyarumah.rumahningrat.com/login \n\n";
+            $msg_customer .= "Nomor hp yang terdaftar : {$wa_no_konsumen}\n";
+            $msg_customer .= "Password : ningrat123\n";
+            $msg_customer .= "{$project_promo}_Jika link tidak bisa di klik, balas \"OK\" pada pesan ini_\n\n";
+            $msg_customer .= "Hormat kami,\n\n";
+            $msg_customer .= "*Rumah Ningrat*\n";
+            $msg_customer .= "#UntukHidupYangLebihBaik";
+            $send_customer = $this->sendWhatsApp($wa_no_konsumen, $msg_customer);
+            $send_customer = $this->sendWhatsApp('6285324409384', $msg_customer);
+        } else {
+            // Kirim notifikasi ke konsumen
+            // Template pesan WhatsApp ke Customer
+            $msg_customer = "Kepada Yth. Customer Rumah Ningrat tercinta\n\n";
+            $msg_customer .= "Kami ucapkan terima kasih yang sebesar-besarnya kepada bapak/ibu *{$wa_nama_konsumen}* atas kepercayaan anda memilih perumahan *{$wa_project}* Blok *{$wa_blok}*. Kami sangat senang dan terhormat bisa menjadi bagian dari proses memiliki rumah impian anda.\n\n";
+            $msg_customer .= "Dengan ini kami mengirimkan surat kesepakatan bersama (SPR) pembelian rumah agar bisa ditandatangani secara digital dengan melakukan Swafoto dan Tanda tangan digital pada link berikut:\n\n";
+            $msg_customer .= "https://trusmicorp.com/rspproject/spr_digital_new?id={$md_gci}\n\n";
+            $msg_customer .= "Berikutnya Anda dapat melakukan pembayaran untuk booking rumah Anda melalui link berikut:\n\n";
+            // $msg_customer .= "{$link_flip}\n\n";
+            $msg_customer .= "https://pay.rumahningrat.com/paygate/{$md_gci}\n\n";
+            $msg_customer .= "Link tersebut akan mengarahkan Anda ke halaman pembayaran yang aman dan terjamin. Kami ingin memastikan bahwa proses pembayaran Anda berjalan dengan lancar dan nyaman.\n\n";
+            // $msg_customer .= "Untuk pembayaran selanjutnya anda dapat membuat link pembayaran / virtual akun yang aman dan terjamin melalui link berikut :\nhttps://trusmicorp.com/rspproject/paygate/q/{$md_gci}\n\n";
+            $msg_customer .= "Kami informasikan juga untuk pengecekan status proses pengajuan KPR bapak/ibu dapat di akses melalui link berikut dengan login menggunakan nomor hp yang terdaftar.\n\n";
+            $msg_customer .= "https://punyarumah.rumahningrat.com/login \n\n";
+            $msg_customer .= "Nomor hp yang terdaftar : {$wa_no_konsumen}\n";
+            $msg_customer .= "Password : ningrat123\n";
+            $msg_customer .= "{$project_promo}_Jika link tidak bisa di klik, balas \"OK\" pada pesan ini_\n\n";
+            $msg_customer .= "Hormat kami,\n\n";
+            $msg_customer .= "*Rumah Ningrat*\n";
+            $msg_customer .= "#UntukHidupYangLebihBaik";
+            $send_customer = $this->sendWhatsApp($wa_no_konsumen, $msg_customer);
+            $send_customer = $this->sendWhatsApp('6285324409384', $msg_customer);
+        }
+
 
         // Kirim notifikasi ke marketing
         // Template pesan WhatsApp ke Head Marketing
@@ -103,6 +129,7 @@ class SendWhatsappNotification
         $content = DB::connection('rsp_connection')
             ->select("SELECT 
                         t_gci.id_gci AS id_gci,
+                        t_gci.id_kategori,
                         t_gci.manager AS id_manager,
                         m_konsumen.nama_konsumen,
                         m_konsumen.no_hp,

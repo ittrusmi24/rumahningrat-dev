@@ -82,7 +82,9 @@ class Project extends Model
             m_project p
             LEFT JOIN m_project_tipe pt ON pt.id_project_tipe = p.id_project_tipe
             LEFT JOIN m_project_detail pd ON p.id_project = pd.id_project
-            WHERE pd.fasilitas IS NOT NULL AND p.id_project = $id_project
+            WHERE 
+            -- pd.fasilitas IS NOT NULL AND 
+            p.id_project = $id_project
             AND p.`status` IS NULL
             ";
 

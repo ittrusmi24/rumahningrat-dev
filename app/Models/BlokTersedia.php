@@ -20,7 +20,7 @@ class BlokTersedia extends Model
         if (in_array($id_project, $project_double_booking) == 1) {
             $condition = "";
         } else {
-            $condition = " AND NOT EXISTS (SELECT g.id_project, g.blok FROM t_gci g WHERE id_kategori >= 3 AND g.id_project = p.id_project AND g.blok = mpu.blok)";
+            $condition = " AND NOT EXISTS (SELECT g.id_project, g.blok FROM t_gci g WHERE id_kategori >= '2.1' AND g.id_project = p.id_project AND g.blok = mpu.blok)";
         }
 
         // $backup_query = "SELECT
@@ -115,15 +115,16 @@ class BlokTersedia extends Model
                 FROM
                     m_project p
                     LEFT JOIN m_project_unit mpu ON mpu.id_project = p.id_project
-                    LEFT JOIN t_gci g ON g.id_project = mpu.id_project AND g.blok = mpu.blok AND id_kategori >= 3
+                    LEFT JOIN t_gci g ON g.id_project = mpu.id_project AND g.blok = mpu.blok AND id_kategori >= '2.1'
                     LEFT JOIN view_status_proses s ON s.id_gci = g.id_gci
                     LEFT JOIN m_status_stok mss ON mss.`status` = mpu.id_status
                     LEFT JOIN m_project_tipe pt ON pt.id_project_tipe = p.id_project_tipe
                     LEFT JOIN m_project_detail pd ON p.id_project = pd.id_project
                 WHERE
-                    pd.fasilitas IS NOT NULL
-                    AND p.id_project = $id_project
-                    AND p.id_project != 30
+                    -- pd.fasilitas IS NOT NULL
+                    -- AND 
+                    p.id_project = $id_project
+                    -- AND p.id_project != 30
                     AND p.`status` IS NULL
                     AND mpu.not_sale IS NULL
                     AND mpu.id_status <= 2
@@ -159,9 +160,10 @@ class BlokTersedia extends Model
                 LEFT JOIN m_project_tipe pt ON pt.id_project_tipe = p.id_project_tipe
                 LEFT JOIN m_project_detail pd ON p.id_project = pd.id_project
             WHERE
-                pd.fasilitas IS NOT NULL
-                AND p.id_project = $id_project
-                AND p.id_project != 30
+                -- pd.fasilitas IS NOT NULL
+                -- AND 
+                p.id_project = $id_project
+                -- AND p.id_project != 30
                 AND p.`status` IS NULL
                 AND mpu.not_sale IS NULL
                 AND mpu.id_status <= 2
