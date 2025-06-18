@@ -852,8 +852,10 @@
                                                 style="min-height: 44px;">
                                                 <option value="" selected>-- Pilih Pekerjaan Pasangan --</option>
                                                 @foreach ($pekerjaan as $item_perkerjaan_p)
+                                                    @if ($item_perkerjaan_p['id_pekerjaan'] != '7')
                                                     <option value="{{ $item_perkerjaan_p['id_pekerjaan'] }}">
                                                         {{ $item_perkerjaan_p['pekerjaan'] }}</option>
+                                                    @endif
                                                 @endforeach
                                             </select>
                                         </div>
