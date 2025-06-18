@@ -171,7 +171,7 @@
                     <div id="video_tour">
                     </div>
                     <!-- <iframe src="{{ url('/vt_view') }}" frameborder="0" width="100" height="100"
-                                                                                                                                                                class="vt_view"></iframe> -->
+                                                                                                                                                                    class="vt_view"></iframe> -->
                 </div>
                 <div class="owl-carousel d-none owl-hidden" id="gallery-carousel-5">
                     <embed src="{{ url('/poi_view/') . '/' . $project_add->id_project }}" class="vt_view">
@@ -1979,6 +1979,19 @@ s.parentNode.insertBefore(mychat, s);
                 $('#div_tenor').removeClass('d-none');
             } else {
                 $('#div_tenor').addClass('d-none');
+            }
+
+            let jenis_pembayaran = $('#jenis_pembayaran option:selected').val();
+            if (jenis_pembayaran.toLowerCase().includes('cash')) {
+                // kondisi baru jika cash maka minimal booking 1 juta per tgl 18-06-2025
+                sub_jp = 'cash';
+            } else {
+                sub_jp = 'noncash';
+            }
+            nominal_booking = $('#nominal_booking').val();
+            if(sub_jp == 'cash' && nominal_booking <= 500000){
+                $('#nominal_booking').val('1000000');
+                console.log(sub_jp, nominal_booking);
             }
         });
         $('#blok').change(function(e) {
