@@ -25,12 +25,12 @@
     <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
         <div class="modal-content rounded-4">
             <div class="modal-body p-0 m-0 position-relative overflow-hidden" 
-                 style="height: 300px; background-image: url('https://www.imageshine.in/uploads/gallery/Blue-Wallpaper-With-dotted-texture-background-Wallpaper.jpg'); background-size: cover; background-position: center;">
+                 style="height: 550px; background-image: url('https://www.imageshine.in/uploads/gallery/Blue-Wallpaper-With-dotted-texture-background-Wallpaper.jpg'); background-size: cover; background-position: center;">
                 
                 <!-- Wrapper full tinggi, pusatkan konten -->
                 <div class="d-flex flex-column justify-content-center align-items-center text-center text-white w-100 h-100 px-4" 
                      style="background-color: rgba(0, 0, 0, 0.4);">
-
+                    <img src="{{asset('/assets/images/')}}/peringatan.jpg" alt="" class="mb-2" style="max-height: 250px;">
                     <!-- Judul -->
                     <h2 class="mb-2 fw-bold text-white">INFO PENTING!</h2>
 
