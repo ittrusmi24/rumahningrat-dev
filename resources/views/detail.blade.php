@@ -789,8 +789,10 @@
                                             style="min-height: 44px;">
                                             <option value="" selected>-- Pilih Pekerjaan --</option>
                                             @foreach ($pekerjaan as $item_perkerjaan)
+                                                @if ($item_perkerjaan['id_pekerjaan'] != '7')
                                                 <option value="{{ $item_perkerjaan['id_pekerjaan'] }}">
                                                     {{ $item_perkerjaan['pekerjaan'] }}</option>
+                                                @endif
                                             @endforeach
                                         </select>
                                     </div>
@@ -852,10 +854,10 @@
                                                 style="min-height: 44px;">
                                                 <option value="" selected>-- Pilih Pekerjaan Pasangan --</option>
                                                 @foreach ($pekerjaan as $item_perkerjaan_p)
-                                                    @if ($item_perkerjaan_p['id_pekerjaan'] != '7')
+                                                   
                                                     <option value="{{ $item_perkerjaan_p['id_pekerjaan'] }}">
                                                         {{ $item_perkerjaan_p['pekerjaan'] }}</option>
-                                                    @endif
+                                                    
                                                 @endforeach
                                             </select>
                                         </div>
@@ -1984,17 +1986,17 @@ s.parentNode.insertBefore(mychat, s);
             }
 
             let jenis_pembayaran = $('#jenis_pembayaran option:selected').val();
-            if (jenis_pembayaran.toLowerCase().includes('cash')) {
-                // kondisi baru jika cash maka minimal booking 1 juta per tgl 18-06-2025
-                sub_jp = 'cash';
-            } else {
-                sub_jp = 'noncash';
-            }
-            nominal_booking = $('#nominal_booking').val();
-            if(sub_jp == 'cash' && nominal_booking <= 500000){
-                $('#nominal_booking').val('1000000');
-                console.log(sub_jp, nominal_booking);
-            }
+            // if (jenis_pembayaran.toLowerCase().includes('cash')) {
+            //     // kondisi baru jika cash maka minimal booking 1 juta per tgl 18-06-2025
+            //     sub_jp = 'cash';
+            // } else {
+            //     sub_jp = 'noncash';
+            // }
+            // nominal_booking = $('#nominal_booking').val();
+            // if(sub_jp == 'cash' && nominal_booking <= 500000){
+            //     $('#nominal_booking').val('1000000');
+            //     console.log(sub_jp, nominal_booking);
+            // }
         });
         $('#blok').change(function(e) {
             e.preventDefault();
