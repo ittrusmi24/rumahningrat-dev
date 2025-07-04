@@ -85,6 +85,9 @@ Route::post('simpan_booking', [BookingController::class, 'simpan_booking'])->nam
 Route::get('/vt_view', [HomeController::class, 'vt_view'])->name('vt_view');
 Route::get('/poi_view/{id_project}', [HomeController::class, 'poi_view']);
 Route::get('/about', [HomeController::class, 'about']);
+Route::get('/bypass', function(){
+    return view('virtual_tour.bypass');
+});
 
 Route::get('/status_blok/{id_project}', [DashboardController::class, 'status_blok'])->name('status_blok');
 Route::get('/search-kelurahan', [KelurahanController::class, 'searchKelurahan']);
