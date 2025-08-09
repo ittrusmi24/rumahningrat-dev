@@ -8,6 +8,7 @@ use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\FasilitasSekitarController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KelurahanController;
+use App\Http\Controllers\NewDashboardController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ReferralController;
 use App\Http\Controllers\SalesController;
@@ -93,6 +94,8 @@ Route::get('/status_blok/{id_project}', [DashboardController::class, 'status_blo
 Route::get('/search-kelurahan', [KelurahanController::class, 'searchKelurahan']);
 Route::get('/search-sales', [SalesController::class, 'searchSales']);
 Route::get('/search-referral', [ReferralController::class, 'searchReferral']);
+Route::get('/dashboard-new', [NewDashboardController::class, 'index']);
+Route::get('/detail-new', [NewDashboardController::class, 'detail']);
 
 
 Route::get('/test', function () {

@@ -1,0 +1,50 @@
+
+        /* Hover ripple/expand effect on button */
+        .btn-animate {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-animate::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: white;
+            border-radius: 9999px;
+            transform: translate(-50%, -50%);
+            transition: width 0.5s ease, height 0.5s ease, opacity 0.3s ease;
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        .btn-animate:hover::before {
+            width: 300%;
+            height: 300%;
+            opacity: 1;
+        }
+
+        .btn-animate span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .swiper-pagination {
+            @apply flex justify-start pl-6 mt-2;
+        }
+
+        /* .swiper-pagination-bullet {
+            background-color: #d1d5db;
+            /* abu-abu default */
+        /* opacity: 1;
+        } */
+
+        .swiper-pagination-bullet-active {
+            background-color: #11689B !important;
+        }
+
+        .leaflet-container {
+            border-radius: 0.5rem;
+        }
