@@ -6,14 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Detail Project</title>
 
-    <link rel="stylesheet" href="{{ asset('css/tailwind.css') }}">
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/preline@3.2.3/src/plugins/accordion/variants.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/preline@3.2.3/dist/preline.min.js"></script> -->
-    <!-- <link rel="stylesheet" href="{{ url('./resource/css/app.css') }}">
-    <script src="{{ url('./resource/js/app.js') }}"></script> -->
+    @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
     <script src="{{asset('/vendor')}}/jquery/dist/jquery.min.js"></script>
-    <link rel="stylesheet" href="{{ asset('/vendor')}}/preline/variants.css">
-    <script src="{{asset('/vendor')}}//preline/dist/preline.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
         rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
@@ -318,33 +313,7 @@
                 height: 90vh;
             }
 
-            /* modal lokasi selengkapnya */
-            #modalSectionMap {
-                min-height: 200px;
-            }
 
-            #modalSectionDetail {
-                min-height: auto !important;
-            }
-
-            #map_lokasi {
-                height: 200px;
-            }
-
-            #video_presentation {
-                height: 250px;
-            }
-
-            /* potongan harga */
-            #btn-potongan {
-                font-size: 10px !important;
-                padding: 5px 10px !important;
-            }
-
-            #okButton {
-                font-size: 10px !important;
-                padding: 5px 10px !important;
-            }
         }
 
         .selected {
@@ -366,18 +335,60 @@
         <!-- Gallery (Left) -->
 
         <div class="w-full lg:w-2/3 h-[300px] lg:h-screen">
-            <div class="section-detail w-full h-full" id="section-detail-1">
-                <div class="w-full h-full">
-                    <img src="/assets/images/carousel/1.png" class="w-full h-full object-cover" />
+            <div class="section-detail w-full h-full transition-opacity duration-500 ease-in-out" id="section-detail-1">
+                <div class="relative w-full h-full">
+                    <img src="/assets/images/section/section_1.png" class="w-full h-full object-cover" />
+                    <div class="absolute top-5 right-2 bottom-0 flex flex-col space-y-1 text-white text-xs mt-12 mb-5 gap-2">
+                        <div
+                            class="backdrop-blur-sm bg-black/30 rounded-md p-2 flex flex-col items-center justify-center w-25">
+                            <i class="mdi mdi-gate text-lg"></i>
+                            <span class="text-xs">Gratis Pagar</span>
+                        </div>
+                        <div
+                            class="backdrop-blur-sm bg-black/30 rounded-md p-2 flex flex-col items-center justify-center w-25">
+                            <i class="mdi mdi-wall text-lg"></i>
+                            <span class="text-xs">Gratis Tembok<br>Belakang</span>
+                        </div>
+                        <div
+                            class="backdrop-blur-sm bg-black/30 rounded-md p-2 flex flex-col items-center justify-center w-25">
+                            <i class="mdi mdi-home text-lg"></i>
+                            <span class="text-xs">60 x 30</span>
+                        </div>
+                        <div
+                            class="backdrop-blur-sm bg-black/30 rounded-md p-2 flex flex-col items-center justify-center w-25">
+                            <i class="mdi mdi-shower text-lg"></i>
+                            <span>1 KM</span>
+                        </div>
+                        <div
+                            class="backdrop-blur-sm bg-black/30 rounded-md p-2 flex flex-col items-center justify-center w-25">
+                            <i class="mdi mdi-bed text-lg"></i>
+                            <span>2 Kamar</span>
+                        </div>
+                        <div
+                            class="backdrop-blur-sm bg-black/30 rounded-md p-2 flex flex-col items-center justify-center w-25">
+                            <i class="mdi mdi-car text-lg"></i>
+                            <span>1 Carport</span>
+                        </div>
+                    </div>
+
+                    <div class="absolute px-5 py-5 top-6 bottom-0 flex flex-col space-y-1 text-white text-xs mt-12">
+                        <button
+                            class="bg-white text-[#11689B] hover:bg-[#11689B] hover:text-white rounded-md p-2 flex items-center gap-2 text-sm transition-colors duration-300 shadow-md">
+                            <i class="mdi mdi-open-in-new"></i>
+                            <span>Lihat Detail</span>
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            <div class="section-detail w-full h-full hidden" id="section-detail-2">
+            <div class="section-detail w-full h-full hidden transition-opacity duration-500 ease-in-out"
+                id="section-detail-2">
                 <div class="w-full h-full">
                     <img src="/assets/images/project/render-rn-3.png" class="w-full h-full object-cover" />
                 </div>
             </div>
-            <div class="section-detail w-full h-full" id="section-detail-3">
+            <div class="section-detail w-full h-full hidden transition-opacity duration-500 ease-in-out"
+                id="section-detail-3">
                 <div class="w-full h-full">
                     <img src="/assets/images/carousel/1.png" class="w-full h-full object-cover" />
                 </div>
@@ -484,181 +495,24 @@
             <div id="aside-section-2" class="mb-6">
                 <div>
                     <h2 class="text-xl font-semibold mb-4">Benefit Rumah Ningrat</h2>
-
-
-                    <!-- Modal 1 -->
-                    <div id="modal1"
-                        class="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50 hidden transition-all duration-300 ">
-                        <div class="relative bg-white p-6 rounded-lg w-full max-w-md" onclick="event.stopPropagation()">
-
-                            <!-- Tombol Close -->
-                            <button onclick="toggleModal('modal1', false)"
-                                class="absolute top-2 right-2 text-gray-500 hover:text-gray-800 text-xl font-bold">
-                                &times;
-                            </button>
-
-                            <!-- Konten Modal -->
-                            <h2 class="text-xl font-bold mb-4">Modal Pertama</h2>
-                            <div class="bg-white rounded-lg shadow-xl p-6 md:p-8 max-w-4xl mx-auto my-12">
-                                <div class="mb-8">
-                                    <h1 class="text-3xl font-bold text-gray-900 mb-2">
-                                        Rumah Ningrat Jayasampurna Series 2025, Hunian Modern yang Dirancang untuk
-                                        Mendukung Kesehatan, Kenyamanan, dan Kehidupan Seimbang bagi Setiap Warga
-                                    </h1>
-                                </div>
-
-                                <div class="mb-8">
-                                    <img src="https://i.ibb.co/1K749z4/jogging-track.jpg"
-                                        alt="Jogging Track, Rumah Ningrat Jayasampurna"
-                                        class="w-full rounded-lg shadow-md mb-4">
-                                    <p class="text-gray-700 text-lg font-semibold">Jogging Track, Rumah Ningrat
-                                        Jayasampurna</p>
-                                    <p class="text-sm text-gray-500 mt-2">
-                                        Dengan area jogging track yang nyaman dan sejuk, warga dapat berolahraga rutin
-                                        dan menikmati pengalaman berolahraga yang menyenangkan. Desain jalur dibuat
-                                        sedemikian rupa untuk menjamin keamanan dan kenyamanan bagi semua pengguna, dari
-                                        anak-anak hingga dewasa.
-                                    </p>
-                                </div>
-
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                                    <div>
-                                        <img src="https://i.ibb.co/68v8L8K/lapangan.jpg"
-                                            alt="Lapangan Olahraga Multifungsi"
-                                            class="w-full rounded-lg shadow-md mb-4">
-                                        <p class="text-gray-700 text-lg font-semibold">Lapangan Olahraga Multifungsi</p>
-                                        <p class="text-sm text-gray-500 mt-2">
-                                            Lapangan olahraga serbaguna yang dapat digunakan untuk berbagai aktivitas.
-                                            Fasilitas ini dirancang agar dapat memfasilitasi berbagai kegiatan olahraga,
-                                            seperti basket, futsal, atau voli.
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <img src="https://i.ibb.co/9qQJ9gS/ruang-terbuka.jpg" alt="Ruang Terbuka Hijau"
-                                            class="w-full rounded-lg shadow-md mb-4">
-                                        <p class="text-gray-700 text-lg font-semibold">Ruang Terbuka Hijau</p>
-                                        <p class="text-sm text-gray-500 mt-2">
-                                            Lingkungan hunian yang asri dan nyaman dengan ruang terbuka hijau yang
-                                            didesain secara estetis dan fungsional.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <h2 class="text-xl font-bold text-gray-900 mb-4">Fasilitas Pendukung Kesehatan, apa
-                                        saja?</h2>
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <div>
-                                            <ul class="space-y-2 text-sm text-gray-700">
-                                                <li class="flex items-center gap-2"><span
-                                                        class="mdi mdi-run-fast text-green-500"></span>Area Jogging
-                                                    Track</li>
-                                                <li class="flex items-center gap-2"><span
-                                                        class="mdi mdi-hospital-box-outline text-green-500"></span>Fasilitas
-                                                    Kesehatan</li>
-                                                <li class="flex items-center gap-2"><span
-                                                        class="mdi mdi-store-outline text-green-500"></span>Toko-Toko
-                                                    Makanan Sehat</li>
-                                                <li class="flex items-center gap-2"><span
-                                                        class="mdi mdi-food-apple text-green-500"></span>Jemuran untuk
-                                                    Warga</li>
-                                            </ul>
-                                        </div>
-                                        <div>
-                                            <ul class="space-y-2 text-sm text-gray-700">
-                                                <li class="flex items-center gap-2"><span
-                                                        class="mdi mdi-soccer text-green-500"></span>Lapangan Olahraga
-                                                    Multifungsi</li>
-                                                <li class="flex items-center gap-2"><span
-                                                        class="mdi mdi-tree-outline text-green-500"></span>Ruang Terbuka
-                                                    Hijau</li>
-                                                <li class="flex items-center gap-2"><span
-                                                        class="mdi mdi-cart-outline text-green-500"></span>Akses Mudah
-                                                    ke Fasilitas Kebutuhan Sehari-hari</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <p class="text-xs text-gray-500 mt-4">
-                                        Dengan fasilitas yang lengkap, penghuni Rumah Ningrat Jayasampurna Series 2025
-                                        dapat menikmati kehidupan yang lebih sehat dan aktif. Setiap fasilitas dirancang
-                                        untuk memenuhi kebutuhan sehari-hari, dari olahraga hingga kebutuhan belanja.
-                                    </p>
-                                </div>
-                            </div>
-                            <button onclick="toggleModal('modal1', false)"
-                                class="mt-4 bg-red-500 text-white px-4 py-2 rounded">
-                                Tutup
-                            </button>
-
-                        </div>
-                    </div>
-                    <button type="button"
-  class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
-  data-hs-overlay="#hs-basic-modal">
-  Buka Modal
-</button>
-
-<div id="hs-basic-modal"
-  class="hs-overlay hidden size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto [--overlay-backdrop:static] sm:[--overlay-backdrop:absolute]">
-  <div class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto">
-    <div class="flex flex-col bg-white border shadow-sm rounded-xl pointer-events-auto dark:bg-neutral-800 dark:border-neutral-700 dark:shadow-neutral-700/70">
-      
-      <div class="flex justify-between items-center py-3 px-4 border-b dark:border-neutral-700">
-        <h3 class="font-bold text-gray-800 dark:text-white">
-          Judul Modal
-        </h3>
-        <button type="button"
-          class="flex justify-center items-center size-7 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-neutral-700"
-          data-hs-overlay="#hs-basic-modal">
-          <span class="sr-only">Close</span>
-          <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 6 6 18"></path>
-            <path d="m6 6 12 12"></path>
-          </svg>
-        </button>
-      </div>
-      
-      <div class="p-4 overflow-y-auto">
-        <p class="text-gray-800 dark:text-neutral-400">
-          Ini adalah konten dari modal Anda. Anda bisa memasukkan formulir, teks, atau elemen lainnya di sini.
-        </p>
-      </div>
-      
-      <div class="flex justify-end items-center gap-x-2 py-3 px-4 border-t dark:border-neutral-700">
-        <button type="button"
-          class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800"
-          data-hs-overlay="#hs-basic-modal">
-          Tutup
-        </button>
-        <button type="button"
-          class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
-          Simpan Perubahan
-        </button>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-
-
                     <ul class="space-y-1">
-                        <li class="flex justify-between items-center border-b hover:bg-[#11689B] hover:text-white p-2 cursor-pointer">
+                        <li class="flex justify-between items-center border-b hover:bg-[#11689B] hover:text-white p-2 cursor-pointer"
+                            data-modal-target="modal-fasilitas" data-modal-toggle="modal-fasilitas">
                             <span>Fasilitas kesehatan</span>
                             <i class="mdi mdi-chevron-right"></i>
                         </li>
-                        <li
-                            class="flex justify-between items-center border-b hover:bg-[#11689B] hover:text-white p-2 cursor-pointer">
+                        <li class="flex justify-between items-center border-b hover:bg-[#11689B] hover:text-white p-2 cursor-pointer"
+                            data-modal-target="modal-komunitas" data-modal-toggle="modal-komunitas">
                             <span>Komunitas warga Rumah Ningrat</span>
                             <i class="mdi mdi-chevron-right"></i>
                         </li>
-                        <li
-                            class="flex justify-between items-center border-b hover:bg-[#11689B] hover:text-white p-2 cursor-pointer">
+                        <li class="flex justify-between items-center border-b hover:bg-[#11689B] hover:text-white p-2 cursor-pointer"
+                            data-modal-target="modal-keamanan" data-modal-toggle="modal-keamanan">
                             <span>Sistem keamanan 24jam penuh</span>
                             <i class="mdi mdi-chevron-right"></i>
                         </li>
-                        <li
-                            class="flex justify-between items-center border-b hover:bg-[#11689B] hover:text-white p-2 cursor-pointer">
+                        <li class="flex justify-between items-center border-b hover:bg-[#11689B] hover:text-white p-2 cursor-pointer"
+                            data-modal-target="modal-ekonomi" data-modal-toggle="modal-ekonomi">
                             <span>Peluang kemajuan ekonomi</span>
                             <i class="mdi mdi-chevron-right"></i>
                         </li>
@@ -690,12 +544,10 @@
                     </div>
                     <a href="#" class="text-sm text-blue-600 mt-4 inline-block">Lihat Detail Akses</a>
                 </div>
-
-                <!-- Pilih Blok Rumah -->
                 <div>
                     <h2 class="text-xl font-semibold mb-4">Pilih Blok Rumah Impian Anda</h2>
                     <select
-                        class="w-full border rounded px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-[#11689B] transition duration-200 ease-in-out focus:scale-105 focus:shadow-md focus:shadow-[#11689B]/30">
+                        class="w-full rounded px-4 py-2 bg-white focus:outline-none border-gray-300 hover:border-[#11689B] focus:ring-2 focus:ring-[#11689B] transition duration-200 ease-in-out focus:scale-105 focus:shadow-md focus:shadow-[#11689B]/30">
                         <option seleced disabled>-- Pilih Blok --</option>
                         <option value="A02">Blok A02</option>
                         <option value="B02">Blok B02</option>
@@ -1087,114 +939,380 @@
             </div> -->
         </div>
     </div>
-
-    <div class="fixed inset-0 bg-black/50 hidden peer-checked:flex items-center justify-center">
-        <div class="bg-white p-6 rounded-lg shadow-lg">
-            <h2 class="text-xl font-semibold">Ini Modal</h2>
-            <p>Konten modal Anda di sini.</p>
-            <label for="modal-toggle"
-                class="mt-4 inline-block bg-red-500 text-white p-2 rounded cursor-pointer">Tutup</label>
-            <div class="bg-white rounded-lg shadow-xl p-6 md:p-8 max-w-4xl mx-auto my-12">
-                <div class="mb-8">
-                    <h1 class="text-3xl font-bold text-gray-900 mb-2">
-                        Rumah Ningrat Jayasampurna Series 2025, Hunian Modern yang Dirancang untuk Mendukung
-                        Kesehatan, Kenyamanan, dan Kehidupan Seimbang bagi Setiap Warga
-                    </h1>
-                </div>
-
-                <div class="mb-8">
-                    <img src="https://i.ibb.co/1K749z4/jogging-track.jpg"
-                        alt="Jogging Track, Rumah Ningrat Jayasampurna" class="w-full rounded-lg shadow-md mb-4">
-                    <p class="text-gray-700 text-lg font-semibold">Jogging Track, Rumah Ningrat Jayasampurna</p>
-                    <p class="text-sm text-gray-500 mt-2">
-                        Dengan area jogging track yang nyaman dan sejuk, warga dapat berolahraga rutin dan menikmati
-                        pengalaman berolahraga yang menyenangkan. Desain jalur dibuat sedemikian rupa untuk menjamin
-                        keamanan dan kenyamanan bagi semua pengguna, dari anak-anak hingga dewasa.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                    <div>
-                        <img src="https://i.ibb.co/68v8L8K/lapangan.jpg" alt="Lapangan Olahraga Multifungsi"
-                            class="w-full rounded-lg shadow-md mb-4">
-                        <p class="text-gray-700 text-lg font-semibold">Lapangan Olahraga Multifungsi</p>
-                        <p class="text-sm text-gray-500 mt-2">
-                            Lapangan olahraga serbaguna yang dapat digunakan untuk berbagai aktivitas. Fasilitas ini
-                            dirancang agar dapat memfasilitasi berbagai kegiatan olahraga, seperti basket, futsal,
-                            atau voli.
-                        </p>
-                    </div>
-                    <div>
-                        <img src="https://i.ibb.co/9qQJ9gS/ruang-terbuka.jpg" alt="Ruang Terbuka Hijau"
-                            class="w-full rounded-lg shadow-md mb-4">
-                        <p class="text-gray-700 text-lg font-semibold">Ruang Terbuka Hijau</p>
-                        <p class="text-sm text-gray-500 mt-2">
-                            Lingkungan hunian yang asri dan nyaman dengan ruang terbuka hijau yang didesain secara
-                            estetis dan fungsional.
-                        </p>
-                    </div>
-                </div>
-
-                <div>
-                    <h2 class="text-xl font-bold text-gray-900 mb-4">Fasilitas Pendukung Kesehatan, apa saja?</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <ul class="space-y-2 text-sm text-gray-700">
-                                <li class="flex items-center gap-2"><span
-                                        class="mdi mdi-run-fast text-green-500"></span>Area Jogging Track</li>
-                                <li class="flex items-center gap-2"><span
-                                        class="mdi mdi-hospital-box-outline text-green-500"></span>Fasilitas
-                                    Kesehatan</li>
-                                <li class="flex items-center gap-2"><span
-                                        class="mdi mdi-store-outline text-green-500"></span>Toko-Toko Makanan Sehat
-                                </li>
-                                <li class="flex items-center gap-2"><span
-                                        class="mdi mdi-food-apple text-green-500"></span>Jemuran untuk Warga</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <ul class="space-y-2 text-sm text-gray-700">
-                                <li class="flex items-center gap-2"><span
-                                        class="mdi mdi-soccer text-green-500"></span>Lapangan Olahraga Multifungsi
-                                </li>
-                                <li class="flex items-center gap-2"><span
-                                        class="mdi mdi-tree-outline text-green-500"></span>Ruang Terbuka Hijau</li>
-                                <li class="flex items-center gap-2"><span
-                                        class="mdi mdi-cart-outline text-green-500"></span>Akses Mudah ke Fasilitas
-                                    Kebutuhan Sehari-hari</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <p class="text-xs text-gray-500 mt-4">
-                        Dengan fasilitas yang lengkap, penghuni Rumah Ningrat Jayasampurna Series 2025 dapat
-                        menikmati kehidupan yang lebih sehat dan aktif. Setiap fasilitas dirancang untuk memenuhi
-                        kebutuhan sehari-hari, dari olahraga hingga kebutuhan belanja.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="modal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog"
-        aria-modal="true">
-        <div class="flex items-center justify-center min-h-screen">
-            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
-
-            <div class="relative w-full h-full max-w-4xl mx-auto my-8 md:my-12 flex items-center justify-center">
-                <div class="bg-white rounded-lg shadow-xl p-6 md:p-8 max-h-[90vh] overflow-y-auto">
-                    <button id="closeModalBtn"
-                        class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 focus:outline-none">
+    <div id="modal-fasilitas" tabindex="-1" aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-screen">
+        <div class="relative p-4 w-full max-w-4xl h-screen">
+            <div class="relative bg-white rounded-lg shadow-sm  h-full flex flex-col">
+                <div
+                    class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
+                    <h3 class="text-xl font-semibold text-gray-900">
+                        Rumah Ningrat Jayasampurna
+                    </h3>
+                    <button type="button"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                        data-modal-hide="modal-fasilitas">
                         <span class="mdi mdi-close"></span>
+                        <span class="sr-only">Close modal</span>
                     </button>
                 </div>
 
+                <div class="p-4 md:p-5 space-y-4 overflow-y-auto flex-1">
+                    <div class="mb-8">
+                        <h1 class="text-3xl font-bold text-gray-900 mb-2">
+                            Hunian Modern yang Dirancang untuk Kesehatan, Kenyamanan, dan Kehidupan Seimbang
+                        </h1>
+                    </div>
+                    <div class="mb-8">
+
+                        <img src="https://i.ibb.co/1K749z4/jogging-track.jpg"
+                            alt="Jogging Track, Rumah Ningrat Jayasampurna" class="w-full rounded-lg shadow-md mb-4">
+                        <p class="text-gray-700 text-lg font-semibold">Jogging Track</p>
+                        <p class="text-sm text-gray-500 mt-2">
+                            Dengan area jogging track yang nyaman dan sejuk, warga dapat berolahraga rutin dan menikmati
+                            pengalaman berolahraga yang menyenangkan.
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <img src="https://i.ibb.co/68v8L8K/lapangan.jpg" alt="Lapangan Olahraga Multifungsi"
+                                class="w-full rounded-lg shadow-md mb-4">
+                            <p class="text-gray-700 text-lg font-semibold">Lapangan Olahraga
+                                Multifungsi</p>
+                            <p class="text-sm text-gray-500 mt-2">
+                                Fasilitas ini dirancang agar dapat memfasilitasi berbagai kegiatan olahraga, seperti
+                                basket, futsal, atau voli.
+                            </p>
+                        </div>
+                        <div>
+                            <img src="https://i.ibb.co/9qQJ9gS/ruang-terbuka.jpg" alt="Ruang Terbuka Hijau"
+                                class="w-full rounded-lg shadow-md mb-4">
+                            <p class="text-gray-700 text-lg font-semibold">Ruang Terbuka Hijau</p>
+                            <p class="text-sm text-gray-500 mt-2">
+                                Lingkungan hunian yang asri dan nyaman dengan ruang terbuka hijau yang didesain secara
+                                estetis dan fungsional.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                    <button data-modal-hide="modal-fasilitas" type="button"
+                        class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100">Tutup</button>
+                </div>
             </div>
         </div>
     </div>
 
+    <div id="modal-komunitas" tabindex="-1" aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-screen">
+        <div class="relative p-4 w-full max-w-4xl h-screen">
+            <div class="relative bg-white rounded-lg shadow-sm  h-full flex flex-col">
+                <div
+                    class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
+                    <h3 class="text-xl font-semibold text-gray-900">
+                        Rumah Ningrat Jayasampurna
+                    </h3>
+                    <button type="button"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        data-modal-hide="modal-komunitas">
+                        <span class="mdi mdi-close"></span>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+
+                <div class="p-4 md:p-8 space-y-8 overflow-y-auto flex-1">
+
+                    <div class="text-center">
+                        <img src="https://i.ibb.co/b3W9VbN/Frame-1686557976-2.jpg" alt="Aplikasi Komunitas di Handphone"
+                            class="w-full max-w-sm mx-auto rounded-lg shadow-md">
+                        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mt-6">
+                            Rumah Ningrat Series 2025, Hunian yang Menguatkan Ikatan Sosial dan Membangun Komunitas yang
+                            Tumbuh dalam Rasa Kebersamaan
+                        </h1>
+                    </div>
+
+                    <div>
+                        <img src="https://i.ibb.co/yY1kG0H/image.png" alt="Kegiatan edukatif komunitas di dalam ruangan"
+                            class="w-full rounded-lg shadow-md mb-4">
+                        <h2 class="text-xl font-semibold text-gray-800 dar-200">Komunitas yang Tumbuh Lewat
+                            Kegiatan Edukatif dan Inspiratif</h2>
+                        <p class="text-gray-600 mt-2">
+                            Komunitas yang solid adalah kunci utama dari hunian yang nyaman. Kami menyediakan berbagai
+                            kegiatan edukatif yang melibatkan seluruh anggota keluarga, seperti seminar, workshop
+                            pengembangan diri, dll. Hunian bukan hanya tempat tinggal, tapi ruang tumbuh yang aktif dan
+                            suportif.
+                        </p>
+                    </div>
+
+                    <div>
+                        <img src="https://i.ibb.co/yVwL3zV/image.png"
+                            alt="Komunitas sedang melakukan kegiatan tanam pohon"
+                            class="w-full rounded-lg shadow-md mb-4">
+                        <h2 class="text-xl font-semibold text-gray-800">Komunitas Hijau dan Peduli
+                            Lingkungan</h2>
+                        <p class="text-gray-600 mt-2">
+                            Melalui kegiatan tanam pohon bersama, workshop daur ulang, dan program kebersihan
+                            lingkungan, warga diajak untuk secara aktif menjaga kelestarian lingkungan. Rumah Ningrat
+                            berkomitmen dalam semangat pelestarian alam.
+                        </p>
+                    </div>
+
+                    <div>
+                        <img src="https://i.ibb.co/mH2Sg27/image.png" alt="Ibu-ibu komunitas sedang berkumpul bersama"
+                            class="w-full rounded-lg shadow-md mb-4">
+                        <h2 class="text-xl font-semibold text-gray-800">Kehangatan dalam Kebersamaan
+                        </h2>
+                        <p class="text-gray-600 mt-2">
+                            Interaksi sosial antar tetangga dan warga menjadi bagian penting dari kehidupan di Rumah
+                            Ningrat. Ruang komunal yang nyaman dan fasilitas pendukung lainnya dirancang untuk
+                            menumbuhkan keakraban.
+                        </p>
+                    </div>
+
+                    <div class="bg-gray-100 p-6 rounded-lg">
+                        <h2 class="text-xl font-semibold text-gray-800 mb-4">Komunitas yang Aktif,
+                            Ruang Sosial yang Positif</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-gray-600">
+                            <ul class="space-y-2">
+                                <li>- Kegiatan Seni dan Budaya</li>
+                                <li>- Kegiatan Keagamaan Rutin Tiap Minggu</li>
+                                <li>- Komunitas Olahraga dan Anak</li>
+                            </ul>
+                            <ul class="space-y-2">
+                                <li>- Klub UMKM dan Usaha Bersama</li>
+                                <li>- Acara Ramah Tamah Antar Warga</li>
+                                <li>- Kegiatan Sosial dan Support antar Warga</li>
+                            </ul>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-6">
+                            Rumah Ningrat dirancang tidak hanya sebagai tempat tinggal, namun juga sebagai sebuah
+                            komunitas yang hidup, dimana setiap individu dapat berkembang, berinteraksi, dan merasa
+                            menjadi bagian dari lingkungan yang peduli.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                    <button data-modal-hide="modal-komunitas" type="button"
+                        class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-keamanan" tabindex="-1" aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-screen bg-gray-900 bg-opacity-50">
+        <div class="relative p-4 w-full max-w-4xl h-screen">
+            <div class="relative bg-white rounded-lg shadow h-full flex flex-col">
+
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
+                    <h3 class="text-xl font-semibold text-gray-900">
+                        Sistem Keamanan Terpadu
+                    </h3>
+                    <button type="button"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                        data-modal-hide="modal-keamanan">
+                        <span class="mdi mdi-close"></span>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+
+                <div class="p-4 md:p-8 space-y-8 overflow-y-auto flex-1">
+
+                    <div class="text-center">
+                        <div class="flex justify-center my-6">
+
+                            <img src="{{asset('assets/images/modal/keamanan_1.png')}}" alt="Logo Rumah Ningrat"
+                                class="w-full rounded-lg shadow-md">
+                        </div>
+                        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mt-6">
+                            Rumah Ningrat Jayasampurna Series 2025, Hunian Modern yang Mengutamakan Rasa Aman dan Nyaman
+                            Bagi Setiap Penghuni
+                        </h2>
+                    </div>
+
+                    <div>
+
+
+                        <img src="{{asset('assets/images/modal/keamanan_2.png')}}" alt="Kolase gambar CCTV dan rumah"
+                            class="w-full rounded-lg shadow-md mb-4">
+                        <h3 class="text-xl font-semibold text-gray-800">Security 24 Jam yang Siap Menjaga Ketenangan
+                            Anda</h3>
+                        <p class="text-gray-600 mt-2">
+                            Tim keamanan kami berpatroli secara rutin dan didukung oleh sistem pemantauan CCTV canggih
+                            yang tersebar di seluruh area hunian. Setiap sudut penting terpantau untuk memastikan
+                            lingkungan yang aman dan bebas dari gangguan.
+                        </p>
+                    </div>
+
+                    <div>
+
+                        <img src="{{asset('assets/images/modal/keamanan_3.png')}}"
+                            alt="Portal otomatis sistem satu gerbang" class="w-full rounded-lg shadow-md mb-4">
+                        <h3 class="text-xl font-semibold text-gray-800">Sistem One Gate yang Membatasi Akses Hanya untuk
+                            Penghuni</h3>
+                        <p class="text-gray-600 mt-2">
+                            Akses keluar masuk perumahan diatur dalam satu gerbang utama dengan penjagaan keamanan 24
+                            jam. Sistem ini menjamin bahwa hanya penghuni dan tamu terverifikasi yang dapat memasuki
+                            area, menjaga privasi dan keamanan hunian secara maksimal.
+                        </p>
+                    </div>
+
+                    <div>
+
+                        <img src="{{asset('assets/images/modal/keamanan_4.png')}}"
+                            alt="Gerbang utama perumahan yang megah" class="w-full rounded-lg shadow-md mb-4">
+                        <h3 class="text-xl font-semibold text-gray-800">Gerbang Utama yang Mewakili Keamanan dan
+                            Kebanggaan Hunian</h3>
+                        <p class="text-gray-600 mt-2">
+                            Desain gerbang yang megah dan dilengkapi pos keamanan merupakan representasi dari komitmen
+                            kami untuk memberikan standar keamanan terbaik sekaligus menjadi ikon kebanggaan bagi setiap
+                            penghuni.
+                        </p>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Keamanan Berlapis untuk Ketenangan Maksimal
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-gray-600">
+                            <ul class="space-y-2">
+                                <li>- CCTV Terpasang 24 Jam</li>
+                                <li>- Pos Keamanan di Gerbang Utama</li>
+                                <li>- Petugas Keamanan Profesional</li>
+                            </ul>
+                            <ul class="space-y-2">
+                                <li>- One Gate System (Sistem Satu Gerbang)</li>
+                                <li>- Akses Terbatas untuk Tamu</li>
+                                <li>- Desain Pencahayaan Lingkungan yang Baik</li>
+                            </ul>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-6">
+                            Rumah Ningrat Series 2025 memberikan prioritas tertinggi pada keamanan Anda. Dengan sistem
+                            keamanan berlapis, kami menciptakan lingkungan yang aman dan nyaman, sehingga Anda dapat
+                            menjalani hidup dengan tenang tanpa rasa khawatir.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="flex items-center justify-end p-4 border-t border-gray-200">
+                    <button data-modal-hide="modal-keamanan" type="button"
+                        class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modal-ekonomi" tabindex="-1" aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-screen bg-gray-900 bg-opacity-50">
+        <div class="relative p-4 w-full max-w-4xl h-screen">
+            <div class="relative bg-white rounded-lg shadow h-full flex flex-col">
+
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
+                    <h3 class="text-xl font-semibold text-gray-900">
+                        Keluarga Ningrat: Solusi Digital untuk Mendukung UMKM Warga
+                    </h3>
+                    <button type="button"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                        data-modal-hide="modal-ekonomi">
+                        <span class="mdi mdi-close"></span>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+
+                <div class="p-4 md:p-8 space-y-8 overflow-y-auto flex-1">
+
+                    <div class="text-center">
+                        <img src="{{asset('assets/images/modal/ekonomi_1.png')}}"
+                            alt="Aplikasi Keluarga Ningrat di Handphone" class="w-full rounded-lg shadow-md">
+                        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mt-6">
+                            Rumah Ningrat Series 2025, Hunian Modern yang Mendorong Pertumbuhan Ekonomi Warga Lewat
+                            Aplikasi Digital Keluarga Ningrat dan Fitur Marketplace Eksklusif
+                        </h1>
+                    </div>
+
+                    <div>
+                        <img src="{{asset('assets/images/modal/ekonomi_4.png')}}"
+                            alt="Mengakses bisnis dari mana saja lewat aplikasi"
+                            class="w-full rounded-lg shadow-md mb-4 object-cover h-64">
+                        <h2 class="text-xl font-semibold text-gray-800">Akses Bisnis Dimanapun: Jangkau Pelanggan Warga
+                            Rumah Ningrat Lewat Genggaman</h2>
+                        <p class="text-gray-600 mt-2">
+                            Dengan aplikasi Keluarga Ningrat, para pelaku UMKM dapat mengelola toko mereka dari mana
+                            saja dan kapan saja. Tidak ada lagi batasan ruang dan waktu untuk melayani tetangga atau
+                            menerima pesanan. Platform ini memungkinkan pesanan tetap berjalan lancar baik saat Anda
+                            sedang di rumah ataupun dalam perjalanan.
+                        </p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <h2 class="text-xl font-semibold text-gray-800">Detail Pesanan: Mudah digunakan, dan
+                                dipahami</h2>
+                            <p class="text-gray-600 mt-2">
+                                Dengan dukungan fitur portal pembayaran aplikasi Keluarga Ningrat, warga dapat melakukan
+                                transaksi jual beli dengan mudah dan aman. Antarmuka yang intuitif memudahkan pembeli
+                                untuk melihat detail pesanan mereka hingga berkomunikasi dengan penjual. Proses
+                                transaksi jadi lebih nyaman dan terpercaya.
+                            </p>
+                        </div>
+                        <div>
+                            <img src="{{asset('assets/images/modal/ekonomi_3.png')}}"
+                                alt="Tampilan detail pesanan di aplikasi" class="w-full rounded-lg shadow-md">
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <img src="{{asset('assets/images/modal/ekonomi_2.png')}}"
+                                alt="Proses pembayaran di aplikasi" class="w-full rounded-lg shadow-md">
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-semibold text-gray-800">Transaksi Cepat dan Aman Lewat Fitur
+                                Checkout di Aplikasi Keluarga Ningrat</h2>
+                            <p class="text-gray-600 mt-2">
+                                Sistem pembayaran yang terintegrasi memungkinkan proses checkout yang cepat dan aman.
+                                Warga bisa menyelesaikan pembayaran tanpa hambatan dengan berbagai metode pembayaran
+                                yang tersedia, langsung dari aplikasi tanpa perlu berpindah platform.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Komunitas yang Aktif, Ruang Sosial yang
+                            Positif</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-gray-600">
+                            <ul class="space-y-2">
+                                <li>- Manajemen Toko yang Mudah</li>
+                                <li>- Notifikasi Pesanan Real-time</li>
+                                <li>- Fitur Chat Langsung dengan Pelanggan</li>
+                            </ul>
+                            <ul class="space-y-2">
+                                <li>- Integrasi Peta dan Informasi Lokasi</li>
+                                <li>- Rekapitulasi Transaksi Otomatis</li>
+                                <li>- Jadwal Bazar dan Acara UMKM di Lingkungan</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="flex items-center justify-end p-4 border-t border-gray-200">
+                    <button data-modal-hide="modal-ekonomi" type="button"
+                        class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script>
-        
+
         $('.metode button').on('click', function () {
             $('.grid-cols-3 button').removeClass('selected');
             $(this).addClass('selected');
@@ -1269,8 +1387,17 @@
 
             // jika bagian atas section sudah terlihat dalam viewport container kanan
             if (top <= 80 && top > -outerHeight) {
-                $('.section-detail').css('display', 'none');
-                carousel.css('display', 'block');
+                // $('.section-detail').css('display', 'none');
+                // carousel.css('display', 'block');
+                // return true;
+                $('.section-detail').not(carousel).fadeOut(300); // 300ms agar cepat
+
+                // Tampilkan carousel yang aktif dengan efek fade in
+                // Cek dulu apakah sudah terlihat, agar tidak menjalankan animasi berulang kali
+                if (!carousel.is(':visible')) {
+                    carousel.fadeIn(500); // 500ms sesuai durasi di class Tailwind
+                }
+
                 return true;
             }
             return false;

@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Rumah Ningrat Jayasampurna Series 2025</title>
-    <link rel="stylesheet" href="{{ asset('css/tailwind.css') }}">
+    <!-- <link rel="stylesheet" href="{{ asset('css/tailwind.css') }}"> -->
+    @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
     <link rel="stylesheet" href="{{asset('/vendor')}}/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="{{asset('/vendor')}}/leaflet/dist/leaflet.css" />
     <script src="{{asset('/vendor')}}/jquery/dist/jquery.min.js"></script>
@@ -48,8 +50,61 @@
         </div>
     </section>
     <section class="container mx-auto px-10 pt-12 pb-6">
-        <div class="grid md:grid-cols-2 gap-10 items-center">
-            <!-- Left Text -->
+        <div class="mt-5">
+            <div class="text-center ">
+                <h2 class="text-3xl font-bold text-[#11689B]">Penghargaan Kami</h2>
+                <p class="text-md text-gray-500 dark:text-gray-400 mt-2">Diakui atas Komitmen dan Kualitas Terbaik</p>
+            </div>
+
+            <div class="relative">
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper items-center">
+                        <div class="swiper-slide flex flex-col justify-center text-center ">
+                            <h2 class="text-lg font-semibold mb-2">Best Selling Non Subsidiez 2028 by Bank BTN</h2>
+                            <img src="{{asset('assets/images/awr_1.png')}}" class="w-full h-13 object-contain" />
+                            <p class="text-sm text-gray-600 mt-2">Penghargaan untuk penjualan unit non-subsidi
+                                tertinggi.</p>
+                        </div>
+
+                        <div class="swiper-slide flex flex-col justify-center text-center ">
+                            <h2 class="text-lg font-semibold mb-2">Best Selling Non Subsidiez 2028 by Bank BTN</h2>
+                            <img src="{{asset('assets/images/awr_2.png')}}" class="w-full h-13 object-contain" />
+                            <p class="text-sm text-gray-600 mt-2">Kategori Developer dengan Performa Terbaik.</p>
+                        </div>
+
+                        <div class="swiper-slide flex flex-col justify-center text-center ">
+                            <h2 class="text-lg font-semibold mb-2">Best Selling Non Subsidiez 2028 by Bank BTN</h2>
+                            <img src="{{asset('assets/images/awr_3.png')}}" class="w-full h-13 object-contain" />
+                            <p class="text-sm text-gray-600 mt-2">Pencapaian Target Penjualan Tercepat.</p>
+                        </div>
+
+                        <div class="swiper-slide flex flex-col justify-center text-center ">
+                            <h2 class="text-lg font-semibold mb-2">Best Selling Non Subsidiez 2028 by Bank BTN</h2>
+                            <img src="{{asset('assets/images/awr_4.png')}}" class="w-full h-13 object-contain" />
+                            <p class="text-sm text-gray-600 mt-2">Mitra Perbankan Paling Produktif.</p>
+                        </div>
+
+                        <div class="swiper-slide flex flex-col justify-center text-center ">
+                            <h2 class="text-lg font-semibold mb-2">Best Selling Non Subsidiez 2028 by Bank BTN</h2>
+                            <img src="{{asset('assets/images/awr_5.png')}}" class="w-full h-13 object-contain" />
+                            <p class="text-sm text-gray-600 mt-2">Inovasi Desain Perumahan Favorit.</p>
+                        </div>
+
+                        <div class="swiper-slide flex flex-col justify-center text-center ">
+                            <h2 class="text-lg font-semibold mb-2">Best Selling Non Subsidiez 2028 by Bank BTN</h2>
+                            <img src="{{asset('assets/images/awr_6.png')}}" class="w-full h-13 object-contain" />
+                            <p class="text-sm text-gray-600 mt-2">Tingkat Kepuasan Pelanggan Tertinggi.</p>
+                        </div>
+
+                    </div>
+                    <div class="swiper-button-prev text-white md:text-black"></div>
+                    <div class="swiper-button-next text-white md:text-black"></div>
+                </div>
+
+
+            </div>
+        </div>
+        <!-- <div class="grid md:grid-cols-2 gap-10 items-center">
             <div class="space-y-8">
                 <div>
                     <h2 class="text-xl">
@@ -60,9 +115,6 @@
                 </div>
 
             </div>
-
-
-            <!-- Right Text -->
             <div class="space-y-6 text-sm text-gray-700">
                 <p>
                     Rumah Ningrat telah membuktikan kualitasnya melalui berbagai penghargaan nasional dalam kategori
@@ -71,52 +123,158 @@
 
             </div>
         </div>
-        <div class="mt-5">
-            <div class="swiper mySwiper">
-                <div class="swiper-wrapper items-center">
-                    <!-- Replace with your image links -->
-                    <div class="swiper-slide flex justify-center"><img src="{{asset('assets/images/awr_1.png')}}"
-                            class="h-28 object-contain" /></div>
-                    <div class="swiper-slide flex justify-center"><img src="{{asset('assets/images/awr_2.png')}}"
-                            class="h-28 object-contain" /></div>
-                    <div class="swiper-slide flex justify-center"><img src="{{asset('assets/images/awr_3.png')}}"
-                            class="h-28 object-contain" /></div>
-                    <div class="swiper-slide flex justify-center"><img src="{{asset('assets/images/awr_4.png')}}"
-                            class="h-28 object-contain" /></div>
-                    <div class="swiper-slide flex justify-center"><img src="{{asset('assets/images/awr_5.png')}}"
-                            class="h-28 object-contain" /></div>
-                    <div class="swiper-slide flex justify-center"><img src="{{asset('assets/images/awr_6.png')}}"
-                            class="h-28 object-contain" /></div>
 
-                </div>
-            </div>
-        </div>
         <div class="grid md:grid-cols-2 gap-10 items-center mt-12">
-            <!-- Left Text -->
             <div class="space-y-8">
-
                 <div>
                     <h2 class="text-xl font-semibold text-[#11689B]">"Rumah Ningrat, Untuk Hidup Lebih Baik"</h2>
                 </div>
             </div>
-
-
-            <!-- Right Text -->
             <div class="space-y-6 text-sm text-gray-700">
                 <p>
                     Hadir dengan beragam fasilitas kesehatan, keamanan, kebersihan, dan komunitas aktif demi menciptakan
                     lingkungan hunian yang sehat, aman, dan penuh kehidupan bagi setiap keluarga.
                 </p>
             </div>
-        </div>
-
-        <!-- Carousel -->
+        </div> -->
 
     </section>
-    <section class="container mx-auto px-4 py-12">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <section class="relative w-full h-screen bg-gray-800 flex items-center justify-center">
+        <img src="assets/images/project/render-rn-6.png" alt="Pengembangan lahan properti"
+            class="absolute inset-0 w-full h-full object-cover">
 
-            <!-- Kolom 1: Swiper Carousel -->
+        <div class="absolute inset-0 bg-black/50"></div>
+
+        <div class="relative z-10 text-center text-white p-4">
+            <h1 class="text-4xl md:text-6xl font-bold leading-tight text-shadow-black text-shadow-md">
+                200 Ha Pengembangan Lahan
+            </h1>
+            <p class="mt-2 text-md md:text-md text-gray-200 text-shadow-black text-shadow-md">
+                Luas area pengembangan properti Rumah Ningrat
+            </p>
+        </div>
+    </section>
+    <section class="relative w-full h-screen bg-gray-800 flex items-center justify-center">
+        <img src="assets/images/project/render-rn-1.png" alt="Pengembangan lahan properti"
+            class="absolute inset-0 w-full h-full object-cover">
+
+        <div class="absolute inset-0 bg-black/50"></div>
+
+        <div class="relative z-10 text-center text-white p-4">
+            <h1 class="text-4xl md:text-6xl font-bold leading-tight text-shadow-black text-shadow-md">
+                15.000 Total Pengembangan
+            </h1>
+            <p class="mt-2 text-md md:text-md text-gray-200 text-shadow-black text-shadow-md">
+                Capaian total dalam pengembangan hunian
+            </p>
+        </div>
+    </section>
+    <section class="relative w-full h-screen bg-gray-800 flex items-center justify-center">
+        <img src="assets/images/project/render-rn-4.png" alt="Pengembangan lahan properti"
+            class="absolute inset-0 w-full h-full object-cover">
+
+        <div class="absolute inset-0 bg-black/50"></div>
+
+        <div class="relative z-10 text-center text-white p-4">
+            <h1 class="text-4xl md:text-6xl font-bold leading-tight text-shadow-black text-shadow-md">
+                15.000 total pengembangan
+            </h1>
+            <p class="mt-2 text-md md:text-md text-gray-200 text-shadow-black text-shadow-md">
+                Jumlah Project perumahan yang berhasil kami wujudkan
+            </p>
+        </div>
+    </section>
+    <section class="relative w-full h-screen bg-gray-800 flex items-center justify-center">
+        <img src="assets/images/project/render-rn-5.png" alt="Pengembangan lahan properti"
+            class="absolute inset-0 w-full h-full object-cover">
+
+        <div class="absolute inset-0 bg-black/50"></div>
+
+        <div class="relative z-10 text-center text-white p-4">
+            <h1 class="text-4xl md:text-6xl font-bold leading-tight text-shadow-black text-shadow-md">
+                10.000 Unit Terjual
+            </h1>
+            <p class="mt-2 text-md md:text-md text-gray-200 text-shadow-black text-shadow-md">
+                Jumlah Unit yang berhasil terjual kepada konsumen
+            </p>
+        </div>
+    </section>
+
+
+
+    <section class="py-12 md:py-20">
+        <div class="container mx-auto px-4">
+
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">
+                    “<span class="text-[#11689B]">Rumah Ningrat</span>, Untuk Hidup Lebih Baik”
+                </h2>
+                <p class="mt-2 text-gray-600 mb-2">
+                    Benefit eksklusif untuk kenyamanan keluarga dan keamanan rumah Anda
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <div class="rounded-sm overflow-hidden">
+                    <div class="relative">
+                        <img class="w-full h-64 object-cover" src="{{asset('assets/images/card_benefit_1.jpg')}}"
+                            alt="Rumah dengan pagar gratis">
+
+                        <div class="absolute bottom-0 left-0 right-0 p-4 bg-black/50 backdrop-blur-sm">
+                            <h3 class="text-white font-semibold text-lg">
+                                Benefit Gratis Pagar
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="py-2">
+                        <p class="text-gray-700">
+                            Nikmati hunian yang langsung siap huni, pagar depan sudah termasuk tanpa biaya tambahan.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="rounded-sm overflow-hidden">
+                    <div class="relative">
+                        <img class="w-full h-64 object-cover" src="{{asset('assets/images/card_benefit_2.jpg')}}"
+                            alt="Aplikasi CCTV di smartphone">
+
+                        <div class="absolute bottom-0 left-0 right-0 p-4 bg-black/50 backdrop-blur-sm">
+                            <h3 class="text-white font-semibold text-lg">
+                                Fitur Live CCTV, Aplikasi Keluarga Ningrat
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="py-2">
+                        <p class="text-gray-700">
+                            Keamanan terjaga melalui aplikasi Keluarga Ningrat, anda dapat memonitoring Live CCTV.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="rounded-sm overflow-hidden">
+                    <div class="relative">
+                        <img class="w-full h-64 object-cover" src="{{asset('assets/images/card_benefit_3.jpg')}}"
+                            alt="Denah rumah dengan tembok belakang">
+
+                        <div class="absolute bottom-0 left-0 right-0 p-4 bg-black/50 backdrop-blur-sm">
+                            <h3 class="text-white font-semibold text-lg">
+                                Benefit Bonus Tembok Belakang Rumah
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="py-2">
+                        <p class="text-gray-700">
+                            Hunian privasi dengan bonus tembok belakang yang sudah termasuk di setiap pembelian.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- <section class="container mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div class="bg-gray-100 rounded-sm overflow-hidden">
                 <div class="swiper swiper_nav">
                     <div class="swiper-wrapper">
@@ -151,27 +309,20 @@
                                 </h3>
                             </div>
                         </div>
-                        <!-- Tambah slide lainnya di sini -->
                     </div>
 
                     <div class="swiper-pagination"></div>
                 </div>
             </div>
-
-            <!-- Kolom 2: Card Stack / Toggle -->
             <div class="bg-gray-100 rounded-sm overflow-hidden p-6 relative">
                 <div class="my-6">
 
                     <div id="stackCards" class="relative h-auto min-h-[110px]">
-                        <!-- Card 1 -->
                         <div class="card absolute inset-0 bg-white rounded-md shadow-md transition-all duration-500 ease-in-out"
                             id="card-1">
                             <div class="flex flex-row-reverse items-stretch gap-4 h-full rounded-md overflow-hidden">
-                                <!-- Gambar di kanan, full height -->
                                 <img src="{{asset('assets/images/card_benefit_1.jpg')}}"
                                     class="w-20 md:w-40 object-cover h-full rounded-l-none rounded-r-md">
-
-                                <!-- Konten teks -->
                                 <div class="flex flex-col justify-center p-4 flex-1">
                                     <p class="text-xs font-semibold text-gray-500">GRATIS PAGAR</p>
                                     <p class="text-sm text-gray-700">Dapatkan pagar rumah gratis, tanpa biaya tambahan
@@ -179,8 +330,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Card 2 -->
                         <div class="card absolute inset-0 bg-white rounded-md shadow-md transition-all duration-500 ease-in-out"
                             id="card-2">
                             <div class="flex flex-row-reverse items-stretch gap-4 h-full rounded-md overflow-hidden">
@@ -193,8 +342,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Card 3 -->
                         <div class="card absolute inset-0 bg-white rounded-md shadow-md transition-all duration-500 ease-in-out"
                             id="card-3">
                             <div class="flex flex-row-reverse items-stretch gap-4 h-full rounded-md overflow-hidden">
@@ -210,21 +357,17 @@
 
                     </div>
                 </div>
-
-                <!-- Tombol -->
                 <div class="mt-6 text-center">
                     <button id="switchCardBtn" class="text-sm text-[#11689B] hover:underline">
                         Lihat Benefit Lainnya
                     </button>
                 </div>
-
-                <!-- Judul Bawah -->
                 <div class="mt-6">
                     <h3 class="font-semibold text-sm">Benefit Utama yang Bisa Anda Dapatkan Di Rumah Ningrat</h3>
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <section class="relative bg-cover bg-center min-h-[400px] md:min-h-[500px]"
         style="background-image: url('/assets/images/mockup/rn-app.jpg')">
         <div class="container mx-auto px-4 py-10">
@@ -326,7 +469,7 @@
             <div class="swiper-button-next text-white md:text-black"></div>
         </div>
     </section>
-    <section class="w-full py-12 px-0 bg-gray-100">
+    <section class="w-full py-12 px-10 bg-gray-100">
         <div id="lokasi-buttons" class="flex justify-center items-center gap-6 py-4 text-sm">
             <button class="lokasi-btn font-semibold text-black border-r pr-4 active" data-id="bekasi">BEKASI</button>
             <!-- <span class="text-gray-300">|</span> -->
@@ -587,6 +730,23 @@
         </div>
     </section>
 
+    <section class="relative h-screen w-full bg-cover bg-center bg-top"
+        style="background-image: url('/assets/images/banner/banner-1.png');vertical-align: top;">
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+        <!-- Navbar -->
+        <!--  -->
+
+        <!-- Content -->
+        <div class="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
+            <h2 class="text-4xl md:text-4xl font-bold mb-2 text-shadow-lg text-shadow-black">Rumah Masa Depan, Untuk Hidup Lebih Baik</h2>
+            <a href="/detail-new"
+                class="btn-animate bg-[#11689B] hover:bg-transparent text-white hover:text-[#11689B] border-2 border-[#11689B] font-semibold py-2 px-6 rounded-full transition-all duration-300">
+                <span>Booking Sekarang</span>
+            </a>
+        </div>
+    </section>
+
     @include('redesign.layout.footer')
     <div id="hoverModal" class="fixed inset-0 z-50 hidden">
         <!-- Background overlay -->
@@ -778,22 +938,31 @@
             $('#mobileMenu').toggleClass('hidden');
         });
         const swiper = new Swiper('.mySwiper', {
+            // Menambahkan modul navigasi
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
             slidesPerView: 2,
             spaceBetween: 20,
             loop: true,
             autoplay: {
-                delay: 2000,
+                delay: 3500,
                 disableOnInteraction: false,
             },
             breakpoints: {
+                // Mobile (lebar < 640px): 2 slide
                 640: {
-                    slidesPerView: 3
+                    slidesPerView: 1,
+                    spaceBetween: 20,
                 },
                 768: {
-                    slidesPerView: 4
+                    slidesPerView: 1,
+                    spaceBetween: 30,
                 },
                 1024: {
-                    slidesPerView: 5
+                    slidesPerView: 1,
+                    spaceBetween: 30,
                 }
             }
         });
@@ -819,16 +988,16 @@
             }, 500);
         }
 
-        const swiper_nav = new Swiper(".swiper_nav", {
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-            loop: true,
-            autoplay: {
-                delay: 3000,
-            },
-        });
+        // const swiper_nav = new Swiper(".swiper_nav", {
+        //     pagination: {
+        //         el: ".swiper-pagination",
+        //         clickable: true,
+        //     },
+        //     loop: true,
+        //     autoplay: {
+        //         delay: 3000,
+        //     },
+        // });
 
         // Toggle Card Stack
         const cards = ['#card-1', '#card-2', '#card-3'];
@@ -870,11 +1039,30 @@
             slidesPerView: 'auto',
             centeredSlides: true,
             spaceBetween: 16,
+            autoplay: {
+                delay: 3500,
+                disableOnInteraction: false,
+            },
             loop: true,
             navigation: {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
             },
+            breakpoints: {
+                // Mobile (lebar < 640px): 2 slide
+                640: {
+                    slidesPerView: 3,
+                    spaceBetween: 20,
+                },
+                768: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                }
+            }
         });
         const accordionButtons = document.querySelectorAll('.accordion-btn');
 

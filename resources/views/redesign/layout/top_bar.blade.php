@@ -1,15 +1,17 @@
 @php
 if($page == 'home'){
+    $header = '';
     $logo = 'assets/images/fav-icon/icon-ningrat.png';
 }else{
+    $header = 'backdrop-blur-sm bg-white bg-opacity-10';
     $logo = 'assets/images/fav-icon/icon-ningrat.png';
 
 }
 @endphp
 
-<nav class="absolute left-0 top-0 right-0 py-3 px-10 z-50 flex justify-between items-center backdrop-blur-sm bg-white bg-opacity-10">
+<nav class="absolute left-0 top-0 right-0 py-3 px-10 z-50 flex justify-between items-center {{$header}}">
     <div class="text-white font-bold text-lg">
-        <img src="{{asset($logo)}}" alt="Logo Rumah Ningrat" class="h-12 w-auto">
+        <a href="/dashboard-new"><img src="{{asset($logo)}}" alt="Logo Rumah Ningrat" class="h-12 w-auto"></a>
     </div>
     <div class="md:hidden">
         <button id="menuToggle" class="text-white focus:outline-none">
