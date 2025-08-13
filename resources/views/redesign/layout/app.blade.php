@@ -10,10 +10,8 @@
     @vite('resources/js/app.js')
     <link rel="stylesheet" href="{{asset('/vendor')}}/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="{{asset('/vendor')}}/leaflet/dist/leaflet.css" />
-    <script src="{{asset('/vendor')}}/jquery/dist/jquery.min.js"></script>
-    <script src="{{asset('/vendor')}}/swiper/swiper-bundle.min.js"></script>
-    <script src="{{asset('/vendor')}}/leaflet/dist/leaflet.js"></script>
     <link href="{{asset('/vendor')}}/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
+    
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
     <style>
         .leaflet-container {
@@ -932,6 +930,10 @@
             </div>
         </div>
     </div>
+    <script src="{{asset('/vendor')}}/jquery/dist/jquery.min.js"></script>
+    <script src="{{asset('/vendor')}}/swiper/swiper-bundle.min.js"></script>
+    <script src="{{asset('/vendor')}}/leaflet/dist/leaflet.js"></script>
+    
 
     <script>
         $('#menuToggle').on('click', function () {

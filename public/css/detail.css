@@ -1,0 +1,301 @@
+html,
+        body {
+            overflow-y: hidden;
+        }
+
+
+        @media (prefers-reduced-motion: no-preference) {
+            :root {
+                scroll-behavior: smooth;
+            }
+        }
+
+
+        .container-group {
+            overflow-y: scroll;
+            height: 100vh;
+            position: relative;
+            margin-bottom: 20vh;
+        }
+
+        .container-group::-webkit-scrollbar {
+            display: none;
+            /* Hides scrollbar in WebKit browsers */
+        }
+
+        #form-section {
+            margin-bottom: 15vh;
+        }
+
+        /* untuk css map */
+        #video_tour {
+            /* position: absolute; */
+            /* top: 0px;
+    left: 0px;
+    bottom: 0px; */
+            width: 100%;
+            height: 100vh;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+            /* Mencegah klik pada video */
+        }
+
+        /* #map {
+            height: 100vh;
+            width: 100%;
+        } */
+
+
+        /* .legend-box {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            border-radius: 3px;
+        }
+
+        .legend.card {
+            font-size: 10px;
+            width: 100%;
+        } */
+
+
+
+
+
+
+        /* responsive breakpoints */
+
+        /* desktop */
+        @media (min-width: 992px) {
+            .owl-carousel .owl-item img {
+                height: 100vh;
+                width: 100%;
+                object-fit: fill;
+            }
+
+            /* button chat ai */
+            .chat-ai {
+                left: 20px;
+                bottom: 20px;
+            }
+        }
+
+        /* mobile */
+        @media (min-width: 320px) and (max-width: 767px) {
+            .owl-carousel .owl-item img {
+                height: 30vh;
+            }
+
+            *:not(svg):not(svg *) {
+                font-size: var(--fontSize);
+            }
+
+            /* form section */
+            #form-section {
+                margin-bottom: 20vh !important;
+            }
+
+            /* bonus section */
+            .bonus-container {
+                grid-template-columns: minmax(0, 60vw);
+                justify-content: center;
+                gap: 12px;
+            }
+
+            .sticky-container {
+                position: fixed;
+                /* Ensure it sticks to the bottom on mobile */
+                bottom: 0;
+                width: 100%;
+                /* Take full width on mobile */
+                padding: 4px 20px 4px 20px;
+                border-radius: 20px 20px 0px 0px;
+                /* Remove rounded corners for mobile */
+                box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+                /* Slightly stronger shadow */
+                font-size: 12px;
+            }
+
+            .price {
+                font-size: 20px;
+                /* Adjust font size for smaller screens */
+            }
+
+            .note {
+                font-size: 8px;
+            }
+
+            .btn-primary {
+                padding: 10px 15px;
+                /* Further adjust padding */
+                font-size: 14px;
+                /* Adjust font size for smaller screens */
+            }
+
+            .section-form {
+                margin-bottom: 300px;
+            }
+
+            .select-blok {
+                height: 30px;
+                width: 100%;
+            }
+
+            /* button chat ai */
+            .chat-ai {
+                left: 10px;
+                top: 10px;
+                width: 60px;
+                height: 50px;
+            }
+
+            .chat-ai p {
+                font-size: 10px;
+            }
+
+            .chat-ai i {
+                font-size: 20px;
+            }
+
+            #video_tour {
+                position: relative;
+                width: 100%;
+                height: 30vh !important;
+            }
+
+            video {
+                position: absolute;
+                inset: 0;
+                object-fit: cover;
+                pointer-events: none;
+            }
+
+            /* .vt_view {
+                height: 30vh !important;
+            } */
+
+            /* #map {
+                height: 30vh !important;
+            } */
+
+            .stikcy-nav-container {
+                position: relative;
+                top: unset;
+                left: unset;
+                right: unset;
+            }
+
+            .navbar .btn.btn-primary.btn-sm {
+                font-size: 10px;
+                padding: 4px;
+            }
+
+            /* .legend-box {
+                display: inline-block;
+                width: 8px;
+                height: 8px;
+                border-radius: 3px;
+            }
+
+            .legend.card {
+                font-size: 6px;
+                width: 100%;
+            }
+
+            .item_legends {
+                font-size: 10px;
+            }
+
+            .legend-content small {
+                font-size: 10px;
+            } */
+
+            /* nira ai */
+
+            .dropup:has(.show) {
+                bottom: 10vh;
+                /* Dropdown naik ke posisi 10vh dari bawah */
+            }
+
+            .chatboxes.align-right.bottom-0 {
+                top: 55px;
+                bottom: 4px !important;
+            }
+
+            .dropdown-menu {
+                transform: translate3d(0, 0, 0) !important;
+                /* Reset transform */
+                top: 100% !important;
+                /* Tampilkan ke bawah */
+                left: 0 !important;
+                /* Tampilkan ke kanan bawah */
+                z-index: 999999;
+                height: 90vh;
+            }
+
+
+        }
+
+        .selected {
+            border-width: 2px;
+            border-color: #11689B;
+            box-shadow: 0 4px 6px -1px rgba(17, 104, 155, 0.3),
+                0 2px 4px -1px rgba(17, 104, 155, 0.1);
+            transform: scale(1.05);
+        }
+
+        .swiper {
+            width: 100%;
+            height: 100vh; /* Membuat slider memenuhi tinggi layar */
+        }
+        /* Mengubah warna navigasi dan paginasi menjadi putih agar terlihat di atas gambar */
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #ffffff;
+        }
+        .swiper-pagination-bullet {
+            background: rgba(255, 255, 255, 0.5);
+        }
+        .swiper-pagination-bullet-active {
+            background: #ffffff;
+        }
+
+        /* Base styles untuk transisi slide */
+        .slide {
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        /*
+         * Kelas untuk animasi teks berbasis CSS (lebih mulus dari jQuery .animate())
+        */
+        .slide-text {
+            /* Transisi untuk properti transform dan opacity */
+            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        /* State awal sebelum teks masuk */
+        .slide-text.is-entering {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        /* State saat teks keluar */
+        .slide-text.is-exiting {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+        
+        /* State saat teks aktif di layar */
+        .slide-text.is-active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .leaflet-gl-layer {
+            pointer-events: none;
+        }

@@ -8,322 +8,13 @@
 
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
-    <script src="{{asset('/vendor')}}/jquery/dist/jquery.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
-        rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
-        rel="stylesheet" />
+    <link rel="stylesheet" href="{{asset('/vendor')}}/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="{{asset('/css/detail.css')}}" />
     <link href="{{asset('/vendor')}}/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
-    <style>
-        html,
-        body {
-            overflow-y: hidden;
-        }
+    <link rel="stylesheet" href="{{asset('/vendor')}}/leaflet/dist/leaflet.css" />
+    <link href="https://cdn.maptiler.com/maptiler-sdk-js/v2.5.1/maptiler-sdk.css" rel="stylesheet" />
 
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-        }
 
-        @media (prefers-reduced-motion: no-preference) {
-            :root {
-                scroll-behavior: smooth;
-            }
-        }
-
-        #wrapper-detail p,
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6,
-        label {
-            font-family: var(--fontFamily);
-            color: var(--fontColor);
-        }
-
-        .container-group {
-            overflow-y: scroll;
-            height: 100vh;
-            position: relative;
-            margin-bottom: 20vh;
-        }
-
-        .container-group::-webkit-scrollbar {
-            display: none;
-            /* Hides scrollbar in WebKit browsers */
-        }
-
-
-
-        .group-container {
-            /* background-color: #1685b6; */
-        }
-
-
-
-        .aside-section {
-            padding: 20px 16px;
-        }
-
-
-
-
-
-
-        /* section blok */
-        #blok-container {
-            overflow-y: auto;
-            max-height: 200px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        #blok-container::-webkit-scrollbar {
-            display: none;
-            /* Hides scrollbar in WebKit browsers */
-        }
-
-
-
-
-        /* form section */
-
-        #form-section {
-            margin-bottom: 15vh;
-        }
-
-        /* untuk css map */
-        #video_tour {
-            /* position: absolute; */
-            /* top: 0px;
-    left: 0px;
-    bottom: 0px; */
-            width: 100%;
-            height: 100vh;
-        }
-
-        video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            pointer-events: none;
-            /* Mencegah klik pada video */
-        }
-
-        #map {
-            height: 100vh;
-            width: 100%;
-        }
-
-        .vt_view {
-            height: 100vh;
-            width: 100%;
-        }
-
-        .legend-box {
-            display: inline-block;
-            width: 15px;
-            height: 15px;
-            border-radius: 3px;
-        }
-
-        .legend.card {
-            /* font-family: Arial, sans-serif; */
-            font-size: 10px;
-            width: 100%;
-        }
-
-
-
-
-
-
-        /* responsive breakpoints */
-
-        /* desktop */
-        @media (min-width: 992px) {
-            .owl-carousel .owl-item img {
-                height: 100vh;
-                width: 100%;
-                object-fit: fill;
-            }
-
-            /* button chat ai */
-            .chat-ai {
-                left: 20px;
-                bottom: 20px;
-            }
-        }
-
-        /* mobile */
-        @media (min-width: 320px) and (max-width: 767px) {
-            .owl-carousel .owl-item img {
-                height: 30vh;
-            }
-
-            *:not(svg):not(svg *) {
-                font-size: var(--fontSize);
-            }
-
-            /* form section */
-            #form-section {
-                margin-bottom: 20vh !important;
-            }
-
-            /* bonus section */
-            .bonus-container {
-                grid-template-columns: minmax(0, 60vw);
-                justify-content: center;
-                gap: 12px;
-            }
-
-            .sticky-container {
-                position: fixed;
-                /* Ensure it sticks to the bottom on mobile */
-                bottom: 0;
-                width: 100%;
-                /* Take full width on mobile */
-                padding: 4px 20px 4px 20px;
-                border-radius: 20px 20px 0px 0px;
-                /* Remove rounded corners for mobile */
-                box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
-                /* Slightly stronger shadow */
-                font-size: 12px;
-            }
-
-            .price {
-                font-size: 20px;
-                /* Adjust font size for smaller screens */
-            }
-
-            .note {
-                font-size: 8px;
-            }
-
-            .btn-primary {
-                padding: 10px 15px;
-                /* Further adjust padding */
-                font-size: 14px;
-                /* Adjust font size for smaller screens */
-            }
-
-            .section-form {
-                margin-bottom: 300px;
-            }
-
-            .select-blok {
-                height: 30px;
-                width: 100%;
-            }
-
-            /* button chat ai */
-            .chat-ai {
-                left: 10px;
-                top: 10px;
-                width: 60px;
-                height: 50px;
-            }
-
-            .chat-ai p {
-                font-size: 10px;
-            }
-
-            .chat-ai i {
-                font-size: 20px;
-            }
-
-            #video_tour {
-                position: relative;
-                width: 100%;
-                height: 30vh !important;
-            }
-
-            video {
-                position: absolute;
-                inset: 0;
-                object-fit: cover;
-                pointer-events: none;
-            }
-
-            .vt_view {
-                height: 30vh !important;
-            }
-
-            #map {
-                height: 30vh !important;
-            }
-
-            .stikcy-nav-container {
-                position: relative;
-                top: unset;
-                left: unset;
-                right: unset;
-            }
-
-            .navbar .btn.btn-primary.btn-sm {
-                font-size: 10px;
-                padding: 4px;
-            }
-
-            .legend-box {
-                display: inline-block;
-                width: 8px;
-                height: 8px;
-                border-radius: 3px;
-            }
-
-            .legend.card {
-                /* font-family: Arial, sans-serif; */
-                font-size: 6px;
-                width: 100%;
-            }
-
-            .item_legends {
-                font-size: 10px;
-            }
-
-            .legend-content small {
-                font-size: 10px;
-            }
-
-            /* nira ai */
-
-            .dropup:has(.show) {
-                bottom: 10vh;
-                /* Dropdown naik ke posisi 10vh dari bawah */
-            }
-
-            .chatboxes.align-right.bottom-0 {
-                top: 55px;
-                bottom: 4px !important;
-            }
-
-            .dropdown-menu {
-                transform: translate3d(0, 0, 0) !important;
-                /* Reset transform */
-                top: 100% !important;
-                /* Tampilkan ke bawah */
-                left: 0 !important;
-                /* Tampilkan ke kanan bawah */
-                z-index: 999999;
-                height: 90vh;
-            }
-
-
-        }
-
-        .selected {
-            border-width: 2px;
-            border-color: #11689B;
-            box-shadow: 0 4px 6px -1px rgba(17, 104, 155, 0.3),
-                0 2px 4px -1px rgba(17, 104, 155, 0.1);
-            transform: scale(1.05);
-        }
-    </style>
 </head>
 
 <body class="bg-white text-gray-800">
@@ -336,68 +27,240 @@
 
         <div class="w-full lg:w-2/3 h-[300px] lg:h-screen">
             <div class="section-detail w-full h-full transition-opacity duration-500 ease-in-out" id="section-detail-1">
-                <div class="relative w-full h-full">
-                    <img src="/assets/images/section/section_1.png" class="w-full h-full object-cover" />
-                    <div class="absolute top-5 right-2 bottom-0 flex flex-col space-y-1 text-white text-xs mt-12 mb-5 gap-2">
-                        <div
-                            class="backdrop-blur-sm bg-black/30 rounded-md p-2 flex flex-col items-center justify-center w-25">
-                            <i class="mdi mdi-gate text-lg"></i>
-                            <span class="text-xs">Gratis Pagar</span>
-                        </div>
-                        <div
-                            class="backdrop-blur-sm bg-black/30 rounded-md p-2 flex flex-col items-center justify-center w-25">
-                            <i class="mdi mdi-wall text-lg"></i>
-                            <span class="text-xs">Gratis Tembok<br>Belakang</span>
-                        </div>
-                        <div
-                            class="backdrop-blur-sm bg-black/30 rounded-md p-2 flex flex-col items-center justify-center w-25">
-                            <i class="mdi mdi-home text-lg"></i>
-                            <span class="text-xs">60 x 30</span>
-                        </div>
-                        <div
-                            class="backdrop-blur-sm bg-black/30 rounded-md p-2 flex flex-col items-center justify-center w-25">
-                            <i class="mdi mdi-shower text-lg"></i>
-                            <span>1 KM</span>
-                        </div>
-                        <div
-                            class="backdrop-blur-sm bg-black/30 rounded-md p-2 flex flex-col items-center justify-center w-25">
-                            <i class="mdi mdi-bed text-lg"></i>
-                            <span>2 Kamar</span>
-                        </div>
-                        <div
-                            class="backdrop-blur-sm bg-black/30 rounded-md p-2 flex flex-col items-center justify-center w-25">
-                            <i class="mdi mdi-car text-lg"></i>
-                            <span>1 Carport</span>
-                        </div>
-                    </div>
+                <div class="swiper sw-section-1">
+                    <div class="swiper-wrapper">
 
-                    <div class="absolute px-5 py-5 top-6 bottom-0 flex flex-col space-y-1 text-white text-xs mt-12">
-                        <button
-                            class="bg-white text-[#11689B] hover:bg-[#11689B] hover:text-white rounded-md p-2 flex items-center gap-2 text-sm transition-colors duration-300 shadow-md">
-                            <i class="mdi mdi-open-in-new"></i>
-                            <span>Lihat Detail</span>
-                        </button>
+                        <div class="swiper-slide">
+                            <div class="relative w-full h-full">
+                                <img src="/assets/images/section/section_1.png" class="w-full h-full object-cover" />
+                                <div
+                                    class="absolute top-5 right-2 bottom-0 flex flex-col space-y-1 text-white text-xs mt-12 mb-5 gap-2">
+                                    <div
+                                        class="backdrop-blur-sm bg-black/30 rounded-md p-2 flex flex-col items-center justify-center w-25">
+                                        <i class="mdi mdi-gate text-lg"></i>
+                                        <span class="text-xs text-center">Gratis Pagar</span>
+                                    </div>
+                                    <div
+                                        class="backdrop-blur-sm bg-black/30 rounded-md p-2 flex flex-col items-center justify-center w-25">
+                                        <i class="mdi mdi-wall text-lg"></i>
+                                        <span class="text-xs text-center">Gratis Tembok<br>Belakang</span>
+                                    </div>
+                                    <div
+                                        class="backdrop-blur-sm bg-black/30 rounded-md p-2 flex flex-col items-center justify-center w-25">
+                                        <i class="mdi mdi-home text-lg"></i>
+                                        <span class="text-xs">60 x 30</span>
+                                    </div>
+                                    <div
+                                        class="backdrop-blur-sm bg-black/30 rounded-md p-2 flex flex-col items-center justify-center w-25">
+                                        <i class="mdi mdi-shower text-lg"></i>
+                                        <span>1 KM</span>
+                                    </div>
+                                    <div
+                                        class="backdrop-blur-sm bg-black/30 rounded-md p-2 flex flex-col items-center justify-center w-25">
+                                        <i class="mdi mdi-bed text-lg"></i>
+                                        <span>2 Kamar</span>
+                                    </div>
+                                    <div
+                                        class="backdrop-blur-sm bg-black/30 rounded-md p-2 flex flex-col items-center justify-center w-25">
+                                        <i class="mdi mdi-car text-lg"></i>
+                                        <span>1 Carport</span>
+                                    </div>
+                                </div>
+                                <div
+                                    class="absolute px-5 py-5 top-6 bottom-0 flex flex-col space-y-1 text-white text-xs mt-12">
+                                    <button
+                                        class="bg-white text-[#11689B] hover:bg-[#11689B] hover:text-white rounded-md p-2 flex items-center gap-2 text-sm transition-colors duration-300 shadow-md">
+                                        <i class="mdi mdi-open-in-new"></i>
+                                        <span>Lihat Detail</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide bg-gray-100 p-4 md:p-8 flex items-center justify-center">
+
+                            <div class="grid grid-cols-2 grid-rows-2 gap-4">
+                                <div class="col-span-2">
+                                    <div class="rounded-sm overflow-hidden h-full">
+                                        <div class="relative h-full">
+                                            <img class="w-full h-full object-cover"
+                                                src="{{asset('assets/images/card_benefit_1.jpg')}}"
+                                                alt="Rumah dengan pagar gratis">
+                                            <div
+                                                class="absolute bottom-0 left-0 right-0 p-4 bg-black/50 backdrop-blur-sm">
+                                                <h3 class="text-white font-semibold text-lg">Benefit Gratis Pagar</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row-start-2">
+                                    <div class="rounded-sm overflow-hidden h-full">
+                                        <div class="relative h-full">
+                                            <img class="w-full h-full object-cover"
+                                                src="{{asset('assets/images/card_benefit_1.jpg')}}"
+                                                alt="Rumah dengan pagar gratis">
+                                            <div
+                                                class="absolute bottom-0 left-0 right-0 p-4 bg-black/50 backdrop-blur-sm">
+                                                <h3 class="text-white font-semibold text-lg">Desain Modern</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row-start-2">
+                                    <div class="rounded-sm overflow-hidden h-full">
+                                        <div class="relative h-full">
+                                            <img class="w-full h-full object-cover"
+                                                src="{{asset('assets/images/card_benefit_1.jpg')}}"
+                                                alt="Rumah dengan pagar gratis">
+                                            <div
+                                                class="absolute bottom-0 left-0 right-0 p-4 bg-black/50 backdrop-blur-sm">
+                                                <h3 class="text-white font-semibold text-lg">Akses Mudah</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
                 </div>
+
+
             </div>
 
             <div class="section-detail w-full h-full hidden transition-opacity duration-500 ease-in-out"
                 id="section-detail-2">
-                <div class="w-full h-full">
-                    <img src="/assets/images/project/render-rn-3.png" class="w-full h-full object-cover" />
+                <div class="relative w-full h-screen">
+
+                    <div id="loader-vt"
+                        class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center bg-gray-100 z-10">
+                        <div class="w-11/12 h-5/6 md:w-3/4 md:h-3/4 bg-gray-300 animate-pulse rounded-lg"></div>
+                        <p class="mt-4 text-gray-500">Loading Content...</p>
+                    </div>
+
+                    <iframe src="{{ url('/vt_view') }}" class="w-full h-full" loading="lazy"
+                        onload="document.getElementById('loader-vt').style.display='none'; this.style.visibility='visible';"
+                        style="visibility: hidden;">
+                    </iframe>
+
                 </div>
             </div>
             <div class="section-detail w-full h-full hidden transition-opacity duration-500 ease-in-out"
                 id="section-detail-3">
                 <div class="w-full h-full">
-                    <img src="/assets/images/carousel/1.png" class="w-full h-full object-cover" />
+                    <div class="grid grid-cols-2 grid-rows-2 gap-4">
+                        <div class="col-span-2">
+                            <div class="rounded-sm overflow-hidden h-full">
+                                <div class="relative h-full">
+                                    <img class="w-full h-full object-cover"
+                                        src="{{asset('assets/images/card_benefit_1.jpg')}}"
+                                        alt="Rumah dengan pagar gratis">
+                                    <div class="absolute bottom-0 left-0 right-0 p-4 bg-black/50 backdrop-blur-sm">
+                                        <h3 class="text-white font-semibold text-lg">Tampilan Depan Rumah Ningrat</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-start-2">
+                            <div class="rounded-sm overflow-hidden h-full">
+                                <div class="relative h-full">
+                                    <img class="w-full h-full object-cover"
+                                        src="{{asset('assets/images/card_benefit_1.jpg')}}"
+                                        alt="Rumah dengan pagar gratis">
+                                    <div class="absolute bottom-0 left-0 right-0 p-4 bg-black/50 backdrop-blur-sm">
+                                        <h3 class="text-white font-semibold text-lg">Fasilitas Olahraga di Area Rumah
+                                            Ningrat</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-start-2">
+                            <div class="rounded-sm overflow-hidden h-full">
+                                <div class="relative h-full">
+                                    <img class="w-full h-full object-cover"
+                                        src="{{asset('assets/images/card_benefit_1.jpg')}}"
+                                        alt="Rumah dengan pagar gratis">
+                                    <div class="absolute bottom-0 left-0 right-0 p-4 bg-black/50 backdrop-blur-sm">
+                                        <h3 class="text-white font-semibold text-lg">Benefit Gratis Pagar</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section-detail w-full h-full hidden transition-opacity duration-500 ease-in-out"
+                id="section-detail-4">
+                <div class="relative w-full h-screen">
+
+                    <div id="loader-poi"
+                        class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center bg-gray-100 z-10">
+                        <div class="w-11/12 h-5/6 md:w-3/4 md:h-3/4 bg-gray-300 animate-pulse rounded-lg"></div>
+                        <p class="mt-4 text-gray-500">Loading Content...</p>
+                    </div>
+
+                    <iframe src="{{ url('/poi_view/70') }}" class="w-full h-full" loading="lazy"
+                        onload="document.getElementById('loader-poi').style.display='none'; this.style.visibility='visible';"
+                        style="visibility: hidden;">
+                    </iframe>
+
+                </div>
+            </div>
+            <div class="section-detail w-full h-full hidden transition-opacity duration-500 ease-in-out"
+                id="section-detail-5">
+                <div class="relative w-full h-screen z-0">
+                    <div id="map" class="w-full h-screen">
+                    </div>
+                </div>
+            </div>
+            <div class="section-detail w-full h-full hidden transition-opacity duration-500 ease-in-out"
+                id="section-detail-6">
+                <div id="slideshow-container"
+                    class="relative w-full min-h-screen flex items-center justify-center overflow-hidden p-8 bg-slate-300">
+
+                    <div class="slide absolute inset-0 flex items-center justify-center opacity-100 p-6">
+                        <div class="flex flex-col md:flex-row items-center justify-center gap-16 w-full max-w-6xl">
+                            <div class="image-container w-full md:w-1/2">
+                                <img src="/assets/images/mockup/mobile-1.png" alt="Live CCTV Interface"
+                                    class="w-full h-auto object-contain max-w-lg mx-auto">
+                            </div>
+                            <div class="text-container w-full md:w-1/2 max-w-md">
+                                <h2 class="text-4xl lg:text-5xl font-bold text-[#11689B]" style="position: relative;">
+                                    Live CCTV</h2>
+                                <p class="mt-4 text-lg text-slate-500" style="position: relative;">
+                                    Kelola komunitas dengan mudah, akses semua layanan di satu aplikasi.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slide absolute inset-0 flex items-center justify-center opacity-0 p-6">
+                        <div class="flex flex-col md:flex-row items-center justify-center gap-16 w-full max-w-6xl">
+                            <div class="image-container w-full md:w-1/2">
+                                <img src="/assets/images/mockup/mobile-2.png"
+                                    alt="Security Patrol Interface"
+                                    class="w-full h-auto object-contain max-w-lg mx-auto">
+                            </div>
+                            <div class="text-container w-full md:w-1/2 max-w-md">
+                                <h2 class="text-4xl lg:text-5xl font-bold text-[#11689B]" style="position: relative;">
+                                    Pantau Petugas</h2>
+                                <p class="mt-4 text-lg text-slate-500" style="position: relative;">
+                                    Lacak aktivitas dan laporan keamanan secara real-time.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
 
 
         <!-- Content (Right) -->
-        <div class="w-full lg:w-1/3 h-auto lg:h-screen overflow-y-auto px-8 py-6 container-group">
+        <div class="w-full lg:w-1/3 h-auto lg:h-screen overflow-y-auto px-8 py-6 container-group z-10">
             <!-- Section 1 -->
             <div id="aside-section-1" class="mb-6 mt-14">
 
@@ -471,6 +334,10 @@
                 </div>
 
                 <!-- Fasilitas -->
+
+
+            </div>
+            <div id="aside-section-2">
                 <div class="border rounded-md p-4 bg-white">
                     <h3 class="font-semibold mb-2">Fasilitas</h3>
                     <hr class="mb-2">
@@ -492,7 +359,8 @@
             </div>
 
             <!-- Section 2 -->
-            <div id="aside-section-2" class="mb-6">
+            <div id="aside-section-3" class="mt-6">
+
                 <div>
                     <h2 class="text-xl font-semibold mb-4">Benefit Rumah Ningrat</h2>
                     <ul class="space-y-1">
@@ -519,6 +387,9 @@
                     </ul>
                 </div>
 
+
+            </div>
+            <div id="aside-section-4" class="mt-6">
                 <div class="border rounded-md p-4 bg-white my-4">
                     <h3 class="font-semibold mb-2">Akses Mudah</h3>
                     <hr class="mb-2" />
@@ -544,19 +415,123 @@
                     </div>
                     <a href="#" class="text-sm text-blue-600 mt-4 inline-block">Lihat Detail Akses</a>
                 </div>
+
+
+            </div>
+            <div id="aside-section-5" class="mt-6">
                 <div>
                     <h2 class="text-xl font-semibold mb-4">Pilih Blok Rumah Impian Anda</h2>
                     <select
                         class="w-full rounded px-4 py-2 bg-white focus:outline-none border-gray-300 hover:border-[#11689B] focus:ring-2 focus:ring-[#11689B] transition duration-200 ease-in-out focus:scale-105 focus:shadow-md focus:shadow-[#11689B]/30">
-                        <option seleced disabled>-- Pilih Blok --</option>
-                        <option value="A02">Blok A02</option>
-                        <option value="B02">Blok B02</option>
-                        <option value="C02">Blok C02</option>
+                        <option value="">-- Pilih Blok --</option>
+                        <option value="C101" data-harga="0" data-nominal="500000" data-dp="5000000"
+                            data-harga_tanah="1500000" data-biaya_pagar="10000000" data-biaya_tembok="0"
+                            data-biaya_ipl="10000000" data-biaya_hook="0" data-biaya_kelebihan_tanah="0"
+                            data-biaya_bphtb="9000000" data-total="34500000" data-potongan="25000000"
+                            data-total_all="9500000">Blok
+                            C101
+                        </option>
+                        <option value="C102" data-harga="0" data-nominal="500000" data-dp="5000000"
+                            data-harga_tanah="1500000" data-biaya_pagar="10000000" data-biaya_tembok="0"
+                            data-biaya_ipl="10000000" data-biaya_hook="0" data-biaya_kelebihan_tanah="0"
+                            data-biaya_bphtb="9000000" data-total="34500000" data-potongan="25000000"
+                            data-total_all="9500000">Blok
+                            C102
+                        </option>
+                        <option value="C103" data-harga="0" data-nominal="500000" data-dp="5000000"
+                            data-harga_tanah="1500000" data-biaya_pagar="10000000" data-biaya_tembok="0"
+                            data-biaya_ipl="10000000" data-biaya_hook="0" data-biaya_kelebihan_tanah="0"
+                            data-biaya_bphtb="9000000" data-total="34500000" data-potongan="25000000"
+                            data-total_all="9500000">Blok
+                            C103
+                        </option>
+                        <option value="C104" data-harga="0" data-nominal="500000" data-dp="5000000"
+                            data-harga_tanah="1500000" data-biaya_pagar="10000000" data-biaya_tembok="0"
+                            data-biaya_ipl="10000000" data-biaya_hook="0" data-biaya_kelebihan_tanah="0"
+                            data-biaya_bphtb="9000000" data-total="34500000" data-potongan="25000000"
+                            data-total_all="9500000">Blok
+                            C104
+                        </option>
+                        <option value="C105" data-harga="0" data-nominal="500000" data-dp="5000000"
+                            data-harga_tanah="1500000" data-biaya_pagar="10000000" data-biaya_tembok="0"
+                            data-biaya_ipl="10000000" data-biaya_hook="0" data-biaya_kelebihan_tanah="0"
+                            data-biaya_bphtb="9000000" data-total="34500000" data-potongan="25000000"
+                            data-total_all="9500000">Blok
+                            C105 (JB : 1)
+                        </option>
+                        <option value="C107" data-harga="0" data-nominal="1000000" data-dp="5000000"
+                            data-harga_tanah="1500000" data-biaya_pagar="10000000" data-biaya_tembok="0"
+                            data-biaya_ipl="10000000" data-biaya_hook="6000000" data-biaya_kelebihan_tanah="60000000"
+                            data-biaya_bphtb="8500000" data-total="91000000" data-potongan="25000000"
+                            data-total_all="66000000">Blok
+                            C107 (Ada Hook/KLT)
+                        </option>
+                        <option value="C115" data-harga="0" data-nominal="1000000" data-dp="5000000"
+                            data-harga_tanah="1500000" data-biaya_pagar="10000000" data-biaya_tembok="0"
+                            data-biaya_ipl="10000000" data-biaya_hook="6000000" data-biaya_kelebihan_tanah="0"
+                            data-biaya_bphtb="8500000" data-total="40500000" data-potongan="25000000"
+                            data-total_all="15500000">Blok
+                            C115 (Ada Hook/KLT)
+                        </option>
+                        <option value="C46" data-harga="0" data-nominal="500000" data-dp="5000000"
+                            data-harga_tanah="1500000" data-biaya_pagar="10000000" data-biaya_tembok="0"
+                            data-biaya_ipl="10000000" data-biaya_hook="0" data-biaya_kelebihan_tanah="0"
+                            data-biaya_bphtb="10000000" data-total="35500000" data-potongan="25000000"
+                            data-total_all="10500000">Blok
+                            C46 (JB : 1)
+                        </option>
+                        <option value="C47" data-harga="0" data-nominal="500000" data-dp="5000000"
+                            data-harga_tanah="1500000" data-biaya_pagar="10000000" data-biaya_tembok="0"
+                            data-biaya_ipl="10000000" data-biaya_hook="0" data-biaya_kelebihan_tanah="0"
+                            data-biaya_bphtb="10000000" data-total="35500000" data-potongan="25000000"
+                            data-total_all="10500000">Blok
+                            C47 (JB : 1)
+                        </option>
+                        <option value="C48" data-harga="0" data-nominal="500000" data-dp="5000000"
+                            data-harga_tanah="1500000" data-biaya_pagar="10000000" data-biaya_tembok="0"
+                            data-biaya_ipl="10000000" data-biaya_hook="0" data-biaya_kelebihan_tanah="0"
+                            data-biaya_bphtb="10000000" data-total="35500000" data-potongan="25000000"
+                            data-total_all="10500000">Blok
+                            C48 (JB : 1)
+                        </option>
+                        <option value="C49" data-harga="0" data-nominal="500000" data-dp="5000000"
+                            data-harga_tanah="1500000" data-biaya_pagar="10000000" data-biaya_tembok="0"
+                            data-biaya_ipl="10000000" data-biaya_hook="0" data-biaya_kelebihan_tanah="0"
+                            data-biaya_bphtb="10000000" data-total="35500000" data-potongan="25000000"
+                            data-total_all="10500000">Blok
+                            C49 (JB : 1)
+                        </option>
+                        <option value="C51" data-harga="0" data-nominal="1000000" data-dp="5000000"
+                            data-harga_tanah="1500000" data-biaya_pagar="10000000" data-biaya_tembok="0"
+                            data-biaya_ipl="10000000" data-biaya_hook="6000000" data-biaya_kelebihan_tanah="0"
+                            data-biaya_bphtb="9500000" data-total="31000000" data-potongan="25000000"
+                            data-total_all="6000000">Blok
+                            C51 (Ada Hook/KLT) (JB : 1)
+                        </option>
+                        <option value="C55" data-harga="0" data-nominal="500000" data-dp="5000000"
+                            data-harga_tanah="1500000" data-biaya_pagar="10000000" data-biaya_tembok="0"
+                            data-biaya_ipl="10000000" data-biaya_hook="0" data-biaya_kelebihan_tanah="0"
+                            data-biaya_bphtb="10000000" data-total="35500000" data-potongan="25000000"
+                            data-total_all="10500000">Blok
+                            C55 (JB : 1)
+                        </option>
+                        <option value="C57" data-harga="0" data-nominal="500000" data-dp="5000000"
+                            data-harga_tanah="1500000" data-biaya_pagar="10000000" data-biaya_tembok="0"
+                            data-biaya_ipl="10000000" data-biaya_hook="0" data-biaya_kelebihan_tanah="0"
+                            data-biaya_bphtb="10000000" data-total="35500000" data-potongan="25000000"
+                            data-total_all="10500000">Blok
+                            C57 (JB : 1)
+                        </option>
+
+
                     </select>
+                    <span class="text-xs text-gray-500 block"><i class="mdi mdi-information-variant-circle-outline"></i>
+                        Tap di peta untuk memilih blok</span>
                 </div>
+
             </div>
-            <div id="aside-section-3" class="mb-6">
-                <div class="text-center mb-4">
+            <div id="aside-section-6" class="mt-6">
+                <div class="text-center">
                     <h1 class="text-xl font-semibold">
                         <span class="text-[#11689B] font-bold">Rumah Ningrat</span> Margadadi
                     </h1>
@@ -637,14 +612,9 @@
                         Sebelum dapat potongan
                     </div>
                 </div>
-
-            </div>
-            <div id="aside-section-4" class="mb-6">
                 <h2 class="text-lg font-semibold mb-6">Isi Data Diri Pembeli</h2>
 
-                <form class="space-y-4">
-
-                    <!-- Nama -->
+                <form id="form_booking" class="space-y-4">
                     <div>
                         <label class="block text-sm font-medium mb-1">Nama Lengkap <span
                                 class="text-red-500">*</span></label>
@@ -652,10 +622,8 @@
               focus:outline-none focus:border-[#11689B] focus:border-2
               hover:border-[#11689B]
               transition duration-200 ease-in-out focus:scale-105 focus:shadow-md focus:shadow-[#11689B]/30"
-                            placeholder="Nama lengkap" required>
+                            placeholder="Nama lengkap" required name="nama">
                     </div>
-
-                    <!-- Nomor HP -->
                     <div>
                         <label class="block text-sm font-medium mb-1">Nomor Handphone <span
                                 class="text-red-500">*</span></label>
@@ -663,20 +631,17 @@
               focus:outline-none focus:border-[#11689B]
               hover:border-[#11689B]
               transition duration-200 ease-in-out focus:scale-105 focus:shadow-md focus:shadow-[#11689B]/30"
-                            placeholder="Nomor HP" required>
+                            placeholder="Nomor HP" required name="no_hp">
                     </div>
-
-                    <!-- Tanggal Lahir -->
                     <div>
                         <label class="block text-sm font-medium mb-1">Tanggal Lahir <span
                                 class="text-red-500">*</span></label>
                         <input type="date" class="w-full rounded-md border border-gray-300 px-3 py-2
               focus:outline-none focus:border-[#11689B]
               hover:border-[#11689B]
-              transition duration-200 ease-in-out focus:scale-105 focus:shadow-md focus:shadow-[#11689B]/30" required>
+              transition duration-200 ease-in-out focus:scale-105 focus:shadow-md focus:shadow-[#11689B]/30" required
+                            name="tgl_lahir">
                     </div>
-
-                    <!-- Tempat Lahir -->
                     <div>
                         <label class="block text-sm font-medium mb-1">Tempat Lahir <span
                                 class="text-red-500">*</span></label>
@@ -684,36 +649,25 @@
               focus:outline-none focus:border-[#11689B]
               hover:border-[#11689B]
               transition duration-200 ease-in-out focus:scale-105 focus:shadow-md focus:shadow-[#11689B]/30"
-                            placeholder="Kota tempat lahir" required>
+                            placeholder="Kota tempat lahir" required name="tempat_lahir">
                     </div>
-
-                    <!-- Jenis Kelamin -->
                     <div>
                         <label class="block text-sm font-medium mb-1">Jenis Kelamin <span
                                 class="text-red-500">*</span></label>
 
-                        <div className="grid grid-cols-5 grid-rows-1 gap-4">
-                            <div className="col-span-2">
-                                <input type="radio" id="option1" name="jenis kelamin" value="L"
+                        <div class="grid grid-cols-5 grid-rows-1 gap-4">
+                            <div class="col-span-2">
+                                <input type="radio" id="option1" name="jenis_kl" value="L"
                                     class="form-radio text-[#11689B]">
                                 <label for="option1">Laki Laki</label>
                             </div>
-                            <div className="col-span-2 col-start-4">
-                                <input type="radio" id="option2" name="jenis kelamin" value="P"
+                            <div class="col-span-2 col-start-4">
+                                <input type="radio" id="option2" name="jenis_kl" value="P"
                                     class="form-radio text-[#11689B]">
                                 <label for="option2">Perempuan</label>
                             </div>
                         </div>
-
-                        <div class="flex items-center space-x-2">
-
-
-
-                        </div>
-
                     </div>
-
-                    <!-- Nomor KTP -->
                     <div>
                         <label class="block text-sm font-medium mb-1">Nomor KTP <span
                                 class="text-red-500">*</span></label>
@@ -721,10 +675,8 @@
               focus:outline-none focus:border-[#11689B]
               hover:border-[#11689B]
               transition duration-200 ease-in-out focus:scale-105 focus:shadow-md focus:shadow-[#11689B]/30"
-                            placeholder="Masukkan nomor KTP" required>
+                            placeholder="Masukkan nomor KTP" required name="no_ktp">
                     </div>
-
-                    <!-- Kelurahan -->
                     <div>
                         <label class="block text-sm font-medium mb-1">Kelurahan Tempat Tinggal <span
                                 class="text-red-500">*</span></label>
@@ -732,10 +684,8 @@
               focus:outline-none focus:border-[#11689B]
               hover:border-[#11689B]
               transition duration-200 ease-in-out focus:scale-105 focus:shadow-md focus:shadow-[#11689B]/30"
-                            placeholder="Masukkan nama kelurahan saat ini" required>
+                            placeholder="Masukkan nama kelurahan saat ini" required name="kelurahan">
                     </div>
-
-                    <!-- Alamat -->
                     <div>
                         <label class="block text-sm font-medium mb-1">Alamat Tempat Tinggal <span
                                 class="text-red-500">*</span></label>
@@ -745,34 +695,45 @@
               transition duration-200 ease-in-out focus:scale-105 focus:shadow-md focus:shadow-[#11689B]/30"
                             placeholder="Masukkan detail alamat tempat tinggal" required></textarea>
                     </div>
-
-                    <!-- Tambahan -->
                     <div>
                         <label class="block text-sm font-medium mb-1">Pekerjaan</label>
                         <input type="text" class="w-full rounded-md border border-gray-300 px-3 py-2
               focus:outline-none focus:border-[#11689B]
               hover:border-[#11689B]
               transition duration-200 ease-in-out focus:scale-105 focus:shadow-md focus:shadow-[#11689B]/30"
-                            placeholder="Contoh: Karyawan Swasta">
+                            placeholder="Contoh: Karyawan Swasta" name="pekerjaan">
                     </div>
-
-                    <div class="flex gap-4">
-                        <div class="w-1/2">
-                            <label class="block text-sm font-medium mb-1">Pendapatan (Rp)</label>
-                            <input type="number" class="w-full rounded-md border border-gray-300 px-3 py-2
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Pendapatan (Rp)</label>
+                        <input type="number" class="w-full rounded-md border border-gray-300 px-3 py-2
+          focus:outline-none focus:border-[#11689B]
+          hover:border-[#11689B]
+          transition duration-200 ease-in-out focus:scale-105 focus:shadow-md focus:shadow-[#11689B]/30"
+                            placeholder="Contoh: 5.000.000" name="pendapatan">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Biaya Hidup (Rp)</label>
+                        <input type="number" class="w-full rounded-md border border-gray-300 px-3 py-2
               focus:outline-none focus:border-[#11689B]
               hover:border-[#11689B]
               transition duration-200 ease-in-out focus:scale-105 focus:shadow-md focus:shadow-[#11689B]/30"
-                                placeholder="Contoh: 5.000.000">
-                        </div>
-                        <div class="w-1/2">
-                            <label class="block text-sm font-medium mb-1">Biaya Hidup (Rp)</label>
-                            <input type="number" class="w-full rounded-md border border-gray-300 px-3 py-2
+                            placeholder="Contoh: 3.000.000" name="biaya_hidup">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Sales</label>
+                        <input type="number" class="w-full rounded-md border border-gray-300 px-3 py-2
               focus:outline-none focus:border-[#11689B]
               hover:border-[#11689B]
               transition duration-200 ease-in-out focus:scale-105 focus:shadow-md focus:shadow-[#11689B]/30"
-                                placeholder="Contoh: 3.000.000">
-                        </div>
+                            placeholder="Cari & Masukan minimal 3 huruf" name="sales">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Kode Referal</label>
+                        <input type="number" class="w-full rounded-md border border-gray-300 px-3 py-2
+              focus:outline-none focus:border-[#11689B]
+              hover:border-[#11689B]
+              transition duration-200 ease-in-out focus:scale-105 focus:shadow-md focus:shadow-[#11689B]/30"
+                            placeholder="" name="kode_referal">
                     </div>
 
                     <div>
@@ -780,7 +741,8 @@
                         <select class="w-full rounded-md border border-gray-300 px-3 py-2
               focus:outline-none focus:border-[#11689B]
               hover:border-[#11689B]
-              transition duration-200 ease-in-out focus:scale-105 focus:shadow-md focus:shadow-[#11689B]/30">
+              transition duration-200 ease-in-out focus:scale-105 focus:shadow-md focus:shadow-[#11689B]/30"
+                            name="status">
                             <option disabled selected>Pilih status</option>
                             <option>Belum Menikah</option>
                             <option>Menikah</option>
@@ -794,7 +756,8 @@
                             <select class="w-full rounded-md border border-gray-300 px-3 py-2
               focus:outline-none focus:border-[#11689B]
               hover:border-[#11689B]
-              transition duration-200 ease-in-out focus:scale-105 focus:shadow-md focus:shadow-[#11689B]/30">
+              transition duration-200 ease-in-out focus:scale-105 focus:shadow-md focus:shadow-[#11689B]/30"
+                                name="jenis_pembayaran">
                                 <option>KPR</option>
                                 <option>Tunai</option>
                             </select>
@@ -804,7 +767,8 @@
                             <select class="w-full rounded-md border border-gray-300 px-3 py-2
               focus:outline-none focus:border-[#11689B]
               hover:border-[#11689B]
-              transition duration-200 ease-in-out focus:scale-105 focus:shadow-md focus:shadow-[#11689B]/30">
+              transition duration-200 ease-in-out focus:scale-105 focus:shadow-md focus:shadow-[#11689B]/30"
+                                name="tenor">
                                 <option>5 Tahun</option>
                                 <option>10 Tahun</option>
                                 <option>15 Tahun</option>
@@ -939,379 +903,50 @@
             </div> -->
         </div>
     </div>
-    <div id="modal-fasilitas" tabindex="-1" aria-hidden="true"
-        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-screen">
-        <div class="relative p-4 w-full max-w-4xl h-screen">
-            <div class="relative bg-white rounded-lg shadow-sm  h-full flex flex-col">
-                <div
-                    class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
-                    <h3 class="text-xl font-semibold text-gray-900">
-                        Rumah Ningrat Jayasampurna
-                    </h3>
-                    <button type="button"
-                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
-                        data-modal-hide="modal-fasilitas">
-                        <span class="mdi mdi-close"></span>
-                        <span class="sr-only">Close modal</span>
-                    </button>
-                </div>
-
-                <div class="p-4 md:p-5 space-y-4 overflow-y-auto flex-1">
-                    <div class="mb-8">
-                        <h1 class="text-3xl font-bold text-gray-900 mb-2">
-                            Hunian Modern yang Dirancang untuk Kesehatan, Kenyamanan, dan Kehidupan Seimbang
-                        </h1>
-                    </div>
-                    <div class="mb-8">
-
-                        <img src="https://i.ibb.co/1K749z4/jogging-track.jpg"
-                            alt="Jogging Track, Rumah Ningrat Jayasampurna" class="w-full rounded-lg shadow-md mb-4">
-                        <p class="text-gray-700 text-lg font-semibold">Jogging Track</p>
-                        <p class="text-sm text-gray-500 mt-2">
-                            Dengan area jogging track yang nyaman dan sejuk, warga dapat berolahraga rutin dan menikmati
-                            pengalaman berolahraga yang menyenangkan.
-                        </p>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                        <div>
-                            <img src="https://i.ibb.co/68v8L8K/lapangan.jpg" alt="Lapangan Olahraga Multifungsi"
-                                class="w-full rounded-lg shadow-md mb-4">
-                            <p class="text-gray-700 text-lg font-semibold">Lapangan Olahraga
-                                Multifungsi</p>
-                            <p class="text-sm text-gray-500 mt-2">
-                                Fasilitas ini dirancang agar dapat memfasilitasi berbagai kegiatan olahraga, seperti
-                                basket, futsal, atau voli.
-                            </p>
-                        </div>
-                        <div>
-                            <img src="https://i.ibb.co/9qQJ9gS/ruang-terbuka.jpg" alt="Ruang Terbuka Hijau"
-                                class="w-full rounded-lg shadow-md mb-4">
-                            <p class="text-gray-700 text-lg font-semibold">Ruang Terbuka Hijau</p>
-                            <p class="text-sm text-gray-500 mt-2">
-                                Lingkungan hunian yang asri dan nyaman dengan ruang terbuka hijau yang didesain secara
-                                estetis dan fungsional.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                    <button data-modal-hide="modal-fasilitas" type="button"
-                        class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100">Tutup</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="modal-komunitas" tabindex="-1" aria-hidden="true"
-        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-screen">
-        <div class="relative p-4 w-full max-w-4xl h-screen">
-            <div class="relative bg-white rounded-lg shadow-sm  h-full flex flex-col">
-                <div
-                    class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
-                    <h3 class="text-xl font-semibold text-gray-900">
-                        Rumah Ningrat Jayasampurna
-                    </h3>
-                    <button type="button"
-                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-modal-hide="modal-komunitas">
-                        <span class="mdi mdi-close"></span>
-                        <span class="sr-only">Close modal</span>
-                    </button>
-                </div>
-
-                <div class="p-4 md:p-8 space-y-8 overflow-y-auto flex-1">
-
-                    <div class="text-center">
-                        <img src="https://i.ibb.co/b3W9VbN/Frame-1686557976-2.jpg" alt="Aplikasi Komunitas di Handphone"
-                            class="w-full max-w-sm mx-auto rounded-lg shadow-md">
-                        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mt-6">
-                            Rumah Ningrat Series 2025, Hunian yang Menguatkan Ikatan Sosial dan Membangun Komunitas yang
-                            Tumbuh dalam Rasa Kebersamaan
-                        </h1>
-                    </div>
-
-                    <div>
-                        <img src="https://i.ibb.co/yY1kG0H/image.png" alt="Kegiatan edukatif komunitas di dalam ruangan"
-                            class="w-full rounded-lg shadow-md mb-4">
-                        <h2 class="text-xl font-semibold text-gray-800 dar-200">Komunitas yang Tumbuh Lewat
-                            Kegiatan Edukatif dan Inspiratif</h2>
-                        <p class="text-gray-600 mt-2">
-                            Komunitas yang solid adalah kunci utama dari hunian yang nyaman. Kami menyediakan berbagai
-                            kegiatan edukatif yang melibatkan seluruh anggota keluarga, seperti seminar, workshop
-                            pengembangan diri, dll. Hunian bukan hanya tempat tinggal, tapi ruang tumbuh yang aktif dan
-                            suportif.
-                        </p>
-                    </div>
-
-                    <div>
-                        <img src="https://i.ibb.co/yVwL3zV/image.png"
-                            alt="Komunitas sedang melakukan kegiatan tanam pohon"
-                            class="w-full rounded-lg shadow-md mb-4">
-                        <h2 class="text-xl font-semibold text-gray-800">Komunitas Hijau dan Peduli
-                            Lingkungan</h2>
-                        <p class="text-gray-600 mt-2">
-                            Melalui kegiatan tanam pohon bersama, workshop daur ulang, dan program kebersihan
-                            lingkungan, warga diajak untuk secara aktif menjaga kelestarian lingkungan. Rumah Ningrat
-                            berkomitmen dalam semangat pelestarian alam.
-                        </p>
-                    </div>
-
-                    <div>
-                        <img src="https://i.ibb.co/mH2Sg27/image.png" alt="Ibu-ibu komunitas sedang berkumpul bersama"
-                            class="w-full rounded-lg shadow-md mb-4">
-                        <h2 class="text-xl font-semibold text-gray-800">Kehangatan dalam Kebersamaan
-                        </h2>
-                        <p class="text-gray-600 mt-2">
-                            Interaksi sosial antar tetangga dan warga menjadi bagian penting dari kehidupan di Rumah
-                            Ningrat. Ruang komunal yang nyaman dan fasilitas pendukung lainnya dirancang untuk
-                            menumbuhkan keakraban.
-                        </p>
-                    </div>
-
-                    <div class="bg-gray-100 p-6 rounded-lg">
-                        <h2 class="text-xl font-semibold text-gray-800 mb-4">Komunitas yang Aktif,
-                            Ruang Sosial yang Positif</h2>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-gray-600">
-                            <ul class="space-y-2">
-                                <li>- Kegiatan Seni dan Budaya</li>
-                                <li>- Kegiatan Keagamaan Rutin Tiap Minggu</li>
-                                <li>- Komunitas Olahraga dan Anak</li>
-                            </ul>
-                            <ul class="space-y-2">
-                                <li>- Klub UMKM dan Usaha Bersama</li>
-                                <li>- Acara Ramah Tamah Antar Warga</li>
-                                <li>- Kegiatan Sosial dan Support antar Warga</li>
-                            </ul>
-                        </div>
-                        <p class="text-xs text-gray-500 mt-6">
-                            Rumah Ningrat dirancang tidak hanya sebagai tempat tinggal, namun juga sebagai sebuah
-                            komunitas yang hidup, dimana setiap individu dapat berkembang, berinteraksi, dan merasa
-                            menjadi bagian dari lingkungan yang peduli.
-                        </p>
-                    </div>
-
-                </div>
-
-                <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                    <button data-modal-hide="modal-komunitas" type="button"
-                        class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100">Tutup</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="modal-keamanan" tabindex="-1" aria-hidden="true"
-        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-screen bg-gray-900 bg-opacity-50">
-        <div class="relative p-4 w-full max-w-4xl h-screen">
-            <div class="relative bg-white rounded-lg shadow h-full flex flex-col">
-
-                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
-                    <h3 class="text-xl font-semibold text-gray-900">
-                        Sistem Keamanan Terpadu
-                    </h3>
-                    <button type="button"
-                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
-                        data-modal-hide="modal-keamanan">
-                        <span class="mdi mdi-close"></span>
-                        <span class="sr-only">Close modal</span>
-                    </button>
-                </div>
-
-                <div class="p-4 md:p-8 space-y-8 overflow-y-auto flex-1">
-
-                    <div class="text-center">
-                        <div class="flex justify-center my-6">
-
-                            <img src="{{asset('assets/images/modal/keamanan_1.png')}}" alt="Logo Rumah Ningrat"
-                                class="w-full rounded-lg shadow-md">
-                        </div>
-                        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mt-6">
-                            Rumah Ningrat Jayasampurna Series 2025, Hunian Modern yang Mengutamakan Rasa Aman dan Nyaman
-                            Bagi Setiap Penghuni
-                        </h2>
-                    </div>
-
-                    <div>
-
-
-                        <img src="{{asset('assets/images/modal/keamanan_2.png')}}" alt="Kolase gambar CCTV dan rumah"
-                            class="w-full rounded-lg shadow-md mb-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Security 24 Jam yang Siap Menjaga Ketenangan
-                            Anda</h3>
-                        <p class="text-gray-600 mt-2">
-                            Tim keamanan kami berpatroli secara rutin dan didukung oleh sistem pemantauan CCTV canggih
-                            yang tersebar di seluruh area hunian. Setiap sudut penting terpantau untuk memastikan
-                            lingkungan yang aman dan bebas dari gangguan.
-                        </p>
-                    </div>
-
-                    <div>
-
-                        <img src="{{asset('assets/images/modal/keamanan_3.png')}}"
-                            alt="Portal otomatis sistem satu gerbang" class="w-full rounded-lg shadow-md mb-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Sistem One Gate yang Membatasi Akses Hanya untuk
-                            Penghuni</h3>
-                        <p class="text-gray-600 mt-2">
-                            Akses keluar masuk perumahan diatur dalam satu gerbang utama dengan penjagaan keamanan 24
-                            jam. Sistem ini menjamin bahwa hanya penghuni dan tamu terverifikasi yang dapat memasuki
-                            area, menjaga privasi dan keamanan hunian secara maksimal.
-                        </p>
-                    </div>
-
-                    <div>
-
-                        <img src="{{asset('assets/images/modal/keamanan_4.png')}}"
-                            alt="Gerbang utama perumahan yang megah" class="w-full rounded-lg shadow-md mb-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Gerbang Utama yang Mewakili Keamanan dan
-                            Kebanggaan Hunian</h3>
-                        <p class="text-gray-600 mt-2">
-                            Desain gerbang yang megah dan dilengkapi pos keamanan merupakan representasi dari komitmen
-                            kami untuk memberikan standar keamanan terbaik sekaligus menjadi ikon kebanggaan bagi setiap
-                            penghuni.
-                        </p>
-                    </div>
-
-                    <div class="bg-gray-50 p-6 rounded-lg">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Keamanan Berlapis untuk Ketenangan Maksimal
-                        </h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-gray-600">
-                            <ul class="space-y-2">
-                                <li>- CCTV Terpasang 24 Jam</li>
-                                <li>- Pos Keamanan di Gerbang Utama</li>
-                                <li>- Petugas Keamanan Profesional</li>
-                            </ul>
-                            <ul class="space-y-2">
-                                <li>- One Gate System (Sistem Satu Gerbang)</li>
-                                <li>- Akses Terbatas untuk Tamu</li>
-                                <li>- Desain Pencahayaan Lingkungan yang Baik</li>
-                            </ul>
-                        </div>
-                        <p class="text-xs text-gray-500 mt-6">
-                            Rumah Ningrat Series 2025 memberikan prioritas tertinggi pada keamanan Anda. Dengan sistem
-                            keamanan berlapis, kami menciptakan lingkungan yang aman dan nyaman, sehingga Anda dapat
-                            menjalani hidup dengan tenang tanpa rasa khawatir.
-                        </p>
-                    </div>
-
-                </div>
-
-                <div class="flex items-center justify-end p-4 border-t border-gray-200">
-                    <button data-modal-hide="modal-keamanan" type="button"
-                        class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100">Tutup</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="modal-ekonomi" tabindex="-1" aria-hidden="true"
-        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-screen bg-gray-900 bg-opacity-50">
-        <div class="relative p-4 w-full max-w-4xl h-screen">
-            <div class="relative bg-white rounded-lg shadow h-full flex flex-col">
-
-                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
-                    <h3 class="text-xl font-semibold text-gray-900">
-                        Keluarga Ningrat: Solusi Digital untuk Mendukung UMKM Warga
-                    </h3>
-                    <button type="button"
-                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
-                        data-modal-hide="modal-ekonomi">
-                        <span class="mdi mdi-close"></span>
-                        <span class="sr-only">Close modal</span>
-                    </button>
-                </div>
-
-                <div class="p-4 md:p-8 space-y-8 overflow-y-auto flex-1">
-
-                    <div class="text-center">
-                        <img src="{{asset('assets/images/modal/ekonomi_1.png')}}"
-                            alt="Aplikasi Keluarga Ningrat di Handphone" class="w-full rounded-lg shadow-md">
-                        <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mt-6">
-                            Rumah Ningrat Series 2025, Hunian Modern yang Mendorong Pertumbuhan Ekonomi Warga Lewat
-                            Aplikasi Digital Keluarga Ningrat dan Fitur Marketplace Eksklusif
-                        </h1>
-                    </div>
-
-                    <div>
-                        <img src="{{asset('assets/images/modal/ekonomi_4.png')}}"
-                            alt="Mengakses bisnis dari mana saja lewat aplikasi"
-                            class="w-full rounded-lg shadow-md mb-4 object-cover h-64">
-                        <h2 class="text-xl font-semibold text-gray-800">Akses Bisnis Dimanapun: Jangkau Pelanggan Warga
-                            Rumah Ningrat Lewat Genggaman</h2>
-                        <p class="text-gray-600 mt-2">
-                            Dengan aplikasi Keluarga Ningrat, para pelaku UMKM dapat mengelola toko mereka dari mana
-                            saja dan kapan saja. Tidak ada lagi batasan ruang dan waktu untuk melayani tetangga atau
-                            menerima pesanan. Platform ini memungkinkan pesanan tetap berjalan lancar baik saat Anda
-                            sedang di rumah ataupun dalam perjalanan.
-                        </p>
-                    </div>
-
-                    <div class="grid md:grid-cols-2 gap-8 items-center">
-                        <div>
-                            <h2 class="text-xl font-semibold text-gray-800">Detail Pesanan: Mudah digunakan, dan
-                                dipahami</h2>
-                            <p class="text-gray-600 mt-2">
-                                Dengan dukungan fitur portal pembayaran aplikasi Keluarga Ningrat, warga dapat melakukan
-                                transaksi jual beli dengan mudah dan aman. Antarmuka yang intuitif memudahkan pembeli
-                                untuk melihat detail pesanan mereka hingga berkomunikasi dengan penjual. Proses
-                                transaksi jadi lebih nyaman dan terpercaya.
-                            </p>
-                        </div>
-                        <div>
-                            <img src="{{asset('assets/images/modal/ekonomi_3.png')}}"
-                                alt="Tampilan detail pesanan di aplikasi" class="w-full rounded-lg shadow-md">
-                        </div>
-                    </div>
-
-                    <div class="grid md:grid-cols-2 gap-8 items-center">
-                        <div>
-                            <img src="{{asset('assets/images/modal/ekonomi_2.png')}}"
-                                alt="Proses pembayaran di aplikasi" class="w-full rounded-lg shadow-md">
-                        </div>
-                        <div>
-                            <h2 class="text-xl font-semibold text-gray-800">Transaksi Cepat dan Aman Lewat Fitur
-                                Checkout di Aplikasi Keluarga Ningrat</h2>
-                            <p class="text-gray-600 mt-2">
-                                Sistem pembayaran yang terintegrasi memungkinkan proses checkout yang cepat dan aman.
-                                Warga bisa menyelesaikan pembayaran tanpa hambatan dengan berbagai metode pembayaran
-                                yang tersedia, langsung dari aplikasi tanpa perlu berpindah platform.
-                            </p>
-                        </div>
-
-                    </div>
-
-                    <div class="bg-gray-50 p-6 rounded-lg">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Komunitas yang Aktif, Ruang Sosial yang
-                            Positif</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-gray-600">
-                            <ul class="space-y-2">
-                                <li>- Manajemen Toko yang Mudah</li>
-                                <li>- Notifikasi Pesanan Real-time</li>
-                                <li>- Fitur Chat Langsung dengan Pelanggan</li>
-                            </ul>
-                            <ul class="space-y-2">
-                                <li>- Integrasi Peta dan Informasi Lokasi</li>
-                                <li>- Rekapitulasi Transaksi Otomatis</li>
-                                <li>- Jadwal Bazar dan Acara UMKM di Lingkungan</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="flex items-center justify-end p-4 border-t border-gray-200">
-                    <button data-modal-hide="modal-ekonomi" type="button"
-                        class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100">Tutup</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
 
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="{{asset('/vendor')}}/leaflet/dist/leaflet.js"></script>
+    <script src="{{asset('/vendor')}}/jquery/dist/jquery.min.js"></script>
+    <script src="{{asset('/vendor')}}/swiper/swiper-bundle.min.js"></script>
+    <script src="https://cdn.maptiler.com/maptiler-sdk-js/v2.5.1/maptiler-sdk.umd.js"></script>
+    <script src="https://cdn.maptiler.com/leaflet-maptilersdk/v2.0.0/leaflet-maptilersdk.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.20.0/dist/jquery.validate.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.2/dist/svg.min.js"></script> -->
+    @include('redesign.modal.benefit')
     <script>
+
+        const carousels = [
+            { section: '#aside-section-1', carousel: '#section-detail-1' },
+            { section: '#aside-section-2', carousel: '#section-detail-2' },
+            { section: '#aside-section-3', carousel: '#section-detail-3' },
+            { section: '#aside-section-4', carousel: '#section-detail-4' },
+            { section: '#aside-section-5', carousel: '#section-detail-5' },
+            { section: '#aside-section-6', carousel: '#section-detail-6' },
+        ];
+        let currentActiveCarousel = null;
+        const scrollContainer = $('.container-group') || window;
+
+        $(document).ready(function () {
+
+
+        });
+
+        var sw1 = new Swiper(".sw-section-1", {
+            // Mengaktifkan paginasi (titik di bawah)
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            // Mengaktifkan tombol navigasi (panah kiri-kanan)
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            keyboard: true,
+        });
 
         $('.metode button').on('click', function () {
             $('.grid-cols-3 button').removeClass('selected');
@@ -1343,41 +978,23 @@
             $('.tab-content').addClass('hidden');
             $('#' + tab).removeClass('hidden');
         });
-        $(document).ready(function () {
-            $('.owl-carousel').owlCarousel({
-                loop: false,
-                nav: true,
-                dots: false,
-                items: 1,
-                navText: [
-                    "<span class='text-2xl'>&larr;</span>",
-                    "<span class='text-2xl'>&rarr;</span>"
-                ]
-            });
 
-            let currentActiveCarousel = null;
-            const scrollContainer = $('.container-group') || window;
 
-            $('.container-group').on('scroll', function () {
-                const carousels = [
-                    { section: '#aside-section-1', carousel: '#section-detail-1' },
-                    { section: '#aside-section-2', carousel: '#section-detail-2' },
-                    { section: '#aside-section-3', carousel: '#section-detail-3' }
-                ];
+        $('.container-group').on('scroll', function () {
 
-                for (const { section, carousel } of carousels) {
-                    if (activateCarousel(section, carousel)) {
-                        if (currentActiveCarousel !== carousel) {
-                            currentActiveCarousel = carousel;
-                        }
-                        break;
+
+            for (const { section, carousel } of carousels) {
+                if (activateCarousel(section, carousel)) {
+                    if (currentActiveCarousel !== carousel) {
+                        currentActiveCarousel = carousel;
                     }
+                    break;
                 }
-            });
-
+            }
         });
         function activateCarousel(sectionId, carouselId) {
             const section = $(sectionId);
+            if (section.length === 0) return false;
             const carousel = $(carouselId);
 
             const position = section.position();
@@ -1387,13 +1004,21 @@
 
             // jika bagian atas section sudah terlihat dalam viewport container kanan
             if (top <= 80 && top > -outerHeight) {
-                // $('.section-detail').css('display', 'none');
-                // carousel.css('display', 'block');
-                // return true;
+                // if (carouselId == '#section-detail-5') {
+                //     setTimeout(function () {
+                //         map.invalidateSize();
+                //     }, 100);
+                // }
+                if (carouselId === '#section-detail-5' && !isMapInitialized) {
+                    // initializeMap();
+                    isMapInitialized = true; // Set penanda agar tidak diinisialisasi ulang
+                } else if (carouselId === '#section-detail-5' && isMapInitialized) {
+                    map.invalidateSize();
+                    // setTimeout(function () {
+                    // }, 10); // Diberi jeda singkat agar transisi CSS selesai
+                }
                 $('.section-detail').not(carousel).fadeOut(300); // 300ms agar cepat
 
-                // Tampilkan carousel yang aktif dengan efek fade in
-                // Cek dulu apakah sudah terlihat, agar tidak menjalankan animasi berulang kali
                 if (!carousel.is(':visible')) {
                     carousel.fadeIn(500); // 500ms sesuai durasi di class Tailwind
                 }
@@ -1403,13 +1028,79 @@
             return false;
         }
 
-        function validasiBook() {
-            alert('Booking diklik!');
-        }
+
+        $(document).ready(function () {
+            let currentSlide = 0;
+            const slides = $('.slide');
+            const totalSlides = slides.length;
+            const duration = 5000; // 5 detik per slide
+
+            function runSlideshow() {
+                const $currentSlide = slides.eq(currentSlide);
+                const nextSlide = (currentSlide + 1) % totalSlides;
+                const $nextSlide = slides.eq(nextSlide);
+
+                // --- ANIMASI KELUAR (OUT) UNTUK SLIDE SAAT INI ---
+
+                // Teks: Slide ke atas dan fade out
+                $currentSlide.find('.text-container h2, .text-container p').animate({
+                    top: '-=30px', // Bergerak ke atas
+                    opacity: 0
+                }, 800);
+
+                // Gambar: Fade out
+                $currentSlide.find('.image-container').animate({
+                    opacity: 0
+                }, 800);
+
+                // --- ANIMASI MASUK (IN) UNTUK SLIDE BERIKUTNYA ---
+                setTimeout(function () {
+                    // Sembunyikan slide saat ini sepenuhnya
+                    $currentSlide.css('opacity', 0);
+
+                    // Siapkan posisi awal teks slide berikutnya (sedikit di bawah dan transparan)
+                    $nextSlide.find('.text-container h2, .text-container p').css({
+                        top: '30px',
+                        opacity: 0
+                    });
+                    // Siapkan gambar slide berikutnya (transparan)
+                    $nextSlide.find('.image-container').css({
+                        opacity: 0
+                    });
+
+                    // Tampilkan kontainer slide berikutnya
+                    $nextSlide.css('opacity', 1);
+
+                    // Animasikan teks slide berikutnya ke posisi normal
+                    $nextSlide.find('.text-container h2, .text-container p').animate({
+                        top: '0px',
+                        opacity: 1
+                    }, 800);
+
+                    // Animasikan gambar slide berikutnya (fade in)
+                    $nextSlide.find('.image-container').animate({
+                        opacity: 1
+                    }, 800);
+
+                    // Update slide saat ini untuk siklus berikutnya
+                    currentSlide = nextSlide;
+                }, 1000); // Tunggu 1 detik sebelum slide berikutnya masuk
+            }
+
+            // Jalankan slideshow secara otomatis
+            setInterval(runSlideshow, duration);
+        });
+
+        // $('#form_booking').submit(function (e) { 
+        //     e.preventDefault();
+
+        // });
         function isMobile() {
             return window.innerWidth < 768;
         }
     </script>
+    @include('redesign.part.js_validate_book')
+    @include('redesign.part.js_siteplan')
 </body>
 
 </html>
